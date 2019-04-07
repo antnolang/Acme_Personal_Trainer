@@ -1,0 +1,2 @@
+# Design and Testing II: Acme Personal-Trainer
+This repository contains the project corresponding to the "Hackathon" (fifth deliverable) of the subject Design and Testing II of the degree in Computer Engineering - Software Engineering at the University of Seville.
