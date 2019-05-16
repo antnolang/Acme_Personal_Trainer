@@ -1,0 +1,3256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- * PopulateDatabase.xml * * Copyright (C) 2019 Universidad de Sevilla 
+	* * The use of this project is hereby constrained to the conditions of the 
+	* TDG Licence, a copy of which you may download from * http://www.tdg-seville.info/License.html -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+
+	<!-- User accounts -->
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin1" />
+		<property name="password" value="e00cf25ad42683b3df678c61f42c6bda" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="username" value="system" />
+		<property name="password" value="54b53072540eeeb8f8e9343e71f28176" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount3" class="security.UserAccount">
+		<property name="username" value="company1" />
+		<property name="password" value="df655f976f7c9d3263815bd981225cd9" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="COMPANY" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="company2" />
+		<property name="password" value="d196a28097115067fefd73d25b0c0be8" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="COMPANY" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount5" class="security.UserAccount">
+		<property name="username" value="company3" />
+		<property name="password" value="e828ae3339b8d80b3902c1564578804e" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="COMPANY" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount6" class="security.UserAccount">
+		<property name="username" value="rookie1" />
+		<property name="password" value="9701eb1802a4c63f51e1501512fbdd30" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ROOKIE" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount7" class="security.UserAccount">
+		<property name="username" value="rookie2" />
+		<property name="password" value="124be4fa2a59341a1d7e965ac49b2923" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ROOKIE" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount8" class="security.UserAccount">
+		<property name="username" value="rookie3" />
+		<property name="password" value="b723fa2fd1c2dc65d166df3e7f83e329" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ROOKIE" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount9" class="security.UserAccount">
+		<property name="username" value="rookie4" />
+		<property name="password" value="78dfa0fab9872b58c8affee48f0c4252" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ROOKIE" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount10" class="security.UserAccount">
+		<property name="username" value="rookie5" />
+		<property name="password" value="71c3559edfab3474860637d46b7c39de" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ROOKIE" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount11" class="security.UserAccount">
+		<property name="username" value="rookie6" />
+		<property name="password" value="2ac0966e96640cedb5d2f770e21b86db" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ROOKIE" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount12" class="security.UserAccount">
+		<property name="username" value="rookie7" />
+		<property name="password" value="03e82f65437ab841c7249c041060d6f9" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ROOKIE" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount13" class="security.UserAccount">
+		<property name="username" value="rookie8" />
+		<property name="password" value="a91134f99b47c300dd03771543b77b59" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ROOKIE" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount14" class="security.UserAccount">
+		<property name="username" value="rookie9" />
+		<property name="password" value="b03ff77f0b1dec7fe41676276cc5854c" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ROOKIE" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount15" class="security.UserAccount">
+		<property name="username" value="auditor1" />
+		<property name="password" value="175d2e7a63f386554a4dd66e865c3e14" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount16" class="security.UserAccount">
+		<property name="username" value="auditor2" />
+		<property name="password" value="04dd94ba3212ac52ad3a1f4cbfb52d4f" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount17" class="security.UserAccount">
+		<property name="username" value="auditor3" />
+		<property name="password" value="fc2073dbe4f65dfd71e46602f8e6a5f3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount18" class="security.UserAccount">
+		<property name="username" value="auditor4" />
+		<property name="password" value="6cc8affcba51a854192a33af68c08f49" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount19" class="security.UserAccount">
+		<property name="username" value="auditor5" />
+		<property name="password" value="3775bf00262284e83013c9cea5f41431" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount20" class="security.UserAccount">
+		<property name="username" value="auditor6" />
+		<property name="password" value="5d78d53d65022ce05a759cd3c057782e" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount21" class="security.UserAccount">
+		<property name="username" value="auditor7" />
+		<property name="password" value="cb22ac7c563939f50b8b44ec70dfecb4" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount22" class="security.UserAccount">
+		<property name="username" value="provider1" />
+		<property name="password" value="cdb82d56473901641525fbbd1d5dab56" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount23" class="security.UserAccount">
+		<property name="username" value="provider2" />
+		<property name="password" value="ebfc815ee2cc6a16225105bb7b3e1e53" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount24" class="security.UserAccount">
+		<property name="username" value="provider3" />
+		<property name="password" value="a575bf1b9ca7d068cef7bbc8fa7f43e1" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount25" class="security.UserAccount">
+		<property name="username" value="provider4" />
+		<property name="password" value="5d35a7d891c4aae477f56ebf807fbd0a" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount26" class="security.UserAccount">
+		<property name="username" value="provider5" />
+		<property name="password" value="bd19ee25be71cfc77f532c4b26b4a54e" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount27" class="security.UserAccount">
+		<property name="username" value="provider6" />
+		<property name="password" value="85202849e05dc23e4b80f2af8be3650c" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount28" class="security.UserAccount">
+		<property name="username" value="provider7" />
+		<property name="password" value="081695deabc539ca794c3437d1937158" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Administrator -->
+	<bean id="administrator1" class="domain.Administrator">
+		<property name="name" value="Admin1" />
+		<property name="surname" value="Ruiz" />
+		<property name="VATnumber" value="65" />
+		<property name="creditCard" ref="creditCard1" />
+		<property name="photo"
+			value="http://www.littlehearts.ind.in/wp-content/themes/lhs/Birthday/images/adm.png" />
+		<property name="email" value="admin1@gmail.com" />
+		<property name="phoneNumber" value="63018754" />
+		<property name="address" value="Calle Admin 1" />
+		<property name="userAccount" ref="userAccount1" />
+	</bean>
+
+	<bean id="system" class="domain.Administrator">
+		<property name="name" value="System" />
+		<property name="surname" value="Reina" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard2" />
+		<property name="photo"
+			value="https://image.freepik.com/free-photo/linux-kubuntu-operating-logo-system-options_121-97849.jpg" />
+		<property name="email" value="admin2@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Admin 2" />
+		<property name="userAccount" ref="userAccount2" />
+	</bean>
+
+	<!-- Answer -->
+	<bean id="answer1" class="domain.Answer">
+		<property name="text" value="Answer1, Application1" />
+		<property name="codeLink" value="https://www.code.com" />
+	</bean>
+
+	<bean id="answer2" class="domain.Answer">
+		<property name="text" value="Answer2, Application2" />
+		<property name="codeLink" value="https://www.code.com" />
+	</bean>
+
+	<bean id="answer4" class="domain.Answer">
+		<property name="text" value="Answer4, Application4" />
+		<property name="codeLink" value="https://www.code.com" />
+	</bean>
+
+	<bean id="answer5" class="domain.Answer">
+		<property name="text" value="Answer5, Application5" />
+		<property name="codeLink" value="https://www.code.com" />
+	</bean>
+
+	<bean id="answer6" class="domain.Answer">
+		<property name="text" value="Answer6, Application6" />
+		<property name="codeLink" value="https://www.code.com" />
+	</bean>
+
+	<bean id="answer7" class="domain.Answer">
+		<property name="text" value="Answer7, Application7" />
+		<property name="codeLink" value="https://www.code.com" />
+	</bean>
+
+	<bean id="answer9" class="domain.Answer">
+		<property name="text" value="Answer9, Application9" />
+		<property name="codeLink" value="https://www.code.com" />
+	</bean>
+
+	<bean id="answer10" class="domain.Answer">
+		<property name="text" value="Answer10, Application10" />
+		<property name="codeLink" value="https://www.code.com" />
+	</bean>
+
+	<bean id="answer11" class="domain.Answer">
+		<property name="text" value="Answer11, Application11" />
+		<property name="codeLink" value="https://www.code.com" />
+	</bean>
+
+	<bean id="answer12" class="domain.Answer">
+		<property name="text" value="Answer12, Application12" />
+		<property name="codeLink" value="https://www.code.com" />
+	</bean>
+
+	<bean id="answer14" class="domain.Answer">
+		<property name="text" value="Answer14, Application14" />
+		<property name="codeLink" value="https://www.code.com" />
+	</bean>
+
+
+	<!-- Application -->
+	<bean id="application1" class="domain.Application">
+		<property name="applicationMoment" value="2019/01/01 10:10" />
+		<property name="submittedMoment" value="2019/02/01 10:10" />
+		<property name="status" value="ACCEPTED" />
+		<property name="rookie" ref="rookie1" />
+		<property name="curriculum" ref="curriculum12" />
+		<property name="position" ref="position1" />
+		<property name="problem" ref="problem1" />
+		<property name="answer" ref="answer1" />
+	</bean>
+
+	<bean id="application2" class="domain.Application">
+		<property name="applicationMoment" value="2019/01/01 10:10" />
+		<property name="submittedMoment" value="2019/02/01 10:10" />
+		<property name="status" value="ACCEPTED" />
+		<property name="rookie" ref="rookie2" />
+		<property name="curriculum" ref="curriculum22" />
+		<property name="position" ref="position1" />
+		<property name="problem" ref="problem1" />
+		<property name="answer" ref="answer2" />
+	</bean>
+
+	<bean id="application3" class="domain.Application">
+		<property name="applicationMoment" value="2019/01/01 10:10" />
+		<property name="status" value="PENDING" />
+		<property name="rookie" ref="rookie3" />
+		<property name="curriculum" ref="curriculum32" />
+		<property name="position" ref="position1" />
+		<property name="problem" ref="problem2" />
+	</bean>
+
+	<bean id="application4" class="domain.Application">
+		<property name="applicationMoment" value="2019/01/01 10:10" />
+		<property name="submittedMoment" value="2019/02/01 10:10" />
+		<property name="status" value="SUBMITTED" />
+		<property name="rookie" ref="rookie6" />
+		<property name="curriculum" ref="curriculum62" />
+		<property name="position" ref="position2" />
+		<property name="problem" ref="problem1" />
+		<property name="answer" ref="answer4" />
+	</bean>
+
+	<bean id="application5" class="domain.Application">
+		<property name="applicationMoment" value="2019/01/01 10:10" />
+		<property name="submittedMoment" value="2019/02/01 10:10" />
+		<property name="status" value="REJECTED" />
+		<property name="rookie" ref="rookie1" />
+		<property name="curriculum" ref="curriculum13" />
+		<property name="position" ref="position2" />
+		<property name="problem" ref="problem3" />
+		<property name="answer" ref="answer5" />
+	</bean>
+
+	<bean id="application6" class="domain.Application">
+		<property name="applicationMoment" value="2019/01/01 10:10" />
+		<property name="submittedMoment" value="2019/02/01 10:10" />
+		<property name="status" value="REJECTED" />
+		<property name="rookie" ref="rookie4" />
+		<property name="curriculum" ref="curriculum42" />
+		<property name="position" ref="position6" />
+		<property name="problem" ref="problem5" />
+		<property name="answer" ref="answer6" />
+	</bean>
+
+	<bean id="application7" class="domain.Application">
+		<property name="applicationMoment" value="2019/01/01 10:10" />
+		<property name="submittedMoment" value="2019/02/01 10:10" />
+		<property name="status" value="SUBMITTED" />
+		<property name="rookie" ref="rookie5" />
+		<property name="curriculum" ref="curriculum52" />
+		<property name="position" ref="position6" />
+		<property name="problem" ref="problem9" />
+		<property name="answer" ref="answer7" />
+	</bean>
+
+	<bean id="application8" class="domain.Application">
+		<property name="applicationMoment" value="2019/01/01 10:10" />
+		<property name="status" value="PENDING" />
+		<property name="rookie" ref="rookie2" />
+		<property name="curriculum" ref="curriculum23" />
+		<property name="position" ref="position7" />
+		<property name="problem" ref="problem6" />
+	</bean>
+
+	<bean id="application9" class="domain.Application">
+		<property name="applicationMoment" value="2019/01/01 10:10" />
+		<property name="submittedMoment" value="2019/02/01 10:10" />
+		<property name="status" value="REJECTED" />
+		<property name="rookie" ref="rookie5" />
+		<property name="curriculum" ref="curriculum53" />
+		<property name="position" ref="position7" />
+		<property name="problem" ref="problem7" />
+		<property name="answer" ref="answer9" />
+	</bean>
+
+	<bean id="application10" class="domain.Application">
+		<property name="applicationMoment" value="2019/01/01 10:10" />
+		<property name="submittedMoment" value="2019/02/01 10:10" />
+		<property name="status" value="ACCEPTED" />
+		<property name="rookie" ref="rookie7" />
+		<property name="curriculum" ref="curriculum72" />
+		<property name="position" ref="position7" />
+		<property name="problem" ref="problem8" />
+		<property name="answer" ref="answer10" />
+	</bean>
+
+	<bean id="application11" class="domain.Application">
+		<property name="applicationMoment" value="2019/01/01 10:10" />
+		<property name="submittedMoment" value="2019/02/01 10:10" />
+		<property name="status" value="REJECTED" />
+		<property name="rookie" ref="rookie2" />
+		<property name="curriculum" ref="curriculum24" />
+		<property name="position" ref="position8" />
+		<property name="problem" ref="problem12" />
+		<property name="answer" ref="answer11" />
+	</bean>
+
+	<bean id="application12" class="domain.Application">
+		<property name="applicationMoment" value="2019/01/01 10:10" />
+		<property name="submittedMoment" value="2019/02/01 10:10" />
+		<property name="status" value="SUBMITTED" />
+		<property name="rookie" ref="rookie4" />
+		<property name="curriculum" ref="curriculum43" />
+		<property name="position" ref="position8" />
+		<property name="problem" ref="problem13" />
+		<property name="answer" ref="answer12" />
+	</bean>
+
+	<bean id="application13" class="domain.Application">
+		<property name="applicationMoment" value="2019/01/01 10:10" />
+		<property name="status" value="PENDING" />
+		<property name="rookie" ref="rookie4" />
+		<property name="curriculum" ref="curriculum44" />
+		<property name="position" ref="position9" />
+		<property name="problem" ref="problem13" />
+	</bean>
+
+	<bean id="application14" class="domain.Application">
+		<property name="applicationMoment" value="2019/01/01 10:10" />
+		<property name="submittedMoment" value="2019/02/01 10:10" />
+		<property name="status" value="ACCEPTED" />
+		<property name="rookie" ref="rookie3" />
+		<property name="curriculum" ref="curriculum33" />
+		<property name="position" ref="position9" />
+		<property name="problem" ref="problem13" />
+		<property name="answer" ref="answer14" />
+	</bean>
+
+	<!-- Auditor -->
+	<bean id="auditor1" class="domain.Auditor">
+		<property name="name" value="Auditor1" />
+		<property name="surname" value="Garcia" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard15" />
+		<property name="photo"
+			value="http://webfeb.in/wp-content/uploads/2016/11/logo-design-for-it-company.jpg" />
+		<property name="email" value="auditor1@gmail.com" />
+		<property name="phoneNumber" value="63015471" />
+		<property name="address" value="Calle Auditor 1" />
+		<property name="userAccount" ref="userAccount15" />
+	</bean>
+
+	<bean id="auditor2" class="domain.Auditor">
+		<property name="name" value="Auditor2" />
+		<property name="surname" value="Garcia" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard16" />
+		<property name="photo"
+			value="http://webfeb.in/wp-content/uploads/2016/11/logo-design-for-it-company.jpg" />
+		<property name="email" value="auditor2@gmail.com" />
+		<property name="phoneNumber" value="63012521" />
+		<property name="address" value="Calle Auditor 2" />
+		<property name="userAccount" ref="userAccount16" />
+	</bean>
+
+	<bean id="auditor3" class="domain.Auditor">
+		<property name="name" value="Auditor3" />
+		<property name="surname" value="Garcia" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard17" />
+		<property name="photo"
+			value="http://webfeb.in/wp-content/uploads/2016/11/logo-design-for-it-company.jpg" />
+		<property name="email" value="auditor3@gmail.com" />
+		<property name="phoneNumber" value="63015471" />
+		<property name="address" value="Calle Auditor 3" />
+		<property name="userAccount" ref="userAccount17" />
+	</bean>
+
+	<bean id="auditor4" class="domain.Auditor">
+		<property name="name" value="Auditor4" />
+		<property name="surname" value="Garcia" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard18" />
+		<property name="photo"
+			value="http://webfeb.in/wp-content/uploads/2016/11/logo-design-for-it-company.jpg" />
+		<property name="email" value="auditor4@gmail.com" />
+		<property name="phoneNumber" value="63012521" />
+		<property name="address" value="Calle Auditor 4" />
+		<property name="userAccount" ref="userAccount18" />
+	</bean>
+
+	<bean id="auditor5" class="domain.Auditor">
+		<property name="name" value="Auditor5" />
+		<property name="surname" value="Garcia" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard19" />
+		<property name="photo"
+			value="http://webfeb.in/wp-content/uploads/2016/11/logo-design-for-it-company.jpg" />
+		<property name="email" value="auditor5@gmail.com" />
+		<property name="phoneNumber" value="63015471" />
+		<property name="address" value="Calle Auditor 5" />
+		<property name="userAccount" ref="userAccount19" />
+	</bean>
+
+	<bean id="auditor6" class="domain.Auditor">
+		<property name="name" value="Auditor6" />
+		<property name="surname" value="Garcia" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard20" />
+		<property name="photo"
+			value="http://webfeb.in/wp-content/uploads/2016/11/logo-design-for-it-company.jpg" />
+		<property name="email" value="auditor6@gmail.com" />
+		<property name="phoneNumber" value="63012521" />
+		<property name="address" value="Calle Auditor 6" />
+		<property name="userAccount" ref="userAccount20" />
+	</bean>
+
+	<bean id="auditor7" class="domain.Auditor">
+		<property name="name" value="Auditor1" />
+		<property name="surname" value="Garcia" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard21" />
+		<property name="photo"
+			value="http://webfeb.in/wp-content/uploads/2016/11/logo-design-for-it-company.jpg" />
+		<property name="email" value="auditor7@gmail.com" />
+		<property name="phoneNumber" value="63015471" />
+		<property name="address" value="Calle Auditor 7" />
+		<property name="userAccount" ref="userAccount21" />
+	</bean>
+
+
+	<!-- Audit -->
+	<bean id="audit1" class="domain.Audit">
+		<property name="writtenMoment" value="2019/01/01 10:10" />
+		<property name="text" value="Text audit 1" />
+		<property name="score" value="7" />
+		<property name="finalMode" value="true" />
+		<property name="auditor" ref="auditor1" />
+		<property name="position" ref="position1" />
+	</bean>
+
+	<bean id="audit2" class="domain.Audit">
+		<property name="writtenMoment" value="2017/01/01 10:10" />
+		<property name="text" value="Text audit 2" />
+		<property name="score" value="5" />
+		<property name="finalMode" value="true" />
+		<property name="auditor" ref="auditor2" />
+		<property name="position" ref="position9" />
+	</bean>
+
+	<bean id="audit3" class="domain.Audit">
+		<property name="writtenMoment" value="2018/01/01 10:10" />
+		<property name="text" value="Text audit 3" />
+		<property name="score" value="8" />
+		<property name="finalMode" value="false" />
+		<property name="auditor" ref="auditor3" />
+		<property name="position" ref="position6" />
+	</bean>
+	
+	<bean id="audit4" class="domain.Audit">
+		<property name="writtenMoment" value="2019/01/01 10:10" />
+		<property name="text" value="Text audit 4" />
+		<property name="score" value="4" />
+		<property name="finalMode" value="true" />
+		<property name="auditor" ref="auditor3" />
+		<property name="position" ref="position1" />
+	</bean>
+
+	<bean id="audit5" class="domain.Audit">
+		<property name="writtenMoment" value="2017/01/01 10:10" />
+		<property name="text" value="Text audit 5" />
+		<property name="score" value="1" />
+		<property name="finalMode" value="true" />
+		<property name="auditor" ref="auditor4" />
+		<property name="position" ref="position2" />
+	</bean>
+
+	<bean id="audit6" class="domain.Audit">
+		<property name="writtenMoment" value="2018/01/01 10:10" />
+		<property name="text" value="Text audit 6" />
+		<property name="score" value="10" />
+		<property name="finalMode" value="false" />
+		<property name="auditor" ref="auditor6" />
+		<property name="position" ref="position6" />
+	</bean>
+	
+	<bean id="audit7" class="domain.Audit">
+		<property name="writtenMoment" value="2019/01/01 10:10" />
+		<property name="text" value="Text audit 7" />
+		<property name="score" value="9" />
+		<property name="finalMode" value="true" />
+		<property name="auditor" ref="auditor7" />
+		<property name="position" ref="position7" />
+	</bean>
+
+	<bean id="audit8" class="domain.Audit">
+		<property name="writtenMoment" value="2017/01/01 10:10" />
+		<property name="text" value="Text audit 8" />
+		<property name="score" value="6" />
+		<property name="finalMode" value="true" />
+		<property name="auditor" ref="auditor7" />
+		<property name="position" ref="position8" />
+	</bean>
+
+
+	<!-- Company -->
+	<bean id="company1" class="domain.Company">
+		<property name="name" value="Company1" />
+		<property name="surname" value="Garcia" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard3" />
+		<property name="photo"
+			value="http://webfeb.in/wp-content/uploads/2016/11/logo-design-for-it-company.jpg" />
+		<property name="email" value="company1@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Company 1" />
+		<property name="commercialName" value="One Commercial Name" />
+		<property name="auditScore" value="0.4" />
+		<property name="userAccount" ref="userAccount3" />
+	</bean>
+
+	<bean id="company2" class="domain.Company">
+		<property name="name" value="Company2" />
+		<property name="surname" value="Lobato" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard4" />
+		<property name="photo"
+			value="https://www.freelogodesign.org/Content/img/logo-ex-6.png" />
+		<property name="email" value="company2@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Company 2" />
+		<property name="commercialName" value="Two Commercial Name" />
+		<property name="userAccount" ref="userAccount4" />
+	</bean>
+
+	<bean id="company3" class="domain.Company">
+		<property name="name" value="Company3" />
+		<property name="surname" value="Perez" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard5" />
+		<property name="photo"
+			value="https://www.freelogodesign.org/Content/img/logo-ex-5.png" />
+		<property name="email" value="company3@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Company 3" />
+		<property name="commercialName" value="Three Commercial Name" />
+		<property name="auditScore" value="0.55" />
+		<property name="userAccount" ref="userAccount5" />
+	</bean>
+
+	<!-- CreditCard -->
+	<bean id="creditCard1" class="domain.CreditCard">
+		<property name="holder" value="holder1" />
+		<property name="make" value="VISA" />
+		<property name="number" value="38353348140483" />
+		<property name="expirationMonth" value="08" />
+		<property name="expirationYear" value="21" />
+		<property name="cvvCode" value="724" />
+	</bean>
+
+	<bean id="creditCard2" class="domain.CreditCard">
+		<property name="holder" value="holder2" />
+		<property name="make" value="VISA" />
+		<property name="number" value="4716895067094219" />
+		<property name="expirationMonth" value="10" />
+		<property name="expirationYear" value="22" />
+		<property name="cvvCode" value="587" />
+	</bean>
+
+	<bean id="creditCard3" class="domain.CreditCard">
+		<property name="holder" value="holder3" />
+		<property name="make" value="VISA" />
+		<property name="number" value="4389142361978458" />
+		<property name="expirationMonth" value="03" />
+		<property name="expirationYear" value="22" />
+		<property name="cvvCode" value="587" />
+	</bean>
+
+	<bean id="creditCard4" class="domain.CreditCard">
+		<property name="holder" value="holder4" />
+		<property name="make" value="VISA" />
+		<property name="number" value="4916210851536995" />
+		<property name="expirationMonth" value="02" />
+		<property name="expirationYear" value="21" />
+		<property name="cvvCode" value="147" />
+	</bean>
+
+	<bean id="creditCard5" class="domain.CreditCard">
+		<property name="holder" value="holder5" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="4539294619605521" />
+		<property name="expirationMonth" value="01" />
+		<property name="expirationYear" value="20" />
+		<property name="cvvCode" value="258" />
+	</bean>
+
+	<bean id="creditCard6" class="domain.CreditCard">
+		<property name="holder" value="holder6" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="4024007150182987" />
+		<property name="expirationMonth" value="02" />
+		<property name="expirationYear" value="22" />
+		<property name="cvvCode" value="258" />
+	</bean>
+
+	<bean id="creditCard7" class="domain.CreditCard">
+		<property name="holder" value="holder7" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="4556001181801737" />
+		<property name="expirationMonth" value="02" />
+		<property name="expirationYear" value="21" />
+		<property name="cvvCode" value="254" />
+	</bean>
+
+	<bean id="creditCard8" class="domain.CreditCard">
+		<property name="holder" value="holder8" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="4485923119929700" />
+		<property name="expirationMonth" value="03" />
+		<property name="expirationYear" value="22" />
+		<property name="cvvCode" value="218" />
+	</bean>
+
+	<bean id="creditCard9" class="domain.CreditCard">
+		<property name="holder" value="holder9" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="5265265673659825" />
+		<property name="expirationMonth" value="04" />
+		<property name="expirationYear" value="21" />
+		<property name="cvvCode" value="250" />
+	</bean>
+
+	<bean id="creditCard10" class="domain.CreditCard">
+		<property name="holder" value="holder10" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="5466799096597995" />
+		<property name="expirationMonth" value="03" />
+		<property name="expirationYear" value="22" />
+		<property name="cvvCode" value="118" />
+	</bean>
+
+	<bean id="creditCard11" class="domain.CreditCard">
+		<property name="holder" value="holder11" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="5386393115853022" />
+		<property name="expirationMonth" value="04" />
+		<property name="expirationYear" value="21" />
+		<property name="cvvCode" value="950" />
+	</bean>
+
+	<bean id="creditCard12" class="domain.CreditCard">
+		<property name="holder" value="holder12" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="5283115543844354" />
+		<property name="expirationMonth" value="03" />
+		<property name="expirationYear" value="22" />
+		<property name="cvvCode" value="124" />
+	</bean>
+
+	<bean id="creditCard13" class="domain.CreditCard">
+		<property name="holder" value="holder13" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="5311247326144102" />
+		<property name="expirationMonth" value="04" />
+		<property name="expirationYear" value="21" />
+		<property name="cvvCode" value="180" />
+	</bean>
+
+	<bean id="creditCard14" class="domain.CreditCard">
+		<property name="holder" value="holder14" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="5363673506446743" />
+		<property name="expirationMonth" value="07" />
+		<property name="expirationYear" value="24" />
+		<property name="cvvCode" value="613" />
+	</bean>
+
+	<bean id="creditCard15" class="domain.CreditCard">
+		<property name="holder" value="holder15" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="4382235426482099" />
+		<property name="expirationMonth" value="04" />
+		<property name="expirationYear" value="21" />
+		<property name="cvvCode" value="950" />
+	</bean>
+
+	<bean id="creditCard16" class="domain.CreditCard">
+		<property name="holder" value="holder16" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="4262922023905342" />
+		<property name="expirationMonth" value="03" />
+		<property name="expirationYear" value="22" />
+		<property name="cvvCode" value="124" />
+	</bean>
+
+	<bean id="creditCard17" class="domain.CreditCard">
+		<property name="holder" value="holder17" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="340422775030815" />
+		<property name="expirationMonth" value="04" />
+		<property name="expirationYear" value="21" />
+		<property name="cvvCode" value="180" />
+	</bean>
+
+	<bean id="creditCard18" class="domain.CreditCard">
+		<property name="holder" value="holder18" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="3559081929041845" />
+		<property name="expirationMonth" value="07" />
+		<property name="expirationYear" value="24" />
+		<property name="cvvCode" value="613" />
+	</bean>
+
+	<bean id="creditCard19" class="domain.CreditCard">
+		<property name="holder" value="holder19" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="5772487597524838" />
+		<property name="expirationMonth" value="07" />
+		<property name="expirationYear" value="24" />
+		<property name="cvvCode" value="613" />
+	</bean>
+
+	<bean id="creditCard20" class="domain.CreditCard">
+		<property name="holder" value="holder20" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="4382235426482099" />
+		<property name="expirationMonth" value="04" />
+		<property name="expirationYear" value="21" />
+		<property name="cvvCode" value="950" />
+	</bean>
+
+	<bean id="creditCard21" class="domain.CreditCard">
+		<property name="holder" value="holder21" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="4057772385714058" />
+		<property name="expirationMonth" value="03" />
+		<property name="expirationYear" value="22" />
+		<property name="cvvCode" value="124" />
+	</bean>
+
+	<bean id="creditCard22" class="domain.CreditCard">
+		<property name="holder" value="holder22" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="4507131688273419" />
+		<property name="expirationMonth" value="04" />
+		<property name="expirationYear" value="21" />
+		<property name="cvvCode" value="180" />
+	</bean>
+
+	<bean id="creditCard23" class="domain.CreditCard">
+		<property name="holder" value="holder23" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="4737888229428065" />
+		<property name="expirationMonth" value="07" />
+		<property name="expirationYear" value="24" />
+		<property name="cvvCode" value="613" />
+	</bean>
+
+	<bean id="creditCard24" class="domain.CreditCard">
+		<property name="holder" value="holder24" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="4436860896310276" />
+		<property name="expirationMonth" value="07" />
+		<property name="expirationYear" value="24" />
+		<property name="cvvCode" value="613" />
+	</bean>
+
+	<bean id="creditCard25" class="domain.CreditCard">
+		<property name="holder" value="holder25" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="4393228453922746" />
+		<property name="expirationMonth" value="04" />
+		<property name="expirationYear" value="21" />
+		<property name="cvvCode" value="950" />
+	</bean>
+
+	<bean id="creditCard26" class="domain.CreditCard">
+		<property name="holder" value="holder26" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="6991117604891978" />
+		<property name="expirationMonth" value="03" />
+		<property name="expirationYear" value="22" />
+		<property name="cvvCode" value="124" />
+	</bean>
+
+	<bean id="creditCard27" class="domain.CreditCard">
+		<property name="holder" value="holder27" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="6686452513127994" />
+		<property name="expirationMonth" value="04" />
+		<property name="expirationYear" value="21" />
+		<property name="cvvCode" value="180" />
+	</bean>
+
+	<bean id="creditCard28" class="domain.CreditCard">
+		<property name="holder" value="holder28" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="6372154754847707" />
+		<property name="expirationMonth" value="07" />
+		<property name="expirationYear" value="24" />
+		<property name="cvvCode" value="613" />
+	</bean>
+
+	<bean id="creditCard29" class="domain.CreditCard">
+		<property name="holder" value="holder29" />
+		<property name="make" value="VISA" />
+		<property name="number" value="4931301939300792" />
+		<property name="expirationMonth" value="08" />
+		<property name="expirationYear" value="21" />
+		<property name="cvvCode" value="724" />
+	</bean>
+
+	<bean id="creditCard30" class="domain.CreditCard">
+		<property name="holder" value="holder30" />
+		<property name="make" value="VISA" />
+		<property name="number" value="4149491757454652" />
+		<property name="expirationMonth" value="10" />
+		<property name="expirationYear" value="22" />
+		<property name="cvvCode" value="587" />
+	</bean>
+
+	<bean id="creditCard31" class="domain.CreditCard">
+		<property name="holder" value="holder31" />
+		<property name="make" value="VISA" />
+		<property name="number" value="4868000464935082" />
+		<property name="expirationMonth" value="03" />
+		<property name="expirationYear" value="22" />
+		<property name="cvvCode" value="587" />
+	</bean>
+
+	<bean id="creditCard32" class="domain.CreditCard">
+		<property name="holder" value="holder32" />
+		<property name="make" value="VISA" />
+		<property name="number" value="4507260447657628" />
+		<property name="expirationMonth" value="02" />
+		<property name="expirationYear" value="21" />
+		<property name="cvvCode" value="147" />
+	</bean>
+
+	<bean id="creditCard33" class="domain.CreditCard">
+		<property name="holder" value="holder33" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="4937251840717218" />
+		<property name="expirationMonth" value="01" />
+		<property name="expirationYear" value="20" />
+		<property name="cvvCode" value="258" />
+	</bean>
+
+	<bean id="creditCard34" class="domain.CreditCard">
+		<property name="holder" value="holder34" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="4774207809404400" />
+		<property name="expirationMonth" value="02" />
+		<property name="expirationYear" value="22" />
+		<property name="cvvCode" value="258" />
+	</bean>
+
+	<bean id="creditCard35" class="domain.CreditCard">
+		<property name="holder" value="holder35" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="5506947852834563" />
+		<property name="expirationMonth" value="02" />
+		<property name="expirationYear" value="21" />
+		<property name="cvvCode" value="254" />
+	</bean>
+
+	<bean id="creditCard36" class="domain.CreditCard">
+		<property name="holder" value="holder36" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="5257782243656891" />
+		<property name="expirationMonth" value="03" />
+		<property name="expirationYear" value="22" />
+		<property name="cvvCode" value="218" />
+	</bean>
+
+	<!-- Curriculum -->
+	<bean id="curriculum11" class="domain.Curriculum">
+		<property name="isOriginal" value="true" />
+		<property name="title" value="Curriculum del Rookie 1" />
+		<property name="rookie" ref="rookie1" />
+		<property name="miscellaneousDatas">
+			<list>
+				<ref bean="miscellaneousData11" />
+				<ref bean="miscellaneousData12" />
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<ref bean="educationData11" />
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<ref bean="positionData11" />
+				<ref bean="positionData12" />
+			</list>
+		</property>
+		<property name="personalData" ref="personalData11" />
+	</bean>
+
+
+	<bean id="curriculum12" class="domain.Curriculum">
+		<property name="isOriginal" value="false" />
+		<property name="title" value="Copia de Curriculum del Rookie 1" />
+		<property name="rookie" ref="rookie1" />
+		<property name="miscellaneousDatas">
+			<list>
+				<ref bean="miscellaneousData13" />
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<ref bean="educationData12" />
+				<ref bean="educationData13" />
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="personalData" ref="personalData12" />
+	</bean>
+
+	<bean id="curriculum13" class="domain.Curriculum">
+		<property name="isOriginal" value="false" />
+		<property name="title" value="Copia de Curriculum del Rookie 1" />
+		<property name="rookie" ref="rookie1" />
+		<property name="miscellaneousDatas">
+			<list>
+				<ref bean="miscellaneousData14" />
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<ref bean="educationData14" />
+				<ref bean="educationData15" />
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="personalData" ref="personalData13" />
+	</bean>
+
+	<bean id="curriculum21" class="domain.Curriculum">
+		<property name="isOriginal" value="true" />
+		<property name="title" value="Curriculum del Rookie 2" />
+		<property name="rookie" ref="rookie2" />
+		<property name="miscellaneousDatas">
+			<list>
+				<ref bean="miscellaneousData21" />
+				<ref bean="miscellaneousData22" />
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<ref bean="positionData21" />
+			</list>
+		</property>
+		<property name="personalData" ref="personalData21" />
+	</bean>
+
+	<bean id="curriculum22" class="domain.Curriculum">
+		<property name="isOriginal" value="false" />
+		<property name="title" value="Copia de Curriculum del Rookie 2" />
+		<property name="rookie" ref="rookie2" />
+		<property name="miscellaneousDatas">
+			<list>
+				<ref bean="miscellaneousData23" />
+				<ref bean="miscellaneousData24" />
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<ref bean="positionData22" />
+			</list>
+		</property>
+		<property name="personalData" ref="personalData22" />
+	</bean>
+
+	<bean id="curriculum23" class="domain.Curriculum">
+		<property name="isOriginal" value="false" />
+		<property name="title" value="Copia de Curriculum del Rookie 2" />
+		<property name="rookie" ref="rookie2" />
+		<property name="miscellaneousDatas">
+			<list>
+				<ref bean="miscellaneousData34" />
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<ref bean="positionData34" />
+			</list>
+		</property>
+		<property name="personalData" ref="personalData34" />
+	</bean>
+
+	<bean id="curriculum24" class="domain.Curriculum">
+		<property name="isOriginal" value="false" />
+		<property name="title" value="Copia de Curriculum del Rookie 2" />
+		<property name="rookie" ref="rookie6" />
+		<property name="miscellaneousDatas">
+			<list>
+				<ref bean="miscellaneousData65" />
+				<ref bean="miscellaneousData66" />
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<ref bean="positionData63" />
+			</list>
+		</property>
+		<property name="personalData" ref="personalData63" />
+	</bean>
+
+	<bean id="curriculum31" class="domain.Curriculum">
+		<property name="isOriginal" value="true" />
+		<property name="title" value="Curriculum del Rookie 3" />
+		<property name="rookie" ref="rookie3" />
+		<property name="miscellaneousDatas">
+			<list>
+				<ref bean="miscellaneousData31" />
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<ref bean="positionData31" />
+			</list>
+		</property>
+		<property name="personalData" ref="personalData31" />
+	</bean>
+
+	<bean id="curriculum32" class="domain.Curriculum">
+		<property name="isOriginal" value="false" />
+		<property name="title" value="Copia de Curriculum del Rookie 3" />
+		<property name="rookie" ref="rookie3" />
+		<property name="miscellaneousDatas">
+			<list>
+				<ref bean="miscellaneousData32" />
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<ref bean="positionData32" />
+			</list>
+		</property>
+		<property name="personalData" ref="personalData32" />
+	</bean>
+
+	<bean id="curriculum33" class="domain.Curriculum">
+		<property name="isOriginal" value="false" />
+		<property name="title" value="Copia de Curriculum del Rookie 3" />
+		<property name="rookie" ref="rookie3" />
+		<property name="miscellaneousDatas">
+			<list>
+				<ref bean="miscellaneousData33" />
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<ref bean="positionData33" />
+			</list>
+		</property>
+		<property name="personalData" ref="personalData33" />
+	</bean>
+
+
+	<bean id="curriculum41" class="domain.Curriculum">
+		<property name="isOriginal" value="true" />
+		<property name="title" value="Curriculum del Rookie 4" />
+		<property name="rookie" ref="rookie4" />
+		<property name="miscellaneousDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<ref bean="educationData41" />
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<ref bean="positionData41" />
+			</list>
+		</property>
+		<property name="personalData" ref="personalData41" />
+	</bean>
+
+
+	<bean id="curriculum42" class="domain.Curriculum">
+		<property name="isOriginal" value="false" />
+		<property name="title" value="Copia de Curriculum del Rookie 4" />
+		<property name="rookie" ref="rookie4" />
+		<property name="miscellaneousDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<ref bean="educationData42" />
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<ref bean="positionData42" />
+			</list>
+		</property>
+		<property name="personalData" ref="personalData42" />
+	</bean>
+
+	<bean id="curriculum43" class="domain.Curriculum">
+		<property name="isOriginal" value="false" />
+		<property name="title" value="Copia de Curriculum del Rookie 4" />
+		<property name="rookie" ref="rookie4" />
+		<property name="miscellaneousDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<ref bean="educationData43" />
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<ref bean="positionData43" />
+			</list>
+		</property>
+		<property name="personalData" ref="personalData43" />
+	</bean>
+
+	<bean id="curriculum44" class="domain.Curriculum">
+		<property name="isOriginal" value="false" />
+		<property name="title" value="Copia de Curriculum del Rookie 4" />
+		<property name="rookie" ref="rookie7" />
+		<property name="miscellaneousDatas">
+			<list>
+				<ref bean="miscellaneousData73" />
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<ref bean="positionData73" />
+			</list>
+		</property>
+		<property name="personalData" ref="personalData73" />
+	</bean>
+
+	<bean id="curriculum51" class="domain.Curriculum">
+		<property name="isOriginal" value="true" />
+		<property name="title" value="Curriculum del Rookie 5" />
+		<property name="rookie" ref="rookie5" />
+		<property name="miscellaneousDatas">
+			<list>
+				<ref bean="miscellaneousData51" />
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<ref bean="educationData51" />
+				<ref bean="educationData52" />
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="personalData" ref="personalData51" />
+	</bean>
+
+	<bean id="curriculum52" class="domain.Curriculum">
+		<property name="isOriginal" value="false" />
+		<property name="title" value="Copia de Curriculum del Rookie 5" />
+		<property name="rookie" ref="rookie5" />
+		<property name="miscellaneousDatas">
+			<list>
+				<ref bean="miscellaneousData52" />
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<ref bean="educationData53" />
+				<ref bean="educationData54" />
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="personalData" ref="personalData52" />
+	</bean>
+
+	<bean id="curriculum53" class="domain.Curriculum">
+		<property name="isOriginal" value="false" />
+		<property name="title" value="Copia de Curriculum del Rookie 5" />
+		<property name="rookie" ref="rookie7" />
+		<property name="miscellaneousDatas">
+			<list>
+				<ref bean="miscellaneousData74" />
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<ref bean="positionData74" />
+			</list>
+		</property>
+		<property name="personalData" ref="personalData74" />
+	</bean>
+
+
+	<bean id="curriculum61" class="domain.Curriculum">
+		<property name="isOriginal" value="true" />
+		<property name="title" value="Curriculum del Rookie 6" />
+		<property name="rookie" ref="rookie6" />
+		<property name="miscellaneousDatas">
+			<list>
+				<ref bean="miscellaneousData61" />
+				<ref bean="miscellaneousData62" />
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<ref bean="positionData61" />
+			</list>
+		</property>
+		<property name="personalData" ref="personalData61" />
+	</bean>
+
+	<bean id="curriculum62" class="domain.Curriculum">
+		<property name="isOriginal" value="false" />
+		<property name="title" value="Copia de Curriculum del Rookie 6" />
+		<property name="rookie" ref="rookie6" />
+		<property name="miscellaneousDatas">
+			<list>
+				<ref bean="miscellaneousData63" />
+				<ref bean="miscellaneousData64" />
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<ref bean="positionData62" />
+			</list>
+		</property>
+		<property name="personalData" ref="personalData62" />
+	</bean>
+
+	<bean id="curriculum71" class="domain.Curriculum">
+		<property name="isOriginal" value="true" />
+		<property name="title" value="Curriculum del Rookie 7" />
+		<property name="rookie" ref="rookie7" />
+		<property name="miscellaneousDatas">
+			<list>
+				<ref bean="miscellaneousData71" />
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<ref bean="positionData71" />
+			</list>
+		</property>
+		<property name="personalData" ref="personalData71" />
+	</bean>
+
+	<bean id="curriculum72" class="domain.Curriculum">
+		<property name="isOriginal" value="false" />
+		<property name="title" value="Copia de Curriculum del Rookie 7" />
+		<property name="rookie" ref="rookie7" />
+		<property name="miscellaneousDatas">
+			<list>
+				<ref bean="miscellaneousData72" />
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<ref bean="positionData72" />
+			</list>
+		</property>
+		<property name="personalData" ref="personalData72" />
+	</bean>
+
+	<bean id="curriculum81" class="domain.Curriculum">
+		<property name="isOriginal" value="true" />
+		<property name="title" value="Curriculum del Rookie 8" />
+		<property name="rookie" ref="rookie8" />
+		<property name="miscellaneousDatas">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="educationDatas">
+			<list>
+				<ref bean="educationData81" />
+			</list>
+		</property>
+		<property name="positionDatas">
+			<list>
+				<ref bean="positionData81" />
+			</list>
+		</property>
+		<property name="personalData" ref="personalData81" />
+	</bean>
+
+	<!-- Customisation -->
+	<bean id="customisation1" class="domain.Customisation">
+		<property name="name" value="Acme Rookie" />
+		<property name="banner" value="https://i.ibb.co/LQXvBrh/Copia-de-I-m-Back.png" />
+		<property name="welcomeMessageEn"
+			value="Welcome to Acme Rookie! We're IT rookie's favourite job marketplace!" />
+		<property name="welcomeMessageEs"
+			value="¡Bienvenidos a Acme Rookie! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!" />
+		<property name="countryCode" value="+34" />
+		<property name="timeCachedResults" value="1" />
+		<property name="maxNumberResults" value="10" />
+		<property name="spamWords"
+			value="sex,viagra,cialis,one million,you've been selected,Nigeria,sexo,un millon,ha sido seleccionado" />
+		<property name="frate" value="500.00" />
+		<property name="VATtax" value="47" />
+		<property name="isRebrandNotificationSent" value="false" />
+	</bean>
+
+	<!-- Education Data -->
+	<bean id="educationData11" class="domain.EducationData">
+		<property name="degree" value="Ingeniería Informática del Software" />
+		<property name="institution" value="Universidad de Sevilla" />
+		<property name="mark" value="6.2" />
+		<property name="startDate" value="2014/10/20" />
+	</bean>
+
+	<bean id="educationData12" class="domain.EducationData">
+		<property name="degree" value="Ingeniería Informática del Software" />
+		<property name="institution" value="Universidad de Málaga" />
+		<property name="mark" value="8.6" />
+		<property name="startDate" value="2010/10/11" />
+		<property name="endDate" value="2016/09/25" />
+	</bean>
+
+	<bean id="educationData13" class="domain.EducationData">
+		<property name="degree" value="Ingeniería Informática" />
+		<property name="institution" value="Universidad de Sevilla" />
+		<property name="mark" value="7.5" />
+		<property name="startDate" value="2014/10/12" />
+		<property name="endDate" value="2018/05/20" />
+	</bean>
+
+	<bean id="educationData14" class="domain.EducationData">
+		<property name="degree" value="Ingeniería Informática" />
+		<property name="institution" value="Universidad de Sevilla" />
+		<property name="mark" value="7.5" />
+		<property name="startDate" value="2014/10/12" />
+		<property name="endDate" value="2018/05/20" />
+	</bean>
+
+	<bean id="educationData15" class="domain.EducationData">
+		<property name="degree" value="Ingeniería Informática" />
+		<property name="institution" value="Universidad de Sevilla" />
+		<property name="mark" value="7.5" />
+		<property name="startDate" value="2014/10/12" />
+		<property name="endDate" value="2018/05/20" />
+	</bean>
+
+	<bean id="educationData41" class="domain.EducationData">
+		<property name="degree" value="Ingeniería Informática Tecnologías" />
+		<property name="institution" value="Universidad de Sevilla" />
+		<property name="mark" value="5.6" />
+		<property name="startDate" value="2010/10/20" />
+		<property name="endDate" value="2014/07/24" />
+	</bean>
+
+	<bean id="educationData42" class="domain.EducationData">
+		<property name="degree" value="Ingeniería Informática Tecnologías" />
+		<property name="institution" value="Universidad de Sevilla" />
+		<property name="mark" value="8.6" />
+		<property name="startDate" value="2011/10/02" />
+		<property name="endDate" value="2015/07/01" />
+	</bean>
+
+	<bean id="educationData43" class="domain.EducationData">
+		<property name="degree" value="Ingeniería Informática Tecnologías" />
+		<property name="institution" value="Universidad de Sevilla" />
+		<property name="mark" value="8.6" />
+		<property name="startDate" value="2011/10/02" />
+		<property name="endDate" value="2015/07/01" />
+	</bean>
+
+	<bean id="educationData51" class="domain.EducationData">
+		<property name="degree" value="Ingeniería Informática Tecnologías" />
+		<property name="institution" value="Universidad de Sevilla" />
+		<property name="mark" value="7.6" />
+		<property name="startDate" value="2010/10/20" />
+		<property name="endDate" value="2014/07/24" />
+	</bean>
+
+	<bean id="educationData52" class="domain.EducationData">
+		<property name="degree" value="Ingeniería Informática Tecnologías" />
+		<property name="institution" value="Universidad de Sevilla" />
+		<property name="mark" value="9.6" />
+		<property name="startDate" value="2012/10/02" />
+		<property name="endDate" value="2017/07/01" />
+	</bean>
+
+	<bean id="educationData53" class="domain.EducationData">
+		<property name="degree" value="Ingeniería Informática Tecnologías" />
+		<property name="institution" value="Universidad de Sevilla" />
+		<property name="mark" value="7.6" />
+		<property name="startDate" value="2010/10/20" />
+		<property name="endDate" value="2014/07/24" />
+	</bean>
+
+	<bean id="educationData54" class="domain.EducationData">
+		<property name="degree" value="Ingeniería Informática Tecnologías" />
+		<property name="institution" value="Universidad de Sevilla" />
+		<property name="mark" value="9.6" />
+		<property name="startDate" value="2012/10/02" />
+		<property name="endDate" value="2017/07/01" />
+	</bean>
+
+	<bean id="educationData81" class="domain.EducationData">
+		<property name="degree" value="Ingeniería Informática Tecnologías" />
+		<property name="institution" value="Universidad de Sevilla" />
+		<property name="mark" value="6.3" />
+		<property name="startDate" value="2012/10/02" />
+		<property name="endDate" value="2017/07/01" />
+	</bean>
+
+	<!-- Finder -->
+	<bean id="finder1" class="domain.Finder">
+		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
+		<property name="deadline" value="2020/10/05" />
+		<property name="minimumSalary" value="965.24" />
+		<property name="maximumDeadline" value="2022/10/05" />
+		<property name="updatedMoment" value="2019/01/01 10:10" />
+		<property name="rookie" ref="rookie1" />
+		<property name="positions">
+			<list>
+				<null></null>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="finder2" class="domain.Finder">
+		<property name="keyword" value="" />
+		<property name="updatedMoment" value="2019/01/01 10:10" />
+		<property name="rookie" ref="rookie2" />
+		<property name="positions">
+			<list>
+				<ref bean="position1" />
+				<ref bean="position2" />
+				<ref bean="position4" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="finder3" class="domain.Finder">
+		<property name="keyword" value="" />
+		<property name="deadline" value="2020/10/05" />
+		<property name="minimumSalary" value="7965.24" />
+		<property name="maximumDeadline" value="2022/10/05" />
+		<property name="updatedMoment" value="2019/01/01 10:10" />
+		<property name="rookie" ref="rookie3" />
+		<property name="positions">
+			<list>
+				<null></null>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="finder4" class="domain.Finder">
+		<property name="keyword" value="position4" />
+		<property name="updatedMoment" value="2019/01/01 10:10" />
+		<property name="rookie" ref="rookie4" />
+		<property name="positions">
+			<list>
+				<ref bean="position4" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="finder5" class="domain.Finder">
+		<property name="keyword" value="position3" />
+		<property name="updatedMoment" value="2019/01/01 10:10" />
+		<property name="rookie" ref="rookie5" />
+		<property name="positions">
+			<list>
+				<null></null>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="finder6" class="domain.Finder">
+		<property name="keyword" value="company2" />
+		<property name="updatedMoment" value="2019/01/01 10:10" />
+		<property name="rookie" ref="rookie6" />
+		<property name="positions">
+			<list>
+				<ref bean="position2" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="finder7" class="domain.Finder">
+		<property name="keyword" value="NoQuieroNada" />
+		<property name="deadline" value="2020/10/05" />
+		<property name="minimumSalary" value="965.24" />
+		<property name="maximumDeadline" value="2022/10/05" />
+		<property name="updatedMoment" value="2019/01/01 10:10" />
+		<property name="rookie" ref="rookie7" />
+		<property name="positions">
+			<list>
+				<null></null>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="finder8" class="domain.Finder">
+		<property name="keyword" value="Company" />
+		<property name="updatedMoment" value="2019/01/01 10:10" />
+		<property name="rookie" ref="rookie8" />
+		<property name="positions">
+			<list>
+				<ref bean="position1" />
+				<ref bean="position2" />
+				<ref bean="position4" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="finder9" class="domain.Finder">
+		<property name="keyword" value="" />
+		<property name="updatedMoment" value="2019/01/01 10:15" />
+		<property name="rookie" ref="rookie9" />
+		<property name="positions">
+			<list>
+				<ref bean="position1" />
+				<ref bean="position2" />
+				<ref bean="position4" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Item -->
+	<bean id="item1" class="domain.Item">
+		<property name="name" value="Item1" />
+		<property name="description" value="descripcion item1" />
+		<property name="link"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="picture"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="provider" ref="provider1" />
+	</bean>
+
+	<bean id="item2" class="domain.Item">
+		<property name="name" value="Item2" />
+		<property name="description" value="descripcion item2" />
+		<property name="link"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="picture"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="provider" ref="provider1" />
+	</bean>
+
+	<bean id="item3" class="domain.Item">
+		<property name="name" value="Item3" />
+		<property name="description" value="descripcion item3" />
+		<property name="link"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="picture"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="provider" ref="provider1" />
+	</bean>
+
+	<bean id="item4" class="domain.Item">
+		<property name="name" value="Item4" />
+		<property name="description" value="descripcion item4" />
+		<property name="link"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="picture"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="provider" ref="provider2" />
+	</bean>
+
+	<bean id="item5" class="domain.Item">
+		<property name="name" value="Item5" />
+		<property name="description" value="descripcion item5" />
+		<property name="link"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="picture"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="provider" ref="provider2" />
+	</bean>
+
+	<bean id="item6" class="domain.Item">
+		<property name="name" value="Item6" />
+		<property name="description" value="descripcion item6" />
+		<property name="link"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="picture"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="provider" ref="provider3" />
+	</bean>
+
+	<bean id="item7" class="domain.Item">
+		<property name="name" value="Item7" />
+		<property name="description" value="descripcion item7" />
+		<property name="link"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="picture"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="provider" ref="provider4" />
+	</bean>
+
+	<bean id="item8" class="domain.Item">
+		<property name="name" value="Item8" />
+		<property name="description" value="descripcion item8" />
+		<property name="link"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="picture"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="provider" ref="provider5" />
+	</bean>
+
+	<bean id="item9" class="domain.Item">
+		<property name="name" value="Item9" />
+		<property name="description" value="descripcion item9" />
+		<property name="link"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="picture"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="provider" ref="provider5" />
+	</bean>
+
+	<bean id="item10" class="domain.Item">
+		<property name="name" value="Item10" />
+		<property name="description" value="descripcion item10" />
+		<property name="link"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="picture"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="provider" ref="provider5" />
+	</bean>
+
+	<bean id="item11" class="domain.Item">
+		<property name="name" value="Item11" />
+		<property name="description" value="descripcion item11" />
+		<property name="link"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="picture"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="provider" ref="provider5" />
+	</bean>
+
+	<bean id="item12" class="domain.Item">
+		<property name="name" value="Item12" />
+		<property name="description" value="descripcion item12" />
+		<property name="link"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="picture"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="provider" ref="provider6" />
+	</bean>
+
+	<bean id="item13" class="domain.Item">
+		<property name="name" value="Item13" />
+		<property name="description" value="descripcion item13" />
+		<property name="link"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="picture"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="provider" ref="provider6" />
+	</bean>
+
+
+	<!-- Rookie -->
+	<bean id="rookie1" class="domain.Rookie">
+		<property name="name" value="Rookie1" />
+		<property name="surname" value="Alvarez" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard6" />
+		<property name="photo"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="email" value="rookie1@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Rookie 1" />
+		<property name="userAccount" ref="userAccount6" />
+	</bean>
+
+	<bean id="rookie2" class="domain.Rookie">
+		<property name="name" value="Rookie2" />
+		<property name="surname" value="Munoz" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard7" />
+		<property name="photo"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="email" value="rookie2@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Rookie 2" />
+		<property name="userAccount" ref="userAccount7" />
+	</bean>
+
+	<bean id="rookie3" class="domain.Rookie">
+		<property name="name" value="Rookie3" />
+		<property name="surname" value="Esteban" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard8" />
+		<property name="photo"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="email" value="rookie3@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Rookie 3" />
+		<property name="userAccount" ref="userAccount8" />
+	</bean>
+
+	<bean id="rookie4" class="domain.Rookie">
+		<property name="name" value="Rookie4" />
+		<property name="surname" value="Rodriguez" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard9" />
+		<property name="photo"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="email" value="rookie4@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Rookie 4" />
+		<property name="userAccount" ref="userAccount9" />
+	</bean>
+
+	<bean id="rookie5" class="domain.Rookie">
+		<property name="name" value="Rookie5" />
+		<property name="surname" value="Lopez" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard10" />
+		<property name="photo"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="email" value="rookie5@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Rookie 5" />
+		<property name="userAccount" ref="userAccount10" />
+	</bean>
+
+	<bean id="rookie6" class="domain.Rookie">
+		<property name="name" value="Rookie6" />
+		<property name="surname" value="Barrera" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard11" />
+		<property name="photo"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="email" value="rookie6@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Rookie 6" />
+		<property name="userAccount" ref="userAccount11" />
+	</bean>
+
+	<bean id="rookie7" class="domain.Rookie">
+		<property name="name" value="Rookie7" />
+		<property name="surname" value="Navarro" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard12" />
+		<property name="photo"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="email" value="rookie7@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Rookie 7" />
+		<property name="userAccount" ref="userAccount12" />
+	</bean>
+
+	<bean id="rookie8" class="domain.Rookie">
+		<property name="name" value="Rookie8" />
+		<property name="surname" value="Moreno" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard13" />
+		<property name="photo"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="email" value="rookie8@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Rookie 8" />
+		<property name="userAccount" ref="userAccount13" />
+	</bean>
+
+	<bean id="rookie9" class="domain.Rookie">
+		<property name="name" value="Rookie9" />
+		<property name="surname" value="Rubio" />
+		<property name="VATnumber" value="32" />
+		<property name="creditCard" ref="creditCard14" />
+		<property name="photo"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="email" value="rookie9@gmail.com" />
+		<property name="phoneNumber" value="632321239" />
+		<property name="address" value="Calle Rookie 9" />
+		<property name="userAccount" ref="userAccount14" />
+	</bean>
+
+	<!-- SystemTag -->
+	<bean id="systemTag1" class="domain.SystemTag">
+		<property name="text" value="HARDDELETED" />
+		<property name="actor" ref="rookie2" />
+		<property name="message" ref="message1" />
+	</bean>
+
+	<bean id="systemTag2" class="domain.SystemTag">
+		<property name="text" value="DELETED" />
+		<property name="actor" ref="rookie2" />
+		<property name="message" ref="message3" />
+	</bean>
+
+	<!-- Message -->
+	<bean id="message1" class="domain.Message">
+		<property name="sentMoment" value="2017/05/09 10:17" />
+		<property name="subject" value="Thank you" />
+		<property name="body" value="Thanks for your reply" />
+		<property name="tags" value="notification" />
+		<property name="isSpam" value="false" />
+		<property name="sender" ref="rookie1" />
+		<property name="recipients">
+			<list>
+				<ref bean="rookie2" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="message3" class="domain.Message">
+		<property name="sentMoment" value="2017/05/09 10:17" />
+		<property name="subject" value="Thank you" />
+		<property name="body" value="Thanks for your reply" />
+		<property name="tags" value="problem" />
+		<property name="isSpam" value="false" />
+		<property name="sender" ref="administrator1" />
+		<property name="recipients">
+			<list>
+				<ref bean="rookie1" />
+				<ref bean="rookie2" />
+				<ref bean="rookie3" />
+				<ref bean="rookie4" />
+				<ref bean="rookie5" />
+				<ref bean="rookie6" />
+				<ref bean="rookie8" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="message4" class="domain.Message">
+		<property name="sentMoment" value="2017/05/09 10:17" />
+		<property name="subject" value="Thank you" />
+		<property name="body" value="Thanks for your reply" />
+		<property name="tags" value="position" />
+		<property name="isSpam" value="false" />
+		<property name="sender" ref="system" />
+		<property name="recipients">
+			<list>
+				<ref bean="company1" />
+				<ref bean="company2" />
+				<ref bean="company3" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="message5" class="domain.Message">
+		<property name="sentMoment" value="2017/05/09 10:17" />
+		<property name="subject" value="Thank you" />
+		<property name="body" value="Thanks for your reply" />
+		<property name="tags" value="answer" />
+		<property name="isSpam" value="false" />
+		<property name="sender" ref="rookie8" />
+		<property name="recipients">
+			<list>
+				<ref bean="rookie3" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="message6" class="domain.Message">
+		<property name="sentMoment" value="2017/05/09 10:17" />
+		<property name="subject" value="Thank you" />
+		<property name="body" value="Thanks for your reply" />
+		<property name="tags" value="curriculum" />
+		<property name="isSpam" value="false" />
+		<property name="sender" ref="company1" />
+		<property name="recipients">
+			<list>
+				<ref bean="rookie1" />
+				<ref bean="rookie2" />
+				<ref bean="rookie3" />
+				<ref bean="rookie4" />
+				<ref bean="rookie5" />
+				<ref bean="rookie6" />
+				<ref bean="rookie8" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="message7" class="domain.Message">
+		<property name="sentMoment" value="2017/05/09 10:17" />
+		<property name="subject" value="Thank you" />
+		<property name="body" value="Thanks for your reply" />
+		<property name="tags" value="position" />
+		<property name="isSpam" value="false" />
+		<property name="sender" ref="system" />
+		<property name="recipients">
+			<list>
+				<ref bean="company1" />
+				<ref bean="company2" />
+				<ref bean="company3" />
+				<ref bean="rookie1" />
+				<ref bean="rookie2" />
+				<ref bean="rookie3" />
+				<ref bean="rookie4" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Miscellaneous Data -->
+	<bean id="miscellaneousData11" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous data1 del rookie 1" />
+		<property name="attachments" value="http://www.attachment.com/data1" />
+	</bean>
+
+	<bean id="miscellaneousData12" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous data2 del rookie 1" />
+		<property name="attachments" value="http://www.attachment.com/data2" />
+	</bean>
+
+	<bean id="miscellaneousData13" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous data3 del rookie 1" />
+		<property name="attachments" value="http://www.attachment.com/data3" />
+	</bean>
+
+	<bean id="miscellaneousData14" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous data4 del rookie 1" />
+		<property name="attachments" value="http://www.attachment.com/data3" />
+	</bean>
+
+	<bean id="miscellaneousData21" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous data1 del rookie 2" />
+		<property name="attachments" value="http://www.attachment.com/data4" />
+	</bean>
+
+	<bean id="miscellaneousData22" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous data2 del rookie 2" />
+		<property name="attachments" value="http://www.attachment.com/data5" />
+	</bean>
+
+	<bean id="miscellaneousData23" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous data3 del rookie 2" />
+		<property name="attachments" value="http://www.attachment.com/data4" />
+	</bean>
+
+	<bean id="miscellaneousData24" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous data4 del rookie 2" />
+		<property name="attachments" value="http://www.attachment.com/data5" />
+	</bean>
+
+	<bean id="miscellaneousData31" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous data1 del rookie 3" />
+		<property name="attachments" value="http://www.attachment.com/data6" />
+	</bean>
+
+	<bean id="miscellaneousData32" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous data2 del rookie 3" />
+		<property name="attachments" value="http://www.attachment.com/data6" />
+	</bean>
+
+	<bean id="miscellaneousData33" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous data3 del rookie 3" />
+		<property name="attachments" value="http://www.attachment.com/data6" />
+	</bean>
+
+	<bean id="miscellaneousData34" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous" />
+		<property name="attachments" value="http://www.attachment.com/data6" />
+	</bean>
+
+	<bean id="miscellaneousData51" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous data1 del rookie 5" />
+		<property name="attachments" value="http://www.attachment.com/data6" />
+	</bean>
+
+	<bean id="miscellaneousData52" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous data2 del rookie 5" />
+		<property name="attachments" value="http://www.attachment.com/data6" />
+	</bean>
+
+	<bean id="miscellaneousData61" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous data1 del rookie 6" />
+		<property name="attachments" value="http://www.attachment.com/data6" />
+	</bean>
+
+	<bean id="miscellaneousData62" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous data2 del rookie 6" />
+		<property name="attachments" value="http://www.attachment.com/data6" />
+	</bean>
+
+	<bean id="miscellaneousData63" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous data3 del rookie 6" />
+		<property name="attachments" value="http://www.attachment.com/data6" />
+	</bean>
+
+	<bean id="miscellaneousData64" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous data4 del rookie 6" />
+		<property name="attachments" value="http://www.attachment.com/data6" />
+	</bean>
+
+	<bean id="miscellaneousData65" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous" />
+		<property name="attachments" value="http://www.attachment.com/data6" />
+	</bean>
+
+	<bean id="miscellaneousData66" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous" />
+		<property name="attachments" value="http://www.attachment.com/data6" />
+	</bean>
+
+	<bean id="miscellaneousData71" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous data1 del rookie 7" />
+		<property name="attachments" value="http://www.attachment.com/data6" />
+	</bean>
+
+	<bean id="miscellaneousData72" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous data2 del rookie 7" />
+		<property name="attachments" value="http://www.attachment.com/data6" />
+	</bean>
+
+	<bean id="miscellaneousData73" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous" />
+		<property name="attachments" value="http://www.attachment.com/data6" />
+	</bean>
+
+	<bean id="miscellaneousData74" class="domain.MiscellaneousData">
+		<property name="text" value="text miscelleneous" />
+		<property name="attachments" value="http://www.attachment.com/data6" />
+	</bean>
+
+	<!-- SocialProfiles -->
+
+	<bean id="socialProfile1" class="domain.SocialProfile">
+		<property name="nick" value="nick1" />
+		<property name="socialNetwork" value="Twitter" />
+		<property name="linkProfile" value="http://www.twitter1.com" />
+		<property name="actor" ref="administrator1" />
+	</bean>
+
+	<bean id="socialProfile2" class="domain.SocialProfile">
+		<property name="nick" value="nick2" />
+		<property name="socialNetwork" value="Instagram" />
+		<property name="linkProfile" value="http://www.instagram1.com" />
+		<property name="actor" ref="rookie1" />
+	</bean>
+
+	<bean id="socialProfile3" class="domain.SocialProfile">
+		<property name="nick" value="nick3" />
+		<property name="socialNetwork" value="Facebook" />
+		<property name="linkProfile" value="http://www.facebook1.com" />
+		<property name="actor" ref="rookie1" />
+	</bean>
+
+	<bean id="socialProfile4" class="domain.SocialProfile">
+		<property name="nick" value="nick4" />
+		<property name="socialNetwork" value="Facebook" />
+		<property name="linkProfile" value="http://www.facebook2.com" />
+		<property name="actor" ref="rookie2" />
+	</bean>
+
+	<bean id="socialProfile5" class="domain.SocialProfile">
+		<property name="nick" value="nick5" />
+		<property name="socialNetwork" value="Facebook" />
+		<property name="linkProfile" value="http://www.facebook3.com" />
+		<property name="actor" ref="rookie2" />
+	</bean>
+
+	<bean id="socialProfile6" class="domain.SocialProfile">
+		<property name="nick" value="nick6" />
+		<property name="socialNetwork" value="Flickr" />
+		<property name="linkProfile" value="https://www.flickr1.com" />
+		<property name="actor" ref="rookie3" />
+	</bean>
+
+	<bean id="socialProfile7" class="domain.SocialProfile">
+		<property name="nick" value="nick7" />
+		<property name="socialNetwork" value="Tinder" />
+		<property name="linkProfile" value="http://www.tinder1.com" />
+		<property name="actor" ref="company1" />
+	</bean>
+
+	<bean id="socialProfile8" class="domain.SocialProfile">
+		<property name="nick" value="nick8" />
+		<property name="socialNetwork" value="Tuenti" />
+		<property name="linkProfile" value="https://www.tuenti1.es" />
+		<property name="actor" ref="company1" />
+	</bean>
+
+	<bean id="socialProfile9" class="domain.SocialProfile">
+		<property name="nick" value="nick9" />
+		<property name="socialNetwork" value="Messenger" />
+		<property name="linkProfile" value="https://www.messenger1.es" />
+		<property name="actor" ref="company1" />
+	</bean>
+
+	<bean id="socialProfile10" class="domain.SocialProfile">
+		<property name="nick" value="nick10" />
+		<property name="socialNetwork" value="Twitter" />
+		<property name="linkProfile" value="https://www.twitter2.com" />
+		<property name="actor" ref="company2" />
+	</bean>
+
+	<bean id="socialProfile11" class="domain.SocialProfile">
+		<property name="nick" value="nick11" />
+		<property name="socialNetwork" value="Tinder" />
+		<property name="linkProfile" value="http://www.tinder2.com" />
+		<property name="actor" ref="company2" />
+	</bean>
+
+	<bean id="socialProfile12" class="domain.SocialProfile">
+		<property name="nick" value="nick12" />
+		<property name="socialNetwork" value="Tuenti" />
+		<property name="linkProfile" value="https://www.tuenti2.es" />
+		<property name="actor" ref="company3" />
+	</bean>
+
+	<bean id="socialProfile13" class="domain.SocialProfile">
+		<property name="nick" value="nick13" />
+		<property name="socialNetwork" value="Messenger" />
+		<property name="linkProfile" value="https://www.messenger2.es" />
+		<property name="actor" ref="company3" />
+	</bean>
+
+	<!-- Personal Data -->
+	<bean id="personalData11" class="domain.PersonalData">
+		<property name="fullname" value="Rookie1 Alvarez" />
+		<property name="statement" value="statement personal data 1 del rookie 1" />
+		<property name="phoneNumber" value="631047853" />
+		<property name="githubProfile" value="https://github.com/personal1" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal1" />
+	</bean>
+
+	<bean id="personalData12" class="domain.PersonalData">
+		<property name="fullname" value="Rookie1 Alvarez" />
+		<property name="statement" value="statement personal data 2 del rookie 1" />
+		<property name="phoneNumber" value="631047853" />
+		<property name="githubProfile" value="https://github.com/personal1" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal1" />
+	</bean>
+
+	<bean id="personalData13" class="domain.PersonalData">
+		<property name="fullname" value="Rookie1 Alvarez" />
+		<property name="statement" value="statement personal data 2 del rookie 1" />
+		<property name="phoneNumber" value="631047853" />
+		<property name="githubProfile" value="https://github.com/personal1" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal1" />
+	</bean>
+
+	<bean id="personalData21" class="domain.PersonalData">
+		<property name="fullname" value="Rookie2 Munoz" />
+		<property name="statement" value="statement personal data 1 del rookie 2" />
+		<property name="phoneNumber" value="632587412" />
+		<property name="githubProfile" value="https://github.com/personal3" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal3" />
+	</bean>
+
+	<bean id="personalData22" class="domain.PersonalData">
+		<property name="fullname" value="Rookie2 Munoz" />
+		<property name="statement" value="statement personal data 2 del rookie 2" />
+		<property name="phoneNumber" value="632587412" />
+		<property name="githubProfile" value="https://github.com/personal3" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal3" />
+	</bean>
+
+	<bean id="personalData31" class="domain.PersonalData">
+		<property name="fullname" value="Rookie3 Esteban" />
+		<property name="statement" value="statement personal data 1 del rookie 3" />
+		<property name="phoneNumber" value="632587412" />
+		<property name="githubProfile" value="https://github.com/personal4" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal4" />
+	</bean>
+
+	<bean id="personalData32" class="domain.PersonalData">
+		<property name="fullname" value="Rookie3 Esteban" />
+		<property name="statement" value="statement personal data 1 del rookie 3" />
+		<property name="phoneNumber" value="632587412" />
+		<property name="githubProfile" value="https://github.com/personal4" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal4" />
+	</bean>
+
+	<bean id="personalData33" class="domain.PersonalData">
+		<property name="fullname" value="Rookie3 Esteban" />
+		<property name="statement" value="statement personal data 1 del rookie 3" />
+		<property name="phoneNumber" value="632587412" />
+		<property name="githubProfile" value="https://github.com/personal4" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal4" />
+	</bean>
+
+	<bean id="personalData34" class="domain.PersonalData">
+		<property name="fullname" value="Rookie3 Esteban" />
+		<property name="statement" value="statement personal data 1 del rookie 3" />
+		<property name="phoneNumber" value="632587412" />
+		<property name="githubProfile" value="https://github.com/personal4" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal4" />
+	</bean>
+
+	<bean id="personalData41" class="domain.PersonalData">
+		<property name="fullname" value="Rookie4 Rodriguez" />
+		<property name="statement" value="statement personal data 1 del rookie 4" />
+		<property name="phoneNumber" value="632587412" />
+		<property name="githubProfile" value="https://github.com/personal5" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal5" />
+	</bean>
+
+	<bean id="personalData42" class="domain.PersonalData">
+		<property name="fullname" value="Rookie4 Rodriguez" />
+		<property name="statement" value="statement personal data 5" />
+		<property name="phoneNumber" value="632587412" />
+		<property name="githubProfile" value="https://github.com/personal5" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal5" />
+	</bean>
+
+	<bean id="personalData43" class="domain.PersonalData">
+		<property name="fullname" value="Rookie4 Rodriguez" />
+		<property name="statement" value="statement personal data 5" />
+		<property name="phoneNumber" value="632587412" />
+		<property name="githubProfile" value="https://github.com/personal5" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal5" />
+	</bean>
+
+	<bean id="personalData51" class="domain.PersonalData">
+		<property name="fullname" value="Rookie5 Lopez" />
+		<property name="statement" value="statement personal data 5" />
+		<property name="phoneNumber" value="632587412" />
+		<property name="githubProfile" value="https://github.com/personal5" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal5" />
+	</bean>
+
+	<bean id="personalData52" class="domain.PersonalData">
+		<property name="fullname" value="Rookie5 Lopez" />
+		<property name="statement" value="statement personal data 5" />
+		<property name="phoneNumber" value="632587412" />
+		<property name="githubProfile" value="https://github.com/personal5" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal5" />
+	</bean>
+
+	<bean id="personalData61" class="domain.PersonalData">
+		<property name="fullname" value="Rookie6 Barrera" />
+		<property name="statement" value="statement personal data 5" />
+		<property name="phoneNumber" value="632587412" />
+		<property name="githubProfile" value="https://github.com/personal5" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal5" />
+	</bean>
+
+	<bean id="personalData62" class="domain.PersonalData">
+		<property name="fullname" value="Rookie6 Barrera" />
+		<property name="statement" value="statement personal data 5" />
+		<property name="phoneNumber" value="632587412" />
+		<property name="githubProfile" value="https://github.com/personal5" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal5" />
+	</bean>
+
+	<bean id="personalData63" class="domain.PersonalData">
+		<property name="fullname" value="Rookie6 Barrera" />
+		<property name="statement" value="statement personal data" />
+		<property name="phoneNumber" value="632587412" />
+		<property name="githubProfile" value="https://github.com/personal5" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal5" />
+	</bean>
+
+	<bean id="personalData71" class="domain.PersonalData">
+		<property name="fullname" value="Rookie7 Navarro" />
+		<property name="statement" value="statement personal data 5" />
+		<property name="phoneNumber" value="632587412" />
+		<property name="githubProfile" value="https://github.com/personal5" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal5" />
+	</bean>
+
+	<bean id="personalData72" class="domain.PersonalData">
+		<property name="fullname" value="Rookie7 Navarro" />
+		<property name="statement" value="statement personal data 5" />
+		<property name="phoneNumber" value="632587412" />
+		<property name="githubProfile" value="https://github.com/personal5" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal5" />
+	</bean>
+
+	<bean id="personalData73" class="domain.PersonalData">
+		<property name="fullname" value="Rookie7 Navarro" />
+		<property name="statement" value="statement personal data" />
+		<property name="phoneNumber" value="632587412" />
+		<property name="githubProfile" value="https://github.com/personal5" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal5" />
+	</bean>
+
+	<bean id="personalData74" class="domain.PersonalData">
+		<property name="fullname" value="Rookie7 Navarro" />
+		<property name="statement" value="statement personal data" />
+		<property name="phoneNumber" value="632587412" />
+		<property name="githubProfile" value="https://github.com/personal5" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal5" />
+	</bean>
+
+	<bean id="personalData81" class="domain.PersonalData">
+		<property name="fullname" value="Rookie8 Moreno" />
+		<property name="statement" value="statement personal data 5" />
+		<property name="phoneNumber" value="632587412" />
+		<property name="githubProfile" value="https://github.com/personal5" />
+		<property name="linkedInProfile" value="https://www.linkedin.com/personal5" />
+	</bean>
+
+	<!-- Position -->
+	<bean id="position1" class="domain.Position">
+		<property name="ticker" value="ONEC-4562" />
+		<property name="title" value="Position 1 - Company 1" />
+		<property name="description" value="Esta es position1 del company1" />
+		<property name="deadline" value="2019/12/05" />
+		<property name="profile" value="Economy" />
+		<property name="skills" value="Number" />
+		<property name="technologies" value="Android" />
+		<property name="salary" value="1586.23" />
+		<property name="isFinalMode" value="true" />
+		<property name="isCancelled" value="false" />
+		<property name="company" ref="company1" />
+		<property name="problems">
+			<list>
+				<ref bean="problem1" />
+				<ref bean="problem2" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="position2" class="domain.Position">
+		<property name="ticker" value="ONEC-4752" />
+		<property name="title" value="Position 2 - Company 1" />
+		<property name="description" value="Esta es position2 del company1" />
+		<property name="deadline" value="2019/12/05" />
+		<property name="profile" value="Math" />
+		<property name="skills" value="Number" />
+		<property name="technologies" value="R" />
+		<property name="salary" value="3586.23" />
+		<property name="isFinalMode" value="true" />
+		<property name="isCancelled" value="false" />
+		<property name="company" ref="company1" />
+		<property name="problems">
+			<list>
+				<ref bean="problem1" />
+				<ref bean="problem3" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="position3" class="domain.Position">
+		<property name="ticker" value="ONEC-4772" />
+		<property name="title" value="Position 3 - Company 1" />
+		<property name="description" value="Esta es position3 del company1" />
+		<property name="deadline" value="2019/12/05" />
+		<property name="profile" value="Math" />
+		<property name="skills" value="Number" />
+		<property name="technologies" value="R" />
+		<property name="salary" value="3586.23" />
+		<property name="isFinalMode" value="false" />
+		<property name="isCancelled" value="false" />
+		<property name="company" ref="company1" />
+		<property name="problems">
+			<list>
+				<null></null>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="position4" class="domain.Position">
+		<property name="ticker" value="ONEC-4122" />
+		<property name="title" value="Position 4 - Company 1" />
+		<property name="description" value="Esta es position4 del company1" />
+		<property name="deadline" value="2019/12/05" />
+		<property name="profile" value="Math" />
+		<property name="skills" value="Number" />
+		<property name="technologies" value="R" />
+		<property name="salary" value="3586.23" />
+		<property name="isFinalMode" value="true" />
+		<property name="isCancelled" value="true" />
+		<property name="company" ref="company1" />
+		<property name="problems">
+			<list>
+				<null></null>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="position5" class="domain.Position">
+		<property name="ticker" value="TWOC-4556" />
+		<property name="title" value="Position 5 - Company 2" />
+		<property name="description" value="Esta es position5 del company2" />
+		<property name="deadline" value="2019/11/05" />
+		<property name="profile" value="Computing" />
+		<property name="skills" value="Pyhton" />
+		<property name="technologies" value="Eclipse" />
+		<property name="salary" value="2686.23" />
+		<property name="isFinalMode" value="false" />
+		<property name="isCancelled" value="false" />
+		<property name="company" ref="company2" />
+		<property name="problems">
+			<list>
+				<null></null>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="position6" class="domain.Position">
+		<property name="ticker" value="TWOC-4146" />
+		<property name="title" value="Position 6 - Company 2" />
+		<property name="description" value="Esta es position6 del company2" />
+		<property name="deadline" value="2019/11/05" />
+		<property name="profile" value="Junior" />
+		<property name="skills" value="Pyhton" />
+		<property name="technologies" value="Eclipse" />
+		<property name="salary" value="2686.23" />
+		<property name="isFinalMode" value="true" />
+		<property name="isCancelled" value="false" />
+		<property name="company" ref="company2" />
+		<property name="problems">
+			<list>
+				<ref bean="problem5" />
+				<ref bean="problem7" />
+				<ref bean="problem9" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="position7" class="domain.Position">
+		<property name="ticker" value="TWOC-4786" />
+		<property name="title" value="Position 7 - Company 2" />
+		<property name="description" value="Esta es position7 del company2" />
+		<property name="deadline" value="2019/11/05" />
+		<property name="profile" value="Senior" />
+		<property name="skills" value="Pyhton" />
+		<property name="technologies" value="Eclipse" />
+		<property name="salary" value="2686.23" />
+		<property name="isFinalMode" value="true" />
+		<property name="isCancelled" value="false" />
+		<property name="company" ref="company2" />
+		<property name="problems">
+			<list>
+				<ref bean="problem6" />
+				<ref bean="problem7" />
+				<ref bean="problem8" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="position8" class="domain.Position">
+		<property name="ticker" value="FOUR-2556" />
+		<property name="title" value="Position 8 - Company 3" />
+		<property name="description" value="Esta es position8 del company3" />
+		<property name="deadline" value="2019/11/08" />
+		<property name="profile" value="App" />
+		<property name="skills" value="Android" />
+		<property name="technologies" value="Java" />
+		<property name="salary" value="2886.23" />
+		<property name="isFinalMode" value="true" />
+		<property name="isCancelled" value="false" />
+		<property name="company" ref="company3" />
+		<property name="problems">
+			<list>
+				<ref bean="problem12" />
+				<ref bean="problem13" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="position9" class="domain.Position">
+		<property name="ticker" value="THRE-2556" />
+		<property name="title" value="Position 9 - Company 3" />
+		<property name="description" value="Esta es position9 del company3" />
+		<property name="deadline" value="2019/11/08" />
+		<property name="profile" value="App" />
+		<property name="skills" value="Android" />
+		<property name="technologies" value="Java" />
+		<property name="salary" value="2886.23" />
+		<property name="isFinalMode" value="true" />
+		<property name="isCancelled" value="false" />
+		<property name="company" ref="company3" />
+		<property name="problems">
+			<list>
+				<ref bean="problem13" />
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- Position Data -->
+	<bean id="positionData11" class="domain.PositionData">
+		<property name="title" value="Position data 1 del rookie 1" />
+		<property name="description" value="description" />
+		<property name="startDate" value="2014/08/20" />
+		<property name="endDate" value="2014/10/20" />
+	</bean>
+
+	<bean id="positionData12" class="domain.PositionData">
+		<property name="title" value="Position data 2 del rookie 1" />
+		<property name="description" value="description" />
+		<property name="startDate" value="2015/09/02" />
+		<property name="endDate" value="2016/01/03" />
+	</bean>
+
+	<bean id="positionData21" class="domain.PositionData">
+		<property name="title" value="Position data 1 del rookie 2" />
+		<property name="description" value="description" />
+		<property name="startDate" value="2018/12/22" />
+	</bean>
+
+	<bean id="positionData22" class="domain.PositionData">
+		<property name="title" value="Position data 2 del rookie 2" />
+		<property name="description" value="description" />
+		<property name="startDate" value="2018/12/22" />
+	</bean>
+
+	<bean id="positionData31" class="domain.PositionData">
+		<property name="title" value="Position data 1 del rookie 3" />
+		<property name="description" value="description" />
+		<property name="startDate" value="2017/08/31" />
+		<property name="endDate" value="2018/01/03" />
+	</bean>
+
+	<bean id="positionData32" class="domain.PositionData">
+		<property name="title" value="Position data 2 del rookie 3" />
+		<property name="description" value="description" />
+		<property name="startDate" value="2017/08/31" />
+		<property name="endDate" value="2018/01/03" />
+	</bean>
+
+	<bean id="positionData33" class="domain.PositionData">
+		<property name="title" value="Position data 3 del rookie 3" />
+		<property name="description" value="description" />
+		<property name="startDate" value="2017/08/31" />
+		<property name="endDate" value="2018/01/03" />
+	</bean>
+
+	<bean id="positionData34" class="domain.PositionData">
+		<property name="title" value="Position" />
+		<property name="description" value="description" />
+		<property name="startDate" value="2017/08/31" />
+		<property name="endDate" value="2018/01/03" />
+	</bean>
+
+	<bean id="positionData41" class="domain.PositionData">
+		<property name="title" value="Position data 1 del rookie 4" />
+		<property name="description" value="description" />
+		<property name="startDate" value="2013/01/12" />
+		<property name="endDate" value="2013/01/13" />
+	</bean>
+
+	<bean id="positionData42" class="domain.PositionData">
+		<property name="title" value="Position data 2 del rookie 4" />
+		<property name="description" value="description" />
+		<property name="startDate" value="2018/08/20" />
+	</bean>
+
+	<bean id="positionData43" class="domain.PositionData">
+		<property name="title" value="Position data 3 del rookie 4" />
+		<property name="description" value="description" />
+		<property name="startDate" value="2018/08/20" />
+	</bean>
+
+	<bean id="positionData61" class="domain.PositionData">
+		<property name="title" value="Position data 1 del rookie 6" />
+		<property name="description" value="description" />
+		<property name="startDate" value="2016/08/20" />
+	</bean>
+
+	<bean id="positionData62" class="domain.PositionData">
+		<property name="title" value="Position data 2 del rookie 6" />
+		<property name="description" value="description" />
+		<property name="startDate" value="2016/08/20" />
+	</bean>
+
+	<bean id="positionData63" class="domain.PositionData">
+		<property name="title" value="Position data" />
+		<property name="description" value="description" />
+		<property name="startDate" value="2016/08/20" />
+	</bean>
+
+	<bean id="positionData71" class="domain.PositionData">
+		<property name="title" value="Position data 1 del rookie 7" />
+		<property name="description" value="description" />
+		<property name="startDate" value="2018/08/20" />
+	</bean>
+
+	<bean id="positionData72" class="domain.PositionData">
+		<property name="title" value="Position data 2 del rookie 7" />
+		<property name="description" value="description" />
+		<property name="startDate" value="2018/08/20" />
+	</bean>
+
+	<bean id="positionData73" class="domain.PositionData">
+		<property name="title" value="Position data" />
+		<property name="description" value="description" />
+		<property name="startDate" value="2018/08/20" />
+	</bean>
+
+	<bean id="positionData74" class="domain.PositionData">
+		<property name="title" value="Position data" />
+		<property name="description" value="description" />
+		<property name="startDate" value="2018/08/20" />
+	</bean>
+
+	<bean id="positionData81" class="domain.PositionData">
+		<property name="title" value="Position data 1 del rookie 8" />
+		<property name="description" value="description" />
+		<property name="startDate" value="2016/08/20" />
+	</bean>
+
+
+	<!-- Problem -->
+	<bean id="problem1" class="domain.Problem">
+		<property name="title" value="Problem 1 - Company 1" />
+		<property name="statement" value="Statement" />
+		<property name="hint" value="Propongo que el rookie esté cualificado" />
+		<property name="attachments" value="" />
+		<property name="isFinalMode" value="true" />
+		<property name="company" ref="company1" />
+	</bean>
+
+	<bean id="problem2" class="domain.Problem">
+		<property name="title" value="Problem 2 - Company 1" />
+		<property name="statement" value="Statement" />
+		<property name="hint" value="Que el rookie viva en Sevilla" />
+		<property name="attachments" value="" />
+		<property name="isFinalMode" value="true" />
+		<property name="company" ref="company1" />
+	</bean>
+
+	<bean id="problem3" class="domain.Problem">
+		<property name="title" value="Problem 3 - Company 1" />
+		<property name="statement" value="Statement" />
+		<property name="hint" value="Que el rookie viva en Sevilla" />
+		<property name="attachments" value="" />
+		<property name="isFinalMode" value="true" />
+		<property name="company" ref="company1" />
+	</bean>
+
+	<bean id="problem4" class="domain.Problem">
+		<property name="title" value="Problem 4 - Company 1" />
+		<property name="statement" value="Statement" />
+		<property name="hint" value="Que el rookie viva en Sevilla" />
+		<property name="attachments" value="" />
+		<property name="isFinalMode" value="false" />
+		<property name="company" ref="company1" />
+	</bean>
+
+	<bean id="problem5" class="domain.Problem">
+		<property name="title" value="Problem 5 - Company 2" />
+		<property name="statement" value="Statement" />
+		<property name="hint" value="Necesito que trabaje los fines de semana" />
+		<property name="attachments" value="" />
+		<property name="isFinalMode" value="true" />
+		<property name="company" ref="company2" />
+	</bean>
+
+	<bean id="problem6" class="domain.Problem">
+		<property name="title" value="Problem 6 - Company 2" />
+		<property name="statement" value="Statement" />
+		<property name="hint" value="Necesito que trabaje los fines de semana" />
+		<property name="attachments" value="" />
+		<property name="isFinalMode" value="true" />
+		<property name="company" ref="company2" />
+	</bean>
+
+	<bean id="problem7" class="domain.Problem">
+		<property name="title" value="Problem 7 - Company 2" />
+		<property name="statement" value="Statement" />
+		<property name="hint" value="Necesito que trabaje los fines de semana" />
+		<property name="attachments" value="" />
+		<property name="isFinalMode" value="true" />
+		<property name="company" ref="company2" />
+	</bean>
+
+	<bean id="problem8" class="domain.Problem">
+		<property name="title" value="Problem 8 - Company 2" />
+		<property name="statement" value="Statement" />
+		<property name="hint" value="Necesito que trabaje los fines de semana" />
+		<property name="attachments" value="" />
+		<property name="isFinalMode" value="true" />
+		<property name="company" ref="company2" />
+	</bean>
+
+	<bean id="problem9" class="domain.Problem">
+		<property name="title" value="Problem 9 - Company 2" />
+		<property name="statement" value="Statement" />
+		<property name="hint" value="Necesito que trabaje los fines de semana" />
+		<property name="attachments" value="" />
+		<property name="isFinalMode" value="true" />
+		<property name="company" ref="company2" />
+	</bean>
+
+	<bean id="problem10" class="domain.Problem">
+		<property name="title" value="Problem 10 - Company 3" />
+		<property name="statement" value="Statement" />
+		<property name="hint" value="Necesito que trabaje los fines de semana" />
+		<property name="attachments" value="" />
+		<property name="isFinalMode" value="false" />
+		<property name="company" ref="company3" />
+	</bean>
+
+	<bean id="problem11" class="domain.Problem">
+		<property name="title" value="Problem 11 - Company 3" />
+		<property name="statement" value="Statement" />
+		<property name="hint" value="Necesito que trabaje los fines de semana" />
+		<property name="attachments" value="" />
+		<property name="isFinalMode" value="true" />
+		<property name="company" ref="company3" />
+	</bean>
+
+	<bean id="problem12" class="domain.Problem">
+		<property name="title" value="Problem 12 - Company 3" />
+		<property name="statement" value="Statement" />
+		<property name="hint" value="Necesito que trabaje los fines de semana" />
+		<property name="attachments" value="" />
+		<property name="isFinalMode" value="true" />
+		<property name="company" ref="company3" />
+	</bean>
+
+	<bean id="problem13" class="domain.Problem">
+		<property name="title" value="Problem 13 - Company 3" />
+		<property name="statement" value="Statement" />
+		<property name="hint" value="Necesito que trabaje los fines de semana" />
+		<property name="attachments" value="" />
+		<property name="isFinalMode" value="true" />
+		<property name="company" ref="company3" />
+	</bean>
+
+	<bean id="problem14" class="domain.Problem">
+		<property name="title" value="Problem 14 - Company 1" />
+		<property name="statement" value="Statement" />
+		<property name="hint" value="Necesito que trabaje los fines de semana" />
+		<property name="attachments" value="" />
+		<property name="isFinalMode" value="true" />
+		<property name="company" ref="company1" />
+	</bean>
+
+	<bean id="problem15" class="domain.Problem">
+		<property name="title" value="Problem 15 - Company 2" />
+		<property name="statement" value="Statement" />
+		<property name="hint" value="Necesito que trabaje los fines de semana" />
+		<property name="attachments" value="" />
+		<property name="isFinalMode" value="true" />
+		<property name="company" ref="company2" />
+	</bean>
+
+	<bean id="problem16" class="domain.Problem">
+		<property name="title" value="Problem 16 - Company 3" />
+		<property name="statement" value="Statement" />
+		<property name="hint" value="Necesito que trabaje los fines de semana" />
+		<property name="attachments" value="" />
+		<property name="isFinalMode" value="true" />
+		<property name="company" ref="company3" />
+	</bean>
+
+	<bean id="problem17" class="domain.Problem">
+		<property name="title" value="Problem 17 - Company 1" />
+		<property name="statement" value="Statement" />
+		<property name="hint" value="Necesito que trabaje los fines de semana" />
+		<property name="attachments" value="" />
+		<property name="isFinalMode" value="false" />
+		<property name="company" ref="company1" />
+	</bean>
+
+	<bean id="problem18" class="domain.Problem">
+		<property name="title" value="Problem 18 - Company 2" />
+		<property name="statement" value="Statement" />
+		<property name="hint" value="Necesito que trabaje los fines de semana" />
+		<property name="attachments" value="" />
+		<property name="isFinalMode" value="false" />
+		<property name="company" ref="company2" />
+	</bean>
+
+	<!-- Provider -->
+	<bean id="provider1" class="domain.Provider">
+		<property name="name" value="Provider1" />
+		<property name="surname" value="Lobato" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard22" />
+		<property name="photo"
+			value="http://webfeb.in/wp-content/uploads/2016/11/logo-design-for-it-company.jpg" />
+		<property name="email" value="provider1@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Provider 1" />
+		<property name="make" value="Make del Provider 1" />
+		<property name="userAccount" ref="userAccount22" />
+	</bean>
+
+	<bean id="provider2" class="domain.Provider">
+		<property name="name" value="Provider2" />
+		<property name="surname" value="Pavon" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard23" />
+		<property name="photo"
+			value="http://webfeb.in/wp-content/uploads/2016/11/logo-design-for-it-company.jpg" />
+		<property name="email" value="provider2@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Provider 2" />
+		<property name="make" value="Make del Provider 2" />
+		<property name="userAccount" ref="userAccount23" />
+	</bean>
+
+	<bean id="provider3" class="domain.Provider">
+		<property name="name" value="Provider3" />
+		<property name="surname" value="Lobato" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard24" />
+		<property name="photo"
+			value="http://webfeb.in/wp-content/uploads/2016/11/logo-design-for-it-company.jpg" />
+		<property name="email" value="provider3@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Provider 3" />
+		<property name="make" value="Make del Provider 3" />
+		<property name="userAccount" ref="userAccount24" />
+	</bean>
+
+	<bean id="provider4" class="domain.Provider">
+		<property name="name" value="Provider4" />
+		<property name="surname" value="Pavon" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard25" />
+		<property name="photo"
+			value="http://webfeb.in/wp-content/uploads/2016/11/logo-design-for-it-company.jpg" />
+		<property name="email" value="provider4@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Provider 4" />
+		<property name="make" value="Make del Provider 4" />
+		<property name="userAccount" ref="userAccount25" />
+	</bean>
+
+	<bean id="provider5" class="domain.Provider">
+		<property name="name" value="Provider5" />
+		<property name="surname" value="Lobato" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard26" />
+		<property name="photo"
+			value="http://webfeb.in/wp-content/uploads/2016/11/logo-design-for-it-company.jpg" />
+		<property name="email" value="provider5@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Provider 5" />
+		<property name="make" value="Make del Provider 5" />
+		<property name="userAccount" ref="userAccount26" />
+	</bean>
+
+	<bean id="provider6" class="domain.Provider">
+		<property name="name" value="Provider6" />
+		<property name="surname" value="Pavon" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard27" />
+		<property name="photo"
+			value="http://webfeb.in/wp-content/uploads/2016/11/logo-design-for-it-company.jpg" />
+		<property name="email" value="provider6@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Provider 6" />
+		<property name="make" value="Make del Provider 6" />
+		<property name="userAccount" ref="userAccount27" />
+	</bean>
+
+	<bean id="provider7" class="domain.Provider">
+		<property name="name" value="Provider7" />
+		<property name="surname" value="Lobato" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard28" />
+		<property name="photo"
+			value="http://webfeb.in/wp-content/uploads/2016/11/logo-design-for-it-company.jpg" />
+		<property name="email" value="provider7@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Provider 7" />
+		<property name="make" value="Make del Provider 7" />
+		<property name="userAccount" ref="userAccount28" />
+	</bean>
+
+
+	<!-- Sponsorship -->
+	<bean id="sponsorship1" class="domain.Sponsorship">
+		<property name="creditCard" ref="creditCard29" />
+		<property name="banner"
+			value="https://www.digitalprinting.co.uk/media/images/products/slides/31/vinyl-pvc-banners-1.jpg" />
+		<property name="targetPage" value="http://www.targetpage.com" />
+		<property name="provider" ref="provider1" />
+		<property name="position" ref="position1" />
+	</bean>
+
+	<bean id="sponsorship2" class="domain.Sponsorship">
+		<property name="creditCard" ref="creditCard30" />
+		<property name="banner"
+			value="https://www.digitalprinting.co.uk/media/images/products/slides/31/vinyl-pvc-banners-1.jpg" />
+		<property name="targetPage" value="http://www.targetpage.com" />
+		<property name="provider" ref="provider1" />
+		<property name="position" ref="position2" />
+	</bean>
+
+	<bean id="sponsorship3" class="domain.Sponsorship">
+		<property name="creditCard" ref="creditCard31" />
+		<property name="banner"
+			value="https://www.digitalprinting.co.uk/media/images/products/slides/31/vinyl-pvc-banners-1.jpg" />
+		<property name="targetPage" value="http://www.targetpage.com" />
+		<property name="provider" ref="provider2" />
+		<property name="position" ref="position2" />
+	</bean>
+	
+	<bean id="sponsorship4" class="domain.Sponsorship">
+		<property name="creditCard" ref="creditCard32" />
+		<property name="banner"
+			value="https://www.digitalprinting.co.uk/media/images/products/slides/31/vinyl-pvc-banners-1.jpg" />
+		<property name="targetPage" value="http://www.targetpage.com" />
+		<property name="provider" ref="provider3" />
+		<property name="position" ref="position6" />
+	</bean>
+
+	<bean id="sponsorship5" class="domain.Sponsorship">
+		<property name="creditCard" ref="creditCard33" />
+		<property name="banner"
+			value="https://www.digitalprinting.co.uk/media/images/products/slides/31/vinyl-pvc-banners-1.jpg" />
+		<property name="targetPage" value="http://www.targetpage.com" />
+		<property name="provider" ref="provider4" />
+		<property name="position" ref="position1" />
+	</bean>
+
+	<bean id="sponsorship6" class="domain.Sponsorship">
+		<property name="creditCard" ref="creditCard34" />
+		<property name="banner"
+			value="https://www.digitalprinting.co.uk/media/images/products/slides/31/vinyl-pvc-banners-1.jpg" />
+		<property name="targetPage" value="http://www.targetpage.com" />
+		<property name="provider" ref="provider5" />
+		<property name="position" ref="position7" />
+	</bean>
+	
+	<bean id="sponsorship7" class="domain.Sponsorship">
+		<property name="creditCard" ref="creditCard35" />
+		<property name="banner"
+			value="https://www.digitalprinting.co.uk/media/images/products/slides/31/vinyl-pvc-banners-1.jpg" />
+		<property name="targetPage" value="http://www.targetpage.com" />
+		<property name="provider" ref="provider5" />
+		<property name="position" ref="position8" />
+	</bean>
+	
+	<bean id="sponsorship8" class="domain.Sponsorship">
+		<property name="creditCard" ref="creditCard36" />
+		<property name="banner"
+			value="https://www.digitalprinting.co.uk/media/images/products/slides/31/vinyl-pvc-banners-1.jpg" />
+		<property name="targetPage" value="http://www.targetpage.com" />
+		<property name="provider" ref="provider7" />
+		<property name="position" ref="position7" />
+	</bean>
+	
+
+</beans>

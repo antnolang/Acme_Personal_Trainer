@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- * PopulateDatabase.xml * * Copyright (C) 2019 Universidad de Sevilla 
+	* * The use of this project is hereby constrained to the conditions of the 
+	* TDG Licence, a copy of which you may download from * http://www.tdg-seville.info/License.html -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+
+	<!-- User accounts -->
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin1" />
+		<property name="password" value="e00cf25ad42683b3df678c61f42c6bda" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="username" value="system" />
+		<property name="password" value="54b53072540eeeb8f8e9343e71f28176" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount3" class="security.UserAccount">
+		<property name="username" value="company1" />
+		<property name="password" value="df655f976f7c9d3263815bd981225cd9" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="COMPANY" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="company2" />
+		<property name="password" value="d196a28097115067fefd73d25b0c0be8" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="COMPANY" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount6" class="security.UserAccount">
+		<property name="username" value="rookie1" />
+		<property name="password" value="9701eb1802a4c63f51e1501512fbdd30" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ROOKIE" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount7" class="security.UserAccount">
+		<property name="username" value="rookie2" />
+		<property name="password" value="124be4fa2a59341a1d7e965ac49b2923" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ROOKIE" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount15" class="security.UserAccount">
+		<property name="username" value="auditor1" />
+		<property name="password" value="175d2e7a63f386554a4dd66e865c3e14" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount16" class="security.UserAccount">
+		<property name="username" value="auditor2" />
+		<property name="password" value="04dd94ba3212ac52ad3a1f4cbfb52d4f" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount22" class="security.UserAccount">
+		<property name="username" value="provider1" />
+		<property name="password" value="cdb82d56473901641525fbbd1d5dab56" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount23" class="security.UserAccount">
+		<property name="username" value="provider2" />
+		<property name="password" value="ebfc815ee2cc6a16225105bb7b3e1e53" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+		
+	<!-- Administrator -->
+<bean id="administrator1" class="domain.Administrator">
+		<property name="name" value="Admin1" />
+		<property name="surname" value="Ruiz" />
+		<property name="VATnumber" value="65" />
+		<property name="creditCard" ref="creditCard1" />
+		<property name="photo"
+			value="http://www.littlehearts.ind.in/wp-content/themes/lhs/Birthday/images/adm.png" />
+		<property name="email" value="admin1@gmail.com" />
+		<property name="phoneNumber" value="63018754" />
+		<property name="address" value="Calle Admin 1" />
+		<property name="userAccount" ref="userAccount1" />
+	</bean>
+
+	<bean id="system" class="domain.Administrator">
+		<property name="name" value="System" />
+		<property name="surname" value="Reina" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard2" />
+		<property name="photo"
+			value="https://image.freepik.com/free-photo/linux-kubuntu-operating-logo-system-options_121-97849.jpg" />
+		<property name="email" value="admin2@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Admin 2" />
+		<property name="userAccount" ref="userAccount2" />
+	</bean>
+	
+	<!-- Auditor -->
+	<bean id="auditor1" class="domain.Auditor">
+		<property name="name" value="Auditor1" />
+		<property name="surname" value="Garcia" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard15" />
+		<property name="photo"
+			value="http://webfeb.in/wp-content/uploads/2016/11/logo-design-for-it-company.jpg" />
+		<property name="email" value="auditor1@gmail.com" />
+		<property name="phoneNumber" value="63015471" />
+		<property name="address" value="Calle Auditor 1" />
+		<property name="userAccount" ref="userAccount15" />
+	</bean>
+
+	<bean id="auditor2" class="domain.Auditor">
+		<property name="name" value="Auditor2" />
+		<property name="surname" value="Garcia" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard16" />
+		<property name="photo"
+			value="http://webfeb.in/wp-content/uploads/2016/11/logo-design-for-it-company.jpg" />
+		<property name="email" value="auditor2@gmail.com" />
+		<property name="phoneNumber" value="63012521" />
+		<property name="address" value="Calle Auditor 2" />
+		<property name="userAccount" ref="userAccount16" />
+	</bean>
+	
+	<!-- Company -->
+	<bean id="company1" class="domain.Company">
+		<property name="name" value="Company1" />
+		<property name="surname" value="Garcia" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard3" />
+		<property name="photo"
+			value="http://webfeb.in/wp-content/uploads/2016/11/logo-design-for-it-company.jpg" />
+		<property name="email" value="company1@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Company 1" />
+		<property name="commercialName" value="One Commercial Name" />
+		<property name="auditScore" value="0.4" />
+		<property name="userAccount" ref="userAccount3" />
+	</bean>
+
+	<bean id="company2" class="domain.Company">
+		<property name="name" value="Company2" />
+		<property name="surname" value="Lobato" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard4" />
+		<property name="photo"
+			value="https://www.freelogodesign.org/Content/img/logo-ex-6.png" />
+		<property name="email" value="company2@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Company 2" />
+		<property name="commercialName" value="Two Commercial Name" />
+		<property name="userAccount" ref="userAccount4" />
+	</bean>
+	
+	<!-- CreditCard -->
+	<bean id="creditCard1" class="domain.CreditCard">
+		<property name="holder" value="holder1" />
+		<property name="make" value="VISA" />
+		<property name="number" value="38353348140483" />
+		<property name="expirationMonth" value="08" />
+		<property name="expirationYear" value="21" />
+		<property name="cvvCode" value="724" />
+	</bean>
+
+	<bean id="creditCard2" class="domain.CreditCard">
+		<property name="holder" value="holder2" />
+		<property name="make" value="VISA" />
+		<property name="number" value="4716895067094219" />
+		<property name="expirationMonth" value="10" />
+		<property name="expirationYear" value="22" />
+		<property name="cvvCode" value="587" />
+	</bean>
+
+	<bean id="creditCard3" class="domain.CreditCard">
+		<property name="holder" value="holder3" />
+		<property name="make" value="VISA" />
+		<property name="number" value="4389142361978458" />
+		<property name="expirationMonth" value="03" />
+		<property name="expirationYear" value="22" />
+		<property name="cvvCode" value="587" />
+	</bean>
+
+	<bean id="creditCard4" class="domain.CreditCard">
+		<property name="holder" value="holder4" />
+		<property name="make" value="VISA" />
+		<property name="number" value="4916210851536995" />
+		<property name="expirationMonth" value="02" />
+		<property name="expirationYear" value="21" />
+		<property name="cvvCode" value="147" />
+	</bean>
+
+	<bean id="creditCard6" class="domain.CreditCard">
+		<property name="holder" value="holder6" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="4024007150182987" />
+		<property name="expirationMonth" value="02" />
+		<property name="expirationYear" value="22" />
+		<property name="cvvCode" value="258" />
+	</bean>
+	
+	<bean id="creditCard7" class="domain.CreditCard">
+		<property name="holder" value="holder7" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="4556001181801737" />
+		<property name="expirationMonth" value="02" />
+		<property name="expirationYear" value="21" />
+		<property name="cvvCode" value="254" />
+	</bean>
+	
+	<bean id="creditCard15" class="domain.CreditCard">
+		<property name="holder" value="holder15" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="4382235426482099" />
+		<property name="expirationMonth" value="04" />
+		<property name="expirationYear" value="21" />
+		<property name="cvvCode" value="950" />
+	</bean>
+
+	<bean id="creditCard16" class="domain.CreditCard">
+		<property name="holder" value="holder16" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="4262922023905342" />
+		<property name="expirationMonth" value="03" />
+		<property name="expirationYear" value="22" />
+		<property name="cvvCode" value="124" />
+	</bean>
+	
+	<bean id="creditCard22" class="domain.CreditCard">
+		<property name="holder" value="holder22" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="4507131688273419" />
+		<property name="expirationMonth" value="04" />
+		<property name="expirationYear" value="21" />
+		<property name="cvvCode" value="180" />
+	</bean>
+
+	<bean id="creditCard23" class="domain.CreditCard">
+		<property name="holder" value="holder23" />
+		<property name="make" value="MCARD" />
+		<property name="number" value="4737888229428065" />
+		<property name="expirationMonth" value="07" />
+		<property name="expirationYear" value="24" />
+		<property name="cvvCode" value="613" />
+	</bean>
+	
+
+	<!-- Customisation -->
+	<bean id="customisation1" class="domain.Customisation">
+		<property name="name" value="Acme Rookie" />
+		<property name="banner" value="https://i.ibb.co/LQXvBrh/Copia-de-I-m-Back.png" />
+		<property name="welcomeMessageEn"
+			value="Welcome to Acme Rookie! We're IT rookie's favourite job marketplace!" />
+		<property name="welcomeMessageEs"
+			value="¡Bienvenidos a Acme Rookie! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!" />
+		<property name="countryCode" value="+34" />
+		<property name="timeCachedResults" value="1" />
+		<property name="maxNumberResults" value="10" />
+		<property name="spamWords"
+			value="sex,viagra,cialis,one million,you've been selected,Nigeria,sexo,un millon,ha sido seleccionado" />
+		<property name="frate" value="500.00" />
+		<property name="VATtax" value="47" />
+		<property name="isRebrandNotificationSent" value="false" />
+	</bean>
+	
+	<!-- Finder -->
+	<bean id="finder1" class="domain.Finder">
+		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
+		<property name="deadline" value="2020/10/05" />
+		<property name="minimumSalary" value="965.24" />
+		<property name="maximumDeadline" value="2022/10/05" />
+		<property name="updatedMoment" value="2019/01/01 10:10" />
+		<property name="rookie" ref="rookie1" />
+		<property name="positions">
+			<list>
+				<null></null>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="finder2" class="domain.Finder">
+		<property name="keyword" value="" />
+		<property name="updatedMoment" value="2019/01/01 10:10" />
+		<property name="rookie" ref="rookie2" />
+		<property name="positions">
+			<list>
+				<null></null>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Rookie -->
+	<bean id="rookie1" class="domain.Rookie">
+		<property name="name" value="Rookie1" />
+		<property name="surname" value="Alvarez" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard6" />
+		<property name="photo"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="email" value="rookie1@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Rookie 1" />
+		<property name="userAccount" ref="userAccount6" />
+	</bean>
+
+	<bean id="rookie2" class="domain.Rookie">
+		<property name="name" value="Rookie2" />
+		<property name="surname" value="Munoz" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard7" />
+		<property name="photo"
+			value="https://www.madmen-onlinemarketing.de/wp-content/uploads/jan-madmen-onlinemarketing-e1525337078609.jpg" />
+		<property name="email" value="rookie2@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Rookie 2" />
+		<property name="userAccount" ref="userAccount7" />
+	</bean>
+	
+		<!-- Provider -->
+	<bean id="provider1" class="domain.Provider">
+		<property name="name" value="Provider1" />
+		<property name="surname" value="Lobato" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard22" />
+		<property name="photo"
+			value="http://webfeb.in/wp-content/uploads/2016/11/logo-design-for-it-company.jpg" />
+		<property name="email" value="provider1@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Provider 1" />
+		<property name="make" value="Make del Provider 1" />
+		<property name="userAccount" ref="userAccount22" />
+	</bean>
+
+	<bean id="provider2" class="domain.Provider">
+		<property name="name" value="Provider2" />
+		<property name="surname" value="Pavon" />
+		<property name="VATnumber" value="97" />
+		<property name="creditCard" ref="creditCard23" />
+		<property name="photo"
+			value="http://webfeb.in/wp-content/uploads/2016/11/logo-design-for-it-company.jpg" />
+		<property name="email" value="provider2@gmail.com" />
+		<property name="phoneNumber" value="63015521" />
+		<property name="address" value="Calle Provider 2" />
+		<property name="make" value="Make del Provider 2" />
+		<property name="userAccount" ref="userAccount23" />
+	</bean>
+
+</beans>
