@@ -10,24 +10,24 @@
 
 package converters;
 
-import javax.swing.Box;
-
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import domain.WorkingOut;
+
 @Component
 @Transactional
-public class WorkingOutToStringConverter implements Converter<Box, String> {
+public class WorkingOutToStringConverter implements Converter<WorkingOut, String> {
 
 	@Override
-	public String convert(final Box box) {
+	public String convert(final WorkingOut workingOut) {
 		String result;
 
-		if (box == null)
+		if (workingOut == null)
 			result = null;
 		else
-			result = String.valueOf(box.getId());
+			result = String.valueOf(workingOut.getId());
 
 		return result;
 	}

@@ -10,13 +10,14 @@
 
 package converters;
 
-import javax.swing.Box;
-
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import repositories.NutritionistRepository;
+import domain.Nutritionist;
 
 @Component
 @Transactional
@@ -28,7 +29,7 @@ public class StringToNutritionistConverter implements Converter<String, Nutritio
 
 	@Override
 	public Nutritionist convert(final String text) {
-		Box result;
+		Nutritionist result;
 		int id;
 
 		try {

@@ -10,13 +10,14 @@
 
 package converters;
 
-import javax.swing.Box;
-
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import repositories.TrainerRepository;
+import domain.Trainer;
 
 @Component
 @Transactional
@@ -28,7 +29,7 @@ public class StringToTrainerConverter implements Converter<String, Trainer> {
 
 	@Override
 	public Trainer convert(final String text) {
-		Box result;
+		Trainer result;
 		int id;
 
 		try {

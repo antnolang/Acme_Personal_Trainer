@@ -10,13 +10,14 @@
 
 package converters;
 
-import javax.swing.Box;
-
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import repositories.AuditorRepository;
+import domain.Auditor;
 
 @Component
 @Transactional
@@ -28,7 +29,7 @@ public class StringToAuditConverter implements Converter<String, Auditor> {
 
 	@Override
 	public Auditor convert(final String text) {
-		Box result;
+		Auditor result;
 		int id;
 
 		try {

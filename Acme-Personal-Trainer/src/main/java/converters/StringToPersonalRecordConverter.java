@@ -16,6 +16,9 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import repositories.PersonalRecordRepository;
+import domain.PersonalRecord;
+
 @Component
 @Transactional
 public class StringToPersonalRecordConverter implements Converter<String, PersonalRecord> {

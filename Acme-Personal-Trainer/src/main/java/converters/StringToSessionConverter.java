@@ -10,14 +10,14 @@
 
 package converters;
 
-import javax.swing.Box;
-
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import repositories.SessionRepository;
 
 @Component
 @Transactional
@@ -29,7 +29,7 @@ public class StringToSessionConverter implements Converter<String, Session> {
 
 	@Override
 	public Session convert(final String text) {
-		Box result;
+		Session result;
 		int id;
 
 		try {

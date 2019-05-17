@@ -10,13 +10,14 @@
 
 package converters;
 
-import javax.swing.Box;
-
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import repositories.EndorsementRepository;
+import domain.Endorsement;
 
 @Component
 @Transactional
@@ -28,7 +29,7 @@ public class StringToEndorsementConverter implements Converter<String, Endorseme
 
 	@Override
 	public Endorsement convert(final String text) {
-		Box result;
+		Endorsement result;
 		int id;
 
 		try {
