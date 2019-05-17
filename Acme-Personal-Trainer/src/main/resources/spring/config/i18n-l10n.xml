@@ -24,10 +24,27 @@
 		<value>/views/welcome/messages</value>
 		
 		<value>/views/actor/messages</value>
+		<value>/views/application/messages</value>				
+		<value>/views/article/messages</value>	
+		<value>/views/audit/messages</value>
+		<value>/views/box/messages</value>	
+		<value>/views/category/messages</value>				
+		<value>/views/comment/messages</value>				
 		<value>/views/creditCard/messages</value>
+		<value>/views/curriculum/messages</value>		
 		<value>/views/customisation/messages</value>
 		<value>/views/dashboard/messages</value>
+		<value>/views/educationRecord/messages</value>		
+		<value>/views/endorsement/messages</value>
+		<value>/views/endorserRecord/messages</value>	
+		<value>/views/finder/messages</value>			
+		<value>/views/message/messages</value>
+		<value>/views/miscellaneousRecord/messages</value>				
+		<value>/views/personalRecord/messages</value>			
+		<value>/views/professionalRecord/messages</value>				
+		<value>/views/session/messages</value>
 		<value>/views/socialProfile/messages</value>
+		<value>/views/workingOut/messages</value>
 	</util:list>
 
 </beans>

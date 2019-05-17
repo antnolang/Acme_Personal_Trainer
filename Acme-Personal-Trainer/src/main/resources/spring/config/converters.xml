@@ -17,21 +17,87 @@
 
 		<bean class="converters.AdministratorToStringConverter" />
 		<bean class="converters.StringToAdministratorConverter" />
-
+		
+		<bean class="converters.ApplicationToStringConverter" /> 
+		<bean class="converters.StringToApplicationConverter" /> 
+		
+		<bean class="converters.ArticleToStringConverter" /> 
+		<bean class="converters.StringToArticleConverter" /> 
+		
+		<bean class="converters.AuditorToStringConverter" />
+		<bean class="converters.StringToAuditorConverter" />
+		
+		<bean class="converters.AuditToStringConverter" />
+		<bean class="converters.StringToAuditConverter" />
+		
 		<bean class="converters.AuthorityToStringConverter" />
 		<bean class="converters.StringToAuthorityConverter" />
 		
+		<bean class="converters.BoxToStringConverter" />
+		<bean class="converters.StringToBoxConverter" />
+		
+		<bean class="converters.CategoryToStringConverter" /> 
+		<bean class="converters.StringToCategoryConverter" /> 
+		
 		<bean class="converters.CreditCardToStringConverter" />
 		<bean class="converters.StringToCreditCardConverter" />
+		
+		<bean class="converters.CommentToStringConverter" /> 
+		<bean class="converters.StringToCommentConverter" /> 		
+
+		<bean class="converters.CurriculumToStringConverter" />
+		<bean class="converters.StringToCurriculumConverter" />
+		
+		<bean class="converters.CustomerToStringConverter" /> 
+		<bean class="converters.StringToCustomerConverter" /> 
 
 		<bean class="converters.CustomisationToStringConverter" />
-		<bean class="converters.StringToCustomisationConverter" />
+		<bean class="converters.StringToCustomisationConverter" />	
+		
+		<bean class="converters.EducationRecordToStringConverter" /> 
+		<bean class="converters.StringToEducationRecordConverter" /> 
+		
+		<bean class="converters.EndorserRecordToStringConverter" /> 
+		<bean class="converters.StringToEndorserRecordConverter" />	
+		
+		<bean class="converters.EndorsementToStringConverter" /> 
+		<bean class="converters.StringToEndorsementConverter" /> 
+		
+		<bean class="converters.FinderToStringConverter" /> 
+		<bean class="converters.StringToFinderConverter" /> 
+		
+		<bean class="converters.MessageToStringConverter" />
+		<bean class="converters.StringToMessageConverter" />
+		
+		<bean class="converters.MiscellaneousRecordToStringConverter" /> 
+		<bean class="converters.StringToMiscellaneousRecordConverter" /> 
+		
+		<bean class="converters.NutritionistToStringConverter" /> 
+		<bean class="converters.StringToNutritionistConverter" /> 
+		
+		<bean class="converters.PersonalRecordToStringConverter" /> 
+		<bean class="converters.StringToPersonalRecordConverter" /> 
+		
+		<bean class="converters.ProfessionalRecordToStringConverter" /> 
+		<bean class="converters.StringToProfessionalRecordConverter" /> 
+		
+		<bean class="converters.SessionToStringConverter" /> 
+		<bean class="converters.StringToSessionRecordConverter" /> 
 		
 		<bean class="converters.SocialProfileToStringConverter" />
 		<bean class="converters.StringToSocialProfileConverter" />
+		
+		<bean class="converters.TrainerToStringConverter" /> 
+		<bean class="converters.StringToTrainerConverter" /> 
 
 		<bean class="converters.UserAccountToStringConverter" />
 		<bean class="converters.StringToUserAccountConverter" />
+		
+		<bean class="converters.WorkingOutToStringConverter" /> 
+		<bean class="converters.StringToWorkingOutConverter" /> 
+		
+		
+		
 	</util:list>
 
 </beans>
