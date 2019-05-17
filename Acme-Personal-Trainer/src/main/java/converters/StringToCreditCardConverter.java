@@ -1,39 +1,39 @@
 
 package converters;
 
-import java.net.URLDecoder;
-
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import repositories.CreditCardRepository;
 import domain.CreditCard;
 
 @Component
 @Transactional
 public class StringToCreditCardConverter implements Converter<String, CreditCard> {
 
+	@Autowired
+	CreditCardRepository	creditCardRepository;
+
+
 	@Override
 	public CreditCard convert(final String text) {
 		CreditCard result;
-		String parts[];
+		int id;
 
-		if (text == null)
-			result = null;
-		else
-			try {
-				parts = text.split("\\|");
-				result = new CreditCard();
-				result.setHolder(URLDecoder.decode(parts[0], "UTF-8"));
-				result.setMake(URLDecoder.decode(parts[1], "UTF-8"));
-				result.setNumber(URLDecoder.decode(parts[2], "UTF-8"));
-				result.setExpirationMonth(URLDecoder.decode(parts[3], "UTF-8"));
-				result.setExpirationYear(URLDecoder.decode(parts[4], "UTF-8"));
-				result.setCvvCode(Integer.valueOf(URLDecoder.decode(parts[5], "UTF-8")));
-
-			} catch (final Throwable oops) {
-				throw new IllegalArgumentException(oops);
+		try {
+			if (StringUtils.isEmpty(text))
+				result = null;
+			else {
+				id = Integer.valueOf(text);
+				result = this.creditCardRepository.findOne(id);
 			}
+		} catch (final Throwable oops) {
+			throw new IllegalArgumentException(oops);
+		}
+
 		return result;
 	}
 
