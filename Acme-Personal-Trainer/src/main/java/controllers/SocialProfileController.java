@@ -54,7 +54,7 @@ public class SocialProfileController extends AbstractController {
 			result.addObject("requestURI", "socialProfile/list.do");
 			result.addObject("isAuthorized", isAuthorized);
 		} catch (final Exception e) {
-			result = new ModelAndView("redirect:../error.do");
+			result = new ModelAndView("redirect:/error.do");
 		}
 
 		return result;
@@ -73,7 +73,7 @@ public class SocialProfileController extends AbstractController {
 			result.addObject("actorId", socialProfile.getActor().getId());
 
 		} catch (final Exception e) {
-			result = new ModelAndView("redirect:../error.do");
+			result = new ModelAndView("redirect:/error.do");
 		}
 
 		return result;
