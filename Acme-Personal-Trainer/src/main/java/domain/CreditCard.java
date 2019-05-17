@@ -3,7 +3,10 @@ package domain;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
@@ -11,12 +14,12 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.SafeHtml;
 
-@Embeddable
+@Entity
 @Access(AccessType.PROPERTY)
-public class CreditCard {
+public class CreditCard extends DomainEntity {
 
-	private String	holder;
-	private String	make;
+	private String	holderName;
+	private String	brandName;
 	private String	number;
 	private String	expirationMonth;
 	private String	expirationYear;
@@ -25,28 +28,27 @@ public class CreditCard {
 
 	@NotBlank
 	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
-	public String getHolder() {
-		return this.holder;
+	public String getHolderName() {
+		return this.holderName;
 	}
 
-	public void setHolder(final String holder) {
-		this.holder = holder;
+	public void setHolderName(final String holderName) {
+		this.holderName = holderName;
 	}
 
 	@NotBlank
 	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
-	public String getMake() {
-		return this.make;
+	public String getBrandName() {
+		return this.brandName;
 	}
 
-	public void setMake(final String make) {
-		this.make = make;
+	public void setBrandName(final String brandName) {
+		this.brandName = brandName;
 	}
 
 	@NotBlank
 	@CreditCardNumber
 	@Pattern(regexp = "\\d+")
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getNumber() {
 		return this.number;
 	}
@@ -68,7 +70,6 @@ public class CreditCard {
 
 	@NotBlank
 	@Pattern(regexp = "\\d{2}")
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getExpirationYear() {
 		return this.expirationYear;
 	}
@@ -84,6 +85,23 @@ public class CreditCard {
 
 	public void setCvvCode(final int cvvCode) {
 		this.cvvCode = cvvCode;
+	}
+
+
+	// Relationships
+
+	private Customer	customer;
+
+
+	@Valid
+	@NotNull
+	@ManyToOne(optional = false)
+	public Customer getCustomer() {
+		return this.customer;
+	}
+
+	public void setCustomer(final Customer customer) {
+		this.customer = customer;
 	}
 
 }

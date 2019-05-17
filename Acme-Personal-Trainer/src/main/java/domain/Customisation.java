@@ -4,6 +4,8 @@ package domain;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -28,11 +30,17 @@ public class Customisation extends DomainEntity {
 	private String	banner;
 	private String	welcomeMessageEn;
 	private String	welcomeMessageEs;
+	private int		VAT;
 	private String	countryCode;
-	private int		timeCachedResults;
-	private int		maxNumberResults;
+	private String	priorities;
+	private String	creditCardMakes;
+	private int		timeResults;
+	private int		numberResults;
+	private double	threshold;
 	private String	spamWords;
-	private int		VATtax;
+	private String	positiveWords;
+	private String	negativeWords;
+	private double	premiumAmount;
 
 
 	@NotBlank
@@ -76,6 +84,15 @@ public class Customisation extends DomainEntity {
 		this.welcomeMessageEs = welcomeMessageEs;
 	}
 
+	@Range(min = 0, max = 100)
+	public int getVAT() {
+		return this.VAT;
+	}
+
+	public void setVAT(final int vAT) {
+		this.VAT = vAT;
+	}
+
 	@NotBlank
 	@Pattern(regexp = "\\+\\d+")
 	public String getCountryCode() {
@@ -86,22 +103,51 @@ public class Customisation extends DomainEntity {
 		this.countryCode = countryCode;
 	}
 
-	@Range(min = 1, max = 24)
-	public int getTimeCachedResults() {
-		return this.timeCachedResults;
+	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+	public String getPriorities() {
+		return this.priorities;
 	}
 
-	public void setTimeCachedResults(final int timeCachedResults) {
-		this.timeCachedResults = timeCachedResults;
+	public void setPriorities(final String priorities) {
+		this.priorities = priorities;
+	}
+
+	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+	public String getCreditCardMakes() {
+		return this.creditCardMakes;
+	}
+
+	public void setCreditCardMakes(final String creditCardMakes) {
+		this.creditCardMakes = creditCardMakes;
+	}
+
+	@Range(min = 1, max = 24)
+	public int getTimeResults() {
+		return this.timeResults;
+	}
+
+	public void setTimeResults(final int timeResults) {
+		this.timeResults = timeResults;
 	}
 
 	@Range(min = 1, max = 100)
-	public int getMaxNumberResults() {
-		return this.maxNumberResults;
+	public int getNumberResults() {
+		return this.numberResults;
 	}
 
-	public void setMaxNumberResults(final int maxNumberResults) {
-		this.maxNumberResults = maxNumberResults;
+	public void setNumberResults(final int numberResults) {
+		this.numberResults = numberResults;
+	}
+
+	@Range(min = -1, max = 0)
+	public double getThreshold() {
+		return this.threshold;
+	}
+
+	public void setThreshold(final double threshold) {
+		this.threshold = threshold;
 	}
 
 	@NotBlank
@@ -114,13 +160,34 @@ public class Customisation extends DomainEntity {
 		this.spamWords = spamWords;
 	}
 
-	@Range(min = 0, max = 100)
-	public int getVATtax() {
-		return this.VATtax;
+	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+	public String getPositiveWords() {
+		return this.positiveWords;
 	}
 
-	public void setVATtax(final int vATtax) {
-		this.VATtax = vATtax;
+	public void setPositiveWords(final String positiveWords) {
+		this.positiveWords = positiveWords;
+	}
+
+	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+	public String getNegativeWords() {
+		return this.negativeWords;
+	}
+
+	public void setNegativeWords(final String negativeWords) {
+		this.negativeWords = negativeWords;
+	}
+
+	@Min(0)
+	@Digits(integer = 9, fraction = 2)
+	public double getPremiumAmount() {
+		return this.premiumAmount;
+	}
+
+	public void setPremiumAmount(final double premiumAmount) {
+		this.premiumAmount = premiumAmount;
 	}
 
 }

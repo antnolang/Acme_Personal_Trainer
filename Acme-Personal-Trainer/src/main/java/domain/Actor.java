@@ -31,12 +31,14 @@ public abstract class Actor extends DomainEntity {
 	// Attributes
 
 	private String	name;
+	private String	middleName;
 	private String	surname;
 	private String	fullname;
 	private String	photo;
 	private String	email;
 	private String	phoneNumber;
 	private String	address;
+	private boolean	isSuspicious;
 
 
 	@NotBlank
@@ -47,6 +49,15 @@ public abstract class Actor extends DomainEntity {
 
 	public void setName(final String name) {
 		this.name = name;
+	}
+
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+	public String getMiddleName() {
+		return this.middleName;
+	}
+
+	public void setMiddleName(final String middleName) {
+		this.middleName = middleName;
 	}
 
 	@NotBlank
@@ -107,6 +118,14 @@ public abstract class Actor extends DomainEntity {
 
 	public void setAddress(final String address) {
 		this.address = address;
+	}
+
+	public boolean getIsSuspicious() {
+		return this.isSuspicious;
+	}
+
+	public void setIsSuspicious(final boolean isSuspicious) {
+		this.isSuspicious = isSuspicious;
 	}
 
 

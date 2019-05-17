@@ -3,7 +3,6 @@ package controllers.administrator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -53,26 +52,26 @@ public class CustomisationAdministratorController extends AbstractController {
 
 		return result;
 	}
-
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(final Customisation customisation, final BindingResult binding) {
-		ModelAndView result;
-		Customisation custo;
-
-		custo = this.customisationService.reconstruct(customisation, binding);
-		if (binding.hasErrors())
-			result = this.editModelAndView(customisation);
-		else
-			try {
-				this.customisationService.save(custo);
-				result = new ModelAndView("redirect:display.do");
-			} catch (final Throwable oops) {
-				result = this.editModelAndView(custo, "customisation.commit.error");
-			}
-
-		return result;
-	}
-
+	/*
+	 * @RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	 * public ModelAndView save(final Customisation customisation, final BindingResult binding) {
+	 * ModelAndView result;
+	 * Customisation custo;
+	 * 
+	 * custo = this.customisationService.reconstruct(customisation, binding);
+	 * if (binding.hasErrors())
+	 * result = this.editModelAndView(customisation);
+	 * else
+	 * try {
+	 * this.customisationService.save(custo);
+	 * result = new ModelAndView("redirect:display.do");
+	 * } catch (final Throwable oops) {
+	 * result = this.editModelAndView(custo, "customisation.commit.error");
+	 * }
+	 * 
+	 * return result;
+	 * }
+	 */
 	// Ancillary methods -----------------------------------
 	protected ModelAndView editModelAndView(final Customisation customisation) {
 		ModelAndView result;
