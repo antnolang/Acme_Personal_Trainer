@@ -18,20 +18,20 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-<%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="socialProfile/administrator,auditor,customer,nutritionist,trainer/edit.do" modelAttribute="socialProfile" >
-	<form:hidden path="id"/>
-	<form:hidden path="version"/>
-		
-	<acme:textbox code="socialProfile.nick" path="nick" />
-	<acme:textbox code="socialProfile.socialNetwork" path="socialNetwork" />
-	<acme:textbox code="socialProfile.linkProfile" path="linkProfile" />
+<display:table name="${categories.keys()}" id="row" requestURI="${requestURI}"  class="displaytag" pagesize="5">
+	<display:column>
+		<a href="category/administrator/edit.do?categoryId=${row}">
+			<spring:message code="category.edit"/>
+		</a>
+	</display:column>
 	
-	<!-- Buttons -->
-	<acme:submit name="save" code="socialProfile.save"/>
-	<jstl:if test="${socialProfile.id != 0}">
-		<acme:submit name="delete" code="socialProfile.delete" />
-	</jstl:if>		
-	<acme:cancel url="socialProfile/list.do?actorId=${actorId}" code="socialProfile.cancel"/>
-</form:form>
+	<display:column value="${categories.get(row)}" titleKey="category.name" />
+</display:table>
+
+<a href="category/administrator/create.do">
+	<spring:message code="category.create"/>
+</a>
+
+	
+	

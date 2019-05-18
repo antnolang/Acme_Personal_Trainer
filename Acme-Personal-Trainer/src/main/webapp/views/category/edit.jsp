@@ -20,18 +20,20 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="socialProfile/administrator,auditor,customer,nutritionist,trainer/edit.do" modelAttribute="socialProfile" >
+<form:form action="category/administrator/edit.do" modelAttribute="category" >
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
+	
+	<p style="color:blue;">
+		<spring:message code="category.notice" />
+	</p>
 		
-	<acme:textbox code="socialProfile.nick" path="nick" />
-	<acme:textbox code="socialProfile.socialNetwork" path="socialNetwork" />
-	<acme:textbox code="socialProfile.linkProfile" path="linkProfile" />
+	<acme:textbox code="category.name" path="name" />
 	
 	<!-- Buttons -->
-	<acme:submit name="save" code="socialProfile.save"/>
-	<jstl:if test="${socialProfile.id != 0}">
-		<acme:submit name="delete" code="socialProfile.delete" />
+	<acme:submit name="save" code="category.save"/>
+	<jstl:if test="${category.id != 0 && isReference}">
+		<acme:submit name="delete" code="category.delete" />
 	</jstl:if>		
-	<acme:cancel url="socialProfile/list.do?actorId=${actorId}" code="socialProfile.cancel"/>
+	<acme:cancel url="category/list.do" code="category.cancel"/>
 </form:form>
