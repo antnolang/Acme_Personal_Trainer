@@ -111,20 +111,20 @@ public class WorkingOut extends DomainEntity {
 		this.endMoment = endMoment;
 	}
 
-	public boolean isFinalMode() {
+	public boolean getIsFinalMode() {
 		return this.isFinalMode;
 	}
 
-	public void setFinalMode(final boolean isFinalMode) {
+	public void setIsFinalMode(final boolean isFinalMode) {
 		this.isFinalMode = isFinalMode;
 	}
 
 
 	// Relationships
 
-	private Trainer						trainer;
-	private Collection<Category>		categories;
-	private Collection<domain.Session>	sessions;
+	private Trainer					trainer;
+	private Collection<Category>	categories;
+	private Collection<Session>		sessions;
 
 
 	@Valid
