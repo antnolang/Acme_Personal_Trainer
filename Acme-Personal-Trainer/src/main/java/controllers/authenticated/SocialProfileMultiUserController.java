@@ -17,7 +17,7 @@ import domain.Actor;
 import domain.SocialProfile;
 
 @Controller
-@RequestMapping(value = "/socialProfile/administrator,auditor,company,provider,rookie")
+@RequestMapping(value = "/socialProfile/administrator,auditor,customer,nutritionist,trainer")
 public class SocialProfileMultiUserController extends AbstractController {
 
 	@Autowired
@@ -54,7 +54,7 @@ public class SocialProfileMultiUserController extends AbstractController {
 
 			result = this.createEditModelAndView(socialProfile);
 		} catch (final Exception e) {
-			result = new ModelAndView("redirect:../../error.do");
+			result = new ModelAndView("redirect:/error.do");
 		}
 
 		return result;
@@ -75,14 +75,14 @@ public class SocialProfileMultiUserController extends AbstractController {
 			else
 				try {
 					this.socialProfileService.save(socialProfileRec);
-					result = new ModelAndView("redirect:../../socialProfile/list.do?actorId=" + actor.getId());
+					result = new ModelAndView("redirect:/socialProfile/list.do?actorId=" + actor.getId());
 				} catch (final DataIntegrityViolationException oops) {
 					result = this.createEditModelAndView(socialProfileRec, "socialProfile.linkProfile.unique");
 				} catch (final Throwable oops) {
 					result = this.createEditModelAndView(socialProfileRec, "socialProfile.commit.error");
 				}
 		} catch (final Exception e) {
-			result = new ModelAndView("redirect:../../error.do");
+			result = new ModelAndView("redirect:/error.do");
 		}
 
 		return result;
@@ -99,7 +99,7 @@ public class SocialProfileMultiUserController extends AbstractController {
 		try {
 			this.socialProfileService.delete(social_profile);
 
-			result = new ModelAndView("redirect:../../socialProfile/list.do?actorId=" + actorId);
+			result = new ModelAndView("redirect:/socialProfile/list.do?actorId=" + actorId);
 		} catch (final Throwable oops) {
 			result = this.createEditModelAndView(socialProfile, "socialProfile.commit.error");
 		}
@@ -130,7 +130,6 @@ public class SocialProfileMultiUserController extends AbstractController {
 		result.addObject("actorId", actorId);
 
 		return result;
-
 	}
 
 }
