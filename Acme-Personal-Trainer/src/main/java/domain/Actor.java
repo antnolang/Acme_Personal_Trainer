@@ -73,7 +73,7 @@ public abstract class Actor extends DomainEntity {
 	@Transient
 	public String getFullname() {
 
-		this.fullname = this.name + " " + this.surname;
+		this.fullname = this.name + " " + this.middleName + " " + this.surname;
 
 		return this.fullname;
 	}
