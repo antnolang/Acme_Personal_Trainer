@@ -33,7 +33,7 @@ public class SocialProfileServiceTest extends AbstractTest {
 	// Suite test ---------------------------------------
 
 	/*
-	 * A: Requirement 23.1 (A user can list social profiles).
+	 * A: Requirement 8.5 (A user can list social profiles).
 	 * C: Analysis of sentence coverage: 9/9 -> 100.00% of executed lines codes .
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
@@ -55,14 +55,14 @@ public class SocialProfileServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: Requirement 23.1 (A user can list social profiles).
+	 * A: Requirement 8.5 (A user can list social profiles).
 	 * B: The business rule that is intended to be broken: the social profiles belong to an administrator.
 	 * C: Analysis of sentence coverage: 7/9 -> 77.78% of executed lines codes .
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void findSocialProfilesByActor_negativeTest() {
-		super.authenticate("rookie1");
+		super.authenticate("auditor1");
 
 		int actorId;
 		Collection<SocialProfile> social_profiles;
@@ -78,14 +78,14 @@ public class SocialProfileServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: Requirement 23.1 (A user can show social profiles).
-	 * B: A rookie try to display a social profile that belongs to an administrator.
+	 * A: Requirement 8.5 (A user can show social profiles).
+	 * B: An auditor try to display a social profile that belongs to an administrator.
 	 * C: Analysis of sentence coverage: 13/14 -> 92.85% of executed lines codes .
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void displaySocialProfile_negativeTest() {
-		super.authenticate("rookie1");
+		super.authenticate("auditor1");
 
 		int socialProfileId;
 		SocialProfile socialProfile;
@@ -100,7 +100,7 @@ public class SocialProfileServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: Requirement 23.1 (A user can show social profiles).
+	 * A: Requirement 8.5 (A user can show social profiles).
 	 * C: Analysis of sentence coverage: 14/14 -> 100% of executed lines codes .
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
@@ -121,7 +121,7 @@ public class SocialProfileServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: Requirement 23.1 (An authenticated user can create a social profiles).
+	 * A: Requirement 8.5 (An authenticated user can create a social profiles).
 	 * C: Analysis of sentence coverage: 14/14 -> 100% of executed lines codes .
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
@@ -143,14 +143,14 @@ public class SocialProfileServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: Requirement 23.1 (An authenticated user can save social profiles).
+	 * A: Requirement 8.5 (An authenticated user can save social profiles).
 	 * B: The business rule that is intended to be broken: a user try to edit a social profile that belongs to another user.
 	 * C: Analysis of sentence coverage: 5/15 -> 33.33% of executed lines codes .
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void save_negativeTest() {
-		super.authenticate("rookie1");
+	public void save_negativeTest_uno() {
+		super.authenticate("auditor1");
 
 		int socialProfileId;
 		SocialProfile socialProfile, saved;
@@ -168,7 +168,28 @@ public class SocialProfileServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: Requirement 23.1 (An authenticated user can save social profiles).
+	 * A: Requirement 8.5 (An authenticated user can save social profiles).
+	 * B: The business rule that is intended to be broken: a user try to save a social profile that is null.
+	 * C: Analysis of sentence coverage: 1/15 -> 6.67% of executed lines codes .
+	 * D: Analysis of data coverage: intentionally blank.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void save_negativeTest_dos() {
+		super.authenticate("auditor1");
+
+		SocialProfile socialProfile, saved;
+
+		socialProfile = null;
+
+		saved = this.socialProfileService.save(socialProfile);
+
+		Assert.isNull(saved);
+
+		super.unauthenticate();
+	}
+
+	/*
+	 * A: Requirement 8.5 (An authenticated user can save social profiles).
 	 * C: Analysis of sentence coverage: 15/15 -> 100.00% of executed lines codes .
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
@@ -192,13 +213,14 @@ public class SocialProfileServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: Requirement 23.1 (An authenticated user can delete social profiles).
+	 * A: Requirement 8.5 (An authenticated user can delete social profiles).
 	 * B: A user try to delete a social profile that belongs to another user.
 	 * C: Analysis of sentence coverage: 6/7 -> 85.71% of executed lines codes .
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
-	public void delete_negativeTest() {
-		super.authenticate("rookie1");
+	@Test(expected = IllegalArgumentException.class)
+	public void delete_negativeTest_uno() {
+		super.authenticate("auditor1");
 
 		int socialProfileId;
 		SocialProfile socialProfile, found;
@@ -217,10 +239,37 @@ public class SocialProfileServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: Requirement 23.1 (An authenticated user can delete social profiles).
+	 * A: Requirement 8.5 (An authenticated user can delete social profiles).
+	 * B: A user try to delete a social profile that it isn't stored in database.
+	 * C: Analysis of sentence coverage: 2/7 -> 28.57% of executed lines codes .
+	 * D: Analysis of data coverage: intentionally blank.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void delete_negativeTest_dos() {
+		super.authenticate("auditor1");
+
+		SocialProfile socialProfile, found;
+
+		socialProfile = this.socialProfileService.create();
+		socialProfile.setNick("tomas10");
+		socialProfile.setSocialNetwork("Tuenti");
+		socialProfile.setLinkProfile("http://www.tuenti/tomas10.com");
+
+		this.socialProfileService.delete(socialProfile);
+
+		found = this.socialProfileService.findOne(socialProfile.getId());
+
+		Assert.isNull(found);
+
+		super.unauthenticate();
+	}
+
+	/*
+	 * A: Requirement 8.5 (An authenticated user can delete social profiles).
 	 * C: Analysis of sentence coverage: 7/7 -> 100.00% of executed lines codes .
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
+	@Test
 	public void delete_positiveTest() {
 		super.authenticate("rookie1");
 
@@ -240,10 +289,11 @@ public class SocialProfileServiceTest extends AbstractTest {
 		super.unauthenticate();
 	}
 
+	@Test
 	public void driverSave() {
 		final Object testingData[][] = {
 			/*
-			 * A: Requirement 23.1 (An authenticated user can create/edit social profiles)
+			 * A: Requirement 8.5 (An authenticated user can create/edit social profiles)
 			 * B: Invalid data in SocialProfile::nick.
 			 * C: Analysis of sentence coverage: 14/15 -> 93.33% executed code lines.
 			 * D: Analysis of data coverage: SocialProfile::nick is null => 1/19 -> 5.26%.
@@ -252,7 +302,7 @@ public class SocialProfileServiceTest extends AbstractTest {
 				null, "Tinder", "http://www.tinder1.com", ConstraintViolationException.class
 			},
 			/*
-			 * A: Requirement 23.1 (An authenticated user can create/edit social profiles)
+			 * A: Requirement 8.5 (An authenticated user can create/edit social profiles)
 			 * B: Invalid data in SocialProfile::nick.
 			 * C: Analysis of sentence coverage: 14/15 -> 93.33% executed code lines.
 			 * D: Analysis of data coverage: SocialProfile::nick is empty string => 1/19 -> 5.26%%.
@@ -261,7 +311,7 @@ public class SocialProfileServiceTest extends AbstractTest {
 				"", "Tinder", "http://www.tinder1.com", ConstraintViolationException.class
 			},
 			/*
-			 * A: Requirement 23.1 (An authenticated user can create/edit social profiles)
+			 * A: Requirement 8.5 (An authenticated user can create/edit social profiles)
 			 * B: Invalid data in SocialProfile::nick.
 			 * C: Analysis of sentence coverage: 14/15 -> 93.33% executed code lines.
 			 * D: Analysis of data coverage: SocialProfile::nick is a malicious script => 1/19 -> 5.26%.
@@ -270,7 +320,7 @@ public class SocialProfileServiceTest extends AbstractTest {
 				"<script> Alert('hacked'); </script>", "Tinder", "http://www.tinder1.com", ConstraintViolationException.class
 			},
 			/*
-			 * A: Requirement 23.1 (An authenticated user can create/edit social profiles)
+			 * A: Requirement 8.5 (An authenticated user can create/edit social profiles)
 			 * B: Invalid data in SocialProfile::socialNetwork.
 			 * C: Analysis of sentence coverage: 14/15 -> 93.33% executed code lines.
 			 * D: Analysis of data coverage: SocialProfile::socialNetwork is null => 1/19 -> 5.26%.
@@ -279,7 +329,7 @@ public class SocialProfileServiceTest extends AbstractTest {
 				"EleanorLamp", null, "http://www.tinder1.com", ConstraintViolationException.class
 			},
 			/*
-			 * A: Requirement 23.1 (An authenticated user can create/edit social profiles)
+			 * A: Requirement 8.5 (An authenticated user can create/edit social profiles)
 			 * B: Invalid data in SocialProfile::socialNetwork.
 			 * C: Analysis of sentence coverage: 14/15 -> 93.33% executed code lines.
 			 * D: Analysis of data coverage: SocialProfile::socialNetwork is empty string => 1/19 -> 5.26%.
@@ -288,7 +338,7 @@ public class SocialProfileServiceTest extends AbstractTest {
 				"EleanorLamp", "", "http://www.tinder1.com", ConstraintViolationException.class
 			},
 			/*
-			 * A: Requirement 23.1 (An authenticated user can create/edit social profiles)
+			 * A: Requirement 8.5 (An authenticated user can create/edit social profiles)
 			 * B: Invalid data in SocialProfile::socialNetwork.
 			 * C: Analysis of sentence coverage: 14/15 -> 93.33% executed code lines.
 			 * D: Analysis of data coverage: SocialProfile::socialNetwork is a malicious script => 1/19 -> 5.26%.
@@ -297,7 +347,7 @@ public class SocialProfileServiceTest extends AbstractTest {
 				"EleanorLamp", "<script> Alert('Hacked'); </script>", "http://www.tinder1.com", ConstraintViolationException.class
 			},
 			/*
-			 * A: Requirement 23.1 (An authenticated user can create/edit social profiles)
+			 * A: Requirement 8.5 (An authenticated user can create/edit social profiles)
 			 * B: Invalid data in SocialProfile::linkProfile.
 			 * C: Analysis of sentence coverage: 14/15 -> 93.33% executed code lines.
 			 * D: Analysis of data coverage: SocialProfile::linkProfile is null => 1/19 -> 5.26%.
@@ -306,7 +356,7 @@ public class SocialProfileServiceTest extends AbstractTest {
 				"EleanorLamp", "Tinder", null, ConstraintViolationException.class
 			},
 			/*
-			 * A: Requirement 23.1 (An authenticated user can create/edit social profiles)
+			 * A: Requirement 8.5 (An authenticated user can create/edit social profiles)
 			 * B: Invalid data in SocialProfile::linkProfile.
 			 * C: Analysis of sentence coverage: 14/15 -> 93.33% executed code lines.
 			 * D: Analysis of data coverage: SocialProfile::socialNetwork is empty string => 1/19 -> 5.26%.
@@ -315,7 +365,7 @@ public class SocialProfileServiceTest extends AbstractTest {
 				"EleanorLamp", "Tinder", "", ConstraintViolationException.class
 			},
 			/*
-			 * A: Requirement 23.1 (An authenticated user can create/edit social profiles)
+			 * A: Requirement 8.5 (An authenticated user can create/edit social profiles)
 			 * B: Invalid data in SocialProfile::linkProfile.
 			 * C: Analysis of sentence coverage: 14/15 -> 93.33% executed code lines.
 			 * D: Analysis of data coverage: SocialProfile::linkProfile is a malicious script => 1/19 -> 5.26%.
@@ -324,7 +374,7 @@ public class SocialProfileServiceTest extends AbstractTest {
 				"EleanorLamp", "Tinder", "<script> Alert('Hacked'); </script>", ConstraintViolationException.class
 			},
 			/*
-			 * A: Requirement 23.1 (An authenticated user can create/edit social profiles)
+			 * A: Requirement 8.5 (An authenticated user can create/edit social profiles)
 			 * B: Invalid data in SocialProfile::linkProfile.
 			 * C: Analysis of sentence coverage: 14/15 -> 93.33% executed code lines.
 			 * D: Analysis of data coverage: SocialProfile::linkProfile is an invalid URL => 1/19 -> 5.26%.
@@ -333,7 +383,7 @@ public class SocialProfileServiceTest extends AbstractTest {
 				"EleanorLamp", "Tinder", "Esto no es una url", ConstraintViolationException.class
 			},
 			/*
-			 * A: Requirement 23.1 (An authenticated user can create/edit social profiles)
+			 * A: Requirement 8.5 (An authenticated user can create/edit social profiles)
 			 * B: Invalid data in SocialProfile::linkProfile.
 			 * C: Analysis of sentence coverage: 14/15 -> 93.33% executed code lines.
 			 * D: Analysis of data coverage: SocialProfile::linkProfile already exists in the DB => 1/19 -> 5.26%.
@@ -342,7 +392,7 @@ public class SocialProfileServiceTest extends AbstractTest {
 				"EleanorLamp", "Tinder", "http://www.twitter1.com", ConstraintViolationException.class
 			},
 			/*
-			 * A: Requirement 23.1 (An authenticated user can create/edit social profiles)
+			 * A: Requirement 8.5 (An authenticated user can create/edit social profiles)
 			 * B: Invalid data in SocialProfile::linkProfile.
 			 * C: Analysis of sentence coverage: 15/15 -> 100.00% executed code lines.
 			 * D: Analysis of data coverage: Every attributes have a valid value => 19/19 -> 100.00%.
