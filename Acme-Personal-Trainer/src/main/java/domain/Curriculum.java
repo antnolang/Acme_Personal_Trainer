@@ -8,7 +8,6 @@ import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
@@ -55,7 +54,7 @@ public class Curriculum extends DomainEntity {
 	private Trainer							trainer;
 
 
-	@ManyToOne(optional = false)
+	@OneToOne(optional = false)
 	@NotNull
 	@Valid
 	public Trainer getTrainer() {
