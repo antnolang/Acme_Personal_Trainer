@@ -60,10 +60,10 @@ public class Comment extends DomainEntity {
 	// Relationships
 
 	private Customer	customer;
+	private Article		article;
 
 
 	@ManyToOne(optional = true)
-	@NotNull
 	@Valid
 	public Customer getCustomer() {
 		return this.customer;
@@ -71,6 +71,17 @@ public class Comment extends DomainEntity {
 
 	public void setCustomer(final Customer customer) {
 		this.customer = customer;
+	}
+
+	@ManyToOne(optional = false)
+	@Valid
+	@NotNull
+	public Article getArticle() {
+		return this.article;
+	}
+
+	public void setArticle(final Article article) {
+		this.article = article;
 	}
 
 }

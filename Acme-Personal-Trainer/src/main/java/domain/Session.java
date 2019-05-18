@@ -8,6 +8,7 @@ import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
@@ -63,6 +64,7 @@ public class Session extends DomainEntity {
 		this.address = address;
 	}
 
+	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public Date getStartMoment() {
@@ -73,6 +75,7 @@ public class Session extends DomainEntity {
 		this.startMoment = startMoment;
 	}
 
+	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public Date getEndMoment() {
