@@ -368,7 +368,7 @@
 		<property name="creditCard" ref="creditCard4" />
 		<property name="workingOut" ref="workingOut2" />
 	</bean>
-	
+
 	<bean id="application3" class="domain.Application">
 		<property name="registeredMoment" value="2019/01/01 10:10" />
 		<property name="status" value="REJECTED" />
@@ -377,7 +377,7 @@
 		<property name="creditCard" ref="creditCard5" />
 		<property name="workingOut" ref="workingOut3" />
 	</bean>
-	
+
 	<bean id="application4" class="domain.Application">
 		<property name="registeredMoment" value="2019/01/01 10:10" />
 		<property name="status" value="PENDING" />
@@ -385,276 +385,6 @@
 		<property name="customer" ref="customer5" />
 		<property name="creditCard" ref="creditCard6" />
 		<property name="workingOut" ref="workingOut4" />
-	</bean>
-
-	<!-- WorkingOut -->
-	<bean id="workingOut1" class="domain.WorkingOut">
-		<property name="ticker" value="120212-ASDFGH" />
-		<property name="publishedMoment" value="2019/02/01 10:10" />
-		<property name="description" value="Description workingOut1" />
-		<property name="price" value="50.99" />
-		<property name="startMoment" value="2019/11/01 17:00" />
-		<property name="endMoment" value="2019/11/30 19:00" />
-		<property name="isFinalMode" value="true" />
-		<property name="trainer" ref="trainer1" />
-		<property name="categories">
-			<list>
-				<ref bean="category1" />
-				<ref bean="category2" />
-				<ref bean="category3" />
-			</list>
-		</property>
-		<property name="sessions">
-			<list>
-				<ref bean="session11" />
-				<ref bean="session12" />
-				<ref bean="session13" />
-				<ref bean="session14" />
-			</list>
-		</property>
-	</bean>
-
-	<bean id="workingOut2" class="domain.WorkingOut">
-		<property name="ticker" value="124712-ASDFGH" />
-		<property name="publishedMoment" value="2019/02/01 10:10" />
-		<property name="description" value="Description workingOut2" />
-		<property name="price" value="35.99" />
-		<property name="startMoment" value="2019/12/01 17:00" />
-		<property name="endMoment" value="2019/12/30 19:00" />
-		<property name="isFinalMode" value="true" />
-		<property name="trainer" ref="trainer1" />
-		<property name="categories">
-			<list>
-				<ref bean="category4" />
-				<ref bean="category12" />
-				<ref bean="category17" />
-			</list>
-		</property>
-		<property name="sessions">
-			<list>
-				<ref bean="session21" />
-				<ref bean="session22" />
-				<ref bean="session23" />
-				<ref bean="session24" />
-				<ref bean="session25" />
-				<ref bean="session26" />
-			</list>
-		</property>
-	</bean>
-	
-	<bean id="workingOut3" class="domain.WorkingOut">
-		<property name="ticker" value="120962-ASDFGH" />
-		<property name="publishedMoment" value="2019/02/01 10:10" />
-		<property name="description" value="Description workingOut3" />
-		<property name="price" value="50.99" />
-		<property name="startMoment" value="2019/11/01 17:00" />
-		<property name="endMoment" value="2019/11/30 19:00" />
-		<property name="isFinalMode" value="true" />
-		<property name="trainer" ref="trainer2" />
-		<property name="categories">
-			<list>
-				<ref bean="category18" />
-				<ref bean="category11" />
-				<ref bean="category6" />
-			</list>
-		</property>
-		<property name="sessions">
-			<list>
-				<ref bean="session31" />
-				<ref bean="session32" />
-				<ref bean="session33" />
-				<ref bean="session34" />
-			</list>
-		</property>
-	</bean>
-	
-	<bean id="workingOut4" class="domain.WorkingOut">
-		<property name="ticker" value="121412-ASDFGH" />
-		<property name="publishedMoment" value="2019/02/01 10:10" />
-		<property name="description" value="Description workingOut4" />
-		<property name="price" value="75.99" />
-		<property name="startMoment" value="2019/12/01 17:00" />
-		<property name="endMoment" value="2019/12/30 19:00" />
-		<property name="isFinalMode" value="true" />
-		<property name="trainer" ref="trainer3" />
-		<property name="categories">
-			<list>
-				<ref bean="category8" />
-				<ref bean="category2" />
-				<ref bean="category13" />
-			</list>
-		</property>
-		<property name="sessions">
-			<list>
-				<ref bean="session41" />
-				<ref bean="session42" />
-				<ref bean="session43" />
-				<ref bean="session44" />
-				<ref bean="session45" />
-				<ref bean="session46" />
-			</list>
-		</property>
-	</bean>
-
-	<!-- Session -->
-	<bean id="session11" class="domain.Session">
-		<property name="title" value="session11" />
-		<property name="description" value="Description session11" />
-		<property name="address" value="Address session1" />
-		<property name="startMoment" value="2019/11/01 17:00" />
-		<property name="endMoment" value="2019/11/01 19:00" />
-	</bean>
-
-	<bean id="session12" class="domain.Session">
-		<property name="title" value="session12" />
-		<property name="description" value="Description session12" />
-		<property name="address" value="Address session1" />
-		<property name="startMoment" value="2019/11/05 17:00" />
-		<property name="endMoment" value="2019/11/05 19:00" />
-	</bean>
-
-	<bean id="session13" class="domain.Session">
-		<property name="title" value="session13" />
-		<property name="description" value="Description session13" />
-		<property name="address" value="Address session1" />
-		<property name="startMoment" value="2019/11/15 17:00" />
-		<property name="endMoment" value="2019/11/15 19:00" />
-	</bean>
-
-	<bean id="session14" class="domain.Session">
-		<property name="title" value="session14" />
-		<property name="description" value="Description session14" />
-		<property name="address" value="Address session1" />
-		<property name="startMoment" value="2019/11/30 17:00" />
-		<property name="endMoment" value="2019/11/30 19:00" />
-	</bean>
-
-	<bean id="session21" class="domain.Session">
-		<property name="title" value="session21" />
-		<property name="description" value="Description session21" />
-		<property name="address" value="Address session21" />
-		<property name="startMoment" value="2019/12/01 17:00" />
-		<property name="endMoment" value="2019/12/01 19:00" />
-	</bean>
-
-	<bean id="session22" class="domain.Session">
-		<property name="title" value="session22" />
-		<property name="description" value="Description session22" />
-		<property name="address" value="Address session22" />
-		<property name="startMoment" value="2019/12/05 17:00" />
-		<property name="endMoment" value="2019/12/05 19:00" />
-	</bean>
-
-	<bean id="session23" class="domain.Session">
-		<property name="title" value="session23" />
-		<property name="description" value="Description session23" />
-		<property name="address" value="Address session23" />
-		<property name="startMoment" value="2019/12/10 17:00" />
-		<property name="endMoment" value="2019/12/10 19:00" />
-	</bean>
-
-	<bean id="session24" class="domain.Session">
-		<property name="title" value="session24" />
-		<property name="description" value="Description session24" />
-		<property name="address" value="Address session24" />
-		<property name="startMoment" value="2019/12/20 17:00" />
-		<property name="endMoment" value="2019/12/20 19:00" />
-	</bean>
-
-	<bean id="session25" class="domain.Session">
-		<property name="title" value="session25" />
-		<property name="description" value="Description session25" />
-		<property name="address" value="Address session25" />
-		<property name="startMoment" value="2019/12/25 17:00" />
-		<property name="endMoment" value="2019/12/25 19:00" />
-	</bean>
-
-	<bean id="session26" class="domain.Session">
-		<property name="title" value="session26" />
-		<property name="description" value="Description session26" />
-		<property name="address" value="Address session26" />
-		<property name="startMoment" value="2019/12/30 17:00" />
-		<property name="endMoment" value="2019/12/30 19:00" />
-	</bean>
-	
-	<bean id="session31" class="domain.Session">
-		<property name="title" value="session31" />
-		<property name="description" value="Description session31" />
-		<property name="address" value="Address session3" />
-		<property name="startMoment" value="2019/11/01 17:00" />
-		<property name="endMoment" value="2019/11/01 19:00" />
-	</bean>
-
-	<bean id="session32" class="domain.Session">
-		<property name="title" value="session32" />
-		<property name="description" value="Description session32" />
-		<property name="address" value="Address session3" />
-		<property name="startMoment" value="2019/11/05 17:00" />
-		<property name="endMoment" value="2019/11/05 19:00" />
-	</bean>
-
-	<bean id="session33" class="domain.Session">
-		<property name="title" value="session33" />
-		<property name="description" value="Description session33" />
-		<property name="address" value="Address session3" />
-		<property name="startMoment" value="2019/11/15 17:00" />
-		<property name="endMoment" value="2019/11/15 19:00" />
-	</bean>
-
-	<bean id="session34" class="domain.Session">
-		<property name="title" value="session34" />
-		<property name="description" value="Description session34" />
-		<property name="address" value="Address session3" />
-		<property name="startMoment" value="2019/11/30 17:00" />
-		<property name="endMoment" value="2019/11/30 19:00" />
-	</bean>
-	
-	<bean id="session41" class="domain.Session">
-		<property name="title" value="session41" />
-		<property name="description" value="Description session41" />
-		<property name="address" value="Address session41" />
-		<property name="startMoment" value="2019/12/01 17:00" />
-		<property name="endMoment" value="2019/12/01 19:00" />
-	</bean>
-
-	<bean id="session42" class="domain.Session">
-		<property name="title" value="session42" />
-		<property name="description" value="Description session42" />
-		<property name="address" value="Address session42" />
-		<property name="startMoment" value="2019/12/05 17:00" />
-		<property name="endMoment" value="2019/12/05 19:00" />
-	</bean>
-
-	<bean id="session43" class="domain.Session">
-		<property name="title" value="session43" />
-		<property name="description" value="Description session43" />
-		<property name="address" value="Address session43" />
-		<property name="startMoment" value="2019/12/10 17:00" />
-		<property name="endMoment" value="2019/12/10 19:00" />
-	</bean>
-
-	<bean id="session44" class="domain.Session">
-		<property name="title" value="session44" />
-		<property name="description" value="Description session44" />
-		<property name="address" value="Address session44" />
-		<property name="startMoment" value="2019/12/20 17:00" />
-		<property name="endMoment" value="2019/12/20 19:00" />
-	</bean>
-
-	<bean id="session45" class="domain.Session">
-		<property name="title" value="session45" />
-		<property name="description" value="Description session45" />
-		<property name="address" value="Address session45" />
-		<property name="startMoment" value="2019/12/25 17:00" />
-		<property name="endMoment" value="2019/12/25 19:00" />
-	</bean>
-
-	<bean id="session46" class="domain.Session">
-		<property name="title" value="session46" />
-		<property name="description" value="Description session46" />
-		<property name="address" value="Address session46" />
-		<property name="startMoment" value="2019/12/30 17:00" />
-		<property name="endMoment" value="2019/12/30 19:00" />
 	</bean>
 
 	<!-- Article -->
@@ -1258,7 +988,7 @@
 		<property name="isSystemBox" value="true" />
 		<property name="messages">
 			<list>
-				<null></null>
+				<ref bean="message1" />
 			</list>
 		</property>
 		<property name="actor" ref="customer1" />
@@ -1324,7 +1054,7 @@
 		<property name="isSystemBox" value="true" />
 		<property name="messages">
 			<list>
-				<null></null>
+				<ref bean="message2" />
 			</list>
 		</property>
 		<property name="actor" ref="customer2" />
@@ -1391,7 +1121,7 @@
 		<property name="isSystemBox" value="true" />
 		<property name="messages">
 			<list>
-				<null></null>
+				<ref bean="message3" />
 			</list>
 		</property>
 		<property name="actor" ref="customer3" />
@@ -1446,7 +1176,7 @@
 		<property name="isSystemBox" value="true" />
 		<property name="messages">
 			<list>
-				<null></null>
+				<ref bean="message4" />
 			</list>
 		</property>
 		<property name="actor" ref="customer4" />
@@ -1501,7 +1231,7 @@
 		<property name="isSystemBox" value="true" />
 		<property name="messages">
 			<list>
-				<null></null>
+				<ref bean="message5" />
 			</list>
 		</property>
 		<property name="actor" ref="customer5" />
@@ -1556,7 +1286,7 @@
 		<property name="isSystemBox" value="true" />
 		<property name="messages">
 			<list>
-				<null></null>
+				<ref bean="message6" />
 			</list>
 		</property>
 		<property name="actor" ref="customer6" />
@@ -1953,7 +1683,12 @@
 		<property name="isSystemBox" value="true" />
 		<property name="messages">
 			<list>
-				<null></null>
+				<ref bean="message1" />
+				<ref bean="message2" />
+				<ref bean="message3" />
+				<ref bean="message4" />
+				<ref bean="message5" />
+				<ref bean="message6" />
 			</list>
 		</property>
 		<property name="actor" ref="trainer1" />
@@ -2019,7 +1754,12 @@
 		<property name="isSystemBox" value="true" />
 		<property name="messages">
 			<list>
-				<null></null>
+				<ref bean="message1" />
+				<ref bean="message2" />
+				<ref bean="message3" />
+				<ref bean="message4" />
+				<ref bean="message5" />
+				<ref bean="message6" />
 			</list>
 		</property>
 		<property name="actor" ref="trainer2" />
@@ -2086,7 +1826,12 @@
 		<property name="isSystemBox" value="true" />
 		<property name="messages">
 			<list>
-				<null></null>
+				<ref bean="message1" />
+				<ref bean="message2" />
+				<ref bean="message3" />
+				<ref bean="message4" />
+				<ref bean="message5" />
+				<ref bean="message6" />
 			</list>
 		</property>
 		<property name="actor" ref="trainer3" />
@@ -2141,7 +1886,12 @@
 		<property name="isSystemBox" value="true" />
 		<property name="messages">
 			<list>
-				<null></null>
+				<ref bean="message1" />
+				<ref bean="message2" />
+				<ref bean="message3" />
+				<ref bean="message4" />
+				<ref bean="message5" />
+				<ref bean="message6" />
 			</list>
 		</property>
 		<property name="actor" ref="trainer4" />
@@ -2196,7 +1946,12 @@
 		<property name="isSystemBox" value="true" />
 		<property name="messages">
 			<list>
-				<null></null>
+				<ref bean="message1" />
+				<ref bean="message2" />
+				<ref bean="message3" />
+				<ref bean="message4" />
+				<ref bean="message5" />
+				<ref bean="message6" />
 			</list>
 		</property>
 		<property name="actor" ref="trainer5" />
@@ -2560,26 +2315,26 @@
 
 	<!-- Curriculum -->
 	<bean id="curriculum1" class="domain.Curriculum">
-		<property name="ticker" value="120212-ASDFGH" />
+		<property name="ticker" value="474712-ASDFGH" />
 		<property name="trainer" ref="trainer1" />
 		<property name="educationRecords">
 			<list>
-				<null></null>
+				<ref bean="educationRecord1" />
 			</list>
 		</property>
 		<property name="professionalRecords">
 			<list>
-				<null></null>
+				<ref bean="professionalRecord1" />
 			</list>
 		</property>
 		<property name="endorserRecords">
 			<list>
-				<null></null>
+				<ref bean="endorserRecord1" />
 			</list>
 		</property>
 		<property name="miscellaneousRecords">
 			<list>
-				<null></null>
+				<ref bean="miscellaneousRecord1" />
 			</list>
 		</property>
 		<property name="personalRecord" ref="personalRecord1" />
@@ -2590,22 +2345,22 @@
 		<property name="trainer" ref="trainer2" />
 		<property name="educationRecords">
 			<list>
-				<null></null>
+				<ref bean="educationRecord2" />
 			</list>
 		</property>
 		<property name="professionalRecords">
 			<list>
-				<null></null>
+				<ref bean="professionalRecord2" />
 			</list>
 		</property>
 		<property name="endorserRecords">
 			<list>
-				<null></null>
+				<ref bean="endorserRecord2" />
 			</list>
 		</property>
 		<property name="miscellaneousRecords">
 			<list>
-				<null></null>
+				<ref bean="miscellaneousRecord2" />
 			</list>
 		</property>
 		<property name="personalRecord" ref="personalRecord2" />
@@ -2616,22 +2371,22 @@
 		<property name="trainer" ref="trainer3" />
 		<property name="educationRecords">
 			<list>
-				<null></null>
+				<ref bean="educationRecord3" />
 			</list>
 		</property>
 		<property name="professionalRecords">
 			<list>
-				<null></null>
+				<ref bean="professionalRecord3" />
 			</list>
 		</property>
 		<property name="endorserRecords">
 			<list>
-				<null></null>
+				<ref bean="endorserRecord3" />
 			</list>
 		</property>
 		<property name="miscellaneousRecords">
 			<list>
-				<null></null>
+				<ref bean="miscellaneousRecord3" />
 			</list>
 		</property>
 		<property name="personalRecord" ref="personalRecord3" />
@@ -2813,12 +2568,233 @@
 		<property name="premiumAmount" value="200" />
 	</bean>
 
+	<!-- Education Records -->
+
+	<bean id="educationRecord1" class="domain.EducationRecord">
+		<property name="diplomaTitle" value="EducationRecord1" />
+		<property name="startDate" value="2018/09/20" />
+		<property name="endDate" value="2020/04/10" />
+		<property name="institution" value="institution1" />
+		<property name="attachment" value="http://www.google.com" />
+		<property name="comments" value="comment1" />
+	</bean>
+
+	<bean id="educationRecord2" class="domain.EducationRecord">
+		<property name="diplomaTitle" value="EducationRecord2" />
+		<property name="startDate" value="2018/02/14" />
+		<property name="endDate" value="2022/10/14" />
+		<property name="institution" value="institution2" />
+		<property name="attachment" value="http://www.google.com" />
+		<property name="comments" value="comment2" />
+	</bean>
+
+	<bean id="educationRecord3" class="domain.EducationRecord">
+		<property name="diplomaTitle" value="EducationRecord3" />
+		<property name="startDate" value="2018/08/17" />
+		<property name="endDate" value="2023/06/22" />
+		<property name="institution" value="institution3" />
+		<property name="attachment" value="http://www.google.com" />
+		<property name="comments" value="comment3" />
+	</bean>
+	
+	<!-- Endorsement -->
+	<bean id="endorsement1" class="domain.Endorsement">
+		<property name="writtenMoment" value="2018/11/01 14:00" />
+		<property name="mark" value="8" />
+		<property name="comments" value="endorsement1" />
+		<property name="trainerToCustomer" value="true" />
+		<property name="customer" ref="customer1" />
+		<property name="trainer" ref="trainer1" />
+	</bean>
+	
+	<bean id="endorsement2" class="domain.Endorsement">
+		<property name="writtenMoment" value="2018/11/01 14:00" />
+		<property name="mark" value="7" />
+		<property name="comments" value="endorsement2" />
+		<property name="trainerToCustomer" value="false" />
+		<property name="customer" ref="customer1" />
+		<property name="trainer" ref="trainer1" />
+	</bean>
+	
+	<bean id="endorsement3" class="domain.Endorsement">
+		<property name="writtenMoment" value="2018/11/01 14:00" />
+		<property name="mark" value="4" />
+		<property name="comments" value="endorsement3" />
+		<property name="trainerToCustomer" value="false" />
+		<property name="customer" ref="customer4" />
+		<property name="trainer" ref="trainer1" />
+	</bean>
+	
+	<bean id="endorsement4" class="domain.Endorsement">
+		<property name="writtenMoment" value="2018/11/01 14:00" />
+		<property name="mark" value="7" />
+		<property name="comments" value="endorsement4" />
+		<property name="trainerToCustomer" value="true" />
+		<property name="customer" ref="customer1" />
+		<property name="trainer" ref="trainer1" />
+	</bean>
+	
+	<bean id="endorsement5" class="domain.Endorsement">
+		<property name="writtenMoment" value="2018/11/01 14:00" />
+		<property name="mark" value="8" />
+		<property name="comments" value="endorsement5" />
+		<property name="trainerToCustomer" value="false" />
+		<property name="customer" ref="customer5" />
+		<property name="trainer" ref="trainer3" />
+	</bean>
+	
+	<bean id="endorsement6" class="domain.Endorsement">
+		<property name="writtenMoment" value="2018/11/01 14:00" />
+		<property name="mark" value="2" />
+		<property name="comments" value="endorsement6" />
+		<property name="trainerToCustomer" value="true" />
+		<property name="customer" ref="customer4" />
+		<property name="trainer" ref="trainer2" />
+	</bean>
+
+	<!-- Endorser Records -->
+	<bean id="endorserRecord1" class="domain.EndorserRecord">
+		<property name="fullname" value="endorserRecord1" />
+		<property name="email" value="endorserrecord1@gmail.com" />
+		<property name="phoneNumber" value="632014758" />
+		<property name="linkedInProfile" value="http://www.linkedin.com" />
+	</bean>
+
+	<bean id="endorserRecord2" class="domain.EndorserRecord">
+		<property name="fullname" value="endorserRecord2" />
+		<property name="email" value="endorserrecord2@gmail.com" />
+		<property name="phoneNumber" value="695410328" />
+		<property name="linkedInProfile" value="http://www.linkedin.com" />
+	</bean>
+
+	<bean id="endorserRecord3" class="domain.EndorserRecord">
+		<property name="fullname" value="endorserRecord3" />
+		<property name="email" value="endorserrecord3@gmail.com" />
+		<property name="phoneNumber" value="625401897" />
+		<property name="linkedInProfile" value="http://www.linkedin.com" />
+	</bean>
+
+	<!-- Message -->
+	<bean id="message1" class="domain.Message">
+		<property name="sentMoment" value="2018/09/07 15:24" />
+		<property name="subject" value="Easter" />
+		<property name="body" value="The next easter excelent is in April" />
+		<property name="priority" value="NEUTRAL" />
+		<property name="tags" value="1" />
+		<property name="isSpam" value="false" />
+		<property name="sender" ref="customer1" />
+		<property name="recipients">
+			<list>
+				<ref bean="trainer1" />
+				<ref bean="trainer2" />
+				<ref bean="trainer3" />
+				<ref bean="trainer4" />
+				<ref bean="trainer5" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="message2" class="domain.Message">
+		<property name="sentMoment" value="2018/09/07 15:24" />
+		<property name="subject" value="message2" />
+		<property name="body" value="The next easter excelent is in April" />
+		<property name="priority" value="NEUTRAL" />
+		<property name="tags" value="1" />
+		<property name="isSpam" value="false" />
+		<property name="sender" ref="customer2" />
+		<property name="recipients">
+			<list>
+				<ref bean="trainer1" />
+				<ref bean="trainer2" />
+				<ref bean="trainer3" />
+				<ref bean="trainer4" />
+				<ref bean="trainer5" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="message3" class="domain.Message">
+		<property name="sentMoment" value="2018/09/07 15:24" />
+		<property name="subject" value="message3" />
+		<property name="body" value="The next easter excelent is in April" />
+		<property name="priority" value="NEUTRAL" />
+		<property name="tags" value="1" />
+		<property name="isSpam" value="false" />
+		<property name="sender" ref="customer3" />
+		<property name="recipients">
+			<list>
+				<ref bean="trainer1" />
+				<ref bean="trainer2" />
+				<ref bean="trainer3" />
+				<ref bean="trainer4" />
+				<ref bean="trainer5" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="message4" class="domain.Message">
+		<property name="sentMoment" value="2018/09/07 15:24" />
+		<property name="subject" value="message4" />
+		<property name="body" value="The next easter excelent is in April" />
+		<property name="priority" value="NEUTRAL" />
+		<property name="tags" value="1" />
+		<property name="isSpam" value="false" />
+		<property name="sender" ref="customer4" />
+		<property name="recipients">
+			<list>
+				<ref bean="trainer1" />
+				<ref bean="trainer2" />
+				<ref bean="trainer3" />
+				<ref bean="trainer4" />
+				<ref bean="trainer5" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="message5" class="domain.Message">
+		<property name="sentMoment" value="2018/09/07 15:24" />
+		<property name="subject" value="message5" />
+		<property name="body" value="The next easter excelent is in April" />
+		<property name="priority" value="NEUTRAL" />
+		<property name="tags" value="1" />
+		<property name="isSpam" value="false" />
+		<property name="sender" ref="customer5" />
+		<property name="recipients">
+			<list>
+				<ref bean="trainer1" />
+				<ref bean="trainer2" />
+				<ref bean="trainer3" />
+				<ref bean="trainer4" />
+				<ref bean="trainer5" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="message6" class="domain.Message">
+		<property name="sentMoment" value="2018/09/07 15:24" />
+		<property name="subject" value="message6" />
+		<property name="body" value="The next easter excelent is in April" />
+		<property name="priority" value="NEUTRAL" />
+		<property name="tags" value="1" />
+		<property name="isSpam" value="false" />
+		<property name="sender" ref="customer6" />
+		<property name="recipients">
+			<list>
+				<ref bean="trainer1" />
+				<ref bean="trainer2" />
+				<ref bean="trainer3" />
+				<ref bean="trainer4" />
+				<ref bean="trainer5" />
+			</list>
+		</property>
+	</bean>
+
 	<!-- Finder -->
 	<bean id="finder1" class="domain.Finder">
 		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
 		<property name="category" value="comba" />
 		<property name="startPrice" value="25.24" />
-		<property name="endPrice" value="5.24" />
+		<property name="endPrice" value="75.24" />
 		<property name="startDate" value="2019/11/05" />
 		<property name="endDate" value="2020/01/01 10:10" />
 		<property name="customer" ref="customer1" />
@@ -2830,27 +2806,27 @@
 	</bean>
 
 	<bean id="finder2" class="domain.Finder">
-		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
-		<property name="category" value="comba" />
-		<property name="startPrice" value="25.24" />
-		<property name="endPrice" value="5.24" />
-		<property name="startDate" value="2019/11/05" />
-		<property name="endDate" value="2020/01/01 10:10" />
+		<property name="keyword" value="workingOut8" />
+		<property name="category" value="" />
+		<property name="startPrice" value="2.00" />
+		<property name="endPrice" value="50.24" />
+		<property name="startDate" value="2020/12/15 17:00" />
+		<property name="endDate" value="2020/12/17 19:00" />
 		<property name="customer" ref="customer2" />
 		<property name="workingOuts">
 			<list>
-				<null></null>
+				<ref bean="workingOut8" />
 			</list>
 		</property>
 	</bean>
 
 	<bean id="finder3" class="domain.Finder">
-		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
-		<property name="category" value="comba" />
+		<property name="keyword" value="" />
+		<property name="category" value="Tabata" />
 		<property name="startPrice" value="25.24" />
-		<property name="endPrice" value="5.24" />
-		<property name="startDate" value="2019/11/05" />
-		<property name="endDate" value="2020/01/01 10:10" />
+		<property name="endPrice" value="55.24" />
+		<property name="startDate" value="2020/12/15 17:00" />
+		<property name="endDate" value="2020/12/17 19:00" />
 		<property name="customer" ref="customer3" />
 		<property name="workingOuts">
 			<list>
@@ -2860,16 +2836,16 @@
 	</bean>
 
 	<bean id="finder4" class="domain.Finder">
-		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
-		<property name="category" value="comba" />
-		<property name="startPrice" value="25.24" />
-		<property name="endPrice" value="5.24" />
-		<property name="startDate" value="2019/11/05" />
-		<property name="endDate" value="2020/01/01 10:10" />
+		<property name="keyword" value="" />
+		<property name="category" value="Boot Camp" />
+		<property name="startPrice" value="0.00" />
+		<property name="endPrice" value="20.24" />
+		<property name="startDate" value="2020/11/04 17:00" />
+		<property name="endDate" value="2020/11/09 19:00" />
 		<property name="customer" ref="customer4" />
 		<property name="workingOuts">
 			<list>
-				<null></null>
+				<ref bean="workingOut9" />
 			</list>
 		</property>
 	</bean>
@@ -2878,9 +2854,9 @@
 		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
 		<property name="category" value="comba" />
 		<property name="startPrice" value="25.24" />
-		<property name="endPrice" value="5.24" />
-		<property name="startDate" value="2019/11/05" />
-		<property name="endDate" value="2020/01/01 10:10" />
+		<property name="endPrice" value="55.24" />
+		<property name="startDate" value="2020/11/04 17:00" />
+		<property name="endDate" value="2020/11/09 19:00" />
 		<property name="customer" ref="customer5" />
 		<property name="workingOuts">
 			<list>
@@ -2893,9 +2869,9 @@
 		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
 		<property name="category" value="comba" />
 		<property name="startPrice" value="25.24" />
-		<property name="endPrice" value="5.24" />
-		<property name="startDate" value="2019/11/05" />
-		<property name="endDate" value="2020/01/01 10:10" />
+		<property name="endPrice" value="55.24" />
+		<property name="startDate" value="2020/11/04 17:00" />
+		<property name="endDate" value="2020/11/09 19:00" />
 		<property name="customer" ref="customer6" />
 		<property name="workingOuts">
 			<list>
@@ -2908,9 +2884,9 @@
 		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
 		<property name="category" value="comba" />
 		<property name="startPrice" value="25.24" />
-		<property name="endPrice" value="5.24" />
-		<property name="startDate" value="2019/11/05" />
-		<property name="endDate" value="2020/01/01 10:10" />
+		<property name="endPrice" value="55.24" />
+		<property name="startDate" value="2020/11/04 17:00" />
+		<property name="endDate" value="2020/11/09 19:00" />
 		<property name="customer" ref="customer7" />
 		<property name="workingOuts">
 			<list>
@@ -2919,6 +2895,24 @@
 		</property>
 	</bean>
 
+	<!-- Miscellaneous Records -->
+	<bean id="miscellaneousRecord1" class="domain.MiscellaneousRecord">
+		<property name="title" value="title1" />
+		<property name="attachment" value="http://www.attachment.com" />
+		<property name="comments" value="comment1" />
+	</bean>
+
+	<bean id="miscellaneousRecord2" class="domain.MiscellaneousRecord">
+		<property name="title" value="title2" />
+		<property name="attachment" value="http://www.attachment.com" />
+		<property name="comments" value="comment2" />
+	</bean>
+
+	<bean id="miscellaneousRecord3" class="domain.MiscellaneousRecord">
+		<property name="title" value="title3" />
+		<property name="attachment" value="http://www.attachment.com" />
+		<property name="comments" value="comment3" />
+	</bean>
 
 	<!-- Nutritionist -->
 	<bean id="nutritionist1" class="domain.Nutritionist">
@@ -3030,6 +3024,308 @@
 		<property name="email" value="personalRecord5@gmail.com" />
 		<property name="phoneNumber" value="652013984" />
 		<property name="linkedInProfile" value="http://www.linkedin.com" />
+	</bean>
+
+	<!-- Professsional Record -->
+
+	<bean id="professionalRecord1" class="domain.ProfessionalRecord">
+		<property name="company" value="professionalRecord1" />
+		<property name="startDate" value="2016/04/25" />
+		<property name="endDate" value="2025/04/25" />
+		<property name="role" value="role1" />
+		<property name="attachment" value="http://www.attachment.com" />
+		<property name="comments" value="comment1" />
+	</bean>
+
+	<bean id="professionalRecord2" class="domain.ProfessionalRecord">
+		<property name="company" value="professionalRecord2" />
+		<property name="startDate" value="2016/12/30" />
+		<property name="endDate" value="2025/12/30" />
+		<property name="role" value="role2" />
+		<property name="attachment" value="http://www.attachment.com" />
+		<property name="comments" value="comment2" />
+	</bean>
+
+	<bean id="professionalRecord3" class="domain.ProfessionalRecord">
+		<property name="company" value="professionalRecord3" />
+		<property name="startDate" value="2016/05/26" />
+		<property name="endDate" value="2025/05/26" />
+		<property name="role" value="role3" />
+		<property name="attachment" value="http://www.attachment.com" />
+		<property name="comments" value="comment3" />
+	</bean>
+
+	<!-- Session -->
+	<bean id="session11" class="domain.Session">
+		<property name="title" value="session11" />
+		<property name="description" value="Description session11" />
+		<property name="address" value="Address session1" />
+		<property name="startMoment" value="2019/11/01 17:00" />
+		<property name="endMoment" value="2019/11/01 19:00" />
+	</bean>
+
+	<bean id="session12" class="domain.Session">
+		<property name="title" value="session12" />
+		<property name="description" value="Description session12" />
+		<property name="address" value="Address session1" />
+		<property name="startMoment" value="2019/11/05 17:00" />
+		<property name="endMoment" value="2019/11/05 19:00" />
+	</bean>
+
+	<bean id="session13" class="domain.Session">
+		<property name="title" value="session13" />
+		<property name="description" value="Description session13" />
+		<property name="address" value="Address session1" />
+		<property name="startMoment" value="2019/11/15 17:00" />
+		<property name="endMoment" value="2019/11/15 19:00" />
+	</bean>
+
+	<bean id="session14" class="domain.Session">
+		<property name="title" value="session14" />
+		<property name="description" value="Description session14" />
+		<property name="address" value="Address session1" />
+		<property name="startMoment" value="2019/11/30 17:00" />
+		<property name="endMoment" value="2019/11/30 19:00" />
+	</bean>
+
+	<bean id="session21" class="domain.Session">
+		<property name="title" value="session21" />
+		<property name="description" value="Description session21" />
+		<property name="address" value="Address session21" />
+		<property name="startMoment" value="2019/12/01 17:00" />
+		<property name="endMoment" value="2019/12/01 19:00" />
+	</bean>
+
+	<bean id="session22" class="domain.Session">
+		<property name="title" value="session22" />
+		<property name="description" value="Description session22" />
+		<property name="address" value="Address session22" />
+		<property name="startMoment" value="2019/12/05 17:00" />
+		<property name="endMoment" value="2019/12/05 19:00" />
+	</bean>
+
+	<bean id="session23" class="domain.Session">
+		<property name="title" value="session23" />
+		<property name="description" value="Description session23" />
+		<property name="address" value="Address session23" />
+		<property name="startMoment" value="2019/12/10 17:00" />
+		<property name="endMoment" value="2019/12/10 19:00" />
+	</bean>
+
+	<bean id="session24" class="domain.Session">
+		<property name="title" value="session24" />
+		<property name="description" value="Description session24" />
+		<property name="address" value="Address session24" />
+		<property name="startMoment" value="2019/12/20 17:00" />
+		<property name="endMoment" value="2019/12/20 19:00" />
+	</bean>
+
+	<bean id="session25" class="domain.Session">
+		<property name="title" value="session25" />
+		<property name="description" value="Description session25" />
+		<property name="address" value="Address session25" />
+		<property name="startMoment" value="2019/12/25 17:00" />
+		<property name="endMoment" value="2019/12/25 19:00" />
+	</bean>
+
+	<bean id="session26" class="domain.Session">
+		<property name="title" value="session26" />
+		<property name="description" value="Description session26" />
+		<property name="address" value="Address session26" />
+		<property name="startMoment" value="2019/12/30 17:00" />
+		<property name="endMoment" value="2019/12/30 19:00" />
+	</bean>
+
+	<bean id="session31" class="domain.Session">
+		<property name="title" value="session31" />
+		<property name="description" value="Description session31" />
+		<property name="address" value="Address session3" />
+		<property name="startMoment" value="2019/11/01 17:00" />
+		<property name="endMoment" value="2019/11/01 19:00" />
+	</bean>
+
+	<bean id="session32" class="domain.Session">
+		<property name="title" value="session32" />
+		<property name="description" value="Description session32" />
+		<property name="address" value="Address session3" />
+		<property name="startMoment" value="2019/11/05 17:00" />
+		<property name="endMoment" value="2019/11/05 19:00" />
+	</bean>
+
+	<bean id="session33" class="domain.Session">
+		<property name="title" value="session33" />
+		<property name="description" value="Description session33" />
+		<property name="address" value="Address session3" />
+		<property name="startMoment" value="2019/11/15 17:00" />
+		<property name="endMoment" value="2019/11/15 19:00" />
+	</bean>
+
+	<bean id="session34" class="domain.Session">
+		<property name="title" value="session34" />
+		<property name="description" value="Description session34" />
+		<property name="address" value="Address session3" />
+		<property name="startMoment" value="2019/11/30 17:00" />
+		<property name="endMoment" value="2019/11/30 19:00" />
+	</bean>
+
+	<bean id="session41" class="domain.Session">
+		<property name="title" value="session41" />
+		<property name="description" value="Description session41" />
+		<property name="address" value="Address session41" />
+		<property name="startMoment" value="2019/12/01 17:00" />
+		<property name="endMoment" value="2019/12/01 19:00" />
+	</bean>
+
+	<bean id="session42" class="domain.Session">
+		<property name="title" value="session42" />
+		<property name="description" value="Description session42" />
+		<property name="address" value="Address session42" />
+		<property name="startMoment" value="2019/12/05 17:00" />
+		<property name="endMoment" value="2019/12/05 19:00" />
+	</bean>
+
+	<bean id="session43" class="domain.Session">
+		<property name="title" value="session43" />
+		<property name="description" value="Description session43" />
+		<property name="address" value="Address session43" />
+		<property name="startMoment" value="2019/12/10 17:00" />
+		<property name="endMoment" value="2019/12/10 19:00" />
+	</bean>
+
+	<bean id="session44" class="domain.Session">
+		<property name="title" value="session44" />
+		<property name="description" value="Description session44" />
+		<property name="address" value="Address session44" />
+		<property name="startMoment" value="2019/12/20 17:00" />
+		<property name="endMoment" value="2019/12/20 19:00" />
+	</bean>
+
+	<bean id="session45" class="domain.Session">
+		<property name="title" value="session45" />
+		<property name="description" value="Description session45" />
+		<property name="address" value="Address session45" />
+		<property name="startMoment" value="2019/12/25 17:00" />
+		<property name="endMoment" value="2019/12/25 19:00" />
+	</bean>
+
+	<bean id="session46" class="domain.Session">
+		<property name="title" value="session46" />
+		<property name="description" value="Description session46" />
+		<property name="address" value="Address session46" />
+		<property name="startMoment" value="2019/12/30 17:00" />
+		<property name="endMoment" value="2019/12/30 19:00" />
+	</bean>
+
+	<bean id="session51" class="domain.Session">
+		<property name="title" value="session51" />
+		<property name="description" value="Description session51" />
+		<property name="address" value="Address session51" />
+		<property name="startMoment" value="2020/01/01 17:00" />
+		<property name="endMoment" value="2020/01/01 19:00" />
+	</bean>
+
+	<bean id="session52" class="domain.Session">
+		<property name="title" value="session52" />
+		<property name="description" value="Description session52" />
+		<property name="address" value="Address session52" />
+		<property name="startMoment" value="2020/01/11 17:00" />
+		<property name="endMoment" value="2020/01/11 19:00" />
+	</bean>
+
+	<bean id="session53" class="domain.Session">
+		<property name="title" value="session53" />
+		<property name="description" value="Description session53" />
+		<property name="address" value="Address session53" />
+		<property name="startMoment" value="2020/01/21 17:00" />
+		<property name="endMoment" value="2020/01/21 19:00" />
+	</bean>
+
+	<bean id="session54" class="domain.Session">
+		<property name="title" value="session54" />
+		<property name="description" value="Description session54" />
+		<property name="address" value="Address session54" />
+		<property name="startMoment" value="2020/01/30 17:00" />
+		<property name="endMoment" value="2020/01/30 19:00" />
+	</bean>
+
+	<bean id="session61" class="domain.Session">
+		<property name="title" value="session61" />
+		<property name="description" value="Description session61" />
+		<property name="address" value="Address session61" />
+		<property name="startMoment" value="2020/02/01 17:00" />
+		<property name="endMoment" value="2020/02/01 19:00" />
+	</bean>
+
+	<bean id="session62" class="domain.Session">
+		<property name="title" value="session62" />
+		<property name="description" value="Description session62" />
+		<property name="address" value="Address session62" />
+		<property name="startMoment" value="2020/02/30 17:00" />
+		<property name="endMoment" value="2020/02/30 19:00" />
+	</bean>
+
+	<bean id="session71" class="domain.Session">
+		<property name="title" value="session71" />
+		<property name="description" value="Description session71" />
+		<property name="address" value="Address session71" />
+		<property name="startMoment" value="2020/01/01 17:00" />
+		<property name="endMoment" value="2020/01/01 19:00" />
+	</bean>
+
+	<bean id="session72" class="domain.Session">
+		<property name="title" value="session72" />
+		<property name="description" value="Description session72" />
+		<property name="address" value="Address session72" />
+		<property name="startMoment" value="2020/01/05 17:00" />
+		<property name="endMoment" value="2020/01/05 19:00" />
+	</bean>
+
+	<bean id="session73" class="domain.Session">
+		<property name="title" value="session73" />
+		<property name="description" value="Description session73" />
+		<property name="address" value="Address session73" />
+		<property name="startMoment" value="2020/01/20 17:00" />
+		<property name="endMoment" value="2020/01/20 19:00" />
+	</bean>
+
+	<bean id="session81" class="domain.Session">
+		<property name="title" value="session81" />
+		<property name="description" value="Description session81" />
+		<property name="address" value="Address session81" />
+		<property name="startMoment" value="2019/12/15 17:00" />
+		<property name="endMoment" value="2019/12/15 19:00" />
+	</bean>
+
+	<bean id="session82" class="domain.Session">
+		<property name="title" value="session82" />
+		<property name="description" value="Description session82" />
+		<property name="address" value="Address session82" />
+		<property name="startMoment" value="2019/12/17 17:00" />
+		<property name="endMoment" value="2019/12/17 19:00" />
+	</bean>
+
+	<bean id="session91" class="domain.Session">
+		<property name="title" value="session91" />
+		<property name="description" value="Description session91" />
+		<property name="address" value="Address session91" />
+		<property name="startMoment" value="2019/11/04 17:00" />
+		<property name="endMoment" value="2019/11/04 19:00" />
+	</bean>
+
+	<bean id="session92" class="domain.Session">
+		<property name="title" value="session92" />
+		<property name="description" value="Description session92" />
+		<property name="address" value="Address session92" />
+		<property name="startMoment" value="2019/11/06 17:00" />
+		<property name="endMoment" value="2019/11/06 19:00" />
+	</bean>
+
+	<bean id="session93" class="domain.Session">
+		<property name="title" value="session93" />
+		<property name="description" value="Description session93" />
+		<property name="address" value="Address session93" />
+		<property name="startMoment" value="2019/11/09 17:00" />
+		<property name="endMoment" value="2019/11/09 19:00" />
 	</bean>
 
 	<!-- SocialProfile -->
@@ -3315,5 +3611,228 @@
 		<property name="userAccount" ref="userAccount26" />
 	</bean>
 
+	<!-- WorkingOut -->
+	<bean id="workingOut1" class="domain.WorkingOut">
+		<property name="ticker" value="120212-ASDFGH" />
+		<property name="publishedMoment" value="2019/02/01 10:10" />
+		<property name="description" value="Description workingOut1" />
+		<property name="price" value="50.99" />
+		<property name="startMoment" value="2019/11/01 17:00" />
+		<property name="endMoment" value="2019/11/30 19:00" />
+		<property name="isFinalMode" value="true" />
+		<property name="trainer" ref="trainer1" />
+		<property name="categories">
+			<list>
+				<ref bean="category1" />
+				<ref bean="category2" />
+				<ref bean="category3" />
+			</list>
+		</property>
+		<property name="sessions">
+			<list>
+				<ref bean="session11" />
+				<ref bean="session12" />
+				<ref bean="session13" />
+				<ref bean="session14" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="workingOut2" class="domain.WorkingOut">
+		<property name="ticker" value="124712-ASDFGH" />
+		<property name="publishedMoment" value="2019/02/01 10:10" />
+		<property name="description" value="Description workingOut2" />
+		<property name="price" value="35.99" />
+		<property name="startMoment" value="2019/12/01 17:00" />
+		<property name="endMoment" value="2019/12/30 19:00" />
+		<property name="isFinalMode" value="true" />
+		<property name="trainer" ref="trainer1" />
+		<property name="categories">
+			<list>
+				<ref bean="category4" />
+				<ref bean="category12" />
+				<ref bean="category17" />
+			</list>
+		</property>
+		<property name="sessions">
+			<list>
+				<ref bean="session21" />
+				<ref bean="session22" />
+				<ref bean="session23" />
+				<ref bean="session24" />
+				<ref bean="session25" />
+				<ref bean="session26" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="workingOut3" class="domain.WorkingOut">
+		<property name="ticker" value="120962-ASDFGH" />
+		<property name="publishedMoment" value="2019/02/01 10:10" />
+		<property name="description" value="Description workingOut3" />
+		<property name="price" value="50.99" />
+		<property name="startMoment" value="2019/11/01 17:00" />
+		<property name="endMoment" value="2019/11/30 19:00" />
+		<property name="isFinalMode" value="true" />
+		<property name="trainer" ref="trainer2" />
+		<property name="categories">
+			<list>
+				<ref bean="category18" />
+				<ref bean="category11" />
+				<ref bean="category6" />
+			</list>
+		</property>
+		<property name="sessions">
+			<list>
+				<ref bean="session31" />
+				<ref bean="session32" />
+				<ref bean="session33" />
+				<ref bean="session34" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="workingOut4" class="domain.WorkingOut">
+		<property name="ticker" value="123612-ASDFGH" />
+		<property name="publishedMoment" value="2019/02/01 10:10" />
+		<property name="description" value="Description workingOut4" />
+		<property name="price" value="75.99" />
+		<property name="startMoment" value="2019/12/01 17:00" />
+		<property name="endMoment" value="2019/12/30 19:00" />
+		<property name="isFinalMode" value="true" />
+		<property name="trainer" ref="trainer3" />
+		<property name="categories">
+			<list>
+				<ref bean="category8" />
+				<ref bean="category2" />
+				<ref bean="category13" />
+			</list>
+		</property>
+		<property name="sessions">
+			<list>
+				<ref bean="session41" />
+				<ref bean="session42" />
+				<ref bean="session43" />
+				<ref bean="session44" />
+				<ref bean="session45" />
+				<ref bean="session46" />
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="workingOut5" class="domain.WorkingOut">
+		<property name="ticker" value="121412-ASDFGH" />
+		<property name="publishedMoment" value="2019/02/01 10:10" />
+		<property name="description" value="Description workingOut5" />
+		<property name="price" value="15.99" />
+		<property name="startMoment" value="2020/01/01 17:00" />
+		<property name="endMoment" value="2020/01/30 19:00" />
+		<property name="isFinalMode" value="true" />
+		<property name="trainer" ref="trainer4" />
+		<property name="categories">
+			<list>
+				<ref bean="category1" />
+			</list>
+		</property>
+		<property name="sessions">
+			<list>
+				<ref bean="session51" />
+				<ref bean="session52" />
+				<ref bean="session53" />
+				<ref bean="session54" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="workingOut6" class="domain.WorkingOut">
+		<property name="ticker" value="121472-ASDFGH" />
+		<property name="publishedMoment" value="2019/02/01 10:10" />
+		<property name="description" value="Description workingOut6" />
+		<property name="price" value="15.99" />
+		<property name="startMoment" value="2020/02/01 17:00" />
+		<property name="endMoment" value="2020/02/30 19:00" />
+		<property name="isFinalMode" value="false" />
+		<property name="trainer" ref="trainer4" />
+		<property name="categories">
+			<list>
+				<ref bean="category14" />
+			</list>
+		</property>
+		<property name="sessions">
+			<list>
+				<ref bean="session61" />
+				<ref bean="session62" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="workingOut7" class="domain.WorkingOut">
+		<property name="ticker" value="121142-ASDFGH" />
+		<property name="publishedMoment" value="2019/02/01 10:10" />
+		<property name="description" value="Description workingOut7" />
+		<property name="price" value="15.99" />
+		<property name="startMoment" value="2020/01/01 17:00" />
+		<property name="endMoment" value="2020/01/20 19:00" />
+		<property name="isFinalMode" value="true" />
+		<property name="trainer" ref="trainer5" />
+		<property name="categories">
+			<list>
+				<ref bean="category11" />
+			</list>
+		</property>
+		<property name="sessions">
+			<list>
+				<ref bean="session71" />
+				<ref bean="session72" />
+				<ref bean="session73" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="workingOut8" class="domain.WorkingOut">
+		<property name="ticker" value="124142-ASDFGH" />
+		<property name="publishedMoment" value="2019/02/01 10:10" />
+		<property name="description" value="Description workingOut8" />
+		<property name="price" value="15.99" />
+		<property name="startMoment" value="2020/12/15 17:00" />
+		<property name="endMoment" value="2020/12/17 19:00" />
+		<property name="isFinalMode" value="true" />
+		<property name="trainer" ref="trainer5" />
+		<property name="categories">
+			<list>
+				<ref bean="category11" />
+			</list>
+		</property>
+		<property name="sessions">
+			<list>
+				<ref bean="session81" />
+				<ref bean="session82" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="workingOut9" class="domain.WorkingOut">
+		<property name="ticker" value="114142-ASDFGH" />
+		<property name="publishedMoment" value="2019/02/01 10:10" />
+		<property name="description" value="Description workingOut9" />
+		<property name="price" value="15.99" />
+		<property name="startMoment" value="2019/11/04 17:00" />
+		<property name="endMoment" value="2019/11/09 19:00" />
+		<property name="isFinalMode" value="true" />
+		<property name="trainer" ref="trainer7" />
+		<property name="categories">
+			<list>
+				<ref bean="category4" />
+			</list>
+		</property>
+		<property name="sessions">
+			<list>
+				<ref bean="session91" />
+				<ref bean="session92" />
+				<ref bean="session93" />
+			</list>
+		</property>
+	</bean>
 
 </beans>
