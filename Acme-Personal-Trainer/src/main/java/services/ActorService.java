@@ -47,7 +47,6 @@ public class ActorService {
 	public Actor save(final Actor actor) {
 		Assert.notNull(actor);
 		this.utilityService.checkEmailActors(actor);
-		//Assert.isTrue(!this.utilityService.checkIsExpired(actor.getCreditCard()), "Expired credit card");
 
 		final Actor result;
 		boolean isUpdating;

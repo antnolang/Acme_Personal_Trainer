@@ -41,7 +41,7 @@ public class WorkingOut extends DomainEntity {
 	private String	ticker;
 	private Date	publishedMoment;
 	private String	description;
-	private Double	price;
+	private double	price;
 	private Date	startMoment;
 	private Date	endMoment;
 	private boolean	isFinalMode;
@@ -79,17 +79,17 @@ public class WorkingOut extends DomainEntity {
 		this.description = description;
 	}
 
-	@NotNull
 	@Min(0)
 	@Digits(integer = 9, fraction = 2)
-	public Double getPrice() {
+	public double getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(final Double price) {
+	public void setPrice(final double price) {
 		this.price = price;
 	}
 
+	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public Date getStartMoment() {
@@ -100,6 +100,7 @@ public class WorkingOut extends DomainEntity {
 		this.startMoment = startMoment;
 	}
 
+	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public Date getEndMoment() {
