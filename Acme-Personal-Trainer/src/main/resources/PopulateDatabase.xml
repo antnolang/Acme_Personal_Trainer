@@ -239,6 +239,90 @@
 		</property>
 	</bean>
 
+	<bean id="userAccount20" class="security.UserAccount">
+		<property name="username" value="trainer1" />
+		<property name="password" value="4d9a96c8e1650dc161f1adcf5c5082a0" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="TRAINER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount21" class="security.UserAccount">
+		<property name="username" value="trainer2" />
+		<property name="password" value="6662f54a6c5033357408e6839a5c0a05" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="TRAINER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount22" class="security.UserAccount">
+		<property name="username" value="trainer3" />
+		<property name="password" value="72977b63f9bf5a01f30bfe2ca802a3c1" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="TRAINER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount23" class="security.UserAccount">
+		<property name="username" value="trainer4" />
+		<property name="password" value="06de2cced0f700b155d4d04d2ef3245c" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="TRAINER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount24" class="security.UserAccount">
+		<property name="username" value="trainer5" />
+		<property name="password" value="191be98376838b92608915fb8a9e2818" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="TRAINER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount25" class="security.UserAccount">
+		<property name="username" value="trainer6" />
+		<property name="password" value="a3b02d67308e7a6560e9a39f3c69860b" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="TRAINER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount26" class="security.UserAccount">
+		<property name="username" value="trainer7" />
+		<property name="password" value="537d692423ad76a73eacf1c527fa35a9" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="TRAINER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
 	<!-- Administrator -->
 	<bean id="administrator1" class="domain.Administrator">
 		<property name="name" value="Admin1" />
@@ -497,7 +581,7 @@
 		</property>
 		<property name="actor" ref="auditor1" />
 	</bean>
-	
+
 	<bean id="box35" class="domain.Box">
 		<property name="name" value="auditor box" />
 		<property name="isSystemBox" value="false" />
@@ -563,7 +647,7 @@
 		</property>
 		<property name="actor" ref="auditor2" />
 	</bean>
-	
+
 	<bean id="box45" class="domain.Box">
 		<property name="name" value="nueva box" />
 		<property name="isSystemBox" value="false" />
@@ -794,7 +878,7 @@
 		</property>
 		<property name="actor" ref="customer1" />
 	</bean>
-	
+
 	<bean id="box85" class="domain.Box">
 		<property name="name" value="nueva box" />
 		<property name="isSystemBox" value="false" />
@@ -849,7 +933,7 @@
 		</property>
 		<property name="actor" ref="customer2" />
 	</bean>
-	
+
 
 	<bean id="box94" class="domain.Box">
 		<property name="name" value="notification box" />
@@ -861,7 +945,7 @@
 		</property>
 		<property name="actor" ref="customer2" />
 	</bean>
-	
+
 	<bean id="box95" class="domain.Box">
 		<property name="name" value="nueva box" />
 		<property name="isSystemBox" value="false" />
@@ -1202,7 +1286,7 @@
 		</property>
 		<property name="actor" ref="nutritionist1" />
 	</bean>
-	
+
 	<bean id="box155" class="domain.Box">
 		<property name="name" value="nueva box" />
 		<property name="isSystemBox" value="false" />
@@ -1268,7 +1352,7 @@
 		</property>
 		<property name="actor" ref="nutritionist2" />
 	</bean>
-	
+
 	<bean id="box165" class="domain.Box">
 		<property name="name" value="nueva box" />
 		<property name="isSystemBox" value="false" />
@@ -1445,6 +1529,414 @@
 		</property>
 		<property name="actor" ref="nutritionist5" />
 	</bean>
+	
+	<bean id="box200" class="domain.Box">
+		<property name="name" value="in box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer1" />
+	</bean>
+
+	<bean id="box201" class="domain.Box">
+		<property name="name" value="out box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer1" />
+	</bean>
+
+	<bean id="box202" class="domain.Box">
+		<property name="name" value="trash box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer1" />
+	</bean>
+
+	<bean id="box203" class="domain.Box">
+		<property name="name" value="spam box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer1" />
+	</bean>
+
+	<bean id="box204" class="domain.Box">
+		<property name="name" value="notification box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer1" />
+	</bean>
+
+	<bean id="box205" class="domain.Box">
+		<property name="name" value="nueva box" />
+		<property name="isSystemBox" value="false" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer1" />
+	</bean>
+
+	<bean id="box210" class="domain.Box">
+		<property name="name" value="in box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer2" />
+	</bean>
+
+	<bean id="box211" class="domain.Box">
+		<property name="name" value="out box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer2" />
+	</bean>
+
+	<bean id="box212" class="domain.Box">
+		<property name="name" value="trash box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer2" />
+	</bean>
+
+	<bean id="box213" class="domain.Box">
+		<property name="name" value="spam box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer2" />
+	</bean>
+
+
+	<bean id="box214" class="domain.Box">
+		<property name="name" value="notification box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer2" />
+	</bean>
+
+	<bean id="box215" class="domain.Box">
+		<property name="name" value="nueva box" />
+		<property name="isSystemBox" value="false" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer2" />
+	</bean>
+
+	<bean id="box220" class="domain.Box">
+		<property name="name" value="in box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer3" />
+	</bean>
+
+	<bean id="box221" class="domain.Box">
+		<property name="name" value="out box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer3" />
+	</bean>
+
+	<bean id="box222" class="domain.Box">
+		<property name="name" value="trash box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer3" />
+	</bean>
+
+	<bean id="box223" class="domain.Box">
+		<property name="name" value="spam box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer3" />
+	</bean>
+
+	<bean id="box224" class="domain.Box">
+		<property name="name" value="notification box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer3" />
+	</bean>
+
+	<bean id="box230" class="domain.Box">
+		<property name="name" value="in box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer4" />
+	</bean>
+
+	<bean id="box231" class="domain.Box">
+		<property name="name" value="out box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer4" />
+	</bean>
+
+	<bean id="box232" class="domain.Box">
+		<property name="name" value="trash box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer4" />
+	</bean>
+
+	<bean id="box233" class="domain.Box">
+		<property name="name" value="spam box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer4" />
+	</bean>
+
+	<bean id="box234" class="domain.Box">
+		<property name="name" value="notification box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer4" />
+	</bean>
+
+	<bean id="box240" class="domain.Box">
+		<property name="name" value="in box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer5" />
+	</bean>
+
+	<bean id="box241" class="domain.Box">
+		<property name="name" value="out box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer5" />
+	</bean>
+
+	<bean id="box242" class="domain.Box">
+		<property name="name" value="trash box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer5" />
+	</bean>
+
+	<bean id="box243" class="domain.Box">
+		<property name="name" value="spam box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer5" />
+	</bean>
+
+	<bean id="box244" class="domain.Box">
+		<property name="name" value="notification box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer5" />
+	</bean>
+
+	<bean id="box250" class="domain.Box">
+		<property name="name" value="in box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer6" />
+	</bean>
+
+	<bean id="box251" class="domain.Box">
+		<property name="name" value="out box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer6" />
+	</bean>
+
+	<bean id="box252" class="domain.Box">
+		<property name="name" value="trash box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer6" />
+	</bean>
+
+	<bean id="box253" class="domain.Box">
+		<property name="name" value="spam box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer6" />
+	</bean>
+
+	<bean id="box254" class="domain.Box">
+		<property name="name" value="notification box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer6" />
+	</bean>
+
+	<bean id="box260" class="domain.Box">
+		<property name="name" value="in box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer7" />
+	</bean>
+
+	<bean id="box261" class="domain.Box">
+		<property name="name" value="out box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer7" />
+	</bean>
+
+	<bean id="box262" class="domain.Box">
+		<property name="name" value="trash box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer7" />
+	</bean>
+
+	<bean id="box263" class="domain.Box">
+		<property name="name" value="spam box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer7" />
+	</bean>
+
+	<bean id="box264" class="domain.Box">
+		<property name="name" value="notification box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer7" />
+	</bean>
 
 	<!-- Customer -->
 	<bean id="customer1" class="domain.Customer">
@@ -1612,8 +2104,8 @@
 		<property name="isSuspicious" value="false" />
 		<property name="userAccount" ref="userAccount14" />
 	</bean>
-	
-		<!-- SocialProfile -->
+
+	<!-- SocialProfile -->
 	<bean id="socialProfile1" class="domain.SocialProfile">
 		<property name="nick" value="nickAdministrator1" />
 		<property name="socialNetwork" value="Twitter" />
@@ -1627,126 +2119,275 @@
 		<property name="linkProfile" value="http://www.instagram.com/nick2" />
 		<property name="actor" ref="customer1" />
 	</bean>
-	
+
 	<bean id="socialProfile3" class="domain.SocialProfile">
 		<property name="nick" value="nick2Customer1" />
 		<property name="socialNetwork" value="Instagram" />
 		<property name="linkProfile" value="http://www.instagram.com/nick3" />
 		<property name="actor" ref="customer1" />
 	</bean>
-	
+
 	<bean id="socialProfile4" class="domain.SocialProfile">
 		<property name="nick" value="nick1Customer2" />
 		<property name="socialNetwork" value="Instagram" />
 		<property name="linkProfile" value="http://www.instagram.com/nick4" />
 		<property name="actor" ref="customer2" />
 	</bean>
-	
+
 	<bean id="socialProfile5" class="domain.SocialProfile">
 		<property name="nick" value="nick1Customer3" />
 		<property name="socialNetwork" value="Instagram" />
 		<property name="linkProfile" value="http://www.instagram.com/nick5" />
 		<property name="actor" ref="customer3" />
 	</bean>
-	
+
 	<bean id="socialProfile6" class="domain.SocialProfile">
 		<property name="nick" value="nick1Customer4" />
 		<property name="socialNetwork" value="Instagram" />
 		<property name="linkProfile" value="http://www.instagram.com/nick6" />
 		<property name="actor" ref="customer4" />
 	</bean>
-	
+
 	<bean id="socialProfile7" class="domain.SocialProfile">
 		<property name="nick" value="nick1Customer5" />
 		<property name="socialNetwork" value="Instagram" />
 		<property name="linkProfile" value="http://www.instagram.com/nick7" />
 		<property name="actor" ref="customer5" />
 	</bean>
-	
+
 	<bean id="socialProfile8" class="domain.SocialProfile">
 		<property name="nick" value="nick1Auditor1" />
 		<property name="socialNetwork" value="Instagram" />
 		<property name="linkProfile" value="http://www.instagram.com/nick8" />
 		<property name="actor" ref="auditor1" />
 	</bean>
-	
+
 	<bean id="socialProfile9" class="domain.SocialProfile">
 		<property name="nick" value="nick2Auditor2" />
 		<property name="socialNetwork" value="Instagram" />
 		<property name="linkProfile" value="http://www.instagram.com/nick9" />
 		<property name="actor" ref="auditor1" />
 	</bean>
-	
+
 	<bean id="socialProfile10" class="domain.SocialProfile">
 		<property name="nick" value="nick1Auditor2" />
 		<property name="socialNetwork" value="Instagram" />
 		<property name="linkProfile" value="http://www.instagram.com/nick10" />
 		<property name="actor" ref="auditor2" />
 	</bean>
-	
+
 	<bean id="socialProfile11" class="domain.SocialProfile">
 		<property name="nick" value="nick1Auditor3" />
 		<property name="socialNetwork" value="Instagram" />
 		<property name="linkProfile" value="http://www.instagram.com/nick11" />
 		<property name="actor" ref="auditor3" />
 	</bean>
-	
+
 	<bean id="socialProfile12" class="domain.SocialProfile">
 		<property name="nick" value="nick1Auditor4" />
 		<property name="socialNetwork" value="Instagram" />
 		<property name="linkProfile" value="http://www.instagram.com/nick12" />
 		<property name="actor" ref="auditor4" />
 	</bean>
-	
+
 	<bean id="socialProfile13" class="domain.SocialProfile">
 		<property name="nick" value="nick1Auditor5" />
 		<property name="socialNetwork" value="Instagram" />
 		<property name="linkProfile" value="http://www.instagram.com/nick13" />
 		<property name="actor" ref="auditor5" />
 	</bean>
-	
+
 	<bean id="socialProfile14" class="domain.SocialProfile">
 		<property name="nick" value="nick1Nutritionist1" />
 		<property name="socialNetwork" value="Instagram" />
 		<property name="linkProfile" value="http://www.instagram.com/nick14" />
 		<property name="actor" ref="nutritionist1" />
 	</bean>
-	
+
 	<bean id="socialProfile15" class="domain.SocialProfile">
 		<property name="nick" value="nick2Nutritionist2" />
 		<property name="socialNetwork" value="Instagram" />
 		<property name="linkProfile" value="http://www.instagram.com/nick15" />
 		<property name="actor" ref="nutritionist1" />
 	</bean>
-	
+
 	<bean id="socialProfile16" class="domain.SocialProfile">
 		<property name="nick" value="nick1Nutritionist2" />
 		<property name="socialNetwork" value="Instagram" />
 		<property name="linkProfile" value="http://www.instagram.com/nick16" />
 		<property name="actor" ref="nutritionist2" />
 	</bean>
-	
+
 	<bean id="socialProfile17" class="domain.SocialProfile">
 		<property name="nick" value="nick1Nutritionist3" />
 		<property name="socialNetwork" value="Instagram" />
 		<property name="linkProfile" value="http://www.instagram.com/nick17" />
 		<property name="actor" ref="nutritionist3" />
 	</bean>
-	
+
 	<bean id="socialProfile18" class="domain.SocialProfile">
 		<property name="nick" value="nick1Nutritionist4" />
 		<property name="socialNetwork" value="Instagram" />
 		<property name="linkProfile" value="http://www.instagram.com/nick18" />
 		<property name="actor" ref="nutritionist4" />
 	</bean>
-	
+
 	<bean id="socialProfile19" class="domain.SocialProfile">
 		<property name="nick" value="nick1Nutritionist5" />
 		<property name="socialNetwork" value="Instagram" />
 		<property name="linkProfile" value="http://www.instagram.com/nick19" />
 		<property name="actor" ref="nutritionist5" />
 	</bean>
-
 	
+	<bean id="socialProfile20" class="domain.SocialProfile">
+		<property name="nick" value="nick1Trainer1" />
+		<property name="socialNetwork" value="Instagram" />
+		<property name="linkProfile" value="http://www.instagram.com/nick20" />
+		<property name="actor" ref="trainer1" />
+	</bean>
+
+	<bean id="socialProfile21" class="domain.SocialProfile">
+		<property name="nick" value="nick2Trainer2" />
+		<property name="socialNetwork" value="Instagram" />
+		<property name="linkProfile" value="http://www.instagram.com/nick21" />
+		<property name="actor" ref="trainer1" />
+	</bean>
+
+	<bean id="socialProfile22" class="domain.SocialProfile">
+		<property name="nick" value="nick1Trainer2" />
+		<property name="socialNetwork" value="Instagram" />
+		<property name="linkProfile" value="http://www.instagram.com/nick22" />
+		<property name="actor" ref="trainer2" />
+	</bean>
+
+	<bean id="socialProfile23" class="domain.SocialProfile">
+		<property name="nick" value="nick1Trainer3" />
+		<property name="socialNetwork" value="Instagram" />
+		<property name="linkProfile" value="http://www.instagram.com/nick23" />
+		<property name="actor" ref="trainer3" />
+	</bean>
+
+	<bean id="socialProfile24" class="domain.SocialProfile">
+		<property name="nick" value="nick1Trainer4" />
+		<property name="socialNetwork" value="Instagram" />
+		<property name="linkProfile" value="http://www.instagram.com/nick24" />
+		<property name="actor" ref="trainer4" />
+	</bean>
+
+	<bean id="socialProfile25" class="domain.SocialProfile">
+		<property name="nick" value="nick1Trainer5" />
+		<property name="socialNetwork" value="Instagram" />
+		<property name="linkProfile" value="http://www.instagram.com/nick25" />
+		<property name="actor" ref="trainer5" />
+	</bean>
+
+	<!-- Trainer -->
+	<bean id="trainer1" class="domain.Trainer">
+		<property name="name" value="Trainer1" />
+		<property name="middleName" value="" />
+		<property name="surname" value="trainer" />
+		<property name="photo"
+			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="trainer1@gmail.com" />
+		<property name="phoneNumber" value="630417654" />
+		<property name="address" value="Calle Trainer 1" />
+		<property name="isSuspicious" value="false" />
+		<property name="mark" value="4.0" />
+		<property name="score" value="0.3" />
+		<property name="userAccount" ref="userAccount20" />
+	</bean>
+
+	<bean id="trainer2" class="domain.Trainer">
+		<property name="name" value="Trainer2" />
+		<property name="middleName" value="" />
+		<property name="surname" value="trainer" />
+		<property name="photo"
+			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="trainer2@gmail.com" />
+		<property name="phoneNumber" value="630417654" />
+		<property name="address" value="Calle Trainer 2" />
+		<property name="isSuspicious" value="false" />
+		<property name="mark" value="4.0" />
+		<property name="score" value="0.3" />
+		<property name="userAccount" ref="userAccount21" />
+	</bean>
+
+	<bean id="trainer3" class="domain.Trainer">
+		<property name="name" value="Trainer3" />
+		<property name="middleName" value="" />
+		<property name="surname" value="trainer" />
+		<property name="photo"
+			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="trainer3@gmail.com" />
+		<property name="phoneNumber" value="630417654" />
+		<property name="address" value="Calle Trainer 3" />
+		<property name="isSuspicious" value="false" />
+		<property name="mark" value="4.0" />
+		<property name="score" value="0.3" />
+		<property name="userAccount" ref="userAccount22" />
+	</bean>
+
+	<bean id="trainer4" class="domain.Trainer">
+		<property name="name" value="Trainer4" />
+		<property name="middleName" value="" />
+		<property name="surname" value="trainer" />
+		<property name="photo"
+			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="trainer4@gmail.com" />
+		<property name="phoneNumber" value="630417654" />
+		<property name="address" value="Calle Trainer 4" />
+		<property name="isSuspicious" value="false" />
+		<property name="mark" value="4.0" />
+		<property name="score" value="0.3" />
+		<property name="userAccount" ref="userAccount23" />
+	</bean>
+
+	<bean id="trainer5" class="domain.Trainer">
+		<property name="name" value="Trainer5" />
+		<property name="middleName" value="" />
+		<property name="surname" value="trainer" />
+		<property name="photo"
+			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="trainer5@gmail.com" />
+		<property name="phoneNumber" value="630417654" />
+		<property name="address" value="Calle Trainer 5" />
+		<property name="isSuspicious" value="false" />
+		<property name="mark" value="4.0" />
+		<property name="score" value="0.3" />
+		<property name="userAccount" ref="userAccount24" />
+	</bean>
+
+
+	<bean id="trainer6" class="domain.Trainer">
+		<property name="name" value="Trainer6" />
+		<property name="middleName" value="" />
+		<property name="surname" value="trainer" />
+		<property name="photo"
+			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="trainer6@gmail.com" />
+		<property name="phoneNumber" value="630417654" />
+		<property name="address" value="Calle Trainer 6" />
+		<property name="isSuspicious" value="false" />
+		<property name="mark" value="4.0" />
+		<property name="score" value="0.3" />
+		<property name="userAccount" ref="userAccount25" />
+	</bean>
+
+	<bean id="trainer7" class="domain.Trainer">
+		<property name="name" value="Trainer7" />
+		<property name="middleName" value="" />
+		<property name="surname" value="trainer" />
+		<property name="photo"
+			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="trainer7@gmail.com" />
+		<property name="phoneNumber" value="630417654" />
+		<property name="address" value="Calle Trainer 7" />
+		<property name="isSuspicious" value="false" />
+		<property name="mark" value="4.0" />
+		<property name="score" value="0.3" />
+		<property name="userAccount" ref="userAccount26" />
+	</bean>
+
+
 
 </beans>
