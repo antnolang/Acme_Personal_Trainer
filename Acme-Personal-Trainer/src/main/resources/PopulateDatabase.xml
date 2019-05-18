@@ -349,6 +349,117 @@
 		<property name="isSuspicious" value="false" />
 		<property name="userAccount" ref="userAccount2" />
 	</bean>
+	
+	<!-- Article -->
+	<bean id="article1" class="domain.Article">
+		<property name="publishedMoment" value="2017/03/07 14:00" />
+		<property name="title" value="article1" />
+		<property name="description" value="Description article1" />
+		<property name="tags" value="sport" />
+		<property name="isFinalMode" value="true" />
+		<property name="nutritionist" ref="nutritionist1" />
+	</bean>
+	
+	<bean id="article2" class="domain.Article">
+		<property name="publishedMoment" value="2017/03/07 14:00" />
+		<property name="title" value="article2" />
+		<property name="description" value="Description article2" />
+		<property name="tags" value="sport" />
+		<property name="isFinalMode" value="false" />
+		<property name="nutritionist" ref="nutritionist1" />
+	</bean>
+	
+	<bean id="article3" class="domain.Article">
+		<property name="publishedMoment" value="2017/03/07 14:00" />
+		<property name="title" value="article3" />
+		<property name="description" value="Description article3" />
+		<property name="tags" value="sport" />
+		<property name="isFinalMode" value="true" />
+		<property name="nutritionist" ref="nutritionist2" />
+	</bean>
+	
+	<bean id="article4" class="domain.Article">
+		<property name="publishedMoment" value="2017/03/07 14:00" />
+		<property name="title" value="article4" />
+		<property name="description" value="Description article4" />
+		<property name="tags" value="sport" />
+		<property name="isFinalMode" value="true" />
+		<property name="nutritionist" ref="nutritionist3" />
+	</bean>
+	
+	<bean id="article5" class="domain.Article">
+		<property name="publishedMoment" value="2017/03/07 14:00" />
+		<property name="title" value="article5" />
+		<property name="description" value="Description article5" />
+		<property name="tags" value="sport" />
+		<property name="isFinalMode" value="true" />
+		<property name="nutritionist" ref="nutritionist4" />
+	</bean>
+	
+	<bean id="article6" class="domain.Article">
+		<property name="publishedMoment" value="2017/03/07 14:00" />
+		<property name="title" value="article6" />
+		<property name="description" value="Description article6" />
+		<property name="tags" value="sport" />
+		<property name="isFinalMode" value="true" />
+		<property name="nutritionist" ref="nutritionist5" />
+	</bean>
+	
+
+	<!-- Audit -->
+	<bean id="audit1" class="domain.Audit">
+		<property name="moment" value="2019/01/01 10:10" />
+		<property name="title" value="Audit1" />
+		<property name="description" value="Description audit1" />
+		<property name="attachments" value="http://www.attachment.es" />
+		<property name="auditor" ref="auditor1" />
+		<property name="curriculum" ref="curriculum1" />
+	</bean>
+	
+	<bean id="audit2" class="domain.Audit">
+		<property name="moment" value="2019/01/01 10:10" />
+		<property name="title" value="Audit2" />
+		<property name="description" value="Description audit1" />
+		<property name="attachments" value="http://www.attachment.es" />
+		<property name="auditor" ref="auditor1" />
+		<property name="curriculum" ref="curriculum2" />
+	</bean>
+	
+	<bean id="audit3" class="domain.Audit">
+		<property name="moment" value="2019/01/01 10:10" />
+		<property name="title" value="Audit3" />
+		<property name="description" value="Description audit1" />
+		<property name="attachments" value="http://www.attachment.es" />
+		<property name="auditor" ref="auditor2" />
+		<property name="curriculum" ref="curriculum2" />
+	</bean>
+	
+	<bean id="audit4" class="domain.Audit">
+		<property name="moment" value="2019/01/01 10:10" />
+		<property name="title" value="Audit4" />
+		<property name="description" value="Description audit1" />
+		<property name="attachments" value="http://www.attachment.es" />
+		<property name="auditor" ref="auditor3" />
+		<property name="curriculum" ref="curriculum3" />
+	</bean>
+	
+	<bean id="audit5" class="domain.Audit">
+		<property name="moment" value="2019/01/01 10:10" />
+		<property name="title" value="Audit5" />
+		<property name="description" value="Description audit1" />
+		<property name="attachments" value="http://www.attachment.es" />
+		<property name="auditor" ref="auditor4" />
+		<property name="curriculum" ref="curriculum4" />
+	</bean>
+	
+	<bean id="audit6" class="domain.Audit">
+		<property name="moment" value="2019/01/01 10:10" />
+		<property name="title" value="Audit6" />
+		<property name="description" value="Description audit1" />
+		<property name="attachments" value="http://www.attachment.es" />
+		<property name="auditor" ref="auditor1" />
+		<property name="curriculum" ref="curriculum1" />
+	</bean>
 
 	<!-- Auditor -->
 	<bean id="auditor1" class="domain.Auditor">
@@ -1529,7 +1640,7 @@
 		</property>
 		<property name="actor" ref="nutritionist5" />
 	</bean>
-	
+
 	<bean id="box200" class="domain.Box">
 		<property name="name" value="in box" />
 		<property name="isSystemBox" value="true" />
@@ -1937,6 +2048,268 @@
 		</property>
 		<property name="actor" ref="trainer7" />
 	</bean>
+	
+	<!-- Category -->
+	<bean id="category1" class="domain.Category">
+		<property name="name" value="Active Recovery, " />
+	</bean>
+	
+	<bean id="category2" class="domain.Category">
+		<property name="name" value="Aerobic Exercise," />
+	</bean>
+	
+	<bean id="category3" class="domain.Category">
+		<property name="name" value="Anaerobic Exercise, " />
+	</bean>
+	
+	<bean id="category4" class="domain.Category">
+		<property name="name" value="Boot Camp, " />
+	</bean>
+	
+	<bean id="category5" class="domain.Category">
+		<property name="name" value="Circuit," />
+	</bean>
+	
+	<bean id="category6" class="domain.Category">
+		<property name="name" value="Compound Exercises, " />
+	</bean>
+	
+	<bean id="category7" class="domain.Category">
+		<property name="name" value="Cool-Down, " />
+	</bean>
+	
+	<bean id="category8" class="domain.Category">
+		<property name="name" value="Cross-Training,  " />
+	</bean>
+	
+	<bean id="category9" class="domain.Category">
+		<property name="name" value="DOMS," />
+	</bean>
+	
+	<bean id="category10" class="domain.Category">
+		<property name="name" value="Dynamic Warm-Up, " />
+	</bean>
+	
+	<bean id="category11" class="domain.Category">
+		<property name="name" value="Foam Rolling,  " />
+	</bean>
+	
+	<bean id="category12" class="domain.Category">
+		<property name="name" value="Functional Moves," />
+	</bean>
+	
+	<bean id="category13" class="domain.Category">
+		<property name="name" value="Heart Rate Zones,  " />
+	</bean>
+	
+	<bean id="category14" class="domain.Category">
+		<property name="name" value="HIIT, " />
+	</bean>
+	
+	<bean id="category15" class="domain.Category">
+		<property name="name" value="Interval Training,  " />
+	</bean>
+	
+	<bean id="category16" class="domain.Category">
+		<property name="name" value="Isometrics,   " />
+	</bean>
+	
+	<bean id="category17" class="domain.Category">
+		<property name="name" value="Plyometrics, " />
+	</bean>
+	
+	<bean id="category18" class="domain.Category">
+		<property name="name" value="Resistance,  " />
+	</bean>
+	
+	<bean id="category19" class="domain.Category">
+		<property name="name" value="Strength Training,  " />
+	</bean>
+	
+	<bean id="category20" class="domain.Category">
+		<property name="name" value="Tabata," />
+	</bean>
+	
+	<!-- Comment -->
+	<bean id="comment1" class="domain.Comment">
+		<property name="text" value="comment1" />
+		<property name="publicationMoment" value="2017/03/08 10:00" />
+		<property name="customer" ref="customer1" />
+		<property name="article" ref="article1" />
+	</bean>
+	
+	<bean id="comment2" class="domain.Comment">
+		<property name="text" value="comment2" />
+		<property name="publicationMoment" value="2017/03/08 10:00" />
+		<property name="customer" ref="customer2" />
+		<property name="article" ref="article1" />
+	</bean>
+	
+	<bean id="comment3" class="domain.Comment">
+		<property name="text" value="comment3" />
+		<property name="publicationMoment" value="2017/03/08 10:00" />
+		<property name="customer" ref="customer3" />
+		<property name="article" ref="article3" />
+	</bean>
+	
+	<bean id="comment4" class="domain.Comment">
+		<property name="text" value="comment4" />
+		<property name="publicationMoment" value="2017/04/08 10:00" />
+		<property name="customer" ref="customer4" />
+		<property name="article" ref="article4" />
+	</bean>
+	
+	<bean id="comment5" class="domain.Comment">
+		<property name="text" value="comment5" />
+		<property name="publicationMoment" value="2017/05/08 10:00" />
+		<property name="customer" ref="customer5" />
+		<property name="article" ref="article5" />
+	</bean>
+	
+	<bean id="comment6" class="domain.Comment">
+		<property name="text" value="comment6" />
+		<property name="publicationMoment" value="2017/06/08 10:00" />
+		<property name="customer" ref="customer6" />
+		<property name="article" ref="article1" />
+	</bean>
+	
+	<bean id="comment7" class="domain.Comment">
+		<property name="text" value="comment7" />
+		<property name="publicationMoment" value="2017/07/08 10:00" />
+		<property name="customer" ref="customer7" />
+		<property name="article" ref="article3" />
+	</bean>
+	
+	<!-- Curriculum -->
+	<bean id="curriculum1" class="domain.Curriculum">
+		<property name="ticker" value="120212-ASDFGH" />
+		<property name="trainer" ref="trainer1" />
+		<property name="educationRecords">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="professionalRecords">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="endorserRecords">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="miscellaneousRecords">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="personalRecord" ref="personalRecord1" />
+	</bean>
+	
+	<bean id="curriculum2" class="domain.Curriculum">
+		<property name="ticker" value="470212-ASDFGH" />
+		<property name="trainer" ref="trainer2" />
+		<property name="educationRecords">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="professionalRecords">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="endorserRecords">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="miscellaneousRecords">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="personalRecord" ref="personalRecord2" />
+	</bean>
+	
+	<bean id="curriculum3" class="domain.Curriculum">
+		<property name="ticker" value="170092-ASDFGH" />
+		<property name="trainer" ref="trainer3" />
+		<property name="educationRecords">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="professionalRecords">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="endorserRecords">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="miscellaneousRecords">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="personalRecord" ref="personalRecord3" />
+	</bean>
+	
+	<bean id="curriculum4" class="domain.Curriculum">
+		<property name="ticker" value="175412-ASDFGH" />
+		<property name="trainer" ref="trainer4" />
+		<property name="educationRecords">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="professionalRecords">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="endorserRecords">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="miscellaneousRecords">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="personalRecord" ref="personalRecord4" />
+	</bean>
+	
+	<bean id="curriculum5" class="domain.Curriculum">
+		<property name="ticker" value="154212-ASDFGH" />
+		<property name="trainer" ref="trainer5" />
+		<property name="educationRecords">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="professionalRecords">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="endorserRecords">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="miscellaneousRecords">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="personalRecord" ref="personalRecord5" />
+	</bean>
 
 	<!-- Customer -->
 	<bean id="customer1" class="domain.Customer">
@@ -2037,9 +2410,115 @@
 		<property name="isPremium" value="false" />
 		<property name="userAccount" ref="userAccount9" />
 	</bean>
+	
+	<!-- Finder -->
+	<bean id="finder1" class="domain.Finder">
+		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
+		<property name="category" value="comba" />
+		<property name="startPrice" value="25.24" />
+		<property name="endPrice" value="5.24" />
+		<property name="startDate" value="2019/11/05" />
+		<property name="endDate" value="2020/01/01 10:10" />
+		<property name="customer" ref="customer1" />
+		<property name="workingOuts">
+			<list>
+				<null></null>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="finder2" class="domain.Finder">
+		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
+		<property name="category" value="comba" />
+		<property name="startPrice" value="25.24" />
+		<property name="endPrice" value="5.24" />
+		<property name="startDate" value="2019/11/05" />
+		<property name="endDate" value="2020/01/01 10:10" />
+		<property name="customer" ref="customer2" />
+		<property name="workingOuts">
+			<list>
+				<null></null>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="finder3" class="domain.Finder">
+		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
+		<property name="category" value="comba" />
+		<property name="startPrice" value="25.24" />
+		<property name="endPrice" value="5.24" />
+		<property name="startDate" value="2019/11/05" />
+		<property name="endDate" value="2020/01/01 10:10" />
+		<property name="customer" ref="customer3" />
+		<property name="workingOuts">
+			<list>
+				<null></null>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="finder4" class="domain.Finder">
+		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
+		<property name="category" value="comba" />
+		<property name="startPrice" value="25.24" />
+		<property name="endPrice" value="5.24" />
+		<property name="startDate" value="2019/11/05" />
+		<property name="endDate" value="2020/01/01 10:10" />
+		<property name="customer" ref="customer4" />
+		<property name="workingOuts">
+			<list>
+				<null></null>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="finder5" class="domain.Finder">
+		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
+		<property name="category" value="comba" />
+		<property name="startPrice" value="25.24" />
+		<property name="endPrice" value="5.24" />
+		<property name="startDate" value="2019/11/05" />
+		<property name="endDate" value="2020/01/01 10:10" />
+		<property name="customer" ref="customer5" />
+		<property name="workingOuts">
+			<list>
+				<null></null>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="finder6" class="domain.Finder">
+		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
+		<property name="category" value="comba" />
+		<property name="startPrice" value="25.24" />
+		<property name="endPrice" value="5.24" />
+		<property name="startDate" value="2019/11/05" />
+		<property name="endDate" value="2020/01/01 10:10" />
+		<property name="customer" ref="customer6" />
+		<property name="workingOuts">
+			<list>
+				<null></null>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="finder7" class="domain.Finder">
+		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
+		<property name="category" value="comba" />
+		<property name="startPrice" value="25.24" />
+		<property name="endPrice" value="5.24" />
+		<property name="startDate" value="2019/11/05" />
+		<property name="endDate" value="2020/01/01 10:10" />
+		<property name="customer" ref="customer7" />
+		<property name="workingOuts">
+			<list>
+				<null></null>
+			</list>
+		</property>
+	</bean>
 
 
-	<!-- Customer -->
+	<!-- Nutritionist -->
 	<bean id="nutritionist1" class="domain.Nutritionist">
 		<property name="name" value="Nutritionist1" />
 		<property name="middleName" value="" />
@@ -2103,6 +2582,47 @@
 		<property name="address" value="Calle Nutritionist 5" />
 		<property name="isSuspicious" value="false" />
 		<property name="userAccount" ref="userAccount14" />
+	</bean>
+	
+	<!-- PersonalRecords -->
+	<bean id="personalRecord1" class="domain.PersonalRecord">
+		<property name="fullName" value="personalRecord1" />
+		<property name="photo" value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="personalRecord1@gmail.com" />
+		<property name="phoneNumber" value="631047853" />
+		<property name="linkedInProfile" value="http://www.linkedin.com" />
+	</bean>
+
+	<bean id="personalRecord2" class="domain.PersonalRecord">
+		<property name="fullName" value="personalRecord2" />
+		<property name="photo" value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="personalRecord2@gmail.com" />
+		<property name="phoneNumber" value="601895472" />
+		<property name="linkedInProfile" value="http://www.linkedin.com" />
+	</bean>
+
+	<bean id="personalRecord3" class="domain.PersonalRecord">
+		<property name="fullName" value="personalRecord3" />
+		<property name="photo" value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="personalRecord3@gmail.com" />
+		<property name="phoneNumber" value="652013984" />
+		<property name="linkedInProfile" value="http://www.linkedin.com" />
+	</bean>
+	
+	<bean id="personalRecord4" class="domain.PersonalRecord">
+		<property name="fullName" value="personalRecord4" />
+		<property name="photo" value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="personalRecord4@gmail.com" />
+		<property name="phoneNumber" value="601895472" />
+		<property name="linkedInProfile" value="http://www.linkedin.com" />
+	</bean>
+
+	<bean id="personalRecord5" class="domain.PersonalRecord">
+		<property name="fullName" value="personalRecord5" />
+		<property name="photo" value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="personalRecord5@gmail.com" />
+		<property name="phoneNumber" value="652013984" />
+		<property name="linkedInProfile" value="http://www.linkedin.com" />
 	</bean>
 
 	<!-- SocialProfile -->
@@ -2238,7 +2758,7 @@
 		<property name="linkProfile" value="http://www.instagram.com/nick19" />
 		<property name="actor" ref="nutritionist5" />
 	</bean>
-	
+
 	<bean id="socialProfile20" class="domain.SocialProfile">
 		<property name="nick" value="nick1Trainer1" />
 		<property name="socialNetwork" value="Instagram" />
