@@ -3765,7 +3765,7 @@
 
 	<bean id="workingOut8" class="domain.WorkingOut">
 		<property name="ticker" value="124142-ASDFGH" />
-		<property name="publishedMoment" value="2019/02/01 10:10" />
+		<property name="publishedMoment" value="2018/02/01 10:10" />
 		<property name="description" value="Description workingOut8" />
 		<property name="price" value="15.99" />
 		<property name="startMoment" value="2018/12/15 17:00" />
