@@ -9,6 +9,7 @@ import javax.validation.ConstraintViolationException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
@@ -127,7 +128,7 @@ public class SocialProfileServiceTest extends AbstractTest {
 	 */
 	@Test
 	public void create_test() {
-		super.authenticate("rookie1");
+		super.authenticate("auditor1");
 
 		SocialProfile socialProfile;
 
@@ -271,20 +272,19 @@ public class SocialProfileServiceTest extends AbstractTest {
 	 */
 	@Test
 	public void delete_positiveTest() {
-		super.authenticate("rookie1");
+		super.authenticate("admin1");
 
 		int socialProfileId;
-		SocialProfile socialProfile, found;
+		Collection<SocialProfile> socialProfiles;
+		SocialProfile socialProfile;
 
 		socialProfileId = super.getEntityId("socialProfile1");
-
 		socialProfile = this.socialProfileService.findOne(socialProfileId);
 
 		this.socialProfileService.delete(socialProfile);
 
-		found = this.socialProfileService.findOne(socialProfileId);
-
-		Assert.notNull(found);
+		socialProfiles = this.socialProfileService.findSocialProfilesByActor(socialProfile.getActor().getId());
+		Assert.isTrue(!socialProfiles.contains(socialProfiles));
 
 		super.unauthenticate();
 	}
@@ -389,7 +389,7 @@ public class SocialProfileServiceTest extends AbstractTest {
 			 * D: Analysis of data coverage: SocialProfile::linkProfile already exists in the DB => 1/19 -> 5.26%.
 			 */
 			{
-				"EleanorLamp", "Tinder", "http://www.twitter1.com", ConstraintViolationException.class
+				"EleanorLamp", "Tinder", "http://www.twitter.com/nick1", DataIntegrityViolationException.class
 			},
 			/*
 			 * A: Requirement 8.5 (An authenticated user can create/edit social profiles)

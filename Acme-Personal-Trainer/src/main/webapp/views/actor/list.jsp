@@ -46,5 +46,9 @@
 		<acme:submit name="suspicious" code="actor.launch.suspicious" />
 	</form:form>
 	
+	<form:form action="actor/administrator/scoreProcess.do">
+		<acme:submit name="score" code="actor.launch.score" />
+	</form:form>
+	
 </security:authorize>
  	

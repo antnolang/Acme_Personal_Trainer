@@ -352,7 +352,7 @@
 
 	<!-- Application -->
 	<bean id="application1" class="domain.Application">
-		<property name="registeredMoment" value="2019/01/01 10:10" />
+		<property name="registeredMoment" value="2019/03/01 10:10" />
 		<property name="status" value="ACCEPTED" />
 		<property name="comments" value="comment" />
 		<property name="customer" ref="customer1" />
@@ -361,7 +361,7 @@
 	</bean>
 
 	<bean id="application2" class="domain.Application">
-		<property name="registeredMoment" value="2019/01/01 10:10" />
+		<property name="registeredMoment" value="2019/03/01 10:10" />
 		<property name="status" value="PENDING" />
 		<property name="comments" value="comment" />
 		<property name="customer" ref="customer3" />
@@ -370,7 +370,7 @@
 	</bean>
 
 	<bean id="application3" class="domain.Application">
-		<property name="registeredMoment" value="2019/01/01 10:10" />
+		<property name="registeredMoment" value="2019/03/01 10:10" />
 		<property name="status" value="REJECTED" />
 		<property name="comments" value="comment" />
 		<property name="customer" ref="customer4" />
@@ -379,7 +379,7 @@
 	</bean>
 
 	<bean id="application4" class="domain.Application">
-		<property name="registeredMoment" value="2019/01/01 10:10" />
+		<property name="registeredMoment" value="2019/03/01 10:10" />
 		<property name="status" value="PENDING" />
 		<property name="comments" value="comment" />
 		<property name="customer" ref="customer5" />
@@ -2113,83 +2113,83 @@
 
 	<!-- Category -->
 	<bean id="category1" class="domain.Category">
-		<property name="name" value="Active Recovery, " />
+		<property name="name" value="Active Recovery,Recuperación activa" />
 	</bean>
 
 	<bean id="category2" class="domain.Category">
-		<property name="name" value="Aerobic Exercise," />
+		<property name="name" value="Aerobic Exercise,Ejercicio aeróbico" />
 	</bean>
 
 	<bean id="category3" class="domain.Category">
-		<property name="name" value="Anaerobic Exercise, " />
+		<property name="name" value="Anaerobic Exercise,Ejercicio anaeróbico" />
 	</bean>
 
 	<bean id="category4" class="domain.Category">
-		<property name="name" value="Boot Camp, " />
+		<property name="name" value="Boot Camp,Campo de entrenamiento" />
 	</bean>
 
 	<bean id="category5" class="domain.Category">
-		<property name="name" value="Circuit," />
+		<property name="name" value="Circuit,Circuito" />
 	</bean>
 
 	<bean id="category6" class="domain.Category">
-		<property name="name" value="Compound Exercises, " />
+		<property name="name" value="Compound Exercises,Ejercicios compuestos" />
 	</bean>
 
 	<bean id="category7" class="domain.Category">
-		<property name="name" value="Cool-Down, " />
+		<property name="name" value="Cool-Down,Enfriamiento " />
 	</bean>
 
 	<bean id="category8" class="domain.Category">
-		<property name="name" value="Cross-Training,  " />
+		<property name="name" value="Cross-Training,Entrenamiento combinado" />
 	</bean>
 
 	<bean id="category9" class="domain.Category">
-		<property name="name" value="DOMS," />
+		<property name="name" value="DOMS,DMAT" />
 	</bean>
 
 	<bean id="category10" class="domain.Category">
-		<property name="name" value="Dynamic Warm-Up, " />
+		<property name="name" value="Dynamic Warm-Up,Calentamiento dinámmico" />
 	</bean>
 
 	<bean id="category11" class="domain.Category">
-		<property name="name" value="Foam Rolling,  " />
+		<property name="name" value="Foam Rolling,Rodadura de espuma" />
 	</bean>
 
 	<bean id="category12" class="domain.Category">
-		<property name="name" value="Functional Moves," />
+		<property name="name" value="Functional Moves,Movimientos funcionales" />
 	</bean>
 
 	<bean id="category13" class="domain.Category">
-		<property name="name" value="Heart Rate Zones,  " />
+		<property name="name" value="Heart Rate Zones,Rango de ritmo cardiaco" />
 	</bean>
 
 	<bean id="category14" class="domain.Category">
-		<property name="name" value="HIIT, " />
+		<property name="name" value="HIIT,Entrenamiento en periodos de alta intensidad" />
 	</bean>
 
 	<bean id="category15" class="domain.Category">
-		<property name="name" value="Interval Training,  " />
+		<property name="name" value="Interval Training,Entrenamiento de intervalo" />
 	</bean>
 
 	<bean id="category16" class="domain.Category">
-		<property name="name" value="Isometrics,   " />
+		<property name="name" value="Isometrics,Isométricos" />
 	</bean>
 
 	<bean id="category17" class="domain.Category">
-		<property name="name" value="Plyometrics, " />
+		<property name="name" value="Plyometrics,Pliometría" />
 	</bean>
 
 	<bean id="category18" class="domain.Category">
-		<property name="name" value="Resistance,  " />
+		<property name="name" value="Resistance,Resistencia" />
 	</bean>
 
 	<bean id="category19" class="domain.Category">
-		<property name="name" value="Strength Training,  " />
+		<property name="name" value="Strength Training,Entrenamiento de fuerza" />
 	</bean>
 
 	<bean id="category20" class="domain.Category">
-		<property name="name" value="Tabata," />
+		<property name="name" value="Tabata,Tabata" />
 	</bean>
 
 	<!-- Comment -->

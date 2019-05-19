@@ -13,7 +13,6 @@ import domain.CreditCard;
 @Repository
 public interface ApplicationRepository extends JpaRepository<Application, Integer> {
 
-
 	@Query("select a from Application a where a.workingOut.id = ?1 and a.status='ACCEPTED'")
 	Collection<Application> findAcceptedApplicationsByWorkingOut(int workingOutId);
 
@@ -49,4 +48,7 @@ public interface ApplicationRepository extends JpaRepository<Application, Intege
 
 	@Query("select (sum(case when a.status='PENDING' then 1.0 else 0 end)/count(*)) from Application a")
 	Double findRatioPendingApplications();
+
+	@Query("select case when (count(a) > 0) then true else false end from Application a where a.customer.id = ?1 and a.workingOut.trainer.id = ?2 and a.status = 'ACCEPTED'")
+	boolean existApplicationAcceptedBetweenCustomerTrainer(int customerId, int trainerId);
 }
