@@ -1,7 +1,6 @@
 
 package services;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -39,10 +38,10 @@ public class ApplicationService {
 	@Autowired
 	private UtilityService			utilityService;
 
+
+	//TODO
 	@Autowired
-	private MessageService			messageService;
-
-
+	//private MessageService			messageService;
 	//Constructor ----------------------------------------------------
 	public ApplicationService() {
 		super();
@@ -57,21 +56,25 @@ public class ApplicationService {
 		Application result;
 		Customer customer;
 		final CreditCard creditCard;
-		List<CreditCard> creditCards;
+		final List<CreditCard> creditCards;
 
 		customer = this.customerService.findByPrincipal();
 		moment = this.utilityService.current_moment();
-		creditCards = new ArrayList<>(this.creditCardService.findAllByCustomer(customer.getId()));
+		//TODO
+		//creditCards = new ArrayList<>(this.creditCardService.findAllByCustomer(customer.getId()));
 
-		Assert.isTrue(!creditCards.isEmpty());
+		//TODO
+		//Assert.isTrue(!creditCards.isEmpty());
 		this.checkWorkingOutNoThisCustomerApplication(workingOut.getId(), customer.getId());
 
 		Assert.isTrue(workingOut.getStartMoment().after(moment));
-		creditCard = creditCards.get(0);
+		//TODO
+		//creditCard = creditCards.get(0);
 
 		result = new Application();
 		result.setCustomer(customer);
-		result.setCreditCard(creditCard);
+		//TODO
+		//result.setCreditCard(creditCard);
 		result.setWorkingOut(workingOut);
 		result.setStatus("PENDING");
 
@@ -86,7 +89,8 @@ public class ApplicationService {
 		Assert.isTrue(this.customerService.findByPrincipal().equals(application.getCustomer()));
 		Assert.isTrue(application.getStatus().equals("PENDING"));
 		Assert.isNull(this.applicationRepository.findOne(application.getId()));
-		Assert.isTrue(!(this.creditCardService.findAllByCustomer(application.getCustomer().getId())).isEmpty());
+		//TODO
+		//Assert.isTrue(!(this.creditCardService.findAllByCustomer(application.getCustomer().getId())).isEmpty());
 		Assert.isTrue(application.getCreditCard().getCustomer().equals(this.customerService.findByPrincipal()));
 		Assert.isNull(application.getRegisteredMoment());
 
@@ -110,7 +114,8 @@ public class ApplicationService {
 		Collection<Application> pendingApplications;
 
 		application.setStatus("ACCEPTED");
-		this.messageService.notification_applicationStatusChanges(application);
+		//TODO
+		//this.messageService.notification_applicationStatusChanges(application);
 
 		pendingApplications = this.applicationRepository.findPendingApplicationsByWorkingOut(application.getWorkingOut().getId());
 
@@ -122,7 +127,8 @@ public class ApplicationService {
 		Assert.isTrue(this.trainerService.findByPrincipal().equals(application.getWorkingOut().getTrainer()));
 		Assert.isTrue(application.getStatus().equals("PENDING"));
 		application.setStatus("REJECTED");
-		this.messageService.notification_applicationStatusChanges(application);
+		//TODO
+		//this.messageService.notification_applicationStatusChanges(application);
 	}
 
 	protected Application findOne(final int applicationId) {
