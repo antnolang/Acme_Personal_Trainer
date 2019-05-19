@@ -5,17 +5,17 @@ public class RegistrationForm {
 
 	private int				id;
 	private String			name;
+	private String			middleName;
 	private String			surname;
 	private String			fullname;
-	private int				VATnumber;
 	private String			photo;
 	private String			email;
 	private String			phoneNumber;
 	private String			address;
-	private Boolean			isSpammer;
-	private String			commercialName;
-	private Double			auditScore;
-	private String			make;
+	private Boolean			isSuspicious;
+	private boolean			isPremium;
+	private Double			mark;
+	private Double			score;
 	private UserAccountForm	userAccount;
 	private boolean			checkBoxAccepted;
 	private boolean			checkBoxDataProcessesAccepted;
@@ -85,12 +85,44 @@ public class RegistrationForm {
 		this.address = address;
 	}
 
-	public Boolean getIsSpammer() {
-		return this.isSpammer;
+	public Boolean getIsSuspicious() {
+		return this.isSuspicious;
 	}
 
-	public void setIsSpammer(final Boolean isSpammer) {
-		this.isSpammer = isSpammer;
+	public void setIsSuspicious(final Boolean isSuspicious) {
+		this.isSuspicious = isSuspicious;
+	}
+
+	public String getMiddleName() {
+		return this.middleName;
+	}
+
+	public void setMiddleName(final String middleName) {
+		this.middleName = middleName;
+	}
+
+	public boolean getIsPremium() {
+		return this.isPremium;
+	}
+
+	public void setIsPremium(final boolean isPremium) {
+		this.isPremium = isPremium;
+	}
+
+	public Double getMark() {
+		return this.mark;
+	}
+
+	public void setMark(final Double mark) {
+		this.mark = mark;
+	}
+
+	public Double getScore() {
+		return this.score;
+	}
+
+	public void setScore(final Double score) {
+		this.score = score;
 	}
 
 	public boolean getCheckBoxAccepted() {
@@ -99,38 +131,6 @@ public class RegistrationForm {
 
 	public void setCheckBoxAccepted(final boolean checkBoxAccepted) {
 		this.checkBoxAccepted = checkBoxAccepted;
-	}
-
-	public int getVATnumber() {
-		return this.VATnumber;
-	}
-
-	public void setVATnumber(final int vATnumber) {
-		this.VATnumber = vATnumber;
-	}
-
-	public String getCommercialName() {
-		return this.commercialName;
-	}
-
-	public void setCommercialName(final String commercialName) {
-		this.commercialName = commercialName;
-	}
-
-	public Double getAuditScore() {
-		return this.auditScore;
-	}
-
-	public void setAuditScore(final Double auditScore) {
-		this.auditScore = auditScore;
-	}
-
-	public String getMake() {
-		return this.make;
-	}
-
-	public void setMake(final String make) {
-		this.make = make;
 	}
 
 	public UserAccountForm getUserAccount() {

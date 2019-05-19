@@ -13,9 +13,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
 import services.AdministratorService;
+import services.AuditorService;
+import services.NutritionistService;
 import controllers.ActorAbstractController;
 import domain.Actor;
 import domain.Administrator;
+import domain.Auditor;
+import domain.Nutritionist;
 import forms.RegistrationForm;
 
 @Controller
@@ -30,12 +34,12 @@ public class ActorAdministratorController extends ActorAbstractController {
 	@Autowired
 	private AdministratorService	administratorService;
 
+	@Autowired
+	private AuditorService			auditorService;
 
-	//	@Autowired
-	//	private CompanyService			companyService;
+	@Autowired
+	private NutritionistService		nutritionistService;
 
-	//	@Autowired
-	//	private AuditorService			auditorService;
 
 	// Constructors
 
@@ -145,10 +149,7 @@ public class ActorAdministratorController extends ActorAbstractController {
 				this.administratorService.save(administrator);
 				result = new ModelAndView("redirect:/welcome/index.do");
 			} catch (final Throwable oops) {
-				if (oops.getMessage().equals("Expired credit card"))
-					result = this.createModelAndView(registrationForm, "expired.creditCard");
-				else
-					result = this.createModelAndView(registrationForm, "actor.registration.error");
+				result = this.createModelAndView(registrationForm, "actor.registration.error");
 				result.addObject("rol", "Administrator");
 			}
 
@@ -157,46 +158,84 @@ public class ActorAdministratorController extends ActorAbstractController {
 
 	// Register auditor
 
-	//	@RequestMapping(value = "/registerAuditor", method = RequestMethod.GET)
-	//	public ModelAndView createAuditor() {
-	//		ModelAndView result;
-	//		String rol;
-	//		Auditor auditor;
-	//
-	//		rol = "Auditor";
-	//		auditor = new Auditor();
-	//		result = this.createModelAndView(auditor);
-	//		result.addObject("rol", rol);
-	//		result.addObject("urlAdmin", "administrator/");
-	//
-	//		return result;
-	//	}
-	//
-	//	@RequestMapping(value = "/registerAuditor", method = RequestMethod.POST, params = "save")
-	//	public ModelAndView saveAuditor(final RegistrationForm registrationForm, final BindingResult binding) {
-	//		ModelAndView result;
-	//		final Auditor auditor;
-	//
-	//		auditor = this.auditorService.reconstruct(registrationForm, binding);
-	//
-	//		if (binding.hasErrors()) {
-	//			result = this.createModelAndView(registrationForm);
-	//			result.addObject("rol", "Auditor");
-	//		} else
-	//			try {
-	//				this.auditorService.save(auditor);
-	//				result = new ModelAndView("redirect:/welcome/index.do");
-	//			} catch (final Throwable oops) {
-	//				if (oops.getMessage().equals("Expired credit card"))
-	//					result = this.createModelAndView(registrationForm, "expired.creditCard");
-	//				else
-	//					result = this.createModelAndView(registrationForm, "actor.registration.error");
-	//				result.addObject("rol", "Auditor");
-	//
-	//			}
-	//		return result;
-	//
-	//	}
+	@RequestMapping(value = "/registerAuditor", method = RequestMethod.GET)
+	public ModelAndView createAuditor() {
+		ModelAndView result;
+		String rol;
+		Auditor auditor;
+
+		rol = "Auditor";
+		auditor = new Auditor();
+		result = this.createModelAndView(auditor);
+		result.addObject("rol", rol);
+		result.addObject("urlAdmin", "administrator/");
+
+		return result;
+	}
+
+	@RequestMapping(value = "/registerAuditor", method = RequestMethod.POST, params = "save")
+	public ModelAndView saveAuditor(final RegistrationForm registrationForm, final BindingResult binding) {
+		ModelAndView result;
+		final Auditor auditor;
+
+		auditor = this.auditorService.reconstruct(registrationForm, binding);
+
+		if (binding.hasErrors()) {
+			result = this.createModelAndView(registrationForm);
+			result.addObject("rol", "Auditor");
+		} else
+			try {
+				this.auditorService.save(auditor);
+				result = new ModelAndView("redirect:/welcome/index.do");
+			} catch (final Throwable oops) {
+				result = this.createModelAndView(registrationForm, "actor.registration.error");
+				result.addObject("rol", "Auditor");
+
+			}
+		return result;
+
+	}
+
+	// Register auditor
+
+	@RequestMapping(value = "/registerNutritionist", method = RequestMethod.GET)
+	public ModelAndView createNutritionist() {
+		ModelAndView result;
+		String rol;
+		Nutritionist nutritionist;
+
+		rol = "Nutritionist";
+		nutritionist = new Nutritionist();
+		result = this.createModelAndView(nutritionist);
+		result.addObject("rol", rol);
+		result.addObject("urlAdmin", "administrator/");
+
+		return result;
+	}
+
+	@RequestMapping(value = "/registerNutritionist", method = RequestMethod.POST, params = "save")
+	public ModelAndView saveNutritionist(final RegistrationForm registrationForm, final BindingResult binding) {
+		ModelAndView result;
+		final Nutritionist nutritionist;
+
+		nutritionist = this.nutritionistService.reconstruct(registrationForm, binding);
+
+		if (binding.hasErrors()) {
+			result = this.createModelAndView(registrationForm);
+			result.addObject("rol", "Nutritionist");
+		} else
+			try {
+				this.nutritionistService.save(nutritionist);
+				result = new ModelAndView("redirect:/welcome/index.do");
+			} catch (final Throwable oops) {
+				result = this.createModelAndView(registrationForm, "actor.registration.error");
+				result.addObject("rol", "Nutritionist");
+
+			}
+		return result;
+
+	}
+
 	// Ancillary Methods
 
 	protected ModelAndView createModelAndView(final Administrator administrator) {
@@ -210,16 +249,27 @@ public class ActorAdministratorController extends ActorAbstractController {
 		return result;
 	}
 
-	//	protected ModelAndView createModelAndView(final Auditor auditor) {
-	//		ModelAndView result;
-	//		RegistrationForm registrationForm;
-	//
-	//		registrationForm = this.auditorService.createForm(auditor);
-	//
-	//		result = this.createModelAndView(registrationForm, null);
-	//
-	//		return result;
-	//	}
+	protected ModelAndView createModelAndView(final Auditor auditor) {
+		ModelAndView result;
+		RegistrationForm registrationForm;
+
+		registrationForm = this.auditorService.createForm(auditor);
+
+		result = this.createModelAndView(registrationForm, null);
+
+		return result;
+	}
+
+	protected ModelAndView createModelAndView(final Nutritionist nutritionist) {
+		ModelAndView result;
+		RegistrationForm registrationForm;
+
+		registrationForm = this.nutritionistService.createForm(nutritionist);
+
+		result = this.createModelAndView(registrationForm, null);
+
+		return result;
+	}
 
 	protected ModelAndView createModelAndView(final RegistrationForm registrationForm) {
 		ModelAndView result;
