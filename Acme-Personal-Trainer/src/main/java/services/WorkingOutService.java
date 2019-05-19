@@ -60,6 +60,15 @@ public class WorkingOutService {
 		return result;
 	}
 
+	// Protected methods -----------------------------------------------
+	protected String existTicker(final String ticker) {
+		String result;
+
+		result = this.workingOutRepository.existTicker(ticker);
+
+		return result;
+	}
+
 	// Private methods-----------------------------------------------
 	private void checkByPrincipal(final WorkingOut position) {
 		Trainer owner;
