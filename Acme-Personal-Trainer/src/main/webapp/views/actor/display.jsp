@@ -29,8 +29,6 @@
 	
 	<p> <strong> <spring:message code="actor.fullname" />  </strong>  <jstl:out value="${actor.fullname}" /></p>
 
-	<p> <strong> <spring:message code="actor.VATnumber" />  </strong>  <jstl:out value="${actor.VATnumber}" />%</p>
-
 	<p> <strong> <spring:message code="actor.email" />  </strong>  <jstl:out value="${actor.email}" /></p>
 
 
@@ -63,19 +61,24 @@
 
 		<jstl:if test="${isAuthorized == false }">
 			<p>
-				<strong> <spring:message code="actor.isSpammer" /> 
+				<strong> <spring:message code="actor.isSuspicious" /> 
 				</strong>
-				<jstl:if test="${actor.isSpammer != null }">
-					<jstl:out value="${actor.isSpammer}" />
+				<jstl:if test="${actor.isSuspicious != null }">
+					<jstl:if test="${actor.isSuspicious == true }">
+						<spring:message code="actor.yes" />
+					</jstl:if>
+					<jstl:if test="${actor.isSuspicious == false }">
+						<spring:message code="actor.no" />
+					</jstl:if>
 				</jstl:if>
-				<jstl:if test="${actor.isSpammer == null }">
+				<jstl:if test="${actor.isSuspicious == null }">
 					<jstl:out value="N/A" />
 				</jstl:if>
 			</p>
 		</jstl:if>
 
 		<jstl:if
-			test="${actor.isSpammer == true}">
+			test="${actor.isSuspicious == true}">
 			<jstl:if test="${ actor.userAccount.isBanned == false}">
 				<a href="actor/administrator/ban.do?actorId=${actor.id}"><spring:message
 						code="actor.ban" /></a>
@@ -91,104 +94,71 @@
 
 	<jstl:if test="${isAuthorized == true}">
 		<a
-			href="actor/administrator,auditor,company,provider,rookie/edit.do?actorId=${actor.id}"><spring:message
+			href="actor/administrator,auditor,customer,nutritionist,trainer/edit.do?actorId=${actor.id}"><spring:message
 				code="actor.edit" /></a>
 	</jstl:if>
 	
 	<jstl:if test="${isAuthorized == true}">
-		<a href="exportData/administrator,company,rookie/export.do"><spring:message code="actor.exportData" /> </a>
+		<a href="exportData/administrator,auditor,customer,nutritionist,trainer/export.do"><spring:message code="actor.exportData" /> </a>
 	</jstl:if>
 	
 </fieldset>
 
-<jstl:if test="${actor.userAccount.authorities=='[COMPANY]'}">
+<jstl:if test="${actor.userAccount.authorities=='[CUSTOMER]'}">
 	<fieldset>
 		<legend>
-			<spring:message code="actor.company.legend" />
+			<spring:message code="actor.customer.legend" />
 		</legend>
 		<p>
-			<strong> <spring:message code="actor.company.commercialName" />
+			<strong> <spring:message code="actor.customer.isPremium" />
 			</strong>
-			<jstl:out value="${actor.commercialName}" />
-		</p>
-		
-		<p>
-			<strong> <spring:message code="actor.company.auditScore" />
-			</strong>
-			<jstl:if test="${actor.auditScore == null }">
-				<jstl:out value="N/A" />
+			<jstl:if test="${actor.isPremium == true }">
+				<spring:message code="actor.yes" />
 			</jstl:if>
-			<jstl:if test="${actor.auditScore != null }">
-				<jstl:out value="${actor.auditScore}" />
+			<jstl:if test="${actor.isPremium == false }">
+				<spring:message code="actor.no" />
 			</jstl:if>
 			
 		</p>
 
-
-		<p>
-			<strong> <spring:message code="actor.company.positions" />
-			</strong> <a href="position/list.do?companyId=${actor.id}"><spring:message
-					code="table.positions" /></a>
-		</p>
-
-
-
 	</fieldset>
 </jstl:if>
 
-<jstl:if test="${actor.userAccount.authorities=='[PROVIDER]'}">
+<jstl:if test="${actor.userAccount.authorities=='[TRAINER]'}">
 	<fieldset>
 		<legend>
-			<spring:message code="actor.provider.legend" />
+			<spring:message code="actor.trainer.legend" />
 		</legend>
 		<p>
-			<strong> <spring:message code="actor.provider.make" />
+			<strong> <spring:message code="actor.trainer.mark" />
 			</strong>
-			<jstl:out value="${actor.make}" />
+			<jstl:if test="${actor.mark != null }">
+					<jstl:out value="${actor.mark}" />
+			</jstl:if>
+			<jstl:if test="${actor.mark == null }">
+				<jstl:out value="N/A" />
+			</jstl:if>
 		</p>
+		
+		
+		<security:authorize access="hasRole('ADMIN')">
+		<p>
+			<strong> <spring:message code="actor.trainer.score" />
+			</strong>
+			<jstl:if test="${actor.score != null }">
+					<jstl:out value="${actor.score}" />
+			</jstl:if>
+			<jstl:if test="${actor.score == null }">
+				<jstl:out value="N/A" />
+			</jstl:if>
+		</p>
+		</security:authorize>
 		
 		<p>
-			<strong> <spring:message code="actor.provider.items" />
-			</strong> <a href="item/list.do?providerId=${actor.id}"><spring:message
-					code="provider.items" /></a>
+			<strong> <spring:message code="actor.trainer.workingOuts" />
+			</strong> <a href="workingOut/list.do?trainerId=${actor.id}"><spring:message
+					code="table.workingOuts" /></a>
 		</p>
-		
-	</fieldset>
-</jstl:if>
-
-<jstl:if test="${isAuthorized == true}">
-<fieldset>
-	<legend><spring:message code="creditCard.legend"/></legend>
-	
-	<p>
-		<strong><spring:message code="creditCard.holder"/> </strong>
-		<jstl:out value="${actor.creditCard.holder}"/>
-	</p>
-	
-	<p>
-		<strong><spring:message code="creditCard.make"/> </strong>
-		<jstl:out value="${actor.creditCard.make}"/>
-	</p>
-	
-	<p>
-		<jstl:set var="length" value="${fn:length(actor.creditCard.number)}"/>
-		<strong><spring:message code="creditCard.number"/> </strong>
-		<jstl:out value="****${fn:substring(actor.creditCard.number, length - 4, length)}"/>
-	</p>
-	
-	<p>
-		<strong><spring:message code="creditCard.expirationMonth"/> </strong>
-		<jstl:out value="${actor.creditCard.expirationMonth}"/>
-	</p>
-	
-	<p>
-		<strong><spring:message code="creditCard.expirationYear"/> </strong>
-		<jstl:out value="${actor.creditCard.expirationYear}"/>
-	</p>
-
-	<a href="creditCard/administrator,auditor,company,provider,rookie/edit.do?actorId=${actor.id}"><spring:message
-				code="actor.creditCard.edit" /></a>
-
 	</fieldset>
 </jstl:if>
 

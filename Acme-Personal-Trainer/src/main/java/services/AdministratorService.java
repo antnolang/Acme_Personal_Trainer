@@ -17,7 +17,6 @@ import security.LoginService;
 import security.UserAccount;
 import security.UserAccountService;
 import domain.Administrator;
-import domain.CreditCard;
 import forms.RegistrationForm;
 
 @Service
@@ -142,29 +141,18 @@ public class AdministratorService {
 	public Administrator reconstruct(final RegistrationForm registrationForm, final BindingResult binding) {
 		Administrator result, administratorStored;
 		UserAccount userAccount;
-		CreditCard creditCard;
 
 		if (registrationForm.getId() == 0) {
 			result = this.create();
-			creditCard = new CreditCard();
 
 			result.setName(registrationForm.getName());
+			result.setMiddleName(registrationForm.getMiddleName());
 			result.setSurname(registrationForm.getSurname());
-			//result.setVATnumber(registrationForm.getVATnumber());
 			result.setEmail(registrationForm.getEmail());
 			result.setPhoneNumber(registrationForm.getPhoneNumber());
 			result.setPhoto(registrationForm.getPhoto());
 			result.setAddress(registrationForm.getAddress());
-			//result.setIsSpammer(registrationForm.getIsSpammer());
-
-			//creditCard.setHolder(registrationForm.getCreditCard().getHolder());
-			//creditCard.setMake(registrationForm.getCreditCard().getMake());
-			//creditCard.setNumber(registrationForm.getCreditCard().getNumber());
-			//creditCard.setExpirationMonth(registrationForm.getCreditCard().getExpirationMonth());
-			//creditCard.setExpirationYear(registrationForm.getCreditCard().getExpirationYear());
-			//creditCard.setCvvCode(registrationForm.getCreditCard().getCvvCode());
-
-			//result.setCreditCard(creditCard);
+			result.setIsSuspicious(false);
 
 			userAccount = result.getUserAccount();
 			userAccount.setUsername(registrationForm.getUserAccount().getUsername());
@@ -176,16 +164,15 @@ public class AdministratorService {
 			administratorStored = this.findOneToDisplayEdit(registrationForm.getId());
 
 			result.setName(registrationForm.getName());
+			result.setMiddleName(registrationForm.getMiddleName());
 			result.setSurname(registrationForm.getSurname());
 			result.setEmail(registrationForm.getEmail());
-			//result.setVATnumber(registrationForm.getVATnumber());
 			result.setPhoneNumber(registrationForm.getPhoneNumber());
 			result.setPhoto(registrationForm.getPhoto());
 			result.setAddress(registrationForm.getAddress());
-			//result.setIsSpammer(administratorStored.getIsSpammer());
+			result.setIsSuspicious(administratorStored.getIsSuspicious());
 			result.setId(administratorStored.getId());
 			result.setVersion(administratorStored.getVersion());
-			//result.setCreditCard(administratorStored.getCreditCard());
 
 			this.utilityService.validateEmailAdministrator(registrationForm.getEmail(), binding);
 
@@ -262,13 +249,14 @@ public class AdministratorService {
 		registrationForm = new RegistrationForm();
 
 		registrationForm.setName(administrator.getName());
+		registrationForm.setMiddleName(administrator.getMiddleName());
 		registrationForm.setSurname(administrator.getSurname());
-		//registrationForm.setVATnumber(administrator.getVATnumber());
 		registrationForm.setEmail(administrator.getEmail());
 		registrationForm.setId(administrator.getId());
 		registrationForm.setPhoto(administrator.getPhoto());
 		registrationForm.setPhoneNumber(administrator.getPhoneNumber());
 		registrationForm.setAddress(administrator.getAddress());
+		registrationForm.setIsSuspicious(administrator.getIsSuspicious());
 		registrationForm.setCheckBoxAccepted(false);
 		registrationForm.setCheckBoxDataProcessesAccepted(false);
 

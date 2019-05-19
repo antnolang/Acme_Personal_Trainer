@@ -31,6 +31,7 @@ public class WorkingOutService {
 
 	//Constructor ----------------------------------------------------
 
+
 	public WorkingOutService() {
 		super();
 	}
@@ -79,7 +80,8 @@ public class WorkingOutService {
 		this.workingOutRepository.delete(workingOut);
 	}
 
-	private WorkingOut findOne(final int workingOutId) {
+
+	protected WorkingOut findOne(final int workingOutId) {
 		WorkingOut result;
 
 		result = this.workingOutRepository.findOne(workingOutId);

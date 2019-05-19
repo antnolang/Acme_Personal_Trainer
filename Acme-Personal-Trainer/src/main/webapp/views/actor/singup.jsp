@@ -16,11 +16,11 @@
 	<form:hidden path="id"/>
 	
 	<jstl:choose>
-		<jstl:when test="${rol == 'Company'}">
-			<h2><spring:message code="header.company"/></h2>
+		<jstl:when test="${rol == 'Customer'}">
+			<h2><spring:message code="header.customer"/></h2>
 		</jstl:when>
-		<jstl:when test="${rol == 'Rookie'}">
-			<h2><spring:message code="header.rookie"/></h2>
+		<jstl:when test="${rol == 'Trainer'}">
+			<h2><spring:message code="header.trainer"/></h2>
 		</jstl:when>
 		<jstl:when test="${rol == 'Administrator'}">
 			<h2><spring:message code="header.administrator"/></h2>
@@ -28,8 +28,8 @@
 		<jstl:when test="${rol == 'Auditor'}">
 			<h2><spring:message code="header.auditor"/></h2>
 		</jstl:when>
-		<jstl:when test="${rol == 'Provider'}">
-			<h2><spring:message code="header.provider"/></h2>
+		<jstl:when test="${rol == 'Nutritionist'}">
+			<h2><spring:message code="header.nutritionist"/></h2>
 		</jstl:when>
 		
 	
@@ -44,14 +44,15 @@
 	
 		<br />
 		
+		<acme:textbox code="actor.middleName" path="middleName"/>
+	
+		<br />
+		
 		
 		<acme:textbox code="actor.surname.requested" path="surname"/>
 		
 		<br />
 		
-		<acme:textbox code="actor.VATnumber.requested" path="VATnumber"/>
-		
-		<br />
 		
 		<acme:textbox code="actor.photo" path="photo"/>
 		
@@ -71,56 +72,6 @@
 		  		 
 	</fieldset>
 
-	<jstl:if test="${rol == 'Company'}">
-		<fieldset>
-			<legend>
-				<spring:message code="actor.company.legend" />
-			</legend>
-			
-			
-			<acme:textbox code="actor.company.commercialName.requested" path="commercialName"/>
-			<br /> 
-
-
-		</fieldset>
-	</jstl:if>
-	
-	<jstl:if test="${rol == 'Provider'}">
-		<fieldset>
-			<legend>
-				<spring:message code="actor.provider.legend" />
-			</legend>
-			
-			
-			<acme:textbox code="actor.provider.make.requested" path="make"/>
-			<br /> 
-
-
-		</fieldset>
-	</jstl:if>
-
-	<fieldset>
-		<legend><spring:message code="creditCard.legend"/></legend>
-		
-		<acme:textbox code="creditCard.holder.requested" path="creditCard.holder"/>
-		<br>
-		
-		<acme:textbox code="creditCard.make.requested" path="creditCard.make"/>
-		<br>
-		
-		<acme:textbox code="creditCard.number.requested" path="creditCard.number"/>
-		<br>
-		
-		<acme:textbox code="creditCard.expirationMonth.requested" path="creditCard.expirationMonth"/>
-		<br>
-		
-		<acme:textbox code="creditCard.expirationYear.requested" path="creditCard.expirationYear"/>
-		<br>
-		
-		<acme:textbox code="creditCard.cvvCode.requested" path="creditCard.cvvCode"/>
-		<br>
-	
-	</fieldset>
 	
 	<fieldset>
 		<legend><spring:message code="userAccount.legend"/></legend>
@@ -144,28 +95,29 @@
 			<jstl:if test="${rol == 'Auditor'}">
 				<acme:textbox code="actor.authority" path="userAccount.authorities" readonly="true" value="AUDITOR"/>
 			</jstl:if>
+			
+			<jstl:if test="${rol == 'Nutritionist'}">
+		
+			<acme:textbox code="actor.authority" path="userAccount.authorities" readonly="true" value="NUTRITIONIST"/>
+		
+		</jstl:if>
 		</security:authorize>
  
  
 		<security:authorize access="isAnonymous()" >
 		
-		<jstl:if test="${rol == 'Company'}">
+		<jstl:if test="${rol == 'Customer'}">
 		
-			<acme:textbox code="actor.authority" path="userAccount.authorities" readonly="true" value="COMPANY"/>
+			<acme:textbox code="actor.authority" path="userAccount.authorities" readonly="true" value="CUSTOMER"/>
 			
 		</jstl:if>
 		
-		<jstl:if test="${rol == 'Rookie'}">
+		<jstl:if test="${rol == 'Trainer'}">
 		
-			<acme:textbox code="actor.authority" path="userAccount.authorities" readonly="true" value="ROOKIE"/>
-		
-		</jstl:if>
-		
-		<jstl:if test="${rol == 'Provider'}">
-		
-			<acme:textbox code="actor.authority" path="userAccount.authorities" readonly="true" value="PROVIDER"/>
+			<acme:textbox code="actor.authority" path="userAccount.authorities" readonly="true" value="TRAINER"/>
 		
 		</jstl:if>
+		
 		
 		</security:authorize>
 		

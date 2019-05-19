@@ -14,7 +14,15 @@
 			<li><a class="fNiv"><spring:message	code="master.page.administrator" /></a>
 				<ul>
 					<li class="arrow"></li>
+
+					<li><a href="actor/administrator/registerAdministrator.do"><spring:message code="master.page.administrator.create" /></a></li>
+					<li><a href="actor/administrator/registerAuditor.do"><spring:message code="master.page.auditor.create" /></a></li>
+					<li><a href="actor/administrator/registerNutritionist.do"><spring:message code="master.page.nutritionist.create" /></a></li>
+					<li><a href="actor/administrator/list.do"><spring:message code="master.page.actor.list" /></a></li>
+
 					<!-- Añadir enlaces -->
+					<li><a href="/category/administrator/list.do"><spring:message code="master.page.category" /> </a></li>
+
 				</ul>
 			</li>
 		</security:authorize>
@@ -23,13 +31,20 @@
 			<li><a class="fNiv"><spring:message	code="master.page.customer" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<!-- Añadir enlaces -->
+					<li><a href="application/customer/list.do"><spring:message code="master.page.application.list" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
+			<li><a class="fNiv"><spring:message	code="master.page.register" /></a>	
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="actor/registerCustomer.do"><spring:message code="master.page.customer.create" /></a></li>
+					<li><a href="actor/registerTrainer.do"><spring:message code="master.page.trainer.create" /></a></li>
+				</ul>
+			</li>
 		</security:authorize>
 		
 		<security:authorize access="isAuthenticated()">
@@ -41,6 +56,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<!-- Añadir enlaces -->
+					<li><a href="actor/display.do"><spring:message code="master.page.actor.display" /></a></li>
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>

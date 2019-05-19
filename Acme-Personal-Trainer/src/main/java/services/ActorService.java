@@ -8,7 +8,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-import org.springframework.validation.Validator;
 
 import repositories.ActorRepository;
 import security.LoginService;
@@ -30,10 +29,10 @@ public class ActorService {
 	private UtilityService			utilityService;
 
 	@Autowired
-	private Validator				validator;
+	private SocialProfileService	socialProfileService;
 
 	@Autowired
-	private SocialProfileService	socialProfileService;
+	private MessageService			messageService;
 
 
 	// Constructors -------------------------------
@@ -140,7 +139,7 @@ public class ActorService {
 
 	public void ban(final Actor actor) {
 		Assert.notNull(actor);
-		//Assert.isTrue(actor.getIsSpammer());
+		Assert.isTrue(actor.getIsSuspicious());
 
 		final UserAccount userAccount;
 
@@ -164,32 +163,29 @@ public class ActorService {
 		Assert.isTrue(!actor.getUserAccount().getIsBanned());
 	}
 
-	public void markAsSpammer(final Actor actor, final Boolean bool) {
-		//actor.setIsSpammer(bool);
+	public void markAsSuspicious(final Actor actor, final Boolean bool) {
+		actor.setIsSuspicious(bool);
 	}
 
-	public void spammerProcess() {
+	public void suspiciousProcess() {
 		Collection<Actor> all;
 
 		all = this.findAll();
 
-		//		for (final Actor a : all)
-		//			this.launchSpammerProcess(a);
+		for (final Actor a : all)
+			this.launchSuspiciousProcess(a);
 	}
 
-	//	private void launchSpammerProcess(final Actor actor) {
-	//		Double percentage, numberMessages, numberSpamMessages;
-	//		Boolean value;
-	//
-	//		numberMessages = this.messageService.numberMessagesSentByActor(actor.getId());
-	//		numberSpamMessages = this.messageService.numberSpamMessagesSentByActor(actor.getId());
-	//
-	//		percentage = numberSpamMessages / numberMessages;
-	//
-	//		value = percentage >= 0.1;
-	//
-	//		this.markAsSpammer(actor, value);
-	//	}
+	private void launchSuspiciousProcess(final Actor actor) {
+		Double numberSpamMessages;
+
+		numberSpamMessages = this.messageService.numberSpamMessagesSentByActor(actor.getId());
+
+		if (numberSpamMessages >= 1.0)
+			this.markAsSuspicious(actor, true);
+		else
+			this.markAsSuspicious(actor, false);
+	}
 
 	public boolean existEmail(final String email) {
 		boolean result;

@@ -11,16 +11,16 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <spring:message code="confirm.telephone" var="confirmTelephone"/>
-<form:form action="actor/administrator,auditor,company,provider,rookie/edit.do" modelAttribute="registrationForm" onsubmit="javascript:calcMD5();">
+<form:form action="actor/administrator,auditor,customer,nutritionist,trainer/edit.do" modelAttribute="registrationForm" onsubmit="javascript:calcMD5();">
 	<jstl:choose>
-		<jstl:when test="${rol == 'Company'}">
+		<jstl:when test="${rol == 'Customer'}">
 			<h2>
-				<spring:message code="header.company" />
+				<spring:message code="header.customer" />
 			</h2>
 		</jstl:when>
-		<jstl:when test="${rol == 'Rookie'}">
+		<jstl:when test="${rol == 'Trainer'}">
 			<h2>
-				<spring:message code="header.rookie" />
+				<spring:message code="header.trainer" />
 			</h2>
 		</jstl:when>
 		<jstl:when test="${rol == 'Administrator'}">
@@ -31,8 +31,8 @@
 		<jstl:when test="${rol == 'Auditor'}">
 			<h2><spring:message code="header.auditor"/></h2>
 		</jstl:when>
-		<jstl:when test="${rol == 'Provider'}">
-			<h2><spring:message code="header.provider"/></h2>
+		<jstl:when test="${rol == 'Nutritionist'}">
+			<h2><spring:message code="header.nutritionist"/></h2>
 		</jstl:when>
 
 	</jstl:choose>
@@ -46,16 +46,16 @@
 		
 		<br />
 		
+		<acme:textbox code="actor.middleName" path="middleName"/>
+		
+		<br />
+		
 		
 		<acme:textbox code="actor.surname" path="surname"/>
 		
 	
 		<br />
 		
-		<acme:textbox code="actor.VATnumber" path="VATnumber"/>
-		
-	
-		<br />
 		
 		<acme:textbox code="actor.photo" path="photo"/>
 		
@@ -73,21 +73,7 @@
 		
 		<br /> 
 		
-		<jstl:if test="${rol == 'Company'}">
 		
-			<acme:textbox code="actor.company.commercialName" path="commercialName"/>
-		
-			<br />
-		
-		</jstl:if>
-		
-		<jstl:if test="${rol == 'Provider'}">
-		
-			<acme:textbox code="actor.provider.make" path="make"/>
-		
-			<br />
-		
-		</jstl:if>
 	</fieldset>
  
 	<fieldset>
@@ -111,21 +97,21 @@
 			<acme:submit name="saveAdmin" code="actor.save" onclick="javascript: return checkTelephone('${confirmTelephone}');"/>
 			<input type="submit" name="deleteAdmin" value="<spring:message code="actor.delete"/>" onclick="return confirm('<spring:message code="actor.confirm.delete"/>')"/>
 		</jstl:when>
-		<jstl:when test="${rol == 'Company'}">
-			<acme:submit name="saveCompany" code="actor.save" onclick="javascript: return checkTelephone('${confirmTelephone}');"/>
-			<input type="submit" name="deleteCompany" value="<spring:message code="actor.delete"/>" onclick="return confirm('<spring:message code="actor.confirm.delete"/>')"/>
+		<jstl:when test="${rol == 'Customer'}">
+			<acme:submit name="saveCustomer" code="actor.save" onclick="javascript: return checkTelephone('${confirmTelephone}');"/>
+			<input type="submit" name="deleteCustomer" value="<spring:message code="actor.delete"/>" onclick="return confirm('<spring:message code="actor.confirm.delete"/>')"/>
 		</jstl:when>
-		<jstl:when test="${rol == 'Rookie'}">
-			<acme:submit name="saveRookie" code="actor.save" onclick="javascript: return checkTelephone('${confirmTelephone}');"/>
-			<input type="submit" name="deleteRookie" value="<spring:message code="actor.delete"/>" onclick="return confirm('<spring:message code="actor.confirm.delete"/>')"/>
+		<jstl:when test="${rol == 'Trainer'}">
+			<acme:submit name="saveTrainer" code="actor.save" onclick="javascript: return checkTelephone('${confirmTelephone}');"/>
+			<input type="submit" name="deleteTrainer" value="<spring:message code="actor.delete"/>" onclick="return confirm('<spring:message code="actor.confirm.delete"/>')"/>
 		</jstl:when>
 		<jstl:when test="${rol == 'Auditor'}">
 			<acme:submit name="saveAuditor" code="actor.save" onclick="javascript: return checkTelephone('${confirmTelephone}');"/>
 			<input type="submit" name="deleteAuditor" value="<spring:message code="actor.delete"/>" onclick="return confirm('<spring:message code="actor.confirm.delete"/>')"/>
 		</jstl:when>
-		<jstl:when test="${rol == 'Provider'}">
-			<acme:submit name="saveProvider" code="actor.save" onclick="javascript: return checkTelephone('${confirmTelephone}');"/>
-			<input type="submit" name="deleteProvider" value="<spring:message code="actor.delete"/>" onclick="return confirm('<spring:message code="actor.confirm.delete"/>')"/>
+		<jstl:when test="${rol == 'Nutritionist'}">
+			<acme:submit name="saveNutritionist" code="actor.save" onclick="javascript: return checkTelephone('${confirmTelephone}');"/>
+			<input type="submit" name="deleteNutritionist" value="<spring:message code="actor.delete"/>" onclick="return confirm('<spring:message code="actor.confirm.delete"/>')"/>
 		</jstl:when>
 	</jstl:choose>
 	

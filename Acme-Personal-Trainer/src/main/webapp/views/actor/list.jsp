@@ -25,37 +25,26 @@
 	
 	<display:column property="address" titleKey="table.address"/>	
 	
-	<jstl:if test="${requestURI == 'company/list.do' }">
-		<display:column property="commercialName" titleKey="table.commercialName"/>
-	</jstl:if>
 	<security:authorize access="hasRole('ADMIN')">
-		<jstl:if test="${row.isSpammer == null}">
-			<display:column value="" titleKey="table.isSpammer" />
+		<jstl:if test="${row.isSuspicious == null}">
+			<display:column value="" titleKey="table.isSuspicious" />
 		</jstl:if>
-		<jstl:if test="${row.isSpammer != null && row.isSpammer}">
+		<jstl:if test="${row.isSuspicious != null && row.isSuspicious}">
 			<spring:message code="actor.yes" var="b" />
-			<display:column value="${b}" titleKey="table.isSpammer" />
+			<display:column value="${b}" titleKey="table.isSuspicious" />
 		</jstl:if>
-		<jstl:if test="${row.isSpammer != null && !row.isSpammer}">
+		<jstl:if test="${row.isSuspicious != null && !row.isSuspicious}">
 			<spring:message code="actor.no" var="b" />
-			<display:column value="${b}" titleKey="table.isSpammer" />
+			<display:column value="${b}" titleKey="table.isSuspicious" />
 		</jstl:if>
 	</security:authorize>
 	
-	<display:column titleKey="table.auditScore">
-		<jstl:if test="${row.userAccount.authorities == '[COMPANY]'}">
-			<jstl:out value="${row.auditScore}" />
-		</jstl:if>
-	</display:column>
 </display:table>
 
 <security:authorize access="hasRole('ADMIN')">
-	<form:form action="actor/administrator/spammersProcess.do">
-		<acme:submit name="spammers" code="actor.launch" />
+	<form:form action="actor/administrator/suspiciousProcess.do">
+		<acme:submit name="suspicious" code="actor.launch.suspicious" />
 	</form:form>
 	
-	<form:form action="actor/administrator/auditScoreProcess.do">
-		<acme:submit name="audit_score" code="actor.process" />
-	</form:form>
 </security:authorize>
  	
