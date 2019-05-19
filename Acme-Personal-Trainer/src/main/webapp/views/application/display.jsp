@@ -27,11 +27,11 @@
 <strong><spring:message code="application.creditCard" />:</strong>
 <a
 	href="curriculum/display.do?creditCardId=${application.creditCard.id}"><spring:message
-		code="application.display.creditCard" /></a>
+		code="application.creditCard" /></a>
 <br />		
 
 <strong><spring:message code="application.workingOut" />:</strong>
-<a href="workingOut/display.do?workingOutId=${application.workingOut.id}"><jstl:out value="${application.workingOut.title}"/></a>
+<a href="workingOut/display.do?workingOutId=${application.workingOut.id}"><jstl:out value="${application.workingOut.ticker}"/></a>
 	<br/>
 	
 	<strong><spring:message code="application.comments" />:</strong>

@@ -21,40 +21,12 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 
-
-<security:authorize access="hasRole('CUSTOMER')">
-	<fieldset>
-		<legend>
-			<spring:message code="application.pending" />
-		</legend>
-
-		<display:table name="pendingApplications" id="row"
-			requestURI="${requestURI}" class="displaytag" pagesize="5">
-
-			<display:column>
-				<a
-					href="application/customer,trainer/display.do?applicationId=${row.id}"><spring:message
-						code="application.display" /></a>
-			</display:column>
-
-			<display:column property="problem.title"
-				titleKey="application.problem" />
-
-			<security:authorize access="hasRole('CUSTOMER')">
-				<display:column property="workingOut.title"
-					titleKey="application.workingOut" />
-			</security:authorize>
-
-		</display:table>
-	</fieldset>
-</security:authorize>
-
 <fieldset>
 	<legend>
-		<spring:message code="application.submitted" />
+		<spring:message code="application.pending" />
 	</legend>
 
-	<display:table name="submittedApplications" id="row1"
+	<display:table name="pendingApplications" id="row1"
 		requestURI="${requestURI}" class="displaytag" pagesize="5">
 
 		<display:column>
@@ -76,18 +48,21 @@
 						code="application.accept" /></a>
 			</display:column>
 		</security:authorize>
-
-		<display:column
-					property="problem.title" titleKey="application.problem" />
-
-		<security:authorize access="hasRole('CUSTOMER')">
-			<display:column 
-				property="workingOut.title" titleKey="application.workingOut" />
-		</security:authorize>
+		
+		<display:column 
+			property="workingOut.ticker" titleKey="application.workingOut" />
+			
+		<display:column 
+			property="registeredMoment" titleKey="application.registeredMoment" />
 
 		<security:authorize access="hasRole('TRAINER')">
 			<display:column 
 				property="customer.fullname" titleKey="application.customer" />
+		</security:authorize>
+		
+		<security:authorize access="hasRole('CUSTOMER')">
+			<display:column 
+				property="workingOut.trainer.fullname" titleKey="application.trainer" />
 		</security:authorize>
 
 	</display:table>
@@ -107,17 +82,20 @@
 					code="application.display" /></a>
 		</display:column>
 
+				<display:column 
+			property="workingOut.ticker" titleKey="application.workingOut" />
+			
 		<display:column 
-			property="problem.title" titleKey="application.problem" />
-
-		<security:authorize access="hasRole('CUSTOMER')">
-			<display:column 
-				property="workingOut.title" titleKey="application.workingOut" />
-		</security:authorize>
+			property="registeredMoment" titleKey="application.registeredMoment" />
 
 		<security:authorize access="hasRole('TRAINER')">
 			<display:column 
 				property="customer.fullname" titleKey="application.customer" />
+		</security:authorize>
+		
+		<security:authorize access="hasRole('CUSTOMER')">
+			<display:column 
+				property="workingOut.trainer.fullname" titleKey="application.trainer" />
 		</security:authorize>
 
 	</display:table>
@@ -138,17 +116,20 @@
 					code="application.display" /></a>
 		</display:column>
 
+				<display:column 
+			property="workingOut.ticker" titleKey="application.workingOut" />
+			
 		<display:column 
-			property="problem.title" titleKey="application.problem" />
-
-		<security:authorize access="hasRole('CUSTOMER')">
-			<display:column 
-				property="workingOut.title" titleKey="application.workingOut" />
-		</security:authorize>
+			property="registeredMoment" titleKey="application.registeredMoment" />
 
 		<security:authorize access="hasRole('TRAINER')">
 			<display:column 
 				property="customer.fullname" titleKey="application.customer" />
+		</security:authorize>
+		
+		<security:authorize access="hasRole('CUSTOMER')">
+			<display:column 
+				property="workingOut.trainer.fullname" titleKey="application.trainer" />
 		</security:authorize>
 
 	</display:table>
