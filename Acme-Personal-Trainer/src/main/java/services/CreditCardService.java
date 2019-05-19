@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import repositories.CreditCardRepository;
 import domain.CreditCard;
@@ -30,6 +31,15 @@ public class CreditCardService {
 
 	//Constructor ----------------------------------------------------
 
+	public CreditCard findOne(final int creditCardId) {
+		CreditCard result;
+
+		result = this.creditCardRepository.findOne(creditCardId);
+		Assert.notNull(result);
+
+		return result;
+	}
+
 	// Reconstruct ----------------------------------------------
 
 	// Other business methods ---------------------
@@ -44,4 +54,5 @@ public class CreditCardService {
 
 		return results;
 	}
+
 }

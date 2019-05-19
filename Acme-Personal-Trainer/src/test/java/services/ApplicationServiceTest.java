@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
 import domain.Application;
@@ -23,14 +24,12 @@ public class ApplicationServiceTest extends AbstractTest {
 	@Autowired
 	private ApplicationService	applicationService;
 
+	@Autowired
+	private WorkingOutService	workingOutService;
 
-	//TODO
-	//@Autowired
-	//private WorkingOutService	workingOutService;
+	@Autowired
+	private CreditCardService	creditCardService;
 
-	//TODO
-	//@Autowired
-	//private CreditCardService	creditCardService;
 
 	//Test ------------------------------------------------
 
@@ -109,19 +108,16 @@ public class ApplicationServiceTest extends AbstractTest {
 		caught = null;
 		try {
 			super.authenticate(username);
-			//TODO
-			//workingOut = this.workingOutService.findOne(workingOutId);
+			workingOut = this.workingOutService.findOne(workingOutId);
 
-			//TODO
-			//application = this.applicationService.create(workingOut);
+			application = this.applicationService.create(workingOut);
 
-			//application.setCreditCard(this.creditCardService.findOne(creditCardId));
-			//applicationSaved = this.applicationService.save(application);
+			application.setCreditCard(this.creditCardService.findOne(creditCardId));
+			applicationSaved = this.applicationService.save(application);
 			this.applicationService.flush();
 
-			//TODO
-			//Assert.notNull(applicationSaved);
-			//Assert.isTrue(applicationSaved.getId() != 0);
+			Assert.notNull(applicationSaved);
+			Assert.isTrue(applicationSaved.getId() != 0);
 
 			super.unauthenticate();
 		} catch (final Throwable oops) {
