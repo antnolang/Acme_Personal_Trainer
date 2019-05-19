@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -38,10 +39,13 @@ public class ApplicationService {
 	@Autowired
 	private UtilityService			utilityService;
 
-
-	//TODO
 	@Autowired
-	//private MessageService			messageService;
+	private MessageService			messageService;
+
+	@Autowired
+	private CreditCardService		creditCardService;
+
+
 	//Constructor ----------------------------------------------------
 	public ApplicationService() {
 		super();
@@ -60,21 +64,17 @@ public class ApplicationService {
 
 		customer = this.customerService.findByPrincipal();
 		moment = this.utilityService.current_moment();
-		//TODO
-		//creditCards = new ArrayList<>(this.creditCardService.findAllByCustomer(customer.getId()));
+		creditCards = new ArrayList<>(this.creditCardService.findAllByCustomer());
 
-		//TODO
-		//Assert.isTrue(!creditCards.isEmpty());
+		Assert.isTrue(!creditCards.isEmpty());
 		this.checkWorkingOutNoThisCustomerApplication(workingOut.getId(), customer.getId());
 
 		Assert.isTrue(workingOut.getStartMoment().after(moment));
-		//TODO
-		//creditCard = creditCards.get(0);
+		creditCard = creditCards.get(0);
 
 		result = new Application();
 		result.setCustomer(customer);
-		//TODO
-		//result.setCreditCard(creditCard);
+		result.setCreditCard(creditCard);
 		result.setWorkingOut(workingOut);
 		result.setStatus("PENDING");
 
@@ -89,8 +89,7 @@ public class ApplicationService {
 		Assert.isTrue(this.customerService.findByPrincipal().equals(application.getCustomer()));
 		Assert.isTrue(application.getStatus().equals("PENDING"));
 		Assert.isNull(this.applicationRepository.findOne(application.getId()));
-		//TODO
-		//Assert.isTrue(!(this.creditCardService.findAllByCustomer(application.getCustomer().getId())).isEmpty());
+		Assert.isTrue(!(this.creditCardService.findAllByCustomer()).isEmpty());
 		Assert.isTrue(application.getCreditCard().getCustomer().equals(this.customerService.findByPrincipal()));
 		Assert.isNull(application.getRegisteredMoment());
 
@@ -114,8 +113,7 @@ public class ApplicationService {
 		Collection<Application> pendingApplications;
 
 		application.setStatus("ACCEPTED");
-		//TODO
-		//this.messageService.notification_applicationStatusChanges(application);
+		this.messageService.notification_applicationStatusChanges(application);
 
 		pendingApplications = this.applicationRepository.findPendingApplicationsByWorkingOut(application.getWorkingOut().getId());
 
@@ -127,8 +125,7 @@ public class ApplicationService {
 		Assert.isTrue(this.trainerService.findByPrincipal().equals(application.getWorkingOut().getTrainer()));
 		Assert.isTrue(application.getStatus().equals("PENDING"));
 		application.setStatus("REJECTED");
-		//TODO
-		//this.messageService.notification_applicationStatusChanges(application);
+		this.messageService.notification_applicationStatusChanges(application);
 	}
 
 	protected Application findOne(final int applicationId) {
@@ -146,6 +143,17 @@ public class ApplicationService {
 
 		Assert.notNull(result);
 		Assert.isTrue(this.trainerService.findByPrincipal().equals(result.getWorkingOut().getTrainer()));
+		Assert.isTrue(this.customerService.findByPrincipal().equals(result.getCustomer()));
+
+		return result;
+	}
+
+	public Application findOneToCustomer(final int applicationId) {
+		Application result;
+
+		result = this.findOne(applicationId);
+
+		Assert.notNull(result);
 		Assert.isTrue(this.customerService.findByPrincipal().equals(result.getCustomer()));
 
 		return result;
@@ -178,7 +186,7 @@ public class ApplicationService {
 		this.applicationRepository.deleteInBatch(applications);
 	}
 
-	protected void deleteApplicationByRookie(final Customer customer) {
+	protected void deleteApplicationByCustomer(final Customer customer) {
 		Collection<Application> applications;
 
 		applications = this.applicationRepository.findApplicationsByCustomer(customer.getId());
@@ -205,6 +213,60 @@ public class ApplicationService {
 	private void checkWorkingOutNoThisCustomerApplication(final int workingOutId, final int customerId) {
 		Assert.isTrue(this.applicationRepository.findApplicationsByWorkingOutByCustomer(workingOutId, customerId).isEmpty());
 
+	}
+
+	public Collection<Application> findPendingApplicationsByCustomer() {
+		Collection<Application> applications;
+		Customer customer;
+
+		customer = this.customerService.findByPrincipal();
+		applications = this.applicationRepository.findPendingApplicationsByCustomer(customer.getId());
+
+		return applications;
+	}
+
+	public Collection<Application> findAcceptedApplicationsByCustomer() {
+		Collection<Application> applications;
+		Customer customer;
+
+		customer = this.customerService.findByPrincipal();
+		applications = this.applicationRepository.findAcceptedApplicationsByCustomer(customer.getId());
+
+		return applications;
+	}
+
+	public Collection<Application> findRejectedApplicationsByCustomer() {
+		Collection<Application> applications;
+		Customer customer;
+
+		customer = this.customerService.findByPrincipal();
+		applications = this.applicationRepository.findRejectedApplicationsByCustomer(customer.getId());
+
+		return applications;
+	}
+
+	public Collection<Application> findPendingApplicationsByWorkingOut(final int workingOutId) {
+		Collection<Application> applications;
+
+		applications = this.applicationRepository.findPendingApplicationsByWorkingOut(workingOutId);
+
+		return applications;
+	}
+
+	public Collection<Application> findAcceptedApplicationsByWorkingOut(final int workingOutId) {
+		Collection<Application> applications;
+
+		applications = this.applicationRepository.findAcceptedApplicationsByWorkingOut(workingOutId);
+
+		return applications;
+	}
+
+	public Collection<Application> findRejectedApplicationsByWorkingOut(final int workingOutId) {
+		Collection<Application> applications;
+
+		applications = this.applicationRepository.findRejectedApplicationsByWorkingOut(workingOutId);
+
+		return applications;
 	}
 
 	protected void flush() {
