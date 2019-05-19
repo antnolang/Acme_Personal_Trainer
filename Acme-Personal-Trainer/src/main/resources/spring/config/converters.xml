@@ -82,7 +82,7 @@
 		<bean class="converters.StringToProfessionalRecordConverter" /> 
 		
 		<bean class="converters.SessionToStringConverter" /> 
-		<bean class="converters.StringToSessionRecordConverter" /> 
+		<bean class="converters.StringToSessionConverter" /> 
 		
 		<bean class="converters.SocialProfileToStringConverter" />
 		<bean class="converters.StringToSocialProfileConverter" />

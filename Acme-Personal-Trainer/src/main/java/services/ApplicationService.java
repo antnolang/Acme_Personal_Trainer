@@ -199,6 +199,7 @@ public class ApplicationService {
 
 		result = this.create(application.getWorkingOut());
 		result.setCreditCard(application.getCreditCard());
+		result.setComments(application.getComments());
 
 		return result;
 	}
