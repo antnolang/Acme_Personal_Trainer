@@ -25,14 +25,75 @@ public class WorkingOutService {
 	@Autowired
 	private TrainerService			trainerService;
 
+	@Autowired
+	private UtilityService			utilityService;
+
 
 	//Constructor ----------------------------------------------------
+
+	public WorkingOutService() {
+		super();
+	}
+
+	// Simple CRUD methods ------------------------
+
+	public WorkingOut create() {
+		WorkingOut result;
+		Trainer trainer;
+
+		result = new WorkingOut();
+		trainer = this.trainerService.findByPrincipal();
+
+		result.setTicker("000000-XXXXXX");
+		result.setTrainer(trainer);
+
+		return result;
+	}
+
+	public WorkingOut save(final WorkingOut workingOut) {
+		Assert.notNull(workingOut);
+		this.checkByPrincipal(workingOut);
+		Assert.isTrue(!workingOut.getIsFinalMode());
+		workingOut.setPublishedMoment(this.utilityService.current_moment());
+		Assert.isTrue(workingOut.getEndMoment().after(workingOut.getStartMoment()));
+		Assert.isTrue(workingOut.getStartMoment().after(workingOut.getPublishedMoment()));
+		workingOut.setTicker(this.utilityService.generateValidTicker());
+
+		final WorkingOut result;
+
+		result = this.workingOutRepository.save(workingOut);
+
+		return result;
+	}
+
+	public void delete(final WorkingOut workingOut) {
+		Assert.notNull(workingOut);
+		Assert.isTrue(this.workingOutRepository.exists(workingOut.getId()));
+		this.checkByPrincipal(workingOut);
+		Assert.isTrue(!workingOut.getIsFinalMode());
+
+		//TODO
+		//		deleteApplicationsToWorkingOut(workingOut);
+		//		deleteFinderToWorkingOut(workingOut);
+
+		this.workingOutRepository.delete(workingOut);
+	}
 
 	private WorkingOut findOne(final int workingOutId) {
 		WorkingOut result;
 
 		result = this.workingOutRepository.findOne(workingOutId);
 		Assert.notNull(result);
+
+		return result;
+	}
+
+	public WorkingOut findOneToEditDelete(final int workingOutId) {
+		WorkingOut result;
+
+		result = this.findOne(workingOutId);
+		Assert.isTrue(!result.getIsFinalMode());
+		this.checkByPrincipal(result);
 
 		return result;
 	}

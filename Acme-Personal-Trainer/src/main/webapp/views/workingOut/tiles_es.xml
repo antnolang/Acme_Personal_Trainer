@@ -13,3 +13,23 @@
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+             
+<tiles-definitions>
+	
+	<definition name="workingOut/edit" extends="master.page">	
+		<put-attribute name="title" value="Editar entrenamiento" />
+		<put-attribute name="body" value="/views/workingOut/edit.jsp" />
+	</definition>
+		
+	<definition name="workingOut/display" extends="master.page">	
+		<put-attribute name="title" value="Mostrar entrenamiento" />
+		<put-attribute name="body" value="/views/workingOut/display.jsp" />
+	</definition>	
+	
+	<definition name="workingOut/list" extends="master.page">	
+		<put-attribute name="title" value="Lista de entrenamientos" />
+		<put-attribute name="body" value="/views/workingOut/list.jsp" />
+	</definition>	
+
+</tiles-definitions>

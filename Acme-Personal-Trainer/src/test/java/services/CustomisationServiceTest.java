@@ -91,14 +91,13 @@ public class CustomisationServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			/*
 			 * A: Requirement 13 (The system must be easy to customise at run time)
-			 * B: Invalid data in Customisation::name.
+			 * B: Invalid data in Customisation::name. Customisation::name is null
 			 * C: Analysis of sentence coverage: 4/5 -> 80.00% executed code lines.
-			 * D: Analysis of data coverage: Customisation::name is null => 1/41 -> 2.43%.
+			 * D: Analysis of data coverage: => 1/41 -> 2.43%.
 			 */
 			{
-				null, "https://i.imgur.com/7b8lu4b.png", "Hello world!!", "Hola mundo!!", "+43", 20, 50, "gilipollas,tonto,subnormal", 449.99, 21, ConstraintViolationException.class
+				null, "https://i.imgur.com/7b8lu4b.png", "Hello world!!", "Hola mundo!!", "+23", "VISA", "negative", "positive", 20, "ALTO,BAJO", 22.1, 10, 10, 12, "spam", ConstraintViolationException.class
 			},
-
 			/*
 			 * A: Requirement 13 (The system must be easy to customise at run time)
 			 * B: Customisation::nmberResults out of range: 101
@@ -136,14 +135,7 @@ public class CustomisationServiceTest extends AbstractTest {
 			{
 				"Acme Test", "https://i.imgur.com/7b8lu4b.png", "Hello world!!", "Hola mundo!!", "+23", "VISA", "negative", "positive", 20, "ALTO,BAJO", 22.1, 10, 10, 120, "spam", ConstraintViolationException.class
 			},
-			/*
-			 * A: Requirement 13 (The system must be easy to customise at run time)
-			 * C: Analysis of sentence coverage: 4/5 -> 80.00% executed code lines.
-			 * D: Analysis of data coverage: Every attribute has a valid value => 1/41 -> 2.43%.
-			 */
-			{
-				"Acme Test", "https://i.imgur.com/7b8lu4b.png", "Hello world!!", "Hola mundo!!", "+23", "VISA", "negative", "positive", 20, "ALTO,BAJO", 22.1, 10, 10, 21, "gilipollas,tonto,subnormal", null
-			}
+
 		};
 
 		for (int i = 0; i < testingData.length; i++)
