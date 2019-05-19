@@ -77,11 +77,11 @@ public class Article extends DomainEntity {
 		this.tags = tags;
 	}
 
-	public boolean isFinalMode() {
+	public boolean getIsFinalMode() {
 		return this.isFinalMode;
 	}
 
-	public void setFinalMode(final boolean isFinalMode) {
+	public void setIsFinalMode(final boolean isFinalMode) {
 		this.isFinalMode = isFinalMode;
 	}
 

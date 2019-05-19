@@ -36,15 +36,12 @@ public class UtilityService {
 	@Autowired
 	private CustomisationService	customisationService;
 
-	//	@Autowired
-	//	private PositionService			positionService;
-
 	@Autowired
 	private UserAccountService		userAccountService;
 
 
 	//	@Autowired
-	//	private CompanyService			companyService;
+	//	private WorkingOutService		workingOutService;
 
 	// Constructors ------------------------
 	public UtilityService() {
@@ -148,53 +145,39 @@ public class UtilityService {
 		return result;
 	}
 
-	//	public String generateValidTicker(final Position position) {
-	//		final String letters;
-	//		String result;
-	//		Integer counter;
-	//		Integer size;
-	//		final String commercialNameWithoutSpace;
-	//		String commercialNameWithoutCharacter, commercialNameWithoutNumber;
-	//		String commercialName;
-	//
-	//		counter = 0;
-	//
-	//		commercialName = this.companyService.findByPrincipal().getCommercialName();
-	//
-	//		commercialNameWithoutSpace = commercialName.replaceAll("\\s", "");
-	//		commercialNameWithoutCharacter = commercialNameWithoutSpace.replaceAll("\\W", "");
-	//		commercialNameWithoutNumber = commercialNameWithoutCharacter.replaceAll("\\d", "");
-	//
-	//		size = commercialNameWithoutNumber.length();
-	//
-	//		if (size == 0)
-	//			letters = "XXXX-";
-	//		else if (size == 1)
-	//			letters = commercialNameWithoutNumber + "XXX-";
-	//		else if (size == 2)
-	//			letters = commercialNameWithoutNumber + "XX-";
-	//		else if (size == 3)
-	//			letters = commercialNameWithoutNumber + "X-";
-	//		else
-	//			letters = commercialNameWithoutNumber.substring(0, 4) + "-";
-	//
-	//		do {
-	//			result = letters + this.createRandomNumbers();
-	//			counter++;
-	//		} while (!(this.positionService.existTicker(result) == null) && counter < 650000);
-	//
-	//		return result;
-	//	}
+	public String generateValidTicker() {
+		String numbers, result;
+		Integer day, month, year;
+		LocalDate currentDate;
+		Integer counter;
 
-	private String createRandomNumbers() {
+		currentDate = LocalDate.now();
+		year = currentDate.getYear() % 100;
+		month = currentDate.getMonthOfYear();
+		day = currentDate.getDayOfMonth();
+
+		numbers = String.format("%02d", year) + "" + String.format("%02d", month) + "" + String.format("%02d", day) + "-";
+		counter = 0;
+
+		do {
+			result = numbers + this.createRandomLetters();
+			counter++;
+		} while (counter == 1);
+
+		//	} while (!(this.workingOutService.existTicker(result) == null) && counter < 650000);
+
+		return result;
+	}
+
+	private String createRandomLetters() {
 		String result, characters;
 		Random randomNumber;
 
 		result = "";
 		randomNumber = new Random();
-		characters = "0123456789";
+		characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-		for (int i = 0; i <= 3; i++)
+		for (int i = 0; i <= 5; i++)
 			result += characters.charAt(randomNumber.nextInt(characters.length()));
 
 		return result;

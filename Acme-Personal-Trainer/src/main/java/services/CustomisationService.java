@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.CustomisationRepository;
@@ -57,32 +58,34 @@ public class CustomisationService {
 	private Validator	validator;
 
 
-	/*
-	 * public Customisation reconstruct(final Customisation customisation, final BindingResult binding) {
-	 * Customisation custo, result;
-	 * 
-	 * custo = this.find();
-	 * 
-	 * result = new Customisation();
-	 * result.setId(custo.getId());
-	 * result.setVersion(custo.getVersion());
-	 * //result.setIsRebrandNotificationSent(custo.getIsRebrandNotificationSent());
-	 * result.setName(customisation.getName().trim());
-	 * result.setBanner(customisation.getBanner().trim());
-	 * result.setWelcomeMessageEn(customisation.getWelcomeMessageEn().trim());
-	 * result.setWelcomeMessageEs(customisation.getWelcomeMessageEs().trim());
-	 * result.setCountryCode(customisation.getCountryCode().trim());
-	 * result.setTimeCachedResults(customisation.getTimeCachedResults());
-	 * result.setMaxNumberResults(customisation.getMaxNumberResults());
-	 * result.setSpamWords(customisation.getSpamWords().trim().toLowerCase());
-	 * //result.setFrate(customisation.getFrate());
-	 * result.setVATtax(customisation.getVATtax());
-	 * 
-	 * this.validator.validate(result, binding);
-	 * 
-	 * return result;
-	 * }
-	 */
+	public Customisation reconstruct(final Customisation customisation, final BindingResult binding) {
+		Customisation custo, result;
+
+		custo = this.find();
+
+		result = new Customisation();
+		result.setId(custo.getId());
+		result.setVersion(custo.getVersion());
+		result.setName(customisation.getName().trim());
+		result.setBanner(customisation.getBanner().trim());
+		result.setWelcomeMessageEn(customisation.getWelcomeMessageEn().trim());
+		result.setWelcomeMessageEs(customisation.getWelcomeMessageEs().trim());
+		result.setCountryCode(customisation.getCountryCode().trim());
+		result.setSpamWords(customisation.getSpamWords().trim().toLowerCase());
+		result.setCreditCardMakes(customisation.getCreditCardMakes().trim());
+		result.setNegativeWords(customisation.getNegativeWords().trim().toLowerCase());
+		result.setNumberResults(customisation.getNumberResults());
+		result.setPositiveWords(customisation.getPositiveWords().trim().toLowerCase());
+		result.setPremiumAmount(customisation.getPremiumAmount());
+		result.setPriorities(customisation.getPriorities().trim());
+		result.setThreshold(customisation.getThreshold());
+		result.setTimeResults(customisation.getTimeResults());
+		result.setVAT(customisation.getVAT());
+
+		this.validator.validate(result, binding);
+
+		return result;
+	}
 	// Protected methods ---------------------------------
 	protected void flush() {
 		this.customisationRepository.flush();
