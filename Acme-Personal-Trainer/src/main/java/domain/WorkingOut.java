@@ -150,11 +150,11 @@ public class WorkingOut extends DomainEntity {
 
 	@NotNull
 	@OneToMany(cascade = CascadeType.ALL)
-	public Collection<domain.Session> getSessions() {
+	public Collection<Session> getSessions() {
 		return this.sessions;
 	}
 
-	public void setSessions(final Collection<domain.Session> sessions) {
+	public void setSessions(final Collection<Session> sessions) {
 		this.sessions = sessions;
 	}
 
