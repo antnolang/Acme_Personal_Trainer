@@ -29,7 +29,7 @@
 			<li><a class="fNiv"><spring:message	code="master.page.customer" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<!-- Añadir enlaces -->
+					<li><a href="application/customer/list.do"><spring:message code="master.page.application.list" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>
