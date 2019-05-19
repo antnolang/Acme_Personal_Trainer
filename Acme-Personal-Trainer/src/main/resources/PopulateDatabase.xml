@@ -2618,40 +2618,13 @@
 	
 	<bean id="endorsement3" class="domain.Endorsement">
 		<property name="writtenMoment" value="2018/11/01 14:00" />
-		<property name="mark" value="4" />
-		<property name="comments" value="endorsement3" />
-		<property name="trainerToCustomer" value="false" />
-		<property name="customer" ref="customer4" />
-		<property name="trainer" ref="trainer1" />
-	</bean>
-	
-	<bean id="endorsement4" class="domain.Endorsement">
-		<property name="writtenMoment" value="2018/11/01 14:00" />
 		<property name="mark" value="7" />
-		<property name="comments" value="endorsement4" />
+		<property name="comments" value="endorsement3" />
 		<property name="trainerToCustomer" value="true" />
 		<property name="customer" ref="customer1" />
 		<property name="trainer" ref="trainer1" />
 	</bean>
 	
-	<bean id="endorsement5" class="domain.Endorsement">
-		<property name="writtenMoment" value="2018/11/01 14:00" />
-		<property name="mark" value="8" />
-		<property name="comments" value="endorsement5" />
-		<property name="trainerToCustomer" value="false" />
-		<property name="customer" ref="customer5" />
-		<property name="trainer" ref="trainer3" />
-	</bean>
-	
-	<bean id="endorsement6" class="domain.Endorsement">
-		<property name="writtenMoment" value="2018/11/01 14:00" />
-		<property name="mark" value="2" />
-		<property name="comments" value="endorsement6" />
-		<property name="trainerToCustomer" value="true" />
-		<property name="customer" ref="customer4" />
-		<property name="trainer" ref="trainer2" />
-	</bean>
-
 	<!-- Endorser Records -->
 	<bean id="endorserRecord1" class="domain.EndorserRecord">
 		<property name="fullname" value="endorserRecord1" />
