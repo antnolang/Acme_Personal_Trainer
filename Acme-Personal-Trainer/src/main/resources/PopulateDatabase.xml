@@ -2776,6 +2776,7 @@
 				<null></null>
 			</list>
 		</property>
+		<property name="updatedMoment" value="2019/05/20 00:10" />
 	</bean>
 
 	<bean id="finder2" class="domain.Finder">
@@ -2791,6 +2792,7 @@
 				<ref bean="workingOut8" />
 			</list>
 		</property>
+		<property name="updatedMoment" value="2019/05/20 00:10" />
 	</bean>
 
 	<bean id="finder3" class="domain.Finder">
@@ -2806,6 +2808,7 @@
 				<null></null>
 			</list>
 		</property>
+		<property name="updatedMoment" value="2019/05/20 00:10" />
 	</bean>
 
 	<bean id="finder4" class="domain.Finder">
@@ -2821,6 +2824,7 @@
 				<ref bean="workingOut9" />
 			</list>
 		</property>
+		<property name="updatedMoment" value="2019/05/20 00:10" />
 	</bean>
 
 	<bean id="finder5" class="domain.Finder">
@@ -2836,6 +2840,7 @@
 				<null></null>
 			</list>
 		</property>
+		<property name="updatedMoment" value="2019/05/20 00:10" />
 	</bean>
 
 	<bean id="finder6" class="domain.Finder">
@@ -2851,6 +2856,7 @@
 				<null></null>
 			</list>
 		</property>
+		<property name="updatedMoment" value="2019/05/20 00:10" />
 	</bean>
 
 	<bean id="finder7" class="domain.Finder">
@@ -2866,6 +2872,7 @@
 				<null></null>
 			</list>
 		</property>
+		<property name="updatedMoment" value="2019/05/20 00:10" />
 	</bean>
 
 	<!-- Miscellaneous Records -->

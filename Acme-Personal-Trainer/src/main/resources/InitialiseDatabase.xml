@@ -893,6 +893,7 @@
 				<null></null>
 			</list>
 		</property>
+		<property name="updatedMoment" value="2019/05/20 00:10" />
 	</bean>
 
 	<bean id="finder2" class="domain.Finder">
@@ -908,6 +909,7 @@
 				<null></null>
 			</list>
 		</property>
+		<property name="updatedMoment" value="2019/05/20 00:10" />
 	</bean>
 	
 	<!-- Nutritionist -->
