@@ -60,6 +60,11 @@
 		<security:intercept-url pattern="/socialProfile/administrator,auditor,customer,nutritionist,trainer/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/socialProfile/**" access="permitAll" />
 		
+		<security:intercept-url pattern="/box/**" access="isAuthenticated()" />
+		
+		<security:intercept-url pattern="/message/administrator/**" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/message/administrator,auditor,customer,nutritionist,trainer/**" access="isAuthenticated()" />
+		
 		<security:intercept-url pattern="/error.do" access="permitAll" />
 		
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" /> <!-- requires-channel="https" --> 
