@@ -15,6 +15,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<!-- Añadir enlaces -->
+					<li><a href="/category/administrator/list.do"><spring:message code="master.page.category" /> </a></li>
 				</ul>
 			</li>
 		</security:authorize>
