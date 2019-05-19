@@ -43,6 +43,9 @@
 		<security:intercept-url pattern="/welcome/terms.do" access="permitAll" /> 
 		<security:intercept-url pattern="/welcome/dataProcesses.do" access="permitAll" /> 
 		
+		<security:intercept-url pattern="/actor/registerCustomer.do" access="isAnonymous()" /> 
+		<security:intercept-url pattern="/actor/registerTrainer.do" access="isAnonymous()" /> 
+		
 		<security:intercept-url pattern="/actor/administrator/**" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/actor/display.do**" access="permitAll" />  
 		<security:intercept-url pattern="/actor/display.do" access="hasAnyRole('ADMIN')" /> 
