@@ -352,7 +352,7 @@
 
 	<!-- Application -->
 	<bean id="application1" class="domain.Application">
-		<property name="registeredMoment" value="2019/01/01 10:10" />
+		<property name="registeredMoment" value="2019/03/01 10:10" />
 		<property name="status" value="ACCEPTED" />
 		<property name="comments" value="comment" />
 		<property name="customer" ref="customer1" />
@@ -361,7 +361,7 @@
 	</bean>
 
 	<bean id="application2" class="domain.Application">
-		<property name="registeredMoment" value="2019/01/01 10:10" />
+		<property name="registeredMoment" value="2019/03/01 10:10" />
 		<property name="status" value="PENDING" />
 		<property name="comments" value="comment" />
 		<property name="customer" ref="customer3" />
@@ -370,7 +370,7 @@
 	</bean>
 
 	<bean id="application3" class="domain.Application">
-		<property name="registeredMoment" value="2019/01/01 10:10" />
+		<property name="registeredMoment" value="2019/03/01 10:10" />
 		<property name="status" value="REJECTED" />
 		<property name="comments" value="comment" />
 		<property name="customer" ref="customer4" />
@@ -379,7 +379,7 @@
 	</bean>
 
 	<bean id="application4" class="domain.Application">
-		<property name="registeredMoment" value="2019/01/01 10:10" />
+		<property name="registeredMoment" value="2019/03/01 10:10" />
 		<property name="status" value="PENDING" />
 		<property name="comments" value="comment" />
 		<property name="customer" ref="customer5" />
