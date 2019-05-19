@@ -68,6 +68,14 @@ public class MessageService {
 		return result;
 	}
 
+	protected Double numberSpamMessagesSentByActor(final int actorId) {
+		Double result;
+
+		result = this.messageRepository.numberSpamMessagesSentByActor(actorId);
+
+		return result;
+	}
+
 	// Private methods --------------------------------------
 	private Message createNotification(final Collection<Actor> recipients, final String subject, final String body) {
 		Message result;

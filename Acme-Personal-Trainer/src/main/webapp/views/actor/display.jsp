@@ -64,7 +64,12 @@
 				<strong> <spring:message code="actor.isSuspicious" /> 
 				</strong>
 				<jstl:if test="${actor.isSuspicious != null }">
-					<jstl:out value="${actor.isSuspicious}" />
+					<jstl:if test="${actor.isSuspicious == true }">
+						<spring:message code="actor.yes" />
+					</jstl:if>
+					<jstl:if test="${actor.isSuspicious == false }">
+						<spring:message code="actor.no" />
+					</jstl:if>
 				</jstl:if>
 				<jstl:if test="${actor.isSuspicious == null }">
 					<jstl:out value="N/A" />

@@ -103,12 +103,12 @@ public class ActorAdministratorController extends ActorAbstractController {
 
 	// Spammers
 
-	@RequestMapping(value = "/spammersProcess", method = RequestMethod.POST, params = "spammers")
-	public ModelAndView spammersProcess() {
+	@RequestMapping(value = "/suspiciousProcess", method = RequestMethod.POST, params = "suspicious")
+	public ModelAndView suspiciousProcess() {
 		ModelAndView result;
 
 		try {
-			this.actorService.spammerProcess();
+			this.actorService.suspiciousProcess();
 			result = new ModelAndView("redirect:list.do");
 		} catch (final Throwable oops) {
 			result = new ModelAndView("redirect:/error.do");
