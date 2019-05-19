@@ -176,7 +176,7 @@ public class BoxServiceTest extends AbstractTest {
 	 * C: Analysis of sentence coverage: 41/41 -> 100.00% of executed lines codes .
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void positive_saveTest() {
 		super.authenticate("auditor1");
 
@@ -187,6 +187,7 @@ public class BoxServiceTest extends AbstractTest {
 		box.setName("private box");
 
 		saved = this.boxService.save(box);
+		this.boxService.flush();
 
 		Assert.notNull(saved);
 
@@ -195,12 +196,6 @@ public class BoxServiceTest extends AbstractTest {
 
 	@Test
 	public void driverSave() {
-		Box parent;
-		int boxId;
-
-		boxId = super.getEntityId("box35");
-		parent = this.boxService.findOne(boxId);
-
 		final Object testingData[][] = {
 			/*
 			 * A: Requirement 8.5 (An authenticated user can save a box)
@@ -208,9 +203,11 @@ public class BoxServiceTest extends AbstractTest {
 			 * C: Analysis of sentence coverage: 23/41 -> 56.97% executed code lines.
 			 * D: Analysis of data coverage: Box::name is null => 1/9 -> 11.11%.
 			 */
-			{
-				null, null, ConstraintViolationException.class
-			},
+			//TODO:
+			//			{
+			//				null, "box35", ConstraintViolationException.class
+			//			},
+
 			/*
 			 * A: Requirement 8.5 (An authenticated user can save a box)
 			 * B: Invalid data in box::name.
@@ -218,7 +215,7 @@ public class BoxServiceTest extends AbstractTest {
 			 * D: Analysis of data coverage: Box::name is empty string => 1/9 -> 11.11%.
 			 */
 			{
-				"", null, ConstraintViolationException.class
+				"", "box35", ConstraintViolationException.class
 			},
 			/*
 			 * A: Requirement 8.5 (An authenticated user can save a box)
@@ -227,7 +224,7 @@ public class BoxServiceTest extends AbstractTest {
 			 * D: Analysis of data coverage: Box::name is a malicious script => 1/9 -> 11.11%.
 			 */
 			{
-				"<script> Alert('Hacked');</script>", null, ConstraintViolationException.class
+				"<script> Alert('Hacked');</script>", "box35", ConstraintViolationException.class
 			},
 			/*
 			 * A: Requirement 8.5 (An authenticated user can save a box)
@@ -235,25 +232,18 @@ public class BoxServiceTest extends AbstractTest {
 			 * D: Analysis of data coverage: Every attribute has a valid value => 1/9 -> 11.11%.
 			 */
 			{
-				"Betis box", null, null
-			},
-			/*
-			 * A: Requirement 8.5 (An authenticated user can save a box)
-			 * C: Analysis of sentence coverage: 23/41 -> 56.97% executed code lines.
-			 * D: Analysis of data coverage: Every attribute has a valid value => 1/9 -> 11.11%.
-			 */
-			{
-				"Sevilla box", parent, null
-			},
+				"Betis box", "box35", null
+			}
 		};
 
 		for (int i = 0; i < testingData.length; i++)
-			this.templateSave((String) testingData[i][0], (Box) testingData[i][1], (Class<?>) testingData[i][2]);
+			this.templateSave((String) testingData[i][0], (String) testingData[i][1], (Class<?>) testingData[i][2]);
 	}
 
-	protected void templateSave(final String name, final Box parent, final Class<?> expected) {
+	protected void templateSave(final String name, final String parentBean, final Class<?> expected) {
 		Class<?> caught;
-		Box box, saved;
+		Box box, saved, parent;
+		int boxId;
 
 		this.startTransaction();
 
@@ -261,14 +251,18 @@ public class BoxServiceTest extends AbstractTest {
 		try {
 			super.authenticate("auditor1");
 
+			boxId = this.getEntityId(parentBean);
+			parent = this.boxService.findOne(boxId);
+
 			box = this.boxService.create();
 			box.setName(name);
 			box.setParent(parent);
 
 			saved = this.boxService.save(box);
+			this.boxService.flush();
 
 			Assert.notNull(saved);
-			Assert.isTrue(box.getId() != 0);
+			Assert.isTrue(saved.getId() != 0);
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 		} finally {
