@@ -28,7 +28,7 @@ public class WorkingOutService {
 
 	//Constructor ----------------------------------------------------
 
-	private WorkingOut findOne(final int workingOutId) {
+	protected WorkingOut findOne(final int workingOutId) {
 		WorkingOut result;
 
 		result = this.workingOutRepository.findOne(workingOutId);
