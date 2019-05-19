@@ -196,7 +196,7 @@ public class ActorAdministratorController extends ActorAbstractController {
 
 	}
 
-	// Register auditor
+	// Register nutritionist
 
 	@RequestMapping(value = "/registerNutritionist", method = RequestMethod.GET)
 	public ModelAndView createNutritionist() {

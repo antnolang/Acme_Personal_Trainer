@@ -17,6 +17,7 @@
 
 					<li><a href="actor/administrator/registerAdministrator.do"><spring:message code="master.page.administrator.create" /></a></li>
 					<li><a href="actor/administrator/registerAuditor.do"><spring:message code="master.page.auditor.create" /></a></li>
+					<li><a href="actor/administrator/registerNutritionist.do"><spring:message code="master.page.nutritionist.create" /></a></li>
 
 					<!-- Añadir enlaces -->
 					<li><a href="/category/administrator/list.do"><spring:message code="master.page.category" /> </a></li>
@@ -54,6 +55,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<!-- Añadir enlaces -->
+					<li><a href="actor/display.do"><spring:message code="master.page.actor.display" /></a></li>
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>

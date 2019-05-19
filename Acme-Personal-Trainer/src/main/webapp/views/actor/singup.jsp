@@ -95,6 +95,12 @@
 			<jstl:if test="${rol == 'Auditor'}">
 				<acme:textbox code="actor.authority" path="userAccount.authorities" readonly="true" value="AUDITOR"/>
 			</jstl:if>
+			
+			<jstl:if test="${rol == 'Nutritionist'}">
+		
+			<acme:textbox code="actor.authority" path="userAccount.authorities" readonly="true" value="NUTRITIONIST"/>
+		
+		</jstl:if>
 		</security:authorize>
  
  
@@ -112,11 +118,6 @@
 		
 		</jstl:if>
 		
-		<jstl:if test="${rol == 'Nutritionist'}">
-		
-			<acme:textbox code="actor.authority" path="userAccount.authorities" readonly="true" value="NUTRITIONIST"/>
-		
-		</jstl:if>
 		
 		</security:authorize>
 		

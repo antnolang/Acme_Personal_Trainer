@@ -43,6 +43,7 @@
 		<security:intercept-url pattern="/welcome/terms.do" access="permitAll" /> 
 		<security:intercept-url pattern="/welcome/dataProcesses.do" access="permitAll" /> 
 		
+		<security:intercept-url pattern="/actor/administrator,auditor,customer,nutritionist,trainer/**" access="isAuthenticated()"/>
 
 		<security:intercept-url pattern="/actor/registerCustomer.do" access="isAnonymous()" /> 
 		<security:intercept-url pattern="/actor/registerTrainer.do" access="isAnonymous()" /> 
