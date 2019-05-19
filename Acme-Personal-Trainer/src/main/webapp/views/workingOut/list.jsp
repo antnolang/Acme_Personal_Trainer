@@ -11,7 +11,7 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <display:table name="workingOuts" id="row" requestURI="${requestURI}" class="displaytag" pagesize="5">	
-		<display:column>
+	<display:column>
 		<a href="workingOut/customer,trainer/display.do?workingOutId=${row.id}"><spring:message code="workingOut.display"/></a>
 	</display:column>	
 	
@@ -23,18 +23,20 @@
 	</display:column>
 	
 	<display:column>	
-		<jstl:if test="${principal == row.company && !row.isFinalMode}">
+		<jstl:if test="${principal == row.trainer && !row.isFinalMode}">
 			<a href="workingOut/trainer/makeFinal.do?workingOutId=${row.id}"><spring:message code="workingOut.makeFinal"/></a>
 		</jstl:if>
 	</display:column>
 	
 	</security:authorize>
 	
-	<display:column property="trainer.name" titleKey="workingOut.trainerName" />
+	<security:authorize access="hasRole('CUSTOMER')">
+		<display:column property="trainer.name" titleKey="workingOut.trainerName" />
+	</security:authorize>
 	
 	<display:column property="ticker" titleKey="workingOut.ticker" />
 	
-	<spring:message code="workingOut.moment" var="formatMoment" />
+	<spring:message code="workingOut.formatMoment" var="formatMoment" />
 	<display:column property="startMoment" titleKey="workingOut.startMoment" sortable="true" format="${formatMoment}"/>
 			
 	<display:column property="endMoment" titleKey="workingOut.endMoment" sortable="true" format="${formatMoment}"/>
@@ -43,7 +45,5 @@
 
 
 <security:authorize access="hasRole('TRAINER')">
-		<jstl:if test="${principal == owner}">
  			<a href="workingOut/trainer/create.do"><spring:message code="workingOut.create"/></a>
- 		</jstl:if>
  	</security:authorize>

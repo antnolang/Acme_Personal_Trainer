@@ -76,7 +76,7 @@
 </display:table>
 
 <display:table name="positiveWords" id="row1" requestURI="customisation/administrator/display.do" pagesize="5" class="displaytag">
-	<display:column value="${row2}" titleKey="customisation.positiveWords"/>
+	<display:column value="${row1}" titleKey="customisation.positiveWords"/>
 </display:table>
 
 <display:table name="negativeWords" id="row2" requestURI="customisation/administrator/display.do" pagesize="5" class="displaytag">
