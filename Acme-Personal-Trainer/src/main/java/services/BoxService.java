@@ -94,7 +94,7 @@ public class BoxService {
 
 		Box result;
 
-		if (this.boxRepository.exists(box.getId()))
+		if (this.boxRepository.exists(box.getId()) && box.getParent() != null)
 			this.checkParent(box);
 
 		result = this.boxRepository.save(box);
@@ -320,6 +320,10 @@ public class BoxService {
 		results = this.boxRepository.findBoxesByMessage(messageId);
 
 		return results;
+	}
+
+	protected void flush() {
+		this.boxRepository.flush();
 	}
 
 	// Private methods ---------------------------
