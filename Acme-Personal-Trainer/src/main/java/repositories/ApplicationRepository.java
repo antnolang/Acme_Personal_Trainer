@@ -20,11 +20,11 @@ public interface ApplicationRepository extends JpaRepository<Application, Intege
 	Collection<Application> findPendingApplicationsByWorkingOut(int workingOutId);
 
 	@Query("select a from Application a where a.workingOut.id = ?1 and a.customer.id = ?2")
-	Collection<CreditCard> findApplicationsByCustomer(int workingOutId, int customerId);
+	Collection<CreditCard> findApplicationsByWorkingOutByCustomer(int workingOutId, int customerId);
 
 	@Query("select a from Application a where a.workingOut.trainer.id=?1")
-	Collection<Application> findApplicationByTrainer(int id);
+	Collection<Application> findApplicationsByTrainer(int id);
 
 	@Query("select a from Application a where a.customer.id=?1")
-	Collection<Application> findApplicationByCustomer(int id);
+	Collection<Application> findApplicationsByCustomer(int id);
 }

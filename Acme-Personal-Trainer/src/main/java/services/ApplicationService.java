@@ -5,18 +5,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.parsing.Problem;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 
 import repositories.ApplicationRepository;
-import repositories.CreditCardRepository;
 import domain.Application;
 import domain.CreditCard;
 import domain.Customer;
@@ -31,10 +28,6 @@ public class ApplicationService {
 	@Autowired
 	private ApplicationRepository	applicationRepository;
 
-	//TODO cambiar al service cuando esté hecho
-	@Autowired
-	private CreditCardRepository	creditCardRepository;
-
 	// Supporting services -------------------------------------------
 
 	@Autowired
@@ -46,10 +39,9 @@ public class ApplicationService {
 	@Autowired
 	private UtilityService			utilityService;
 
+	@Autowired
+	private MessageService			messageService;
 
-	//TODO DESCOMENTAR CUANDO ESTÉ SUBIDO MESSAGE
-	//@Autowired
-	//private MessageService			messageService;
 
 	//Constructor ----------------------------------------------------
 	public ApplicationService() {
@@ -69,8 +61,7 @@ public class ApplicationService {
 
 		customer = this.customerService.findByPrincipal();
 		moment = this.utilityService.current_moment();
-		//TODO cambiar al service cuando esté hecho
-		creditCards = new ArrayList<>(this.creditCardRepository.findAllByCustomer(customer.getId()));
+		creditCards = new ArrayList<>(this.creditCardService.findAllByCustomer(customer.getId()));
 
 		Assert.isTrue(!creditCards.isEmpty());
 		this.checkWorkingOutNoThisCustomerApplication(workingOut.getId(), customer.getId());
@@ -95,8 +86,7 @@ public class ApplicationService {
 		Assert.isTrue(this.customerService.findByPrincipal().equals(application.getCustomer()));
 		Assert.isTrue(application.getStatus().equals("PENDING"));
 		Assert.isNull(this.applicationRepository.findOne(application.getId()));
-		//TODO cambiar al service cuando esté hecho
-		Assert.isTrue(!(this.creditCardRepository.findAllByCustomer(application.getCustomer().getId())).isEmpty());
+		Assert.isTrue(!(this.creditCardService.findAllByCustomer(application.getCustomer().getId())).isEmpty());
 		Assert.isTrue(application.getCreditCard().getCustomer().equals(this.customerService.findByPrincipal()));
 		Assert.isNull(application.getRegisteredMoment());
 
@@ -116,25 +106,23 @@ public class ApplicationService {
 		Assert.isTrue(this.trainerService.findByPrincipal().equals(application.getWorkingOut().getTrainer()));
 		this.checkWorkingOutNoAcceptedApplication(application.getWorkingOut().getId());
 		Assert.isTrue(application.getStatus().equals("PENDING"));
-		
+
 		Collection<Application> pendingApplications;
-		
+
 		application.setStatus("ACCEPTED");
-		//TODO DESCOMENTAR CUANDO ESTÉ SUBIDO MESSAGE
-		//this.messageService.notification_applicationStatusChanges(application);
-		
+		this.messageService.notification_applicationStatusChanges(application);
+
 		pendingApplications = this.applicationRepository.findPendingApplicationsByWorkingOut(application.getWorkingOut().getId());
-		
-		//TODO Rechazar todas las demas
-		for (
-		
+
+		for (final Application a : pendingApplications)
+			this.rejectedApplication(a);
+
 	}
 	public void rejectedApplication(final Application application) {
 		Assert.isTrue(this.trainerService.findByPrincipal().equals(application.getWorkingOut().getTrainer()));
 		Assert.isTrue(application.getStatus().equals("PENDING"));
 		application.setStatus("REJECTED");
-		//TODO DESCOMENTAR CUANDO ESTÉ SUBIDO MESSAGE
-		//this.messageService.notification_applicationStatusChanges(application);
+		this.messageService.notification_applicationStatusChanges(application);
 	}
 
 	protected Application findOne(final int applicationId) {
@@ -157,6 +145,17 @@ public class ApplicationService {
 		return result;
 	}
 
+	public Application findOneToTrainer(final int applicationId) {
+		Application result;
+
+		result = this.findOne(applicationId);
+
+		Assert.notNull(result);
+		Assert.isTrue(this.trainerService.findByPrincipal().equals(result.getWorkingOut().getTrainer()));
+
+		return result;
+	}
+
 	public Collection<Application> findAll() {
 		Collection<Application> results;
 
@@ -168,40 +167,24 @@ public class ApplicationService {
 	protected void deleteApplicationByTrainer(final Trainer trainer) {
 		Collection<Application> applications;
 
-		applications = this.applicationRepository.findApplicationByTrainer(trainer.getId());
+		applications = this.applicationRepository.findApplicationsByTrainer(trainer.getId());
 
 		this.applicationRepository.deleteInBatch(applications);
 	}
 
-	protected void deleteApplicationByRookie(final Rookie rookie) {
+	protected void deleteApplicationByRookie(final Customer customer) {
 		Collection<Application> applications;
 
-		applications = this.applicationRepository.findApplicationByRookie(rookie.getId());
+		applications = this.applicationRepository.findApplicationsByCustomer(customer.getId());
 		this.applicationRepository.deleteInBatch(applications);
 	}
 
 	// Reconstruct ----------------------------------------------
 	public Application reconstruct(final Application application, final BindingResult binding) {
-		Application result, applicationStored;
+		Application result;
 
-		if (application.getId() != 0) {
-			result = new Application();
-			applicationStored = this.findOne(application.getId());
-			result.setId(applicationStored.getId());
-			result.setVersion(applicationStored.getVersion());
-			result.setApplicationMoment(applicationStored.getApplicationMoment());
-			result.setStatus(applicationStored.getStatus());
-			result.setCurriculum(applicationStored.getCurriculum());
-			result.setPosition(applicationStored.getPosition());
-			result.setProblem(applicationStored.getProblem());
-
-			result.setSubmittedMoment(application.getSubmittedMoment());
-			result.setAnswer(application.getAnswer());
-
-		} else {
-			result = this.create(application.getPosition());
-			result.setCurriculum(application.getCurriculum());
-		}
+		result = this.create(application.getWorkingOut());
+		result.setCreditCard(application.getCreditCard());
 
 		return result;
 	}
@@ -214,132 +197,8 @@ public class ApplicationService {
 	}
 
 	private void checkWorkingOutNoThisCustomerApplication(final int workingOutId, final int customerId) {
-		Assert.isTrue(this.applicationRepository.findApplicationsByCustomer(workingOutId, customerId).isEmpty());
+		Assert.isTrue(this.applicationRepository.findApplicationsByWorkingOutByCustomer(workingOutId, customerId).isEmpty());
 
-	}
-
-	private Problem getRandomProblem(final Collection<Problem> problems) {
-		List<Problem> problemList;
-		Problem result;
-
-		problemList = new ArrayList<>(problems);
-		result = problemList.get(new Random().nextInt(problems.size()));
-
-		return result;
-	}
-
-	public Double[] findDataNumberApplicationPerRookie() {
-		Double[] result;
-
-		result = this.applicationRepository.findDataNumberApplicationPerRookie();
-		Assert.notNull(result);
-
-		return result;
-	}
-
-	protected Collection<Application> findApplicationsByProblemRookie(final int idProblem, final int idRookie) {
-		Collection<Application> result;
-
-		result = this.applicationRepository.findApplicationsByProblemRookie(idProblem, idRookie);
-
-		return result;
-	}
-
-	public Collection<Application> findPendingApplicationsByRookie() {
-		Collection<Application> applications;
-		Rookie rookie;
-
-		rookie = this.rookieService.findByPrincipal();
-		applications = this.applicationRepository.findPendingApplicationsByRookie(rookie.getId());
-
-		return applications;
-	}
-
-	public Collection<Application> findSubmittedApplicationsByRookie() {
-		Collection<Application> applications;
-		Rookie rookie;
-
-		rookie = this.rookieService.findByPrincipal();
-		applications = this.applicationRepository.findSubmittedApplicationsByRookie(rookie.getId());
-
-		return applications;
-	}
-
-	public Collection<Application> findAcceptedApplicationsByRookie() {
-		Collection<Application> applications;
-		Rookie rookie;
-
-		rookie = this.rookieService.findByPrincipal();
-		applications = this.applicationRepository.findAcceptedApplicationsByRookie(rookie.getId());
-
-		return applications;
-	}
-
-	public Collection<Application> findRejectedApplicationsByRookie() {
-		Collection<Application> applications;
-		Rookie rookie;
-
-		rookie = this.rookieService.findByPrincipal();
-		applications = this.applicationRepository.findRejectedApplicationsByRookie(rookie.getId());
-
-		return applications;
-	}
-
-	public Collection<Application> findSubmittedApplicationsByPosition(final int positionId) {
-		Collection<Application> applications;
-
-		applications = this.applicationRepository.findSubmittedApplicationsByPosition(positionId);
-
-		return applications;
-	}
-
-	public Collection<Application> findAcceptedApplicationsByPosition(final int positionId) {
-		Collection<Application> applications;
-
-		applications = this.applicationRepository.findAcceptedApplicationsByPosition(positionId);
-
-		return applications;
-	}
-
-	public Collection<Application> findRejectedApplicationsByPosition(final int positionId) {
-		Collection<Application> applications;
-
-		applications = this.applicationRepository.findRejectedApplicationsByPosition(positionId);
-
-		return applications;
-	}
-
-	public Application findApplicationByAnswer(final int answerId) {
-		Application result;
-
-		result = this.applicationRepository.findApplicationByAnswer(answerId);
-
-		return result;
-	}
-
-	public boolean isApplied(final Position position, final Rookie rookie) {
-		boolean result;
-		Collection<Application> applications;
-
-		applications = this.applicationRepository.findApplicationsByPositionByRookie(position.getId(), rookie.getId());
-		result = applications.isEmpty();
-
-		return result;
-	}
-
-	protected Collection<Application> findSubmittedPendingByPosition(final int positionId) {
-		Collection<Application> result;
-
-		result = this.applicationRepository.findSubmittedPendingByPosition(positionId);
-
-		return result;
-	}
-
-	protected void rejectedCancelPosition(final Application application) {
-		Assert.isTrue(this.companyService.findByPrincipal().equals(application.getPosition().getCompany()));
-		Assert.isTrue(application.getStatus().equals("SUBMITTED") || application.getStatus().equals("PENDING"));
-		application.setStatus("REJECTED");
-		this.messageService.notification_applicationStatusChanges(application);
 	}
 
 	protected void flush() {

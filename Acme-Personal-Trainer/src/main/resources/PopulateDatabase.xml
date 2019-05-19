@@ -3292,16 +3292,16 @@
 		<property name="title" value="session81" />
 		<property name="description" value="Description session81" />
 		<property name="address" value="Address session81" />
-		<property name="startMoment" value="2019/12/15 17:00" />
-		<property name="endMoment" value="2019/12/15 19:00" />
+		<property name="startMoment" value="2018/12/15 17:00" />
+		<property name="endMoment" value="2018/12/15 19:00" />
 	</bean>
 
 	<bean id="session82" class="domain.Session">
 		<property name="title" value="session82" />
 		<property name="description" value="Description session82" />
 		<property name="address" value="Address session82" />
-		<property name="startMoment" value="2019/12/17 17:00" />
-		<property name="endMoment" value="2019/12/17 19:00" />
+		<property name="startMoment" value="2018/12/17 17:00" />
+		<property name="endMoment" value="2018/12/17 19:00" />
 	</bean>
 
 	<bean id="session91" class="domain.Session">
@@ -3795,8 +3795,8 @@
 		<property name="publishedMoment" value="2019/02/01 10:10" />
 		<property name="description" value="Description workingOut8" />
 		<property name="price" value="15.99" />
-		<property name="startMoment" value="2020/12/15 17:00" />
-		<property name="endMoment" value="2020/12/17 19:00" />
+		<property name="startMoment" value="2018/12/15 17:00" />
+		<property name="endMoment" value="2018/12/17 19:00" />
 		<property name="isFinalMode" value="true" />
 		<property name="trainer" ref="trainer5" />
 		<property name="categories">
