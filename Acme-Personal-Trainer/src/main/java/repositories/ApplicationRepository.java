@@ -13,6 +13,7 @@ import domain.CreditCard;
 @Repository
 public interface ApplicationRepository extends JpaRepository<Application, Integer> {
 
+
 	@Query("select a from Application a where a.workingOut.id = ?1 and a.status='ACCEPTED'")
 	Collection<Application> findAcceptedApplicationsByWorkingOut(int workingOutId);
 
