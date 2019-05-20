@@ -113,19 +113,20 @@ public class ApplicationService {
 		Collection<Application> pendingApplications;
 
 		application.setStatus("ACCEPTED");
-		this.messageService.notification_applicationStatusChanges(application);
+		pendingApplications = this.findPendingApplicationsByWorkingOut(application.getWorkingOut().getId());
+		//this.messageService.notification_applicationStatusChanges(application);
 
-		pendingApplications = this.applicationRepository.findPendingApplicationsByWorkingOut(application.getWorkingOut().getId());
-
-		for (final Application a : pendingApplications)
-			this.rejectedApplication(a);
+		if (!(pendingApplications.isEmpty()))
+			for (final Application a : pendingApplications)
+				this.rejectedApplication(a);
 
 	}
+
 	public void rejectedApplication(final Application application) {
 		Assert.isTrue(this.trainerService.findByPrincipal().equals(application.getWorkingOut().getTrainer()));
 		Assert.isTrue(application.getStatus().equals("PENDING"));
 		application.setStatus("REJECTED");
-		this.messageService.notification_applicationStatusChanges(application);
+		//this.messageService.notification_applicationStatusChanges(application);
 	}
 
 	protected Application findOne(final int applicationId) {

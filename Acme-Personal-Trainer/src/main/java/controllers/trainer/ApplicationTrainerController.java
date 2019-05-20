@@ -55,7 +55,7 @@ public class ApplicationTrainerController extends AbstractController {
 			rejectedApplications = this.applicationService.findRejectedApplicationsByWorkingOut(workingOutId);
 
 			result = new ModelAndView("application/list");
-			result.addObject("submittedApplications", pendingApplications);
+			result.addObject("pendingApplications", pendingApplications);
 			result.addObject("acceptedApplications", acceptedApplications);
 			result.addObject("rejectedApplications", rejectedApplications);
 

@@ -386,6 +386,24 @@
 		<property name="creditCard" ref="creditCard6" />
 		<property name="workingOut" ref="workingOut4" />
 	</bean>
+	
+	<bean id="application5" class="domain.Application">
+		<property name="registeredMoment" value="2019/03/01 10:10" />
+		<property name="status" value="PENDING" />
+		<property name="comments" value="comment" />
+		<property name="customer" ref="customer6" />
+		<property name="creditCard" ref="creditCard7" />
+		<property name="workingOut" ref="workingOut4" />
+	</bean>
+	
+	<bean id="application6" class="domain.Application">
+		<property name="registeredMoment" value="2019/03/01 10:10" />
+		<property name="status" value="PENDING" />
+		<property name="comments" value="comment" />
+		<property name="customer" ref="customer3" />
+		<property name="creditCard" ref="creditCard4" />
+		<property name="workingOut" ref="workingOut4" />
+	</bean>
 
 	<!-- Article -->
 	<bean id="article1" class="domain.Article">
