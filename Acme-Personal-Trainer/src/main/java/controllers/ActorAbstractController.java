@@ -6,8 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
+import services.ApplicationService;
 import domain.Actor;
 import domain.Administrator;
+import domain.Customer;
+import domain.Trainer;
 
 @Controller
 public class ActorAbstractController extends AbstractController {
@@ -15,7 +18,10 @@ public class ActorAbstractController extends AbstractController {
 	// Services ---------------------------------------------------------------
 
 	@Autowired
-	private ActorService	actorService;
+	private ActorService		actorService;
+
+	@Autowired
+	private ApplicationService	applicationService;
 
 
 	// Main methods -----------------------------------------------------------
@@ -46,7 +52,8 @@ public class ActorAbstractController extends AbstractController {
 				actor = this.actorService.findOneToDisplayEdit(actorId);
 			else if (actor instanceof Administrator && actorId != principal.getId())
 				throw new IllegalArgumentException();
-
+			if (actor instanceof Trainer && principal instanceof Customer && this.applicationService.existApplicationAcceptedBetweenCustomerTrainer(principal.getId(), actor.getId()) == true)
+				result.addObject("trainerAttended", true);
 		}
 
 		if (principal != null && actor != null && principal == actor) {

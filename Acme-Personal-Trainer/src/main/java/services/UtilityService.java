@@ -39,9 +39,9 @@ public class UtilityService {
 	@Autowired
 	private UserAccountService		userAccountService;
 
+	@Autowired
+	private WorkingOutService		workingOutService;
 
-	//	@Autowired
-	//	private WorkingOutService		workingOutService;
 
 	// Constructors ------------------------
 	public UtilityService() {
@@ -162,9 +162,7 @@ public class UtilityService {
 		do {
 			result = numbers + this.createRandomLetters();
 			counter++;
-		} while (counter == 1);
-
-		//	} while (!(this.workingOutService.existTicker(result) == null) && counter < 650000);
+		} while (!(this.workingOutService.existTicker(result) == null) && counter < 650000);
 
 		return result;
 	}

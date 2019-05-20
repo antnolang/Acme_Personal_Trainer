@@ -1,6 +1,10 @@
 
 package services;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +18,7 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import security.UserAccountService;
+import domain.Endorsement;
 import domain.Trainer;
 import forms.RegistrationForm;
 
@@ -24,21 +29,27 @@ public class TrainerService {
 	// Managed repository --------------------------
 
 	@Autowired
-	private TrainerRepository	trainerRepository;
+	private TrainerRepository		trainerRepository;
 
 	// Other supporting services -------------------
 
 	@Autowired
-	private UserAccountService	userAccountService;
+	private UserAccountService		userAccountService;
 
 	@Autowired
-	private ActorService		actorService;
+	private ActorService			actorService;
 
 	@Autowired
-	private UtilityService		utilityService;
+	private UtilityService			utilityService;
 
 	@Autowired
-	private Validator			validator;
+	private Validator				validator;
+
+	@Autowired
+	private EndorsementService		endorsementService;
+
+	@Autowired
+	private CustomisationService	customisationService;
 
 
 	// Constructors -------------------------------
@@ -88,6 +99,15 @@ public class TrainerService {
 		return result;
 	}
 
+	private Collection<Trainer> findAll() {
+		Collection<Trainer> result;
+
+		result = this.trainerRepository.findAll();
+		Assert.notNull(result);
+
+		return result;
+	}
+
 	// Other business methods ---------------------
 
 	public Trainer findByPrincipal() {
@@ -108,6 +128,118 @@ public class TrainerService {
 		result = this.trainerRepository.findByUserAccount(userAccountId);
 
 		return result;
+	}
+
+	public Collection<Trainer> findTrainersWithAcceptedApplicationsByCustomer(final int customerId) {
+		Collection<Trainer> result;
+
+		result = this.trainerRepository.findTrainersWithAcceptedApplicationsByCustomer(customerId);
+
+		return result;
+	}
+
+	public void scoreProcess() {
+		Collection<Trainer> all;
+
+		all = this.findAll();
+
+		for (final Trainer t : all)
+			this.launchScoreProcess(t);
+	}
+
+	private void launchScoreProcess(final Trainer trainer) {
+		Assert.notNull(trainer);
+		Assert.isTrue(trainer.getId() != 0);
+
+		final Double score;
+		final Integer p, n;
+		final Double maximo;
+		final List<Integer> ls;
+		Collection<Endorsement> endorsementsReceived;
+
+		endorsementsReceived = this.endorsementService.findReceivedEndorsementsByTrainer(trainer.getId());
+
+		ls = new ArrayList<>(this.positiveNegativeWordNumbers(endorsementsReceived));
+		p = ls.get(0);
+		n = ls.get(1);
+
+		maximo = this.max(p, n);
+
+		if (maximo != 0)
+			score = (p - n) / maximo;
+		else
+			score = 0.0;
+
+		Assert.isTrue(score >= -1.00 && score <= 1.00);
+
+		trainer.setScore(Math.round(score * 100d) / 100d);
+
+		if (score < this.customisationService.find().getThreshold())
+			this.actorService.markAsSuspicious(trainer, true);
+
+	}
+
+	private List<Integer> positiveNegativeWordNumbers(final Collection<Endorsement> endorsements) {
+		Assert.isTrue(endorsements != null);
+
+		final List<Integer> results = new ArrayList<Integer>();
+		String comment, positiveWords_str, negativeWords_str;
+		Integer positive = 0, negative = 0;
+		String[] words = {};
+
+		positiveWords_str = this.customisationService.find().getPositiveWords();
+		negativeWords_str = this.customisationService.find().getNegativeWords();
+
+		final List<String> positive_ls = new ArrayList<>(this.utilityService.ListByString(positiveWords_str));
+		final List<String> negative_ls = new ArrayList<>(this.utilityService.ListByString(negativeWords_str));
+
+		for (final Endorsement e : endorsements) {
+			comment = e.getComments().toLowerCase();
+			words = comment.split(" ");
+
+			for (final String word : words)
+				if (positive_ls.contains(word))
+					positive++;
+				else if (negative_ls.contains(word))
+					negative++;
+		}
+
+		results.add(positive);
+		results.add(negative);
+
+		return results;
+
+	}
+
+	private Double max(final Integer n, final Integer p) {
+		Double result;
+
+		if (n >= p)
+			result = n * 1.0;
+		else
+			result = p * 1.0;
+
+		return result;
+	}
+
+	protected void calculateMark(final Trainer trainer) {
+		Assert.isTrue(trainer.getId() != 0);
+
+		Collection<Endorsement> endorsementsReceived;
+		int n, counter;
+		Double avgMark;
+
+		endorsementsReceived = this.endorsementService.findReceivedEndorsementsByTrainer(trainer.getId());
+		n = endorsementsReceived.size();
+
+		counter = 0;
+		for (final Endorsement e : endorsementsReceived)
+			counter = counter + e.getMark();
+
+		avgMark = (counter * 1.0) / (n * 1.0);
+
+		trainer.setMark(avgMark);
+
 	}
 
 	public RegistrationForm createForm(final Trainer trainer) {

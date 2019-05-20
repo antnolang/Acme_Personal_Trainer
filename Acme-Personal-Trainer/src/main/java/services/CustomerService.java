@@ -1,6 +1,8 @@
 
 package services;
 
+import java.util.Collection;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,6 +108,14 @@ public class CustomerService {
 		Customer result;
 
 		result = this.customerRepository.findByUserAccount(userAccountId);
+
+		return result;
+	}
+
+	public Collection<Customer> findCustomersWithAcceptedApplicationsByTrainer(final int trainerId) {
+		Collection<Customer> result;
+
+		result = this.customerRepository.findCustomersWithAcceptedApplicationsByTrainer(trainerId);
 
 		return result;
 	}

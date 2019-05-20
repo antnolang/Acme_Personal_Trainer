@@ -159,6 +159,14 @@
 			</strong> <a href="workingOut/list.do?trainerId=${actor.id}"><spring:message
 					code="table.workingOuts" /></a>
 		</p>
+		
+		<jstl:if test="${trainerAttended}">
+		<p>
+			<strong> <spring:message code="actor.trainer.endorsements" />
+			</strong> <a href="endorsement/list.do?trainerId=${actor.id}"><spring:message
+					code="table.endorsements" /></a>
+		</p>
+		</jstl:if>
 	</fieldset>
 </jstl:if>
 

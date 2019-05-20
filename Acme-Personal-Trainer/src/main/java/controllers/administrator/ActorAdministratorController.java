@@ -15,6 +15,7 @@ import services.ActorService;
 import services.AdministratorService;
 import services.AuditorService;
 import services.NutritionistService;
+import services.TrainerService;
 import controllers.ActorAbstractController;
 import domain.Actor;
 import domain.Administrator;
@@ -39,6 +40,9 @@ public class ActorAdministratorController extends ActorAbstractController {
 
 	@Autowired
 	private NutritionistService		nutritionistService;
+
+	@Autowired
+	private TrainerService			trainerService;
 
 
 	// Constructors
@@ -101,7 +105,7 @@ public class ActorAdministratorController extends ActorAbstractController {
 		return result;
 	}
 
-	// Spammers
+	// Suspicious
 
 	@RequestMapping(value = "/suspiciousProcess", method = RequestMethod.POST, params = "suspicious")
 	public ModelAndView suspiciousProcess() {
@@ -109,6 +113,22 @@ public class ActorAdministratorController extends ActorAbstractController {
 
 		try {
 			this.actorService.suspiciousProcess();
+			result = new ModelAndView("redirect:list.do");
+		} catch (final Throwable oops) {
+			result = new ModelAndView("redirect:/error.do");
+		}
+
+		return result;
+	}
+
+	// Score of trainers
+
+	@RequestMapping(value = "/scoreProcess", method = RequestMethod.POST, params = "score")
+	public ModelAndView scoreProcess() {
+		ModelAndView result;
+
+		try {
+			this.trainerService.scoreProcess();
 			result = new ModelAndView("redirect:list.do");
 		} catch (final Throwable oops) {
 			result = new ModelAndView("redirect:/error.do");

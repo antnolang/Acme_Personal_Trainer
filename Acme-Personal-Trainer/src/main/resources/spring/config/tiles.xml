@@ -37,8 +37,8 @@
 	<!--	<value>/views/curriculum/tiles.xml</value>	 -->	
 		<value>/views/customisation/tiles.xml</value>
 		<value>/views/dashboard/tiles.xml</value>
-	<!--	<value>/views/educationRecord/tiles.xml</value>	
-		<value>/views/endorsement/tiles.xml</value> -->
+	<!--	<value>/views/educationRecord/tiles.xml</value>	 -->
+		<value>/views/endorsement/tiles.xml</value> 
 		<!--
 		<value>/views/endorserRecord/tiles.xml</value>	
 		<value>/views/finder/tiles.xml</value>	
@@ -49,7 +49,7 @@
 		<value>/views/professionalRecord/tiles.xml</value>				
 		<value>/views/session/tiles.xml</value>  -->
 		<value>/views/socialProfile/tiles.xml</value>
-	<!-- 	<value>/views/workingOut/tiles.xml</value>  -->
+		<value>/views/workingOut/tiles.xml</value> 
 	</util:list>
 
 </beans>
