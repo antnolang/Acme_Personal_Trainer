@@ -28,7 +28,7 @@
 		</security:authorize>
 		
 		<security:authorize access="hasRole('CUSTOMER')">
-			<li><a class="fNiv"><spring:message	code="master.page.customer" /></a>
+			<li><a class="fNiv"><spring:message	code="master.page.application" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="application/customer/list.do"><spring:message code="master.page.application.list" /></a></li>
