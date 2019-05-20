@@ -11,31 +11,30 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-	<legend><spring:message code="creditCard.legend"/></legend>
-	
+
 	<p>
-		<strong><spring:message code="creditCard.holder"/> </strong>
-		<jstl:out value="${creditCard.holder}"/>
+		<strong><spring:message code="creditCard.holder"/> :</strong>
+		<jstl:out value="${creditCard.holderName}"/>
 	</p>
 	
 	<p>
-		<strong><spring:message code="creditCard.make"/> </strong>
-		<jstl:out value="${creditCard.make}"/>
+		<strong><spring:message code="creditCard.make"/>: </strong>
+		<jstl:out value="${creditCard.brandName}"/>
 	</p>
 	
 	<p>
 		<jstl:set var="length" value="${fn:length(creditCard.number)}"/>
-		<strong><spring:message code="creditCard.number"/> </strong>
+		<strong><spring:message code="creditCard.number"/> :</strong>
 		<jstl:out value="****${fn:substring(creditCard.number, length - 4, length)}"/>
 	</p>
 	
 	<p>
-		<strong><spring:message code="creditCard.expirationMonth"/> </strong>
+		<strong><spring:message code="creditCard.expirationMonth"/> :</strong>
 		<jstl:out value="${creditCard.expirationMonth}"/>
 	</p>
 	
 	<p>
-		<strong><spring:message code="creditCard.expirationYear"/> </strong>
+		<strong><spring:message code="creditCard.expirationYear"/>: </strong>
 		<jstl:out value="${creditCard.expirationYear}"/>
 	</p>
 	
