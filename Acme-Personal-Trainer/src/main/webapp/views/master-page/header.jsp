@@ -41,6 +41,8 @@
 					<li><a href="workingOut/customer/list.do"><spring:message code="master.page.workingOut.list" /></a></li>
 				</ul>
 			</li>
+			
+			<li><a class="fNiv" href="endorsement/customer,trainer/list.do"><spring:message code="master.page.endorsement.list" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('TRAINER')">
@@ -50,6 +52,8 @@
 					<li><a href="workingOut/trainer/list.do"><spring:message code="master.page.workingOut.list" /></a></li>
 				</ul>
 			</li>
+			
+			<li><a class="fNiv" href="endorsement/customer,trainer/list.do"><spring:message code="master.page.endorsement.list" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">

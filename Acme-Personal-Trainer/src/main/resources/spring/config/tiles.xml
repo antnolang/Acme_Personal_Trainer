@@ -37,8 +37,8 @@
 	<!--	<value>/views/curriculum/tiles.xml</value>	 -->	
 		<value>/views/customisation/tiles.xml</value>
 		<value>/views/dashboard/tiles.xml</value>
-	<!--	<value>/views/educationRecord/tiles.xml</value>	
-		<value>/views/endorsement/tiles.xml</value> -->
+	<!--	<value>/views/educationRecord/tiles.xml</value>	 -->
+		<value>/views/endorsement/tiles.xml</value> 
 		<!--
 		<value>/views/endorserRecord/tiles.xml</value>	
 		<value>/views/finder/tiles.xml</value>	

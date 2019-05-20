@@ -270,7 +270,7 @@ public class ApplicationService {
 		return applications;
 	}
 
-	protected boolean existApplicationAcceptedBetweenCustomerTrainer(final int customerId, final int trainerId) {
+	public boolean existApplicationAcceptedBetweenCustomerTrainer(final int customerId, final int trainerId) {
 		boolean result;
 
 		result = this.applicationRepository.existApplicationAcceptedBetweenCustomerTrainer(customerId, trainerId);

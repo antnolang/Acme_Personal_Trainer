@@ -130,6 +130,14 @@ public class TrainerService {
 		return result;
 	}
 
+	public Collection<Trainer> findTrainersWithAcceptedApplicationsByCustomer(final int customerId) {
+		Collection<Trainer> result;
+
+		result = this.trainerRepository.findTrainersWithAcceptedApplicationsByCustomer(customerId);
+
+		return result;
+	}
+
 	public void scoreProcess() {
 		Collection<Trainer> all;
 
@@ -212,6 +220,26 @@ public class TrainerService {
 			result = p * 1.0;
 
 		return result;
+	}
+
+	protected void calculateMark(final Trainer trainer) {
+		Assert.isTrue(trainer.getId() != 0);
+
+		Collection<Endorsement> endorsementsReceived;
+		int n, counter;
+		Double avgMark;
+
+		endorsementsReceived = this.endorsementService.findReceivedEndorsementsByTrainer(trainer.getId());
+		n = endorsementsReceived.size();
+
+		counter = 0;
+		for (final Endorsement e : endorsementsReceived)
+			counter = counter + e.getMark();
+
+		avgMark = (counter * 1.0) / (n * 1.0);
+
+		trainer.setMark(avgMark);
+
 	}
 
 	public RegistrationForm createForm(final Trainer trainer) {
