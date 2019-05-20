@@ -125,8 +125,6 @@ public class WorkingOutService {
 		return result;
 	}
 
-	// Reconstruct ----------------------------------------------
-
 	// Other business methods ---------------------
 
 	public void makeFinal(final WorkingOut workingOut) {

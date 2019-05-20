@@ -61,6 +61,10 @@
 		<strong><spring:message code="workingOut.finalMode"/>:</strong>
 			<jstl:out value="${workingOut.isFinalMode}"/>
 		<br/>
+		
+		<strong><spring:message code="workingOut.applications"/>:</strong>
+		<a href="application/trainer/list.do?actorId=${workingOut.trainer.id}"><spring:message code="workingOut.applications"/></a>
+	<br/>
 	</jstl:if>
 	</security:authorize>
 	
