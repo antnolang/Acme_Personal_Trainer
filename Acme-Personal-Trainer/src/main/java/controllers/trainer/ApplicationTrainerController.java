@@ -43,19 +43,19 @@ public class ApplicationTrainerController extends AbstractController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(@RequestParam final int workingOutId) {
 		ModelAndView result;
-		final Collection<Application> submittedApplications;
+		final Collection<Application> pendingApplications;
 		Collection<Application> acceptedApplications;
 		Collection<Application> rejectedApplications;
 		WorkingOut checkWorkingOut;
 
 		try {
 			checkWorkingOut = this.workingOutService.findOneFinalByPrincipal(workingOutId);
-			submittedApplications = this.applicationService.findPendingApplicationsByWorkingOut(workingOutId);
+			pendingApplications = this.applicationService.findPendingApplicationsByWorkingOut(workingOutId);
 			acceptedApplications = this.applicationService.findAcceptedApplicationsByWorkingOut(workingOutId);
 			rejectedApplications = this.applicationService.findRejectedApplicationsByWorkingOut(workingOutId);
 
 			result = new ModelAndView("application/list");
-			result.addObject("submittedApplications", submittedApplications);
+			result.addObject("submittedApplications", pendingApplications);
 			result.addObject("acceptedApplications", acceptedApplications);
 			result.addObject("rejectedApplications", rejectedApplications);
 
