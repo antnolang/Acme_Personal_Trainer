@@ -17,7 +17,7 @@
 		<acme:textbox code="creditCard.holder" path="holderName"/>
 		<br>
 		
-		<acme:textbox code="creditCard.make" path="brandName"/>
+		<acme:selectPrime items="${makes}" code="creditcard.make" path="creditCard.brandName"/>
 		<br>
 		
 		<acme:textbox code="creditCard.number" path="number"/>

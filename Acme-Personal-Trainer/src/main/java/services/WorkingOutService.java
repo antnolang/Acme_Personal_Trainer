@@ -66,9 +66,6 @@ public class WorkingOutService {
 		Assert.notNull(workingOut);
 		this.checkByPrincipal(workingOut);
 		Assert.isTrue(!workingOut.getIsFinalMode());
-		workingOut.setPublishedMoment(this.utilityService.current_moment());
-		Assert.isTrue(workingOut.getEndMoment().after(workingOut.getStartMoment()));
-		Assert.isTrue(workingOut.getStartMoment().after(workingOut.getPublishedMoment()));
 		workingOut.setTicker(this.utilityService.generateValidTicker());
 
 		final WorkingOut result;
@@ -129,11 +126,24 @@ public class WorkingOutService {
 
 	public void makeFinal(final WorkingOut workingOut) {
 		this.checkByPrincipal(workingOut);
+		Assert.isTrue(this.checkAtLeastOneSession(workingOut));
 
 		workingOut.setIsFinalMode(true);
+		workingOut.setPublishedMoment(this.utilityService.current_moment());
+		Assert.isTrue(workingOut.getEndMoment().after(workingOut.getStartMoment()));
+		Assert.isTrue(workingOut.getStartMoment().after(workingOut.getPublishedMoment()));
 		//TODO
 		//		this.messageService.notification_newWorkingOut(workingOut);
 
+	}
+	private boolean checkAtLeastOneSession(final WorkingOut workingOut) {
+		boolean res;
+		Collection<Session> sessions;
+
+		sessions = workingOut.getSessions();
+		res = sessions.size() >= 1;
+
+		return res;
 	}
 
 	public WorkingOut findOneFinalByPrincipal(final int workingOutId) {

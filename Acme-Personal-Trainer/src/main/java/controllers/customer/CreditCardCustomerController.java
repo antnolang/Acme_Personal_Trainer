@@ -15,9 +15,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import services.CreditCardService;
 import services.CustomerService;
+import services.CustomisationService;
+import services.UtilityService;
 import controllers.AbstractController;
 import domain.CreditCard;
 import domain.Customer;
+import domain.Customisation;
 
 @Controller
 @RequestMapping(value = "/creditCard/customer")
@@ -26,10 +29,16 @@ public class CreditCardCustomerController extends AbstractController {
 	// Services------------------------------------
 
 	@Autowired
-	private CreditCardService	creditCardService;
+	private CreditCardService		creditCardService;
 
 	@Autowired
-	private CustomerService		customerService;
+	private CustomerService			customerService;
+
+	@Autowired
+	private CustomisationService	customisationService;
+
+	@Autowired
+	private UtilityService			utilityService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -142,13 +151,18 @@ public class CreditCardCustomerController extends AbstractController {
 	protected ModelAndView createModelAndView(final CreditCard creditCard, final String messageCode) {
 		ModelAndView result;
 		Customer principal;
+		Collection<String> makes;
+		Customisation customisation;
 
 		principal = this.customerService.findByPrincipal();
+		customisation = this.customisationService.find();
+		makes = this.utilityService.ListByString(customisation.getCreditCardMakes());
 
 		result = new ModelAndView("creditCard/edit");
 		result.addObject("creditCard", creditCard);
 		result.addObject("principal", principal);
 		result.addObject("messageCode", messageCode);
+		result.addObject("makes", makes);
 
 		return result;
 
