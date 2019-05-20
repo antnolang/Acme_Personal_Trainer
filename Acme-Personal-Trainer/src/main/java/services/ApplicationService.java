@@ -278,6 +278,14 @@ public class ApplicationService {
 		return result;
 	}
 
+	protected Collection<Application> applicationsWithCreditCard(final int id) {
+		Collection<Application> res;
+
+		res = this.applicationRepository.applicationsWithCreditCard(id);
+
+		return res;
+	}
+
 	protected void flush() {
 		this.applicationRepository.flush();
 	}

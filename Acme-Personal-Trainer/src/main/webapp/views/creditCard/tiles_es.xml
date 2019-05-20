@@ -21,5 +21,14 @@
 		<put-attribute name="body" value="/views/creditCard/edit.jsp" />
 	</definition>
 	
+	<definition name="creditCard/list" extends="master.page">	
+		<put-attribute name="title" value="Listar tarjetas de crédito card" />
+		<put-attribute name="body" value="/views/creditCard/list.jsp" />
+	</definition>
+	
+	<definition name="creditCard/display" extends="master.page">	
+		<put-attribute name="title" value="Mostrar tarjeta de crédito" />
+		<put-attribute name="body" value="/views/creditCard/display.jsp" />
+	
 	
 </tiles-definitions>
