@@ -154,11 +154,13 @@
 		</p>
 		</security:authorize>
 		
+		<security:authorize access="hasRole('CUSTOMER')">
 		<p>
 			<strong> <spring:message code="actor.trainer.workingOuts" />
-			</strong> <a href="workingOut/list.do?trainerId=${actor.id}"><spring:message
+			</strong> <a href="workingOut/customer/list.do?trainerId=${actor.id}"><spring:message
 					code="table.workingOuts" /></a>
 		</p>
+		</security:authorize>
 		
 		<jstl:if test="${trainerAttended}">
 		<p>

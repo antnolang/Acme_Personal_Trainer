@@ -45,7 +45,7 @@
 			<li><a class="fNiv"><spring:message	code="master.page.workingOut" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="workingOut/customer/list.do"><spring:message code="master.page.workingOut.list" /></a></li>
+					<li><a href="workingOut/customer/listAvailable.do"><spring:message code="master.page.workingOut.list" /></a></li>
 				</ul>
 			</li>
 			
