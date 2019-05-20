@@ -61,7 +61,7 @@ public class WorkingOutTrainerController extends AbstractController {
 		try {
 			principal = this.trainerService.findByPrincipal();
 			result = new ModelAndView("workingOut/list");
-			workingOuts = this.workingOutService.findWorkingOutsByTrainer(principal);
+			workingOuts = this.workingOutService.findWorkingOutsByPrincipal();
 
 			result.addObject("principal", principal);
 			result.addObject("workingOuts", workingOuts);

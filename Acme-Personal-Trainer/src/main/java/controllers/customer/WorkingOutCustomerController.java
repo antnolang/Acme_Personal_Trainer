@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ApplicationService;
@@ -14,6 +15,7 @@ import services.CustomerService;
 import services.TrainerService;
 import services.WorkingOutService;
 import controllers.AbstractController;
+import domain.Trainer;
 import domain.WorkingOut;
 
 @Controller
@@ -42,8 +44,8 @@ public class WorkingOutCustomerController extends AbstractController {
 	}
 
 	// Working-out list by principal trainer -----------------------------------------------------------
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list() {
+	@RequestMapping(value = "/listAvailable", method = RequestMethod.GET)
+	public ModelAndView listAvailable() {
 		ModelAndView result;
 		Collection<WorkingOut> workingOuts;
 
@@ -51,6 +53,27 @@ public class WorkingOutCustomerController extends AbstractController {
 			result = new ModelAndView("workingOut/list");
 			workingOuts = this.workingOutService.findAllVisible();
 
+			result.addObject("workingOuts", workingOuts);
+			result.addObject("requestURI", "workingOut/customer/listAvailable.do");
+
+		} catch (final Throwable oops) {
+			result = new ModelAndView("redirect:../error.do");
+		}
+
+		return result;
+	}
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView list(@RequestParam final int trainerId) {
+		ModelAndView result;
+		Collection<WorkingOut> workingOuts;
+		Trainer trainer;
+
+		try {
+			trainer = this.trainerService.findOne(trainerId);
+			result = new ModelAndView("workingOut/list");
+			workingOuts = this.workingOutService.findWorkingOutsByTrainer(trainer);
+
+			result.addObject("principal", trainer);
 			result.addObject("workingOuts", workingOuts);
 			result.addObject("requestURI", "workingOut/customer/list.do");
 

@@ -18,7 +18,10 @@ public interface WorkingOutRepository extends JpaRepository<WorkingOut, Integer>
 	String existTicker(String ticker);
 
 	@Query("select w from WorkingOut w where w.trainer.id = ?1")
-	Collection<WorkingOut> findWorkingOutsByTrainer(int id);
+	Collection<WorkingOut> findAllWorkingOutsByTrainer(int id);
+
+	@Query("select w from WorkingOut w where w.trainer.id = ?1 and w.isFinalMode = true")
+	Collection<WorkingOut> findFinalWorkingOutsByTrainer(int id);
 
 	@Query("select w from WorkingOut w where w.isFinalMode = true")
 	Collection<WorkingOut> findAllVisible();

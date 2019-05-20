@@ -159,7 +159,16 @@ public class WorkingOutService {
 	public Collection<WorkingOut> findWorkingOutsByTrainer(final Trainer trainer) {
 		Collection<WorkingOut> workingOuts;
 
-		workingOuts = this.workingOutRepository.findWorkingOutsByTrainer(trainer.getId());
+		workingOuts = this.workingOutRepository.findFinalWorkingOutsByTrainer(trainer.getId());
+
+		return workingOuts;
+	}
+	public Collection<WorkingOut> findWorkingOutsByPrincipal() {
+		Collection<WorkingOut> workingOuts;
+		Trainer trainer;
+
+		trainer = this.trainerService.findByPrincipal();
+		workingOuts = this.workingOutRepository.findAllWorkingOutsByTrainer(trainer.getId());
 
 		return workingOuts;
 	}
