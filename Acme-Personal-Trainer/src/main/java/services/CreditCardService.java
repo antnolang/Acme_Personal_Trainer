@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.CreditCardRepository;
@@ -135,6 +136,23 @@ public class CreditCardService {
 		res = applicationsWithCreditCard.isEmpty();
 
 		return res;
+	}
+
+	// Reconstruct ----------------------------------------------
+	public CreditCard reconstruct(final CreditCard creditCard, final BindingResult binding) {
+		CreditCard result;
+
+		result = this.create();
+		result.setBrandName(creditCard.getBrandName());
+		result.setCvvCode(creditCard.getCvvCode());
+		result.setExpirationMonth(creditCard.getExpirationMonth());
+		result.setExpirationYear(creditCard.getExpirationYear());
+		result.setHolderName(creditCard.getHolderName());
+		result.setNumber(creditCard.getNumber());
+
+		this.validator.validate(result, binding);
+
+		return result;
 	}
 
 }

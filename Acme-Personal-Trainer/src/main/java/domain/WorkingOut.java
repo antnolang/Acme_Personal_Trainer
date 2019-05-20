@@ -89,7 +89,6 @@ public class WorkingOut extends DomainEntity {
 		this.price = price;
 	}
 
-	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public Date getStartMoment() {
@@ -100,7 +99,6 @@ public class WorkingOut extends DomainEntity {
 		this.startMoment = startMoment;
 	}
 
-	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public Date getEndMoment() {
