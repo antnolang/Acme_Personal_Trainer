@@ -41,8 +41,8 @@
 		<value>/views/endorsement/tiles.xml</value> 
 		<!--
 		<value>/views/endorserRecord/tiles.xml</value>	
-		<value>/views/finder/tiles.xml</value>	
-		<value>/views/message/tiles.xml</value> -->
+		<value>/views/finder/tiles.xml</value>	-->
+		<value>/views/message/tiles.xml</value>
 		<!-- 
 		<value>/views/miscellaneousRecord/tiles.xml</value>				
 		<value>/views/personalRecord/tiles.xml</value>			

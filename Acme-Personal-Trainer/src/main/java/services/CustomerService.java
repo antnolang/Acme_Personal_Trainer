@@ -69,6 +69,22 @@ public class CustomerService {
 		return result;
 	}
 
+	protected Collection<Customer> findAll() {
+		Collection<Customer> results;
+
+		results = this.customerRepository.findAll();
+
+		return results;
+	}
+
+	protected Collection<Customer> findPremiumCustomers() {
+		Collection<Customer> results;
+
+		results = this.customerRepository.findPremiumCustomers();
+
+		return results;
+	}
+
 	public Customer findOneToDisplayEdit(final int customerId) {
 		Assert.isTrue(customerId != 0);
 
