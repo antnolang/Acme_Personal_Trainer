@@ -153,6 +153,7 @@ public class MessageService {
 		result.setSentMoment(current_moment);
 		result.setBody(body);
 		result.setSubject(subject);
+		result.setPriority("LOW");
 		result.setTags("SYSTEM");
 
 		return result;
@@ -542,6 +543,10 @@ public class MessageService {
 				binding.rejectValue("destinationBoxId", "message.error.null", "No debe ser nulo");
 
 		return result;
+	}
+
+	protected void flush() {
+		this.messageRepository.flush();
 	}
 
 }
