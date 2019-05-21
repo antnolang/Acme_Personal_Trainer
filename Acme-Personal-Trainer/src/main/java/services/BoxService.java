@@ -175,10 +175,11 @@ public class BoxService {
 	public Box reconstruct(final Box box, final BindingResult binding) {
 		Box result, storedBox;
 
-		storedBox = this.findOne(box.getId());
 		if (box.getId() == 0)
 			result = this.create();
 		else {
+			storedBox = this.findOne(box.getId());
+
 			result = new Box();
 			result.setId(storedBox.getId());
 			result.setVersion(storedBox.getVersion());
