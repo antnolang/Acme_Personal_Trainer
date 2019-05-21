@@ -63,7 +63,7 @@
 		<br/>
 		
 		<strong><spring:message code="workingOut.applications"/>:</strong>
-		<a href="application/trainer/list.do?workingOutId=${workingOut.id}"><spring:message code="workingOut.applications"/></a>
+		<a href="application/trainer/list.do?actorId=${workingOut.trainer.id}"><spring:message code="workingOut.applications"/></a>
 	<br/>
 	</jstl:if>
 	</security:authorize>
@@ -90,11 +90,20 @@
 	<spring:message code="workingOut.formatMoment" var="formatMoment" />
 	<display:column property="endMoment" titleKey="workingOut.endMoment" sortable="true" format="${formatMoment}"/>
 </display:table>
+
+<security:authorize access="hasRole('TRAINER')">
+	<jstl:if test="${principal == workingOut.trainer && !workingOut.isFinalMode}">
+	<a href="session/trainer/create.do">
+		<spring:message	code="workingOut.create.session" />			
+	</a>
 	
+	</jstl:if>
+</security:authorize>	
 	
 	<!-- Links -->	
 	
 <security:authorize access="hasRole('TRAINER')">
+
 	<a href="workingOut/trainer/list.do">
 		<spring:message	code="workingOut.back" />			
 	</a>

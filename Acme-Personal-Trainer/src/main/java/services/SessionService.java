@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
-import repositories.WorkingOutRepository;
+import repositories.SessionRepository;
 import domain.Category;
 import domain.Session;
 import domain.Trainer;
@@ -20,44 +20,55 @@ import domain.WorkingOut;
 
 @Service
 @Transactional
-public class WorkingOutService {
+public class SessionService {
 
 	// Managed repository ---------------------------------------------
 
 	@Autowired
-	private WorkingOutRepository	workingOutRepository;
+	private SessionRepository	sessionRepository;
 
 	// Supporting services -------------------------------------------
 
 	@Autowired
-	private TrainerService			trainerService;
+	private TrainerService		trainerService;
 
 	@Autowired
-	private UtilityService			utilityService;
+	private WorkingOutService	workingOutService;
 
 	@Autowired
-	private Validator				validator;
+	private Validator			validator;
+
+	@Autowired
+	private UtilityService		utilityService;
 
 
 	//Constructor ----------------------------------------------------
 
-	public WorkingOutService() {
+	public SessionService() {
 		super();
 	}
 
 	// Simple CRUD methods ------------------------
 
-	public WorkingOut create() {
-		WorkingOut result;
-		Trainer trainer;
+	public Session create() {
+		Session result;
 
-		result = new WorkingOut();
-		trainer = this.trainerService.findByPrincipal();
+		result = new Session();
 
-		result.setTicker("000000-XXXXXX");
-		result.setTrainer(trainer);
-		result.setSessions(Collections.<Session> emptySet());
-		result.setCategories(Collections.<Category> emptySet());
+		return result;
+	}
+
+	public Session save(final Session session, final WorkingOut workingOut) {
+		Session result;
+
+		result = new Session();
+
+		Assert.isTrue(!workingOut.getIsFinalMode());
+		this.workingOutService.checkByPrincipal(workingOut);
+		Assert.isTrue(session.getEndMoment().after(session.getStartMoment()));
+		Assert.isTrue(session.getStartMoment().after(this.utilityService.current_moment()));
+
+		this.workingOutService.updateMomentWorkingOut(workingOut, session);
 
 		return result;
 	}
@@ -202,7 +213,9 @@ public class WorkingOutService {
 
 		return result;
 	}
-	protected void checkByPrincipal(final WorkingOut workingOut) {
+
+	// Private methods-----------------------------------------------
+	private void checkByPrincipal(final WorkingOut workingOut) {
 		Trainer owner;
 		Trainer principal;
 
@@ -211,25 +224,6 @@ public class WorkingOutService {
 
 		Assert.isTrue(owner.equals(principal));
 	}
-
-	protected void updateMomentWorkingOut(final WorkingOut workingOut, final Session session) {
-		Collection<Session> sessions;
-		int sizeSessions;
-
-		sessions = workingOut.getSessions();
-		sizeSessions = sessions.size();
-
-		if (sizeSessions == 0) {
-			workingOut.setStartMoment(session.getStartMoment());
-			workingOut.setEndMoment(session.getEndMoment());
-		} else if (sizeSessions == 1) {
-
-		}
-		workingOut.setStartMoment(session.getStartMoment());
-		workingOut.setEndMoment(session.getEndMoment());
-	}
-
-	// Private methods-----------------------------------------------
 
 	// Reconstruct ----------------------------------------------
 	public WorkingOut reconstruct(final WorkingOut workingOut, final BindingResult binding) {
