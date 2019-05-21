@@ -20,7 +20,7 @@
 	
 	<acme:textbox code="session.address" path="address"/>
 	
-	<acme:textbox code="session.starMoment" placeholder="dd/MM/yyyy HH:mm" path="starMoment"/>
+	<acme:textbox code="session.starMoment" placeholder="dd/MM/yyyy HH:mm" path="startMoment"/>
 	
 	<acme:textbox code="session.endMoment" placeholder="dd/MM/yyyy HH:mm" path="endMoment"/>	
 	

@@ -51,8 +51,9 @@
 		<jstl:out value="${workingOut.description}"/>
 	<br/>
 	
+	<spring:message code="workingOut.vat" var="vatTag"/>
 	<strong><spring:message code="workingOut.price"/>:</strong>
-		<fmt:formatNumber type="number" maxFractionDigits="2" value="${workingOut.price * (1 + VAT /100)}"/> &#8364; <jstl:out value="(VAT% Inc.)"/>
+		<fmt:formatNumber type="number" maxFractionDigits="2" value="${workingOut.price * (1 + VAT /100)}"/> &#8364; <jstl:out value="(${VAT}%  ${vatTag}  Inc.)"/>
 	<br/>
 	
 	
@@ -93,7 +94,7 @@
 
 <security:authorize access="hasRole('TRAINER')">
 	<jstl:if test="${principal == workingOut.trainer && !workingOut.isFinalMode}">
-	<a href="session/trainer/create.do">
+	<a href="session/trainer/create.do?workingOutId=${workingOut.id}">
 		<spring:message	code="workingOut.create.session" />			
 	</a>
 	
@@ -110,7 +111,7 @@
 </security:authorize>
 
 <security:authorize access="hasRole('CUSTOMER')">
-	<a href="workingOut/customer/list.do">
+	<a href="workingOut/customer/listAvailable.do">
 		<spring:message	code="workingOut.back" />			
 	</a>
 </security:authorize>

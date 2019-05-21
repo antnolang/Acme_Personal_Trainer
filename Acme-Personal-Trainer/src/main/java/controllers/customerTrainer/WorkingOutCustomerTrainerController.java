@@ -60,7 +60,7 @@ public class WorkingOutCustomerTrainerController extends AbstractController {
 		final Boolean isApplied;
 		Collection<Category> categories;
 		Collection<Session> sessions;
-		int VAT;
+		double VAT;
 
 		try {
 			VAT = this.customisationService.find().getVAT();

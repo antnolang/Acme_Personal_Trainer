@@ -12,6 +12,7 @@
 
 <form:form action="workingOut/trainer/edit.do" modelAttribute="workingOut">
 	<form:hidden path="id" />
+	<form:hidden path="version" />
 	
 	<acme:textarea code="workingOut.description" path="description" />
 	

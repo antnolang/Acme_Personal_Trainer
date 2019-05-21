@@ -265,4 +265,14 @@ public class WorkingOutService {
 		return result;
 	}
 
+	public WorkingOut findOneToCreateSession(final Integer workingOutId) {
+		WorkingOut res;
+
+		res = this.findOne(workingOutId);
+		Assert.isTrue(!res.getIsFinalMode());
+		this.checkByPrincipal(res);
+
+		return res;
+	}
+
 }
