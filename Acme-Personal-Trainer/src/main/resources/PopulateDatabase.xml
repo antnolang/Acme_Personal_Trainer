@@ -2648,21 +2648,21 @@
 		<property name="fullname" value="endorserRecord1" />
 		<property name="email" value="endorserrecord1@gmail.com" />
 		<property name="phoneNumber" value="632014758" />
-		<property name="linkedInProfile" value="http://www.linkedin.com" />
+		<property name="linkedInProfile" value="http://www.linkedin.com/e1" />
 	</bean>
 
 	<bean id="endorserRecord2" class="domain.EndorserRecord">
 		<property name="fullname" value="endorserRecord2" />
 		<property name="email" value="endorserrecord2@gmail.com" />
 		<property name="phoneNumber" value="695410328" />
-		<property name="linkedInProfile" value="http://www.linkedin.com" />
+		<property name="linkedInProfile" value="http://www.linkedin.com/e2" />
 	</bean>
 
 	<bean id="endorserRecord3" class="domain.EndorserRecord">
 		<property name="fullname" value="endorserRecord3" />
 		<property name="email" value="endorserrecord3@gmail.com" />
 		<property name="phoneNumber" value="625401897" />
-		<property name="linkedInProfile" value="http://www.linkedin.com" />
+		<property name="linkedInProfile" value="http://www.linkedin.com/e3" />
 	</bean>
 
 	<!-- Message -->
@@ -2985,7 +2985,7 @@
 			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
 		<property name="email" value="personalRecord1@gmail.com" />
 		<property name="phoneNumber" value="631047853" />
-		<property name="linkedInProfile" value="http://www.linkedin.com" />
+		<property name="linkedInProfile" value="http://www.linkedin.com/p1" />
 	</bean>
 
 	<bean id="personalRecord2" class="domain.PersonalRecord">
@@ -2994,7 +2994,7 @@
 			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
 		<property name="email" value="personalRecord2@gmail.com" />
 		<property name="phoneNumber" value="601895472" />
-		<property name="linkedInProfile" value="http://www.linkedin.com" />
+		<property name="linkedInProfile" value="http://www.linkedin.com/p2" />
 	</bean>
 
 	<bean id="personalRecord3" class="domain.PersonalRecord">
@@ -3003,7 +3003,7 @@
 			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
 		<property name="email" value="personalRecord3@gmail.com" />
 		<property name="phoneNumber" value="652013984" />
-		<property name="linkedInProfile" value="http://www.linkedin.com" />
+		<property name="linkedInProfile" value="http://www.linkedin.com/p3" />
 	</bean>
 
 	<bean id="personalRecord4" class="domain.PersonalRecord">
@@ -3012,7 +3012,7 @@
 			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
 		<property name="email" value="personalRecord4@gmail.com" />
 		<property name="phoneNumber" value="601895472" />
-		<property name="linkedInProfile" value="http://www.linkedin.com" />
+		<property name="linkedInProfile" value="http://www.linkedin.com/p4" />
 	</bean>
 
 	<bean id="personalRecord5" class="domain.PersonalRecord">
@@ -3021,7 +3021,7 @@
 			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
 		<property name="email" value="personalRecord5@gmail.com" />
 		<property name="phoneNumber" value="652013984" />
-		<property name="linkedInProfile" value="http://www.linkedin.com" />
+		<property name="linkedInProfile" value="http://www.linkedin.com/p5" />
 	</bean>
 
 	<!-- Professsional Record -->
