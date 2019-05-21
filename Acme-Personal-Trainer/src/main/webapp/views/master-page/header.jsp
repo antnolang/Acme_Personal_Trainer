@@ -91,7 +91,7 @@
 					<li class="arrow"></li>
 					<!-- Añadir enlaces -->
 					<li><a href="actor/display.do"><spring:message code="master.page.actor.display" /></a></li>
-					<li><a href="message/administrator,auditor,customer,nutritionist,trainer/list.do"><spring:message code="master.page.message" /></a></li>
+					<li><a href="box/administrator,auditor,customer,nutritionist,trainer/list.do"><spring:message code="master.page.box" /></a></li>
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>
