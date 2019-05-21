@@ -67,7 +67,9 @@ public class ActorService {
 	public void delete(final Actor actor) {
 
 		// Delete messages
-		//this.messageService.deleteMessages(actor);
+		this.messageService.deleteMessagesFromActor(actor);
+
+		// Delete boxes
 
 		// Delete social profiles
 		this.socialProfileService.deleteSocialProfiles(actor);

@@ -63,7 +63,7 @@
 		<br/>
 		
 		<strong><spring:message code="workingOut.applications"/>:</strong>
-		<a href="application/trainer/list.do?actorId=${workingOut.trainer.id}"><spring:message code="workingOut.applications"/></a>
+		<a href="application/trainer/list.do?workingOutId=${workingOut.id}"><spring:message code="workingOut.applications"/></a>
 	<br/>
 	</jstl:if>
 	</security:authorize>

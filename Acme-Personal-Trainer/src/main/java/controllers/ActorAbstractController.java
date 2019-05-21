@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
 import services.ApplicationService;
+import services.CustomerService;
 import domain.Actor;
 import domain.Administrator;
 import domain.Customer;
@@ -23,6 +24,9 @@ public class ActorAbstractController extends AbstractController {
 	@Autowired
 	private ApplicationService	applicationService;
 
+	@Autowired
+	private CustomerService		customerService;
+
 
 	// Main methods -----------------------------------------------------------
 
@@ -31,6 +35,7 @@ public class ActorAbstractController extends AbstractController {
 	public ModelAndView display(final Integer actorId) {
 		ModelAndView result;
 		Actor actor, principal;
+		Customer customerPrincipal;
 
 		actor = null;
 		principal = null;
@@ -54,6 +59,14 @@ public class ActorAbstractController extends AbstractController {
 				throw new IllegalArgumentException();
 			if (actor instanceof Trainer && principal instanceof Customer && this.applicationService.existApplicationAcceptedBetweenCustomerTrainer(principal.getId(), actor.getId()) == true)
 				result.addObject("trainerAttended", true);
+			else if (actor instanceof Trainer && principal instanceof Customer) {
+				customerPrincipal = this.customerService.findByPrincipal();
+				if (customerPrincipal.getIsPremium())
+					result.addObject("customerPremium", "true");
+				else
+					result.addObject("customerPremium", "false");
+			}
+
 		}
 
 		if (principal != null && actor != null && principal == actor) {

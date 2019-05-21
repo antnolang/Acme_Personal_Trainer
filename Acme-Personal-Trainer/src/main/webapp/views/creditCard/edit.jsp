@@ -12,34 +12,31 @@
 
 <form:form action="creditCard/customer/edit.do" modelAttribute="creditCard">
 
-	<fieldset>
-		<legend><spring:message code="creditCard.legend"/></legend>
+
 		
-		<acme:textbox code="creditCard.holder.requested" path="holder"/>
+		<acme:textbox code="creditCard.holder" path="holderName"/>
 		<br>
 		
-		<acme:textbox code="creditCard.make.requested" path="make"/>
+		<acme:selectPrime items="${makes}" code="creditCard.make" path="brandName"/>
 		<br>
 		
-		<acme:textbox code="creditCard.number.requested" path="number"/>
+		<acme:textbox code="creditCard.number" path="number"/>
 		<br>
 		
-		<acme:textbox code="creditCard.expirationMonth.requested" path="expirationMonth"/>
+		<acme:textbox code="creditCard.expirationMonth" path="expirationMonth"/>
 		<br>
 		
-		<acme:textbox code="creditCard.expirationYear.requested" path="expirationYear"/>
+		<acme:textbox code="creditCard.expirationYear" path="expirationYear"/>
 		<br>
 		
-		<acme:textbox code="creditCard.cvvCode.requested" path="cvvCode"/>
+		<acme:textbox code="creditCard.cvvCode" path="cvvCode"/>
 		<br>
-	
-	</fieldset>
-	
+
  
  
  	<acme:submit name="save" code="creditCard.save"/>
 	
-	<acme:cancel url="actor/display.do" code="creditCard.cancel"/>
+	<acme:cancel url="creditCard/customer/list.do" code="creditCard.cancel"/>
  
 	
 	

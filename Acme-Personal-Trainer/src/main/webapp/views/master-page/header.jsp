@@ -19,16 +19,14 @@
 					<li><a href="actor/administrator/registerAuditor.do"><spring:message code="master.page.auditor.create" /></a></li>
 					<li><a href="actor/administrator/registerNutritionist.do"><spring:message code="master.page.nutritionist.create" /></a></li>
 					<li><a href="actor/administrator/list.do"><spring:message code="master.page.actor.list" /></a></li>
-
-					<!-- Añadir enlaces -->
-					<li><a href="/category/administrator/list.do"><spring:message code="master.page.category" /> </a></li>
+					<li><a href="category/administrator/list.do"><spring:message code="master.page.category" /> </a></li>
 
 				</ul>
 			</li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('CUSTOMER')">
-			<li><a class="fNiv"><spring:message	code="master.page.customer" /></a>
+			<li><a class="fNiv"><spring:message	code="master.page.application" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="application/customer/list.do"><spring:message code="master.page.application.list" /></a></li>
@@ -45,7 +43,7 @@
 			<li><a class="fNiv"><spring:message	code="master.page.workingOut" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="workingOut/customer/list.do"><spring:message code="master.page.workingOut.list" /></a></li>
+					<li><a href="workingOut/customer/listAvailable.do"><spring:message code="master.page.workingOut.list" /></a></li>
 				</ul>
 			</li>
 			
@@ -62,6 +60,15 @@
 			
 			<li><a class="fNiv" href="endorsement/customer,trainer/list.do"><spring:message code="master.page.endorsement.list" /></a></li>
 			<li><a class="fNiv" href="curriculum/trainer/display.do"><spring:message code="master.page.curriculum" /></a></li>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('NUTRITIONIST')">
+			<li><a class="fNiv"><spring:message	code="master.page.article" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="article/nutritionist/list.do"><spring:message code="master.page.article.list" /></a></li>
+				</ul>
+			</li>
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">
@@ -85,6 +92,7 @@
 					<li class="arrow"></li>
 					<!-- Añadir enlaces -->
 					<li><a href="actor/display.do"><spring:message code="master.page.actor.display" /></a></li>
+					<li><a href="box/administrator,auditor,customer,nutritionist,trainer/list.do"><spring:message code="master.page.box" /></a></li>
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>

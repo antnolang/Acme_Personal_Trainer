@@ -34,8 +34,8 @@
 		</a>
 	</display:column>
 	
-	<display:column property="name" titleKey="box.name"/>
-	<display:column property="parent" titleKey="box.parent"/>
+	<display:column property="name" titleKey="box.name" />
+	<display:column property="parent.name" titleKey="box.parent" />
 </display:table>
 
 <!-- LINKS -->

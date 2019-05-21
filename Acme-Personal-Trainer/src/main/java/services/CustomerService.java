@@ -69,6 +69,22 @@ public class CustomerService {
 		return result;
 	}
 
+	protected Collection<Customer> findAll() {
+		Collection<Customer> results;
+
+		results = this.customerRepository.findAll();
+
+		return results;
+	}
+
+	protected Collection<Customer> findPremiumCustomers() {
+		Collection<Customer> results;
+
+		results = this.customerRepository.findPremiumCustomers();
+
+		return results;
+	}
+
 	public Customer findOneToDisplayEdit(final int customerId) {
 		Assert.isTrue(customerId != 0);
 
@@ -247,6 +263,10 @@ public class CustomerService {
 		if (this.actorService.existEmail(customer.getEmail()))
 			binding.rejectValue("email", "actor.email.used", "Email already in use");
 
+	}
+
+	protected void flush() {
+		this.customerRepository.flush();
 	}
 
 }

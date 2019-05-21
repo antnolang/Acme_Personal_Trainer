@@ -35,5 +35,5 @@
 	<jstl:if test="${category.id != 0 && isReference}">
 		<acme:submit name="delete" code="category.delete" />
 	</jstl:if>		
-	<acme:cancel url="category/list.do" code="category.cancel"/>
+	<acme:cancel url="category/administrator/list.do" code="category.cancel"/>
 </form:form>

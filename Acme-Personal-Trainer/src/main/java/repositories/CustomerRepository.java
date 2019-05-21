@@ -18,4 +18,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 	@Query("select a.customer from Application a where a.workingOut.trainer.id = ?1 and a.status = 'ACCEPTED'")
 	Collection<Customer> findCustomersWithAcceptedApplicationsByTrainer(int trainerId);
 
+	@Query("select c from Customer c where c.isPremium=true")
+	Collection<Customer> findPremiumCustomers();
+
 }

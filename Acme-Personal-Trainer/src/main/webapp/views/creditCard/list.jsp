@@ -21,12 +21,12 @@
 	
 	<display:column property="holderName" titleKey="creditCard.holder" />
 
-	<display:column property="make" titleKey="creditCard.make" />
+	<display:column property="brandName" titleKey="creditCard.make" />
 	
 	
 </display:table>
 
 
-<security:authorize access="hasRole('TRAINER')">
- 			<a href="workingOut/trainer/create.do"><spring:message code="workingOut.create"/></a>
+<security:authorize access="hasRole('CUSTOMER')">
+ 			<a href="creditCard/customer/create.do"><spring:message code="creditCard.create"/></a>
  	</security:authorize>

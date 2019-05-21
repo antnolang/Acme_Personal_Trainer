@@ -9,11 +9,11 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-
+<jstl:if test="${rolActor=='trainer'}">
 	<strong><spring:message code="application.customer" />:</strong>
 	<jstl:out value="${application.customer.fullname}" />
 	<br />
-
+</jstl:if>
 
 <strong><spring:message code="application.registeredMoment" />:</strong>
 <spring:message code="application.formatMoment1" var="formatApplicationMoment"/>
@@ -26,12 +26,12 @@
 
 <strong><spring:message code="application.creditCard" />:</strong>
 <a
-	href="curriculum/display.do?creditCardId=${application.creditCard.id}"><spring:message
+	href="creditCard/display.do?creditCardId=${application.creditCard.id}"><spring:message
 		code="application.creditCard" /></a>
 <br />		
 
 <strong><spring:message code="application.workingOut" />:</strong>
-<a href="workingOut/display.do?workingOutId=${application.workingOut.id}"><jstl:out value="${application.workingOut.ticker}"/></a>
+<a href="workingOut/customer,trainer/display.do?workingOutId=${application.workingOut.id}"><jstl:out value="${application.workingOut.ticker}"/></a>
 	<br/>
 	
 	<strong><spring:message code="application.comments" />:</strong>

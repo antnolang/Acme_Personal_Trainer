@@ -1,10 +1,10 @@
 
 package services;
 
+import java.util.Collection;
 import java.util.Map;
 
 import javax.transaction.Transactional;
-import javax.validation.ConstraintViolationException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -77,7 +77,7 @@ public class CategoryServiceTest extends AbstractTest {
 	 * C: Analysis of sentence coverage: 8/9 -> 88.89% of executed lines codes .
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void delete_negativeTest_uno() {
 		super.authenticate("admin1");
 
@@ -103,7 +103,7 @@ public class CategoryServiceTest extends AbstractTest {
 	 * C: Analysis of sentence coverage: 2/9 -> 22.22% of executed lines codes .
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void delete_negativeTest_dos() {
 		super.authenticate("admin1");
 
@@ -133,7 +133,8 @@ public class CategoryServiceTest extends AbstractTest {
 		super.authenticate("admin1");
 
 		int categoryId;
-		Category category, found;
+		Category category;
+		Collection<Category> all;
 
 		categoryId = this.getEntityId("category5");
 
@@ -141,9 +142,9 @@ public class CategoryServiceTest extends AbstractTest {
 
 		this.categoryService.delete(category);
 
-		found = this.categoryService.findOne(category.getId());
+		all = this.categoryService.findAll();
 
-		Assert.isNull(found);
+		Assert.isTrue(!all.contains(category));
 
 		super.unauthenticate();
 	}
@@ -158,7 +159,7 @@ public class CategoryServiceTest extends AbstractTest {
 			 * D: Analysis of data coverage: Category::name is null => 1/7 -> 14.28%.
 			 */
 			{
-				null, ConstraintViolationException.class
+				null, NullPointerException.class
 			},
 			/*
 			 * A: Requirement 4 and 11.2 (An administrator can create/edit categories)
@@ -167,7 +168,7 @@ public class CategoryServiceTest extends AbstractTest {
 			 * D: Analysis of data coverage: Category::name is empty string => 1/7 -> 14.28%.
 			 */
 			{
-				"", ConstraintViolationException.class
+				"", IllegalArgumentException.class
 			},
 			/*
 			 * A: Requirement 4 and 11.2 (An administrator can create/edit categories)
@@ -176,7 +177,7 @@ public class CategoryServiceTest extends AbstractTest {
 			 * D: Analysis of data coverage: Category::name is a malicious script => 1/7 -> 14.28%.
 			 */
 			{
-				"<script> Alert('hacked!!'); </script>", ConstraintViolationException.class
+				"<script> Alert('hacked!!'); </script>", IllegalArgumentException.class
 			},
 			/*
 			 * A: Requirement 4 and 11.2 (An administrator can create/edit categories)
@@ -204,6 +205,14 @@ public class CategoryServiceTest extends AbstractTest {
 			 */
 			{
 				",estiramientos", IllegalArgumentException.class
+			},
+			/*
+			 * A: Requirement 4 and 11.2 (An administrator can create/edit categories)
+			 * C: Analysis of sentence coverage: 10/12 -> 83.33% executed code lines.
+			 * D: Analysis of data coverage: The unique attribute has valid value => 1/7 -> 14.28%.
+			 */
+			{
+				"Free Training,Entrenamiento libre", null
 			}
 		};
 

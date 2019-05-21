@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import services.CreditCardService;
 import services.CustomerService;
+import services.CustomisationService;
+import services.UtilityService;
 import controllers.AbstractController;
 import domain.CreditCard;
 import domain.Customer;
+import domain.Customisation;
 
 @Controller
 @RequestMapping(value = "/creditCard/customer")
@@ -25,10 +29,16 @@ public class CreditCardCustomerController extends AbstractController {
 	// Services------------------------------------
 
 	@Autowired
-	private CreditCardService	creditCardService;
+	private CreditCardService		creditCardService;
 
 	@Autowired
-	private CustomerService		customerService;
+	private CustomerService			customerService;
+
+	@Autowired
+	private CustomisationService	customisationService;
+
+	@Autowired
+	private UtilityService			utilityService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -110,21 +120,21 @@ public class CreditCardCustomerController extends AbstractController {
 
 		return result;
 	}
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
-	public ModelAndView delete(final CreditCard creditCard, final BindingResult binding) {
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public ModelAndView delete(@RequestParam final int creditCardId, final RedirectAttributes redir) {
 		ModelAndView result;
 		CreditCard creditCardBbdd;
 
 		try {
 
-			creditCardBbdd = this.creditCardService.findOneByPrincipal(creditCard.getId());
+			creditCardBbdd = this.creditCardService.findOneByPrincipal(creditCardId);
 
 			this.creditCardService.delete(creditCardBbdd);
-			result = new ModelAndView("redirect:list.do");
-		} catch (final Throwable oops) {
-			result = this.createModelAndView(creditCard, "creditCard.delete.error");
-		}
 
+		} catch (final Throwable oops) {
+			redir.addFlashAttribute("messageCode", "creditCard.delete.error");
+		}
+		result = new ModelAndView("redirect:list.do");
 		return result;
 	}
 
@@ -141,13 +151,18 @@ public class CreditCardCustomerController extends AbstractController {
 	protected ModelAndView createModelAndView(final CreditCard creditCard, final String messageCode) {
 		ModelAndView result;
 		Customer principal;
+		Collection<String> makes;
+		Customisation customisation;
 
 		principal = this.customerService.findByPrincipal();
+		customisation = this.customisationService.find();
+		makes = this.utilityService.ListByString(customisation.getCreditCardMakes());
 
 		result = new ModelAndView("creditCard/edit");
 		result.addObject("creditCard", creditCard);
 		result.addObject("principal", principal);
 		result.addObject("messageCode", messageCode);
+		result.addObject("makes", makes);
 
 		return result;
 

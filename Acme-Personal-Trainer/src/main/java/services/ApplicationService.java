@@ -53,23 +53,15 @@ public class ApplicationService {
 
 	//Simple CRUD methods -------------------------------------------
 	public Application create(final WorkingOut workingOut) {
-		Assert.isTrue(workingOut.getIsFinalMode());
-		this.checkWorkingOutNoAcceptedApplication(workingOut.getId());
-
-		Date moment;
 		Application result;
 		Customer customer;
 		final CreditCard creditCard;
 		final List<CreditCard> creditCards;
 
 		customer = this.customerService.findByPrincipal();
-		moment = this.utilityService.current_moment();
+		Assert.isTrue(this.isApplied(workingOut, customer));
 		creditCards = new ArrayList<>(this.creditCardService.findAllByCustomer());
 
-		Assert.isTrue(!creditCards.isEmpty());
-		this.checkWorkingOutNoThisCustomerApplication(workingOut.getId(), customer.getId());
-
-		Assert.isTrue(workingOut.getStartMoment().after(moment));
 		creditCard = creditCards.get(0);
 
 		result = new Application();
@@ -83,9 +75,7 @@ public class ApplicationService {
 
 	public Application save(final Application application) {
 		Assert.notNull(application);
-		Assert.isTrue(application.getWorkingOut().getIsFinalMode());
-		this.checkWorkingOutNoAcceptedApplication(application.getWorkingOut().getId());
-		this.checkWorkingOutNoThisCustomerApplication(application.getWorkingOut().getId(), application.getCustomer().getId());
+		Assert.isTrue(this.isApplied(application.getWorkingOut(), application.getCustomer()));
 		Assert.isTrue(this.customerService.findByPrincipal().equals(application.getCustomer()));
 		Assert.isTrue(application.getStatus().equals("PENDING"));
 		Assert.isNull(this.applicationRepository.findOne(application.getId()));
@@ -107,25 +97,26 @@ public class ApplicationService {
 
 	public void acceptedApplication(final Application application) {
 		Assert.isTrue(this.trainerService.findByPrincipal().equals(application.getWorkingOut().getTrainer()));
-		this.checkWorkingOutNoAcceptedApplication(application.getWorkingOut().getId());
+		Assert.isTrue(this.checkWorkingOutNoAcceptedApplication(application.getWorkingOut().getId()));
 		Assert.isTrue(application.getStatus().equals("PENDING"));
 
 		Collection<Application> pendingApplications;
 
 		application.setStatus("ACCEPTED");
-		this.messageService.notification_applicationStatusChanges(application);
+		pendingApplications = this.findPendingApplicationsByWorkingOut(application.getWorkingOut().getId());
+		//this.messageService.notification_applicationStatusChanges(application);
 
-		pendingApplications = this.applicationRepository.findPendingApplicationsByWorkingOut(application.getWorkingOut().getId());
-
-		for (final Application a : pendingApplications)
-			this.rejectedApplication(a);
+		if (!(pendingApplications.isEmpty()))
+			for (final Application a : pendingApplications)
+				this.rejectedApplication(a);
 
 	}
+
 	public void rejectedApplication(final Application application) {
 		Assert.isTrue(this.trainerService.findByPrincipal().equals(application.getWorkingOut().getTrainer()));
 		Assert.isTrue(application.getStatus().equals("PENDING"));
 		application.setStatus("REJECTED");
-		this.messageService.notification_applicationStatusChanges(application);
+		//this.messageService.notification_applicationStatusChanges(application);
 	}
 
 	protected Application findOne(final int applicationId) {
@@ -206,13 +197,8 @@ public class ApplicationService {
 
 	// Other business methods ---------------------
 
-	private void checkWorkingOutNoAcceptedApplication(final int workingOutId) {
-		Assert.isTrue(this.applicationRepository.findAcceptedApplicationsByWorkingOut(workingOutId).isEmpty());
-
-	}
-
-	private void checkWorkingOutNoThisCustomerApplication(final int workingOutId, final int customerId) {
-		Assert.isTrue(this.applicationRepository.findApplicationsByWorkingOutByCustomer(workingOutId, customerId).isEmpty());
+	private boolean checkWorkingOutNoAcceptedApplication(final int workingOutId) {
+		return this.applicationRepository.findAcceptedApplicationsByWorkingOut(workingOutId).isEmpty();
 
 	}
 
@@ -288,6 +274,21 @@ public class ApplicationService {
 
 	protected void flush() {
 		this.applicationRepository.flush();
+	}
+
+	public boolean isApplied(final WorkingOut workingOut, final Customer customerPrincipal) {
+		boolean result;
+		Date moment;
+		final List<CreditCard> creditCards;
+
+		creditCards = new ArrayList<>(this.creditCardService.findAllByCustomer());
+		Assert.isTrue(!creditCards.isEmpty());
+
+		moment = this.utilityService.current_moment();
+		result = this.checkWorkingOutNoAcceptedApplication(workingOut.getId()) && this.applicationRepository.findApplicationsByWorkingOutByCustomer(workingOut.getId(), customerPrincipal.getId()).isEmpty() && workingOut.getIsFinalMode()
+			&& workingOut.getStartMoment().after(moment) && (!creditCards.isEmpty());
+
+		return result;
 	}
 
 }

@@ -66,9 +66,6 @@ public class WorkingOutService {
 		Assert.notNull(workingOut);
 		this.checkByPrincipal(workingOut);
 		Assert.isTrue(!workingOut.getIsFinalMode());
-		workingOut.setPublishedMoment(this.utilityService.current_moment());
-		Assert.isTrue(workingOut.getEndMoment().after(workingOut.getStartMoment()));
-		Assert.isTrue(workingOut.getStartMoment().after(workingOut.getPublishedMoment()));
 		workingOut.setTicker(this.utilityService.generateValidTicker());
 
 		final WorkingOut result;
@@ -129,11 +126,24 @@ public class WorkingOutService {
 
 	public void makeFinal(final WorkingOut workingOut) {
 		this.checkByPrincipal(workingOut);
+		Assert.isTrue(this.checkAtLeastOneSession(workingOut));
 
 		workingOut.setIsFinalMode(true);
+		workingOut.setPublishedMoment(this.utilityService.current_moment());
+		Assert.isTrue(workingOut.getEndMoment().after(workingOut.getStartMoment()));
+		Assert.isTrue(workingOut.getStartMoment().after(workingOut.getPublishedMoment()));
 		//TODO
 		//		this.messageService.notification_newWorkingOut(workingOut);
 
+	}
+	private boolean checkAtLeastOneSession(final WorkingOut workingOut) {
+		boolean res;
+		Collection<Session> sessions;
+
+		sessions = workingOut.getSessions();
+		res = sessions.size() >= 1;
+
+		return res;
 	}
 
 	public WorkingOut findOneFinalByPrincipal(final int workingOutId) {
@@ -149,7 +159,16 @@ public class WorkingOutService {
 	public Collection<WorkingOut> findWorkingOutsByTrainer(final Trainer trainer) {
 		Collection<WorkingOut> workingOuts;
 
-		workingOuts = this.workingOutRepository.findWorkingOutsByTrainer(trainer.getId());
+		workingOuts = this.workingOutRepository.findFinalWorkingOutsByTrainer(trainer.getId());
+
+		return workingOuts;
+	}
+	public Collection<WorkingOut> findWorkingOutsByPrincipal() {
+		Collection<WorkingOut> workingOuts;
+		Trainer trainer;
+
+		trainer = this.trainerService.findByPrincipal();
+		workingOuts = this.workingOutRepository.findAllWorkingOutsByTrainer(trainer.getId());
 
 		return workingOuts;
 	}
@@ -175,6 +194,25 @@ public class WorkingOutService {
 
 		return caregories;
 	}
+
+	// Requirement 4.2: The average, the minimum, the maximum, and the standard deviation of the number of applications per working-out.
+	public Double[] findDataNumberApplicationPerWorkingOut() {
+		Double[] results;
+
+		results = this.workingOutRepository.findDataNumberApplicationPerWorkingOut();
+
+		return results;
+	}
+
+	// Requirement 4.3: The average, the minimum, the maximum, and the standard deviation of the maximum price of the working-outs.
+	public Double[] findDataPricePerWorkingOut() {
+		Double[] results;
+
+		results = this.workingOutRepository.findDataPricePerWorkingOut();
+
+		return results;
+	}
+
 	// Protected methods -----------------------------------------------
 	protected String existTicker(final String ticker) {
 		String result;

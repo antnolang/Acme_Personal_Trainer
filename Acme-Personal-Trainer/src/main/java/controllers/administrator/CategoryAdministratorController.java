@@ -89,7 +89,12 @@ public class CategoryAdministratorController extends AbstractController {
 			} catch (final DataIntegrityViolationException oops) {
 				result = this.createEditModelAndView(category, "category.error.unique");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(category, "category.commit.error");
+				if (oops.getMessage().equals("Two elements"))
+					result = this.createEditModelAndView(category, "category.numberElements");
+				else if (oops.getMessage().equals("Invalid format"))
+					result = this.createEditModelAndView(category, "category.error.format");
+				else
+					result = this.createEditModelAndView(category, "category.commit.error");
 			}
 
 		return result;

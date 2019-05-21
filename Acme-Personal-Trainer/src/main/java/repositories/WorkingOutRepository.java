@@ -18,7 +18,10 @@ public interface WorkingOutRepository extends JpaRepository<WorkingOut, Integer>
 	String existTicker(String ticker);
 
 	@Query("select w from WorkingOut w where w.trainer.id = ?1")
-	Collection<WorkingOut> findWorkingOutsByTrainer(int id);
+	Collection<WorkingOut> findAllWorkingOutsByTrainer(int id);
+
+	@Query("select w from WorkingOut w where w.trainer.id = ?1 and w.isFinalMode = true")
+	Collection<WorkingOut> findFinalWorkingOutsByTrainer(int id);
 
 	@Query("select w from WorkingOut w where w.isFinalMode = true")
 	Collection<WorkingOut> findAllVisible();
@@ -29,4 +32,11 @@ public interface WorkingOutRepository extends JpaRepository<WorkingOut, Integer>
 	@Query("select w.categories from WorkingOut w where w.id=?1")
 	Collection<Category> getCategoriesByWorkingOut(int id);
 
+	// Requirement 4.2: The average, the minimum, the maximum, and the standard deviation of the number of applications per working-out.
+	@Query("select avg(1.0*(select count(a) from Application a where a.workingOut.id=w.id)), min(1.0*(select count(a) from Application a where a.workingOut.id=w.id)), max(1.0*(select count(a) from Application a where a.workingOut.id=w.id)), stddev(1.0*(select count(a) from Application a where a.workingOut.id=w.id)) from WorkingOut w")
+	Double[] findDataNumberApplicationPerWorkingOut();
+
+	// Requirement 4.3: The average, the minimum, the maximum, and the standard deviation of the maximum price of the working-outs.
+	@Query("select avg(1.0*w.price), min(1.0*w.price), max(1.0*w.price), stddev(1.0*w.price) from WorkingOut w")
+	Double[] findDataPricePerWorkingOut();
 }

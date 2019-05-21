@@ -38,7 +38,7 @@
 
 <jstl:if test="${not empty childBoxes}">
 	<p> <strong> <spring:message code="box.child" />: </strong> </p>
-	<display:table name="childBoxes" id="row" requestURI="box/administrator,auditor,customer,nutritionist,trainer/display.do?boxId=${box.id}" pagesize="5" class="displaytag">
+	<display:table name="childBoxes" id="row" requestURI="box/administrator,auditor,customer,nutritionist,trainer/display.do" pagesize="5" class="displaytag">
 		<display:column>
 			<jstl:if test="${!row.isSystemBox}">
 				<a href="box/administrator,auditor,customer,nutritionist,trainer/edit.do?boxId=${row.id}">
@@ -60,7 +60,7 @@
 
 <jstl:if test="${not empty messages}">
 	<p> <strong> <spring:message code="box.messages" />: </strong> </p>
-	<display:table name="messages" id="fila" requestURI="box/administrator,auditor,customer,nutritionist,trainer/display.do?boxId=${box.id}" pagesize="5" class="displaytag">
+	<display:table name="messages" id="fila" requestURI="box/administrator,auditor,customer,nutritionist,trainer/display.do" pagesize="5" class="displaytag">
 		<display:column>
 			<a href="message/administrator,auditor,customer,nutritionist,trainer/display.do?messageId=${fila.id}&boxId=${box.id}">
 				<spring:message code="box.display" />

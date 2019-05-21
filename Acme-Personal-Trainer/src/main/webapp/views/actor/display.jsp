@@ -154,11 +154,13 @@
 		</p>
 		</security:authorize>
 		
+		<security:authorize access="hasRole('CUSTOMER')">
 		<p>
 			<strong> <spring:message code="actor.trainer.workingOuts" />
-			</strong> <a href="workingOut/list.do?trainerId=${actor.id}"><spring:message
+			</strong> <a href="workingOut/customer/list.do?trainerId=${actor.id}"><spring:message
 					code="table.workingOuts" /></a>
 		</p>
+		</security:authorize>
 		
 		<jstl:if test="${trainerAttended}">
 		<p>
@@ -169,6 +171,22 @@
 		</jstl:if>
 	</fieldset>
 </jstl:if>
+
+<security:authorize access="hasAnyRole('CUSTOMER','NUTRITIONIST')">
+<jstl:if test="${actor.userAccount.authorities=='[NUTRITIONIST]' && (isAuthorized == true || customerPremium == true) }">
+	<fieldset>
+		<legend>
+			<spring:message code="actor.nutritionist.legend" />
+		</legend>
+		<p>
+			<strong> <spring:message code="actor.nutritionist.articles" />
+			</strong> <a href="articles/customer,nutritionist/list.do?nutritionistId=${actor.id}"><spring:message
+					code="table.articles" /></a>
+		</p>
+
+	</fieldset>
+</jstl:if>
+</security:authorize>
 
 <fieldset>
 	<legend><spring:message code="userAccount.legend"/></legend>
