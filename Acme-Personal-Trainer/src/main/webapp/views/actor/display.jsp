@@ -172,6 +172,22 @@
 	</fieldset>
 </jstl:if>
 
+<security:authorize access="hasAnyRole('CUSTOMER','NUTRITIONIST')">
+<jstl:if test="${actor.userAccount.authorities=='[NUTRITIONIST]' && (isAuthorized == true || customerPremium == true) }">
+	<fieldset>
+		<legend>
+			<spring:message code="actor.nutritionist.legend" />
+		</legend>
+		<p>
+			<strong> <spring:message code="actor.nutritionist.articles" />
+			</strong> <a href="articles/customer,nutritionist/list.do?nutritionistId=${actor.id}"><spring:message
+					code="table.articles" /></a>
+		</p>
+
+	</fieldset>
+</jstl:if>
+</security:authorize>
+
 <fieldset>
 	<legend><spring:message code="userAccount.legend"/></legend>
 	<p> <strong> <spring:message code="actor.username" />: </strong>  <jstl:out value="${actor.userAccount.username}" /></p>
