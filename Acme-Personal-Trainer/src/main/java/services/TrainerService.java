@@ -372,4 +372,49 @@ public class TrainerService {
 
 	}
 
+	protected Trainer findByPersonalRecordId(final int personalRecordId) {
+		Trainer result;
+
+		result = this.trainerRepository.findByPersonalRecordId(personalRecordId);
+		Assert.notNull(result);
+
+		return result;
+	}
+
+	protected Trainer findByEndorserRecordId(final int endorserRecordId) {
+		Trainer result;
+
+		result = this.trainerRepository.findByEndorserRecordId(endorserRecordId);
+		Assert.notNull(result);
+
+		return result;
+	}
+
+	protected Trainer findByEducationRecordId(final int educationRecordId) {
+		Trainer result;
+
+		result = this.trainerRepository.findByEducationRecordId(educationRecordId);
+		Assert.notNull(result);
+
+		return result;
+	}
+
+	protected Trainer findByMiscellaneousRecordId(final int miscellaneousRecordId) {
+		Trainer result;
+
+		result = this.trainerRepository.findByMiscellaneousRecordId(miscellaneousRecordId);
+		Assert.notNull(result);
+
+		return result;
+	}
+
+	protected Trainer findByProfessionalRecordId(final int professionalRecordId) {
+		Trainer result;
+
+		result = this.trainerRepository.findByProfessionalRecordId(professionalRecordId);
+		Assert.notNull(result);
+
+		return result;
+	}
+
 }
