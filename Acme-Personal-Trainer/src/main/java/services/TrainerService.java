@@ -381,4 +381,8 @@ public class TrainerService {
 
 	}
 
+	protected void flush() {
+		this.trainerRepository.flush();
+	}
+
 }

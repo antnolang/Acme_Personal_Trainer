@@ -265,4 +265,8 @@ public class CustomerService {
 
 	}
 
+	protected void flush() {
+		this.customerRepository.flush();
+	}
+
 }
