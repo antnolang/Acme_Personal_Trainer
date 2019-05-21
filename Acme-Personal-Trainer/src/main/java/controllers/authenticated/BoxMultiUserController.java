@@ -20,7 +20,7 @@ import domain.Box;
 import domain.Message;
 
 @Controller
-@RequestMapping(value = "/box/administrator,auditor,customer,nutritionist,trainer")
+@RequestMapping("/box/administrator,auditor,customer,nutritionist,trainer")
 public class BoxMultiUserController extends AbstractController {
 
 	@Autowired
@@ -68,7 +68,7 @@ public class BoxMultiUserController extends AbstractController {
 
 		result = new ModelAndView("box/list");
 		result.addObject("boxes", boxes);
-		result.addObject("requestURI", "box/administrator,brotherhood,chapter,member,sponsor/list.do");
+		result.addObject("requestURI", "box/administrator,auditor,customer,nutritionist,trainer/list.do");
 
 		return result;
 	}

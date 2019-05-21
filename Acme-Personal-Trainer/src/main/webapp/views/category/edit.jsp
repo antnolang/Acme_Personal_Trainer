@@ -32,7 +32,7 @@
 	
 	<!-- Buttons -->
 	<acme:submit name="save" code="category.save"/>
-	<jstl:if test="${category.id != 0}">
+	<jstl:if test="${category.id != 0 && isReference}">
 		<acme:submit name="delete" code="category.delete" />
 	</jstl:if>		
 	<acme:cancel url="category/administrator/list.do" code="category.cancel"/>
