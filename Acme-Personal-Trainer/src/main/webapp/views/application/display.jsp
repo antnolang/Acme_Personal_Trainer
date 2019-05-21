@@ -31,7 +31,7 @@
 <br />		
 
 <strong><spring:message code="application.workingOut" />:</strong>
-<a href="workingOut/display.do?workingOutId=${application.workingOut.id}"><jstl:out value="${application.workingOut.ticker}"/></a>
+<a href="workingOut/customer,trainer/display.do?workingOutId=${application.workingOut.id}"><jstl:out value="${application.workingOut.ticker}"/></a>
 	<br/>
 	
 	<strong><spring:message code="application.comments" />:</strong>

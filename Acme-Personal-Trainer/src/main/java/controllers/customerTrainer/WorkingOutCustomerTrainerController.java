@@ -89,12 +89,11 @@ public class WorkingOutCustomerTrainerController extends AbstractController {
 
 			} else {
 				workingOut = this.workingOutService.findOneToDisplay(workingOutId);
-				//TODO
-				//	isApplied = this.applicationService.isApplied(workingOut, customerPrincipal);
+				isApplied = this.applicationService.isApplied(workingOut, customerPrincipal);
 
 				result.addObject("workingOut", workingOut);
 				result.addObject("principal", null);
-				//	result.addObject("isApplied", isApplied);
+				result.addObject("isApplied", isApplied);
 
 			}
 			result.addObject("VAT", VAT);
