@@ -71,11 +71,11 @@ public class CategoryService {
 
 		// As the system must be available in English and Spanish, that is, 2
 		// languages, the list must contain 2 elements.
-		Assert.isTrue(elements.length == 2);
+		Assert.isTrue(elements.length == 2, "Two elements");
 
 		for (final String element : elements) {
 			e = element.trim();
-			Assert.isTrue(e != null && e != "");
+			Assert.isTrue(!e.isEmpty() && e != null && e != "", "Invalid format");
 		}
 
 		result = this.categoryRepository.save(category);

@@ -20,20 +20,6 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<jsp:useBean id="now" class="java.util.Date" />
-	<jstl:if test="${row1.status=='PENDING' && (row1.workingOut.endMoment.time<now.time)}">
-		<jstl:set var="colorValue" value="grey" />
-	</jstl:if>
-	<jstl:if test="${row2.status=='REJECTED'}">
-		<jstl:set var="colorValue" value="orange" />
-	</jstl:if>
-	<jstl:if test="${row3.status=='ACCEPTED'}">
-		<jstl:set var="colorValue" value="green" />
-	</jstl:if>
-	<jstl:if test="${row1.status=='PENDING' && (row1.workingOut.endMoment.time>=now.time)}">
-		<jstl:set var="colorValue"  />
-	</jstl:if>
-
 <fieldset>
 	<legend>
 		<spring:message code="application.pending" />
