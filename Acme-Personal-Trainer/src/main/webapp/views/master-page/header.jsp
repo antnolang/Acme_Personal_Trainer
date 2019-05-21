@@ -19,9 +19,7 @@
 					<li><a href="actor/administrator/registerAuditor.do"><spring:message code="master.page.auditor.create" /></a></li>
 					<li><a href="actor/administrator/registerNutritionist.do"><spring:message code="master.page.nutritionist.create" /></a></li>
 					<li><a href="actor/administrator/list.do"><spring:message code="master.page.actor.list" /></a></li>
-
-					<!-- Añadir enlaces -->
-					<li><a href="/category/administrator/list.do"><spring:message code="master.page.category" /> </a></li>
+					<li><a href="category/administrator/list.do"><spring:message code="master.page.category" /> </a></li>
 
 				</ul>
 			</li>

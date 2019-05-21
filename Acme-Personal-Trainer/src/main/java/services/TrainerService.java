@@ -242,6 +242,15 @@ public class TrainerService {
 
 	}
 
+	public Collection<Trainer> findTrainersWithPublishedWorkingOutMoreThanAverageOrderByName() {
+		Collection<Trainer> result;
+
+		result = this.trainerRepository.findTrainersWithPublishedWorkingOutMoreThanAverageOrderByName();
+		Assert.notNull(result);
+
+		return result;
+	}
+
 	public RegistrationForm createForm(final Trainer trainer) {
 		RegistrationForm registrationForm;
 

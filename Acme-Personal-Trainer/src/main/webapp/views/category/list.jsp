@@ -19,7 +19,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<display:table name="${categories.keys()}" id="row" requestURI="${requestURI}"  class="displaytag" pagesize="5">
+<display:table name="${categories.keySet()}" id="row" requestURI="${requestURI}"  class="displaytag" pagesize="5">
 	<display:column>
 		<a href="category/administrator/edit.do?categoryId=${row}">
 			<spring:message code="category.edit"/>

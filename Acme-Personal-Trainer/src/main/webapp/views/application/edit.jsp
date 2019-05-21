@@ -27,7 +27,7 @@
 	<form:hidden path="workingOut" />
 
 		<acme:selectMandatory items="${creditCards}" multiple="false" 
-		 itemLabel="title" code="application.creditCard" path="creditCard"/>
+		 itemLabel="holderName" code="application.creditCard" path="creditCard"/>
 
 		<br />
 		

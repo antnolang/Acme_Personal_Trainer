@@ -194,6 +194,25 @@ public class WorkingOutService {
 
 		return caregories;
 	}
+
+	// Requirement 4.2: The average, the minimum, the maximum, and the standard deviation of the number of applications per working-out.
+	public Double[] findDataNumberApplicationPerWorkingOut() {
+		Double[] results;
+
+		results = this.workingOutRepository.findDataNumberApplicationPerWorkingOut();
+
+		return results;
+	}
+
+	// Requirement 4.3: The average, the minimum, the maximum, and the standard deviation of the maximum price of the working-outs.
+	public Double[] findDataPricePerWorkingOut() {
+		Double[] results;
+
+		results = this.workingOutRepository.findDataPricePerWorkingOut();
+
+		return results;
+	}
+
 	// Protected methods -----------------------------------------------
 	protected String existTicker(final String ticker) {
 		String result;
