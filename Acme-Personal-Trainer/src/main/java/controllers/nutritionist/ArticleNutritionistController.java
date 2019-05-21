@@ -1,6 +1,8 @@
 
 package controllers.nutritionist;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -9,11 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import services.ArticleService;
 import services.NutritionistService;
 import controllers.AbstractController;
 import domain.Article;
+import domain.Nutritionist;
 
 @Controller
 @RequestMapping("/article/nutritionist")
@@ -35,6 +39,45 @@ public class ArticleNutritionistController extends AbstractController {
 	}
 
 	// Controller methods -----------------------------------------------------		
+	// Working-out list by principal nutritionist -----------------------------------------------------------
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView list() {
+		ModelAndView result;
+		Collection<Article> articles;
+		Nutritionist principal;
+
+		try {
+			principal = this.nutritionistService.findByPrincipal();
+			result = new ModelAndView("article/list");
+			articles = this.articleService.findArticlesByPrincipal();
+
+			result.addObject("principal", principal);
+			result.addObject("articles", articles);
+			result.addObject("requestURI", "article/nutritionist/list.do");
+
+		} catch (final Throwable oops) {
+			result = new ModelAndView("redirect:../error.do");
+		}
+
+		return result;
+	}
+
+	@RequestMapping(value = "/makeFinal", method = RequestMethod.GET)
+	public ModelAndView makeFinal(@RequestParam final int articleId, final RedirectAttributes redir) {
+		ModelAndView result;
+		Article article;
+
+		try {
+			article = this.articleService.findOne(articleId);
+			this.articleService.makeFinal(article);
+		} catch (final Throwable oops) {
+			redir.addFlashAttribute("messageCode", "article.make.final.error");
+		}
+
+		result = new ModelAndView("redirect:/article/nutritionist/list.do");
+
+		return result;
+	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {

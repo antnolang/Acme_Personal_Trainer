@@ -63,6 +63,15 @@
 			<li><a class="fNiv" href="endorsement/customer,trainer/list.do"><spring:message code="master.page.endorsement.list" /></a></li>
 		</security:authorize>
 		
+		<security:authorize access="hasRole('NUTRITIONIST')">
+			<li><a class="fNiv"><spring:message	code="master.page.article" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="article/nutritionist/list.do"><spring:message code="master.page.article.list" /></a></li>
+				</ul>
+			</li>
+		</security:authorize>
+		
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
 			<li><a class="fNiv"><spring:message	code="master.page.register" /></a>	
