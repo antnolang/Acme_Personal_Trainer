@@ -122,7 +122,7 @@ public class ArticleService {
 			result = new Article();
 			result.setId(stored_article.getId());
 			result.setVersion(stored_article.getVersion());
-			result.setNutritionist(stored_article.getNutritionist());
+			result.setNutritionist(stored_article.getNutritionist());		
 		}
 
 		result.setTitle(article.getTitle().trim());
