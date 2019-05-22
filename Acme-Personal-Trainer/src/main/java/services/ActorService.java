@@ -199,4 +199,15 @@ public class ActorService {
 		return result;
 	}
 
+	public Collection<Actor> findActorsWithoutPrincipal() {
+		Collection<Actor> results;
+		Actor principal;
+
+		principal = this.findPrincipal();
+		results = this.findAll();
+		results.remove(principal);
+
+		return results;
+	}
+
 }

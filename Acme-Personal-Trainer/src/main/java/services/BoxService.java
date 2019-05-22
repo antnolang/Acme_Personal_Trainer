@@ -109,9 +109,9 @@ public class BoxService {
 		this.checkByPrincipal(box);
 
 		Actor principal;
-		Box trashBox, parentBox;
+		Box trashBox;
 		Collection<Message> messages;
-		Collection<Box> childBoxes;
+		Collection<Box> descendantBoxes;
 
 		principal = this.actorService.findPrincipal();
 		trashBox = this.findTrashBoxFromActor(principal.getId());
@@ -119,17 +119,21 @@ public class BoxService {
 		// If this box contains messages, we must move those messages to
 		// trash box.
 		messages = box.getMessages();
-		if (messages != null && !messages.isEmpty())
+		if (!messages.isEmpty())
 			this.addMessages(trashBox, messages);
 
-		// If this box has child boxes, we must update childBox::parent.
-		// TODO: instead of update childBox::parent, deletes child boxes.
-		childBoxes = this.findChildBoxesByBox(box.getId());
-		parentBox = box.getParent();
+		// If this box has descendant boxes, we must delete them and move the messages of those
+		// descendant boxes to trash box.
+		descendantBoxes = this.descendantBoxes(box);
+		if (descendantBoxes != null && !descendantBoxes.isEmpty())
+			for (final Box descendant : descendantBoxes) {
+				messages = descendant.getMessages();
 
-		if (childBoxes != null && !childBoxes.isEmpty())
-			for (final Box child : childBoxes)
-				child.setParent(parentBox);
+				if (!messages.isEmpty())
+					this.addMessages(trashBox, messages);
+
+				this.boxRepository.delete(descendant);
+			}
 
 		this.boxRepository.delete(box);
 	}
@@ -305,7 +309,7 @@ public class BoxService {
 
 		childBoxes = this.findChildBoxesByBox(box.getId());
 
-		results = new ArrayList<>();
+		results = new ArrayList<Box>();
 		if (!childBoxes.isEmpty()) {
 			results.addAll(childBoxes);
 			for (final Box b : childBoxes)
@@ -333,7 +337,7 @@ public class BoxService {
 
 		validName = box.getName().equals("in box") || box.getName().equals("out box") || box.getName().equals("notification box") || box.getName().equals("trash box") || box.getName().equals("spam box");
 
-		Assert.isTrue(!validName, "The name cannot match with system box's name");
+		Assert.isTrue(!validName, "Invalid name");
 	}
 
 	// Check that box doesn't create a cycle.
