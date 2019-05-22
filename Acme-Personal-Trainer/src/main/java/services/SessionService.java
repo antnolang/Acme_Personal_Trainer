@@ -66,9 +66,10 @@ public class SessionService {
 		this.workingOutService.checkByPrincipal(workingOut);
 		Assert.isTrue(!session.getEndMoment().before(session.getStartMoment()));
 		Assert.isTrue(session.getStartMoment().after(this.utilityService.current_moment()));
-
 		this.workingOutService.updateMomentWorkingOut(workingOut, session);
-		sessionsWO.add(session);
+
+		if (session.getId() == 0)
+			sessionsWO.add(session);
 
 		return result;
 	}

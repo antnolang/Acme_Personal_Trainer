@@ -4,6 +4,7 @@ package services;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -236,20 +237,22 @@ public class WorkingOutService {
 	}
 
 	protected void updateMomentWorkingOut(final WorkingOut workingOut, final Session session) {
-		Collection<Session> sessions;
+		List<Session> sessionsOrdered;
 		int sizeSessions;
+		Session lastSession;
 
-		sessions = workingOut.getSessions();
-		sizeSessions = sessions.size();
+		sessionsOrdered = this.workingOutRepository.getSssionsOrdered(workingOut.getId());
+		sizeSessions = sessionsOrdered.size();
 
 		if (sizeSessions == 0) {
 			workingOut.setStartMoment(session.getStartMoment());
 			workingOut.setEndMoment(session.getEndMoment());
-		} else if (sizeSessions == 1) {
-
+		} else if (sizeSessions != 0) {
+			lastSession = sessionsOrdered.get(sizeSessions - 1);
+			Assert.isTrue(!lastSession.getEndMoment().before(session.getStartMoment()));
+			workingOut.setEndMoment(session.getEndMoment());
 		}
-		workingOut.setStartMoment(session.getStartMoment());
-		workingOut.setEndMoment(session.getEndMoment());
+
 	}
 
 	// Private methods-----------------------------------------------
