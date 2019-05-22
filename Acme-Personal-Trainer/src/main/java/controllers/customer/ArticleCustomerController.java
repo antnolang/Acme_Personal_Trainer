@@ -1,5 +1,5 @@
 
-package controllers;
+package controllers.customer;
 
 import java.util.Collection;
 
@@ -12,12 +12,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ArticleService;
 import services.NutritionistService;
+import controllers.AbstractController;
 import domain.Article;
 import domain.Nutritionist;
 
 @Controller
-@RequestMapping(value = "/article")
-public class ArticleController extends AbstractController {
+@RequestMapping(value = "/article/customer")
+public class ArticleCustomerController extends AbstractController {
 
 	// Services
 
@@ -30,7 +31,7 @@ public class ArticleController extends AbstractController {
 
 	// Constructor
 
-	public ArticleController() {
+	public ArticleCustomerController() {
 		super();
 	}
 
