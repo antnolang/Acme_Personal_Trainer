@@ -24,12 +24,12 @@
 <display:table name="${articles}" id="row" requestURI="${requestURI}" class="displaytag" pagesize="5">
 
 	<display:column>
-		<a href="article/display.do?articleId=${row.id}"><spring:message code="article.table.display"/></a>
+		<a href="article/customer,nutritionist/display.do?articleId=${row.id}"><spring:message code="article.table.display"/></a>
 	</display:column>	
 	
 	<security:authorize access="hasRole('NUTRITIONIST')">
 	<display:column>
-		<jstl:if test="${principal == row.nutritionist}">
+		<jstl:if test="${principal == row.nutritionist && !row.isFinalMode}">
 			<a href="article/nutritionist/edit.do?articleId=${row.id}"><spring:message code="article.edit"/></a>
 		</jstl:if>
 	</display:column>	

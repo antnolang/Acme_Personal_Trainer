@@ -86,27 +86,10 @@ public class ArticleCustomerController extends AbstractController {
 
 			result.addObject("owner", null);
 			result.addObject("articles", articles);
-			result.addObject("requestURI", "article/allArticlesList.do");
+			result.addObject("requestURI", "article/customer/allArticlesList.do");
 
 		} catch (final Throwable oops) {
 			result = new ModelAndView("redirect:../error.do");
-		}
-
-		return result;
-	}
-
-	@RequestMapping(value = "/display", method = RequestMethod.GET)
-	public ModelAndView display(@RequestParam final int articleId) {
-		ModelAndView result;
-		final Article article;
-
-		try {
-			result = new ModelAndView("article/display");
-			article = this.articleService.findOne(articleId);
-
-			result.addObject("article", article);
-		} catch (final Exception e) {
-			result = new ModelAndView("redirect:../../error.do");
 		}
 
 		return result;

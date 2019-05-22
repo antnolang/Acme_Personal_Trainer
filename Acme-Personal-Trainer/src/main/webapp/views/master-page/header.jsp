@@ -36,7 +36,7 @@
 			<li><a class="fNiv"><spring:message	code="master.page.article" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="article/customer/list.do"><spring:message code="master.page.article.list" /></a></li>
+					<li><a href="article/customer/allArticlesList.do"><spring:message code="master.page.article.list" /></a></li>
 				</ul>
 
 			</li>
