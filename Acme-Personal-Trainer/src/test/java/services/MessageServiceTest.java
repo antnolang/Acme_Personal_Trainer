@@ -18,6 +18,7 @@ import org.springframework.util.Assert;
 import utilities.AbstractTest;
 import domain.Actor;
 import domain.Application;
+import domain.Article;
 import domain.Box;
 import domain.Message;
 import domain.WorkingOut;
@@ -45,6 +46,9 @@ public class MessageServiceTest extends AbstractTest {
 
 	@Autowired
 	private WorkingOutService	workingOutService;
+
+	@Autowired
+	private ArticleService		articleService;
 
 
 	// Suite test
@@ -99,18 +103,18 @@ public class MessageServiceTest extends AbstractTest {
 	 */
 	@Test
 	public void findMessageByActor_positiveTest() {
-		super.authenticate("customer1");
+		super.authenticate("trainer1");
 
 		int actorId;
 		Collection<Message> sentMessages, receivedMessages;
 
-		actorId = super.getEntityId("customer1");
+		actorId = super.getEntityId("trainer1");
 
 		sentMessages = this.messageService.findSentMessagesByActor(actorId);
 		receivedMessages = this.messageService.findReceivedMessagesByActor(actorId);
 
-		Assert.isTrue(sentMessages.size() == 1);
-		Assert.isTrue(receivedMessages.size() == 0);
+		Assert.isTrue(sentMessages.size() == 0);
+		Assert.isTrue(receivedMessages.size() == 9);
 
 		super.unauthenticate();
 	}
@@ -415,7 +419,7 @@ public class MessageServiceTest extends AbstractTest {
 	/*
 	 * A: Requirement 11.3 (An administrator can broadcast a message to all the actors of the system).
 	 * B: The message is null
-	 * C: Analysis of sentence coverage: 1/91 -> 1.01% of executed lines codes .
+	 * C: Analysis of sentence coverage: 1/71 -> 1.41% of executed lines codes .
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -436,7 +440,7 @@ public class MessageServiceTest extends AbstractTest {
 	/*
 	 * A: Requirement 11.3 (An administrator can broadcast a message to all the actors of the system).
 	 * B: An administrator try to edit a broadcast message.
-	 * C: Analysis of sentence coverage: 2/91 -> 2.20% of executed lines codes .
+	 * C: Analysis of sentence coverage: 2/71 -> 2.82% of executed lines codes .
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -466,7 +470,7 @@ public class MessageServiceTest extends AbstractTest {
 
 	/*
 	 * A: Requirement 11.3 (An administrator can broadcast a message to all the actors of the system).
-	 * C: Analysis of sentence coverage: 83/91 -> 91.20% of executed lines codes .
+	 * C: Analysis of sentence coverage: 67/71 -> 94.37% of executed lines codes .
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
 	@Test
@@ -586,6 +590,26 @@ public class MessageServiceTest extends AbstractTest {
 		workingOut = this.workingOutService.findOne(workingOutId);
 
 		notification = this.messageService.notification_publishedWorkingOut(workingOut);
+
+		Assert.notNull(notification);
+		Assert.isTrue(notification.getId() != 0);
+	}
+
+	/*
+	 * A: Requirement 51 (The system must generate an automatic notification when a nutritionist writes an article).
+	 * C: Analysis of sentence coverage: 55/55 -> 100.00% of executed lines codes .
+	 * D: Analysis of data coverage: intentionally blank.
+	 */
+	@Test
+	public void notificationArticle_positiveTest() {
+		int articleId;
+		Article article;
+		Message notification;
+
+		articleId = super.getEntityId("article1");
+		article = this.articleService.findOne(articleId);
+
+		notification = this.messageService.notification_newArticle(article);
 
 		Assert.notNull(notification);
 		Assert.isTrue(notification.getId() != 0);

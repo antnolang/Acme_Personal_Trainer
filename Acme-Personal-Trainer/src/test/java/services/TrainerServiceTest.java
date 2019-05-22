@@ -207,7 +207,7 @@ public class TrainerServiceTest extends AbstractTest {
 	 * of attributes with several restrictions.
 	 */
 	@Test(expected = ConstraintViolationException.class)
-	public void save_negative_test() {
+	public void save_negative_test1() {
 		Trainer trainer, saved;
 		String oldName;
 
@@ -216,6 +216,43 @@ public class TrainerServiceTest extends AbstractTest {
 		this.startTransaction();
 
 		trainer = this.trainerService.findOneToDisplayEdit(super.getEntityId("trainer1"));
+
+		oldName = trainer.getName();
+
+		trainer.setName("");
+
+		saved = this.trainerService.save(trainer);
+
+		Assert.isTrue(!saved.getName().equals(oldName));
+
+		super.rollbackTransaction();
+
+		super.unauthenticate();
+
+	}
+
+	/*
+	 * A: An actor who is authenticated must be able to:
+	 * Edit his/her personal data
+	 * 
+	 * B: Trainer::name is blank
+	 * 
+	 * C: Approximately 86% of sentence coverage, since it has been
+	 * covered 6 lines of code of 7 possible.
+	 * 
+	 * D: Approximately 60% of data coverage, because actors have a lot
+	 * of attributes with several restrictions.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void save_negative_test2() {
+		Trainer trainer, saved;
+		String oldName;
+
+		super.authenticate("trainer1");
+
+		this.startTransaction();
+
+		trainer = this.trainerService.findOneToDisplayEdit(super.getEntityId("trainer2"));
 
 		oldName = trainer.getName();
 
@@ -349,7 +386,7 @@ public class TrainerServiceTest extends AbstractTest {
 	 * D: 100% of data coverage because every fields are obligatory.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void create_endorsement_negative_test() {
+	public void create_endorsement_negative_test1() {
 		Endorsement endorsement, saved;
 		Customer customer;
 
@@ -359,6 +396,37 @@ public class TrainerServiceTest extends AbstractTest {
 		customer = this.customerService.findOne(super.getEntityId("customer2"));
 
 		endorsement.setComments("TEST");
+		endorsement.setMark(7);
+		endorsement.setCustomer(customer);
+
+		saved = this.endorsementService.save(endorsement);
+
+		Assert.notNull(saved);
+
+		super.unauthenticate();
+	}
+
+	/*
+	 * A: An actor who is authenticated as a trainer must be able to:
+	 * Create an endorsement
+	 * 
+	 * B: Endorsement:coment is blank.
+	 * 
+	 * C: 71% of sentence coverage -> It has covered 5 lines of 7.
+	 * 
+	 * D: 100% of data coverage because every fields are obligatory.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void create_endorsement_negative_test2() {
+		Endorsement endorsement, saved;
+		Customer customer;
+
+		super.authenticate("trainer1");
+
+		endorsement = this.endorsementService.create();
+		customer = this.customerService.findOne(super.getEntityId("customer2"));
+
+		endorsement.setComments("");
 		endorsement.setMark(7);
 		endorsement.setCustomer(customer);
 

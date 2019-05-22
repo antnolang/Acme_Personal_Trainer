@@ -212,7 +212,7 @@ public class AuditorServiceTest extends AbstractTest {
 	 * A: An actor who is authenticated must be able to:
 	 * Edit his/her personal data
 	 * 
-	 * B: administrator::name is blank
+	 * B: auditor::name is blank
 	 * 
 	 * C: Approximately 61% of sentence coverage, since it has been
 	 * covered 11 lines of code of 18 possible.
