@@ -44,6 +44,9 @@ public class CurriculumService {
 	private UtilityService			utilityService;
 
 	@Autowired
+	private AuditService			auditService;
+
+	@Autowired
 	private Validator				validator;
 
 
@@ -68,6 +71,7 @@ public class CurriculumService {
 		result.setTicker("000000-XXXXXX");
 		result.setPersonalRecord(personalRecord);
 		result.setEndorserRecords(new HashSet<EndorserRecord>());
+		result.setProfessionalRecords(new HashSet<ProfessionalRecord>());
 		result.setEducationRecords(new HashSet<EducationRecord>());
 		result.setMiscellaneousRecords(new HashSet<MiscellaneousRecord>());
 
@@ -81,11 +85,16 @@ public class CurriculumService {
 
 		Trainer principal;
 		Curriculum saved;
+		PersonalRecord personalRecord;
 
 		principal = this.trainerService.findByPrincipal();
+		personalRecord = curriculum.getPersonalRecord();
+
 		this.checkOwner(principal, curriculum);
 		this.personalRecordService.checkFullname(principal, curriculum.getPersonalRecord());
 
+		curriculum.setTicker(this.utilityService.generateValidTicker());
+		personalRecord.setPhoneNumber(this.utilityService.getValidPhone(personalRecord.getPhoneNumber()));
 		saved = this.curriculumRepository.save(curriculum);
 
 		return saved;
@@ -252,8 +261,10 @@ public class CurriculumService {
 
 		curriculum = this.curriculumRepository.findByPrincipal(trainer.getId());
 
-		if (curriculum != null)
+		if (curriculum != null) {
+			this.auditService.deleteAudits(curriculum);
 			this.curriculumRepository.delete(curriculum);
+		}
 	}
 
 	private void checkOwner(final Curriculum curriculum) {

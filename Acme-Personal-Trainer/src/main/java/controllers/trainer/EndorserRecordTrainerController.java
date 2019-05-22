@@ -78,6 +78,9 @@ public class EndorserRecordTrainerController extends AbstractController {
 					this.endorserRecordService.save(endorserRecord, curriculumId);
 				result = new ModelAndView("redirect:/curriculum/trainer/display.do");
 			} catch (final Throwable oops) {
+				if (oops.getMessage().contains("Invalid email format"))
+					binding.rejectValue("email", "endorserRecord.email.error", "The email has an invalid format.");
+
 				result = this.createEditModelAndView(endorserRecord, curriculumId, "endorserRecord.commit.error");
 			}
 

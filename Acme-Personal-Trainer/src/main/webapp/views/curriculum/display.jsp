@@ -26,7 +26,7 @@
 		</li>
 		<li>
 			<strong><spring:message code="curriculum.personalRecord.photo"/></strong>
-			<img src="${curriculum.personalRecord.photo}" alt="Personal Record Photo"/>
+			<img src="${curriculum.personalRecord.photo}" alt="Personal Record Photo" height="200px" width="200px"/>
 		</li>
 		<li>
 			<strong><spring:message code="curriculum.personalRecord.email"/></strong>
