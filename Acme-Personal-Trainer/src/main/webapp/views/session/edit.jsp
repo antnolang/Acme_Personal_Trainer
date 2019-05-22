@@ -20,14 +20,14 @@
 	
 	<acme:textbox code="session.address" path="address"/>
 	
-	<acme:textbox code="session.starMoment" placeholder="dd/MM/yyyy HH:mm" path="startMoment"/>
+	<jstl:if test="${session.id == 0}">
+		<acme:textbox code="session.starMoment" placeholder="dd/MM/yyyy HH:mm" path="startMoment"/>
 	
-	<acme:textbox code="session.endMoment" placeholder="dd/MM/yyyy HH:mm" path="endMoment"/>	
+		<acme:textbox code="session.endMoment" placeholder="dd/MM/yyyy HH:mm" path="endMoment"/>	
+	</jstl:if>
 	
 	<acme:submit name="save" code="session.save"/>	
-	<jstl:if test="${session.id != 0}">
-		<acme:submit name="delete" code="session.delete"/>	
-	</jstl:if>
+	
 	<acme:cancel url="workingOut/trainer/list.do" code="session.cancel"/>
 	<br />
 </form:form>

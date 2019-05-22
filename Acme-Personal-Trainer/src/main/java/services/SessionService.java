@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.SessionRepository;
@@ -88,5 +89,44 @@ public class SessionService {
 	// Private methods-----------------------------------------------
 
 	// Reconstruct ----------------------------------------------
+
+	public Session reconstruct(final Session session, final BindingResult binding) {
+		Session result, sessionStored;
+
+		if (session.getId() != 0) {
+			result = new Session();
+			sessionStored = this.findOne(session.getId());
+			result.setId(sessionStored.getId());
+			result.setStartMoment(sessionStored.getStartMoment());
+			result.setEndMoment(sessionStored.getEndMoment());
+			result.setVersion(sessionStored.getVersion());
+
+		} else {
+			result = this.create();
+			result.setStartMoment(session.getStartMoment());
+			result.setEndMoment(session.getEndMoment());
+
+		}
+
+		result.setAddress(session.getAddress());
+		result.setDescription(session.getDescription());
+		result.setTitle(session.getTitle());
+
+		this.validator.validate(result, binding);
+
+		return result;
+	}
+
+	public Session findOneToEdit(final int sessionId) {
+		Session res;
+		WorkingOut workingOut;
+
+		res = this.sessionRepository.findOne(sessionId);
+		workingOut = this.workingOutService.findBySession(sessionId);
+		Assert.isTrue(!workingOut.getIsFinalMode());
+		this.workingOutService.checkByPrincipal(workingOut);
+
+		return res;
+	}
 
 }

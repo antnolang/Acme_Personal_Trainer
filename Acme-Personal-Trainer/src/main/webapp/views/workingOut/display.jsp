@@ -79,6 +79,18 @@
 	
 	
 <display:table name="sessions" id="row2" requestURI="workingOut/customer,trainer/display.do" class="displaytag" pagesize="5">
+
+	<security:authorize access="hasRole('TRAINER')">
+	<display:column>
+		<jstl:if test="${principal == workingOut.trainer && !workingOut.isFinalMode}">
+		<a href="session/trainer/edit.do?sessionId=${row2.id}">
+			<spring:message	code="workingOut.edit" />			
+		</a>
+	
+		</jstl:if>
+		</display:column>
+	</security:authorize>	
+	
 	<display:column property="title" titleKey="workingOut.title" />
 	
 	<display:column property="description" titleKey="workingOut.description" />

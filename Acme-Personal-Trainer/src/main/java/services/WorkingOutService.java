@@ -307,4 +307,21 @@ public class WorkingOutService {
 		return res;
 	}
 
+	public WorkingOut findBySession(final int sessionId) {
+		WorkingOut res;
+
+		res = this.workingOutRepository.findBySession(sessionId);
+
+		return res;
+	}
+
+	public void findToCreateSession(final int workingOutId) {
+		WorkingOut workingOut;
+
+		workingOut = this.findOne(workingOutId);
+		Assert.isTrue(!workingOut.getIsFinalMode());
+		this.checkByPrincipal(workingOut);
+
+	}
+
 }

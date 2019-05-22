@@ -2,7 +2,6 @@
 package controllers.trainer;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.SessionService;
-import services.TrainerService;
 import services.WorkingOutService;
 import controllers.AbstractController;
 import domain.Session;
@@ -30,9 +28,6 @@ public class SessionTrainerController extends AbstractController {
 	@Autowired
 	private WorkingOutService	workingOutService;
 
-	@Autowired
-	private TrainerService		trainerService;
-
 
 	// Constructors -----------------------------------------------------------
 
@@ -47,6 +42,7 @@ public class SessionTrainerController extends AbstractController {
 		Session session;
 
 		try {
+			this.workingOutService.findToCreateSession(workingOutId);
 			session = this.sessionService.create();
 
 			result = this.createModelAndView(session, workingOutId);
@@ -57,15 +53,35 @@ public class SessionTrainerController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit(@RequestParam final int sessionId) {
+		ModelAndView result;
+		Session session;
+		int workingOutId;
+
+		try {
+			session = this.sessionService.findOneToEdit(sessionId);
+			workingOutId = this.workingOutService.findBySession(sessionId).getId();
+
+			result = this.createModelAndView(session, workingOutId);
+		} catch (final Exception e) {
+			result = new ModelAndView("redirect:../../error.do");
+		}
+
+		return result;
+	}
+
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid final Session session, final BindingResult binding, final HttpServletRequest request) {
+	public ModelAndView save(final Session session, final BindingResult binding, final HttpServletRequest request) {
 		ModelAndView result;
 		WorkingOut workingOut;
 		Integer workingOutId;
 		String paramWorkingOutId;
+		Session sessionRec;
 
 		paramWorkingOutId = request.getParameter("workingOutId");
 		workingOutId = paramWorkingOutId.isEmpty() ? null : Integer.parseInt(paramWorkingOutId);
+		sessionRec = this.sessionService.reconstruct(session, binding);
 
 		if (binding.hasErrors())
 			result = this.createModelAndView(session, workingOutId);
@@ -73,7 +89,7 @@ public class SessionTrainerController extends AbstractController {
 			try {
 				workingOut = this.workingOutService.findOneToCreateSession(workingOutId);
 
-				this.sessionService.save(session, workingOut);
+				this.sessionService.save(sessionRec, workingOut);
 				result = new ModelAndView("redirect:/workingOut/customer,trainer/display.do?workingOutId=" + workingOut.getId());
 
 			} catch (final Throwable oops) {
