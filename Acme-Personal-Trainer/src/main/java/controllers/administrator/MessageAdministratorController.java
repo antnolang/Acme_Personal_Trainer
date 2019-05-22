@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ActorService;
 import services.CustomisationService;
 import services.MessageService;
 import services.UtilityService;
@@ -29,6 +30,9 @@ public class MessageAdministratorController extends AbstractController {
 
 	@Autowired
 	private UtilityService			utilityService;
+
+	@Autowired
+	private ActorService			actorService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -56,6 +60,8 @@ public class MessageAdministratorController extends AbstractController {
 	public ModelAndView broadcast(final Message broadcast, final BindingResult binding) {
 		ModelAndView result;
 		Message broadcastRec;
+
+		broadcast.setRecipients(this.actorService.findActorsWithoutPrincipal());
 
 		broadcastRec = this.messageService.reconstruct(broadcast, binding);
 		if (binding.hasErrors())
@@ -105,11 +111,9 @@ public class MessageAdministratorController extends AbstractController {
 		priorities_str = customisation.getPriorities();
 		priorities = this.utilityService.ListByString(priorities_str);
 
-		result = new ModelAndView("message/send");
+		result = new ModelAndView("message/broadcast");
 		result.addObject("message", broadcast);
 		result.addObject("priorities", priorities);
-		result.addObject("isBroadcastMessage", true);
-		result.addObject("actionURI", "message/administrator/broadcast.do");
 		result.addObject("messageCode", messageCode);
 
 		return result;
