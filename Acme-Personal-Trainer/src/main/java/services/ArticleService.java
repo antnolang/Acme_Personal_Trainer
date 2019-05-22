@@ -122,7 +122,7 @@ public class ArticleService {
 			result = new Article();
 			result.setId(stored_article.getId());
 			result.setVersion(stored_article.getVersion());
-			result.setNutritionist(stored_article.getNutritionist());		
+			result.setNutritionist(stored_article.getNutritionist());
 		}
 
 		result.setTitle(article.getTitle().trim());
@@ -150,5 +150,16 @@ public class ArticleService {
 
 	protected void flush() {
 		this.articleRepository.flush();
+	}
+
+	public Collection<Article> findArticlesByPrincipal() {
+		Collection<Article> results;
+		Nutritionist nutritionist;
+
+		nutritionist = this.nutritionistService.findByPrincipal();
+		results = this.articleRepository.findArticlesByNutritionist(nutritionist.getId());
+
+		return results;
+
 	}
 }
