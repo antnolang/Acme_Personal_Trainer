@@ -137,15 +137,6 @@ public class WorkingOutService {
 		//		this.messageService.notification_newWorkingOut(workingOut);
 
 	}
-	private boolean checkAtLeastOneSession(final WorkingOut workingOut) {
-		boolean res;
-		Collection<Session> sessions;
-
-		sessions = workingOut.getSessions();
-		res = sessions.size() >= 1;
-
-		return res;
-	}
 
 	public WorkingOut findOneFinalByPrincipal(final int workingOutId) {
 		WorkingOut result;
@@ -216,6 +207,16 @@ public class WorkingOutService {
 		return results;
 	}
 
+	public void deleteByPrincipal() {
+		Trainer trainer;
+		Collection<WorkingOut> workingOuts;
+
+		trainer = this.trainerService.findByPrincipal();
+		workingOuts = this.workingOutRepository.findAllWorkingOutsByTrainer(trainer.getId());
+
+		this.workingOutRepository.delete(workingOuts);
+	}
+
 	// Protected methods -----------------------------------------------
 	protected String existTicker(final String ticker) {
 		String result;
@@ -252,6 +253,15 @@ public class WorkingOutService {
 	}
 
 	// Private methods-----------------------------------------------
+	private boolean checkAtLeastOneSession(final WorkingOut workingOut) {
+		boolean res;
+		Collection<Session> sessions;
+
+		sessions = workingOut.getSessions();
+		res = sessions.size() >= 1;
+
+		return res;
+	}
 
 	// Reconstruct ----------------------------------------------
 	public WorkingOut reconstruct(final WorkingOut workingOut, final BindingResult binding) {
