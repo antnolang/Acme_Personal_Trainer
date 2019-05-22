@@ -3,6 +3,7 @@ package services;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -174,8 +175,10 @@ public class WorkingOutService {
 	}
 	public Collection<WorkingOut> findAllVisible() {
 		Collection<WorkingOut> workingOuts;
+		Date now;
 
-		workingOuts = this.workingOutRepository.findAllVisible();
+		now = this.utilityService.current_moment();
+		workingOuts = this.workingOutRepository.findAllVisible(now);
 
 		return workingOuts;
 	}
