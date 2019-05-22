@@ -2,6 +2,7 @@
 package services;
 
 import java.util.Arrays;
+import java.util.Collection;
 
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
@@ -18,6 +19,8 @@ import security.Authority;
 import security.UserAccount;
 import utilities.AbstractTest;
 import domain.Customer;
+import domain.Endorsement;
+import domain.Trainer;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -35,6 +38,12 @@ public class CustomerServiceTest extends AbstractTest {
 
 	@Autowired
 	private CustomerRepository	customerRepository;
+
+	@Autowired
+	private EndorsementService	endorsementService;
+
+	@Autowired
+	private TrainerService		trainerService;
 
 
 	// Tests ------------------------------------------------------------------
@@ -278,6 +287,201 @@ public class CustomerServiceTest extends AbstractTest {
 		Assert.isTrue(!saved.getName().equals(oldName));
 
 		super.rollbackTransaction();
+
+		super.unauthenticate();
+
+	}
+
+	/*
+	 * A: An actor who is authenticated as a customer must be able to:
+	 * List his/her endorsement
+	 * 
+	 * B: Positive test
+	 * 
+	 * C: 100% of sentence coverage
+	 * 
+	 * D: Analysis of data coverage: intentionally blank.
+	 */
+	@Test
+	public void list_received_sent_endorsements_test() {
+		Customer customer;
+		Collection<Endorsement> receiveds, sents;
+
+		super.authenticate("customer1");
+
+		customer = this.customerService.findOneToDisplayEdit(super.getEntityId("customer1"));
+
+		receiveds = this.endorsementService.findReceivedEndorsementsByCustomer(customer.getId());
+		sents = this.endorsementService.findSendEndorsementsByCustomer(customer.getId());
+
+		Assert.notNull(receiveds);
+		Assert.notNull(sents);
+
+		super.unauthenticate();
+
+	}
+
+	/*
+	 * A: An actor who is authenticated as a customer must be able to:
+	 * Display one of his/her endorsements
+	 * 
+	 * B: Positive test
+	 * 
+	 * C: 100% of sentence coverage.
+	 * 
+	 * D: Analysis of data coverage: intentionally blank.
+	 */
+	@Test
+	public void display_endorsement_positive_test() {
+		Endorsement endorsement;
+
+		super.authenticate("customer1");
+
+		endorsement = this.endorsementService.findOne(super.getEntityId("endorsement2"));
+
+		Assert.notNull(endorsement);
+
+		super.unauthenticate();
+	}
+
+	/*
+	 * A: An actor who is authenticated as a customer must be able to:
+	 * Display one of his/her endorsements
+	 * 
+	 * B: A customer tries to display an endorsemenet that does not belongs to him/her
+	 * 
+	 * C: 92% of sentence coverage. -> It has covered 12 lines of 13.
+	 * 
+	 * D: Analysis of data coverage: intentionally blank.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void display_endorsement_negative_test() {
+		Endorsement endorsement;
+
+		super.authenticate("customer2");
+
+		endorsement = this.endorsementService.findOne(super.getEntityId("endorsement2"));
+
+		Assert.notNull(endorsement);
+
+		super.unauthenticate();
+	}
+
+	/*
+	 * A: An actor who is authenticated as a customer must be able to:
+	 * Create an endorsement
+	 * 
+	 * B: Positive test
+	 * 
+	 * C: 100% of sentence coverage
+	 * 
+	 * D: 100% of data coverage because every fields are obligatory.
+	 */
+	@Test
+	public void create_endorsement_positive_test() {
+		Endorsement endorsement, saved;
+		Trainer trainer;
+
+		super.authenticate("customer1");
+
+		endorsement = this.endorsementService.create();
+		trainer = this.trainerService.findOne(super.getEntityId("trainer1"));
+
+		endorsement.setComments("TEST");
+		endorsement.setMark(7);
+		endorsement.setTrainer(trainer);
+
+		saved = this.endorsementService.save(endorsement);
+
+		Assert.notNull(saved);
+
+		super.unauthenticate();
+	}
+
+	/*
+	 * A: An actor who is authenticated as a customer must be able to:
+	 * Create an endorsement
+	 * 
+	 * B: A customer tries to create an endorsement for a trainer that not attends his/her
+	 * working outs.
+	 * 
+	 * C: 49% of sentence coverage -> It has covered 3 lines of 7.
+	 * 
+	 * D: 100% of data coverage because every fields are obligatory.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void create_endorsement_negative_test() {
+		Endorsement endorsement, saved;
+		Trainer trainer;
+
+		super.authenticate("customer1");
+
+		endorsement = this.endorsementService.create();
+		trainer = this.trainerService.findOne(super.getEntityId("trainer2"));
+
+		endorsement.setComments("TEST");
+		endorsement.setMark(7);
+		endorsement.setTrainer(trainer);
+
+		saved = this.endorsementService.save(endorsement);
+
+		Assert.notNull(saved);
+
+		super.unauthenticate();
+	}
+
+	/*
+	 * A: An actor who is authenticated as a customer must be able to:
+	 * Update an endorsement
+	 * 
+	 * B: Positive test
+	 * 
+	 * C: 100% of sentence coverage
+	 * 
+	 * D: 100% of data coverage because every fields are obligatory.
+	 */
+	@Test
+	public void save_endorsement_positive_test() {
+		Endorsement endorsement, saved;
+
+		super.authenticate("customer1");
+
+		endorsement = this.endorsementService.findOne(super.getEntityId("endorsement2"));
+
+		endorsement.setComments("TEST");
+
+		saved = this.endorsementService.save(endorsement);
+
+		Assert.notNull(saved);
+
+		super.unauthenticate();
+
+		super.unauthenticate();
+	}
+
+	/*
+	 * A: An actor who is authenticated as a customer must be able to:
+	 * Update an endorsement
+	 * 
+	 * B: A customer tries to updates an endorsement that it has been writed by a trainer
+	 * 
+	 * C: 29% of sentence coverage -> Its covered 2 lines of 7.
+	 * 
+	 * D: Intentionally blank
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void save_endorsement_negative_test() {
+		Endorsement endorsement, saved;
+
+		super.authenticate("customer1");
+
+		endorsement = this.endorsementService.findOne(super.getEntityId("endorsement1"));
+
+		endorsement.setComments("TEST");
+
+		saved = this.endorsementService.save(endorsement);
+
+		Assert.notNull(saved);
 
 		super.unauthenticate();
 

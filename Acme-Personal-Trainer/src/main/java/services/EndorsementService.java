@@ -179,9 +179,9 @@ public class EndorsementService {
 			trainerPrincipal = this.trainerService.findByPrincipal();
 
 		if (trainerPrincipal == null && customerPrincipal != null)
-			Assert.isTrue(customerPrincipal.equals(endorsement.getCustomer()));
+			Assert.isTrue(customerPrincipal.equals(endorsement.getCustomer()) && !endorsement.isTrainerToCustomer());
 		else if (trainerPrincipal != null && customerPrincipal == null)
-			Assert.isTrue(trainerPrincipal.equals(endorsement.getTrainer()));
+			Assert.isTrue(trainerPrincipal.equals(endorsement.getTrainer()) && endorsement.isTrainerToCustomer());
 
 	}
 
