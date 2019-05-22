@@ -66,6 +66,7 @@
 			</li>
 			
 			<li><a class="fNiv" href="endorsement/customer,trainer/list.do"><spring:message code="master.page.endorsement.list" /></a></li>
+			<li><a class="fNiv" href="curriculum/trainer/display.do"><spring:message code="master.page.curriculum" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('NUTRITIONIST')">

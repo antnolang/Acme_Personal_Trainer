@@ -263,4 +263,8 @@ public class AdministratorService {
 		return registrationForm;
 	}
 
+	protected void flush() {
+		this.administratorRepository.flush();
+	}
+
 }

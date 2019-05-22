@@ -5,6 +5,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
@@ -63,6 +64,7 @@ public class EndorserRecord extends DomainEntity {
 	@URL
 	@NotBlank
 	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+	@Pattern(regexp = "^(https://www\\.linkedin\\.com/.+)")
 	public String getLinkedInProfile() {
 		return this.linkedInProfile;
 	}

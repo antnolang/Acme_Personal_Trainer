@@ -63,12 +63,27 @@
 		<security:intercept-url pattern="/application/trainer/**" access="hasRole('TRAINER')" /> 
 		<security:intercept-url pattern="/application/customer/**" access="hasRole('CUSTOMER')" /> 
 		
+		<security:intercept-url pattern="/curriculum/trainer/**" access="hasRole('TRAINER')" />
+		<security:intercept-url pattern="/curriculum/**" access="permitAll" />
+		
 		<security:intercept-url pattern="/customisation/**" access="hasRole('ADMIN')" />
 		
 		<security:intercept-url pattern="/dashboard/**" access="hasRole('ADMIN')" />
 		
+		<security:intercept-url pattern="/educationRecord/trainer/**" access="hasRole('TRAINER')" /> 
+		<security:intercept-url pattern="/educationRecord/**" access="permitAll" /> 
+		
 		<security:intercept-url pattern="/endorsement/list.do/**" access="hasRole('CUSTOMER')" />
 		<security:intercept-url pattern="/endorsement/customer,trainer/**" access="hasAnyRole('CUSTOMER','TRAINER')" />
+		
+		<security:intercept-url pattern="/endorserRecord/trainer/**" access="hasRole('TRAINER')" /> 
+		<security:intercept-url pattern="/endorserRecord/**" access="permitAll" /> 
+		
+		<security:intercept-url pattern="/personalRecord/trainer/**" access="hasRole('TRAINER')" /> 
+		<security:intercept-url pattern="/personalRecord/**" access="permitAll" /> 
+		
+		<security:intercept-url pattern="/professionalRecord/trainer/**" access="hasRole('TRAINER')" /> 
+		<security:intercept-url pattern="/professionalRecord/**" access="permitAll" /> 
 		
 		<security:intercept-url pattern="/socialProfile/administrator,auditor,customer,nutritionist,trainer/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/socialProfile/**" access="permitAll" />
@@ -77,6 +92,9 @@
 		
 		<security:intercept-url pattern="/message/administrator/**" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/message/administrator,auditor,customer,nutritionist,trainer/**" access="isAuthenticated()" />
+		
+		<security:intercept-url pattern="/miscellaneousRecord/trainer/**" access="hasRole('TRAINER')" /> 
+		<security:intercept-url pattern="/miscellaneousRecord/**" access="permitAll" /> 
 		
 		<security:intercept-url pattern="/workingOut/trainer/**" access="hasRole('TRAINER')" />
 		<security:intercept-url pattern="/workingOut/customer/**" access="hasRole('CUSTOMER')" />

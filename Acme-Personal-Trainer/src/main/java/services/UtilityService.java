@@ -64,6 +64,10 @@ public class UtilityService {
 			Assert.isTrue(actor.getEmail().matches("[A-Za-z0-9]+@[a-zA-Z0-9.-]+|[\\w]+[\\s]*[\\<][A-Za-z0-9]+@[a-zA-Z0-9.-]+[\\>]"));
 	}
 
+	public void checkEmail(final String email) {
+		Assert.isTrue(email.matches("[A-Za-z0-9]+@[a-zA-Z0-9.-]+|[\\w]+[\\s]*[\\<][A-Za-z0-9]+@[a-zA-Z0-9.-]+[\\>]"));
+	}
+
 	protected boolean checkIsExpired(final CreditCard creditCard) {
 		String year, month;
 		LocalDate expiration, now;
