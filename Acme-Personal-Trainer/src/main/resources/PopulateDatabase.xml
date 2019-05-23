@@ -386,7 +386,7 @@
 		<property name="creditCard" ref="creditCard6" />
 		<property name="workingOut" ref="workingOut4" />
 	</bean>
-	
+
 	<bean id="application5" class="domain.Application">
 		<property name="registeredMoment" value="2019/03/01 10:10" />
 		<property name="status" value="PENDING" />
@@ -395,7 +395,7 @@
 		<property name="creditCard" ref="creditCard7" />
 		<property name="workingOut" ref="workingOut4" />
 	</bean>
-	
+
 	<bean id="application6" class="domain.Application">
 		<property name="registeredMoment" value="2019/03/01 10:10" />
 		<property name="status" value="PENDING" />
@@ -2183,7 +2183,8 @@
 	</bean>
 
 	<bean id="category14" class="domain.Category">
-		<property name="name" value="HIIT,Entrenamiento en periodos de alta intensidad" />
+		<property name="name"
+			value="HIIT,Entrenamiento en periodos de alta intensidad" />
 	</bean>
 
 	<bean id="category15" class="domain.Category">
@@ -2473,7 +2474,7 @@
 		<property name="phoneNumber" value="630417654" />
 		<property name="address" value="Calle Customer 1" />
 		<property name="isSuspicious" value="false" />
-		<property name="isPremium" value="false" />
+		<property name="isPremium" value="true" />
 		<property name="userAccount" ref="userAccount3" />
 	</bean>
 
@@ -2614,7 +2615,7 @@
 		<property name="attachment" value="http://www.google.com" />
 		<property name="comments" value="comment3" />
 	</bean>
-	
+
 	<!-- Endorsement -->
 	<bean id="endorsement1" class="domain.Endorsement">
 		<property name="writtenMoment" value="2018/11/01 14:00" />
@@ -2624,7 +2625,7 @@
 		<property name="customer" ref="customer1" />
 		<property name="trainer" ref="trainer1" />
 	</bean>
-	
+
 	<bean id="endorsement2" class="domain.Endorsement">
 		<property name="writtenMoment" value="2018/11/01 14:00" />
 		<property name="mark" value="7" />
@@ -2633,7 +2634,7 @@
 		<property name="customer" ref="customer1" />
 		<property name="trainer" ref="trainer1" />
 	</bean>
-	
+
 	<bean id="endorsement3" class="domain.Endorsement">
 		<property name="writtenMoment" value="2018/11/01 14:00" />
 		<property name="mark" value="7" />
@@ -2642,7 +2643,7 @@
 		<property name="customer" ref="customer1" />
 		<property name="trainer" ref="trainer1" />
 	</bean>
-	
+
 	<!-- Endorser Records -->
 	<bean id="endorserRecord1" class="domain.EndorserRecord">
 		<property name="fullname" value="endorserRecord1" />
@@ -2785,7 +2786,7 @@
 		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
 		<property name="category" value="comba" />
 		<property name="startPrice" value="25.24" />
-		<property name="endPrice" value="75.24" />
+		<property name="endPrice" value="275.24" />
 		<property name="startDate" value="2019/11/05" />
 		<property name="endDate" value="2020/01/01 10:10" />
 		<property name="customer" ref="customer1" />
@@ -2801,7 +2802,7 @@
 		<property name="keyword" value="workingOut8" />
 		<property name="category" value="" />
 		<property name="startPrice" value="2.00" />
-		<property name="endPrice" value="50.24" />
+		<property name="endPrice" value="250.24" />
 		<property name="startDate" value="2020/12/15 17:00" />
 		<property name="endDate" value="2020/12/17 19:00" />
 		<property name="customer" ref="customer2" />
@@ -2817,7 +2818,7 @@
 		<property name="keyword" value="" />
 		<property name="category" value="Tabata" />
 		<property name="startPrice" value="25.24" />
-		<property name="endPrice" value="55.24" />
+		<property name="endPrice" value="255.24" />
 		<property name="startDate" value="2020/12/15 17:00" />
 		<property name="endDate" value="2020/12/17 19:00" />
 		<property name="customer" ref="customer3" />
@@ -2833,7 +2834,7 @@
 		<property name="keyword" value="" />
 		<property name="category" value="Boot Camp" />
 		<property name="startPrice" value="0.00" />
-		<property name="endPrice" value="20.24" />
+		<property name="endPrice" value="220.24" />
 		<property name="startDate" value="2020/11/04 17:00" />
 		<property name="endDate" value="2020/11/09 19:00" />
 		<property name="customer" ref="customer4" />
@@ -2849,7 +2850,7 @@
 		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
 		<property name="category" value="comba" />
 		<property name="startPrice" value="25.24" />
-		<property name="endPrice" value="55.24" />
+		<property name="endPrice" value="255.24" />
 		<property name="startDate" value="2020/11/04 17:00" />
 		<property name="endDate" value="2020/11/09 19:00" />
 		<property name="customer" ref="customer5" />
@@ -2865,7 +2866,7 @@
 		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
 		<property name="category" value="comba" />
 		<property name="startPrice" value="25.24" />
-		<property name="endPrice" value="55.24" />
+		<property name="endPrice" value="255.24" />
 		<property name="startDate" value="2020/11/04 17:00" />
 		<property name="endDate" value="2020/11/09 19:00" />
 		<property name="customer" ref="customer6" />
@@ -2881,7 +2882,7 @@
 		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
 		<property name="category" value="comba" />
 		<property name="startPrice" value="25.24" />
-		<property name="endPrice" value="55.24" />
+		<property name="endPrice" value="255.24" />
 		<property name="startDate" value="2020/11/04 17:00" />
 		<property name="endDate" value="2020/11/09 19:00" />
 		<property name="customer" ref="customer7" />
@@ -3614,7 +3615,7 @@
 		<property name="ticker" value="120212-ASDFGH" />
 		<property name="publishedMoment" value="2019/02/01 10:10" />
 		<property name="description" value="Description workingOut1" />
-		<property name="price" value="50.99" />
+		<property name="price" value="250.99" />
 		<property name="startMoment" value="2019/11/01 17:00" />
 		<property name="endMoment" value="2019/11/30 19:00" />
 		<property name="isFinalMode" value="true" />
@@ -3640,7 +3641,7 @@
 		<property name="ticker" value="124712-ASDFGH" />
 		<property name="publishedMoment" value="2019/02/01 10:10" />
 		<property name="description" value="Description workingOut2" />
-		<property name="price" value="35.99" />
+		<property name="price" value="235.99" />
 		<property name="startMoment" value="2019/12/01 17:00" />
 		<property name="endMoment" value="2019/12/30 19:00" />
 		<property name="isFinalMode" value="true" />
@@ -3668,7 +3669,7 @@
 		<property name="ticker" value="120962-ASDFGH" />
 		<property name="publishedMoment" value="2019/02/01 10:10" />
 		<property name="description" value="Description workingOut3" />
-		<property name="price" value="50.99" />
+		<property name="price" value="250.99" />
 		<property name="startMoment" value="2019/11/01 17:00" />
 		<property name="endMoment" value="2019/11/30 19:00" />
 		<property name="isFinalMode" value="true" />
@@ -3694,7 +3695,7 @@
 		<property name="ticker" value="123612-ASDFGH" />
 		<property name="publishedMoment" value="2019/02/01 10:10" />
 		<property name="description" value="Description workingOut4" />
-		<property name="price" value="75.99" />
+		<property name="price" value="275.99" />
 		<property name="startMoment" value="2019/12/01 17:00" />
 		<property name="endMoment" value="2019/12/30 19:00" />
 		<property name="isFinalMode" value="true" />
@@ -3723,7 +3724,7 @@
 		<property name="ticker" value="121412-ASDFGH" />
 		<property name="publishedMoment" value="2019/02/01 10:10" />
 		<property name="description" value="Description workingOut5" />
-		<property name="price" value="15.99" />
+		<property name="price" value="215.99" />
 		<property name="startMoment" value="2020/01/01 17:00" />
 		<property name="endMoment" value="2020/01/30 19:00" />
 		<property name="isFinalMode" value="true" />
@@ -3747,7 +3748,7 @@
 		<property name="ticker" value="121472-ASDFGH" />
 		<property name="publishedMoment" value="2019/02/01 10:10" />
 		<property name="description" value="Description workingOut6" />
-		<property name="price" value="15.99" />
+		<property name="price" value="215.99" />
 		<property name="startMoment" value="2020/02/01 17:00" />
 		<property name="endMoment" value="2020/02/30 19:00" />
 		<property name="isFinalMode" value="false" />
@@ -3769,7 +3770,7 @@
 		<property name="ticker" value="121142-ASDFGH" />
 		<property name="publishedMoment" value="2019/02/01 10:10" />
 		<property name="description" value="Description workingOut7" />
-		<property name="price" value="15.99" />
+		<property name="price" value="215.99" />
 		<property name="startMoment" value="2020/01/01 17:00" />
 		<property name="endMoment" value="2020/01/20 19:00" />
 		<property name="isFinalMode" value="true" />
@@ -3792,7 +3793,7 @@
 		<property name="ticker" value="124142-ASDFGH" />
 		<property name="publishedMoment" value="2018/02/01 10:10" />
 		<property name="description" value="Description workingOut8" />
-		<property name="price" value="15.99" />
+		<property name="price" value="215.99" />
 		<property name="startMoment" value="2018/12/15 17:00" />
 		<property name="endMoment" value="2018/12/17 19:00" />
 		<property name="isFinalMode" value="true" />
@@ -3814,7 +3815,7 @@
 		<property name="ticker" value="114142-ASDFGH" />
 		<property name="publishedMoment" value="2019/02/01 10:10" />
 		<property name="description" value="Description workingOut9" />
-		<property name="price" value="15.99" />
+		<property name="price" value="215.99" />
 		<property name="startMoment" value="2019/11/04 17:00" />
 		<property name="endMoment" value="2019/11/09 19:00" />
 		<property name="isFinalMode" value="true" />
