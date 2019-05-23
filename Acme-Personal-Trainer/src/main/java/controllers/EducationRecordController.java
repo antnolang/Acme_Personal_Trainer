@@ -47,11 +47,11 @@ public class EducationRecordController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/backCurriculum", method = RequestMethod.GET)
-	public ModelAndView back(@RequestParam final int educationDataId) {
+	public ModelAndView back(@RequestParam final int educationRecordId) {
 		ModelAndView result;
 		int curriculumId;
 
-		curriculumId = this.curriculumService.findIdByEducationRecordId(educationDataId);
+		curriculumId = this.curriculumService.findIdByEducationRecordId(educationRecordId);
 		result = new ModelAndView("redirect:/curriculum/display.do?curriculumId=" + curriculumId);
 
 		return result;

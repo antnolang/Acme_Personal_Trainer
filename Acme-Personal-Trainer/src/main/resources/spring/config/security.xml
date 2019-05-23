@@ -63,7 +63,7 @@
 		<security:intercept-url pattern="/application/customer/**" access="hasRole('CUSTOMER')" /> 
 		
 		<security:intercept-url pattern="/curriculum/trainer/**" access="hasRole('TRAINER')" />
-		<security:intercept-url pattern="/curriculum/**" access="permitAll" />
+		<security:intercept-url pattern="/curriculum/**" access="isAuthenticated()" />
 		
 		<security:intercept-url pattern="/customisation/**" access="hasRole('ADMIN')" />
 		

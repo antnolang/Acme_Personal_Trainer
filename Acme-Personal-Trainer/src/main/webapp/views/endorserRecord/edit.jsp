@@ -17,7 +17,7 @@
 		<legend><spring:message code="endorserRecord.fieldset"/></legend>
 		
 		<acme:textbox code="endorserRecord.fullname" path="fullname"/>
-		<acme:textbox code="endorserRecord.phoneNumber" path="phoneNumber" placeholder="+34 954954954"/>
+		<acme:textbox code="endorserRecord.phoneNumber" path="phoneNumber" placeholder="+34 (111) 654654654" id="phoneNumber"/>
 		<acme:textbox code="endorserRecord.email" path="email"/>
 		<acme:textbox code="endorserRecord.linkedInProfile" path="linkedInProfile" placeholder="https://www.linkedin.com/..."/>
 	</fieldset>

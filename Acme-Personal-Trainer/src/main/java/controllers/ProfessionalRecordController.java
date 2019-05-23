@@ -47,11 +47,11 @@ public class ProfessionalRecordController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/backCurriculum", method = RequestMethod.GET)
-	public ModelAndView back(@RequestParam final int professionalDataId) {
+	public ModelAndView back(@RequestParam final int professionalRecordId) {
 		ModelAndView result;
 		int curriculumId;
 
-		curriculumId = this.curriculumService.findIdByProfessionalRecordId(professionalDataId);
+		curriculumId = this.curriculumService.findIdByProfessionalRecordId(professionalRecordId);
 		result = new ModelAndView("redirect:/curriculum/display.do?curriculumId=" + curriculumId);
 
 		return result;

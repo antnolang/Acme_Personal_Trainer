@@ -73,10 +73,12 @@ public class CurriculumTrainerController extends AbstractController {
 				this.curriculumService.save(curriculumRec);
 				result = new ModelAndView("redirect:/curriculum/trainer/display.do");
 			} catch (final Throwable oops) {
-				result = this.createModelAndView(curriculum, "curriculum.commit.error");
-
 				if (oops.getMessage().contains("Fullname does not match"))
-					binding.rejectValue("personalData.fullname", "curriculum.fullname.error", "Must match with the full name of your profile.");
+					binding.rejectValue("personalRecord.fullName", "curriculum.fullname.error", "Must match with the full name of your profile.");
+				else if (oops.getMessage().contains("Invalid email format"))
+					binding.rejectValue("personalRecord.email", "curriculum.email.error", "The email has an invalid format.");
+
+				result = this.createModelAndView(curriculum, "curriculum.commit.error");
 			}
 
 		return result;

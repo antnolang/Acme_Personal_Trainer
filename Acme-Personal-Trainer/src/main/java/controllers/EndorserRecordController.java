@@ -47,11 +47,11 @@ public class EndorserRecordController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/backCurriculum", method = RequestMethod.GET)
-	public ModelAndView back(@RequestParam final int endorserDataId) {
+	public ModelAndView back(@RequestParam final int endorserRecordId) {
 		ModelAndView result;
 		int curriculumId;
 
-		curriculumId = this.curriculumService.findIdByEndorserRecordId(endorserDataId);
+		curriculumId = this.curriculumService.findIdByEndorserRecordId(endorserRecordId);
 		result = new ModelAndView("redirect:/curriculum/display.do?curriculumId=" + curriculumId);
 
 		return result;
