@@ -12,7 +12,7 @@
 
 <jstl:if test="${requestURI != 'endorsement/list.do'}">
 <h3> <spring:message code="endorsement.sent" /> </h3>
-<display:table name="sentEndorsements" id="row" requestURI="${requestURI}" class="displaytag">
+<display:table name="sentEndorsements" id="row" requestURI="${requestURI}" class="displaytag" pagesize="5">
 	<display:column>
 		<a href="endorsement/customer,trainer/display.do?endorsementId=${row.id}">
 			<spring:message code="endorsement.display" />
@@ -49,7 +49,7 @@
 </a>
 
 <h3> <spring:message code="endorsement.received" /> </h3>
-<display:table name="receivedEndorsements" id="row" requestURI="${requestURI}" class="displaytag">
+<display:table name="receivedEndorsements" id="row" requestURI="${requestURI}" class="displaytag" pagesize="5">
 	<display:column>
 		<a href="endorsement/customer,trainer/display.do?endorsementId=${row.id}">
 			<spring:message code="endorsement.display" />

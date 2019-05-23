@@ -116,7 +116,11 @@ public class BoxMultiUserController extends AbstractController {
 			} catch (final DataIntegrityViolationException oops) {
 				result = this.createEditModelAndView(boxRec, "box.name.unique");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(boxRec, "box.commit.error");
+				if (oops.getMessage().equals("Invalid name"))
+					result = this.createEditModelAndView(boxRec, "box.error.name");
+				else
+					result = this.createEditModelAndView(boxRec, "box.commit.error");
+
 			}
 
 		return result;

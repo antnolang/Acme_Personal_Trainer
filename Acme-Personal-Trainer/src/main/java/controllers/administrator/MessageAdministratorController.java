@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ActorService;
 import services.CustomisationService;
 import services.MessageService;
-import services.UtilityService;
 import controllers.AbstractController;
-import domain.Customisation;
 import domain.Message;
 
 @Controller
@@ -28,7 +27,7 @@ public class MessageAdministratorController extends AbstractController {
 	private CustomisationService	customisationService;
 
 	@Autowired
-	private UtilityService			utilityService;
+	private ActorService			actorService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -56,6 +55,8 @@ public class MessageAdministratorController extends AbstractController {
 	public ModelAndView broadcast(final Message broadcast, final BindingResult binding) {
 		ModelAndView result;
 		Message broadcastRec;
+
+		broadcast.setRecipients(this.actorService.findActorsWithoutPrincipal());
 
 		broadcastRec = this.messageService.reconstruct(broadcast, binding);
 		if (binding.hasErrors())
@@ -97,19 +98,13 @@ public class MessageAdministratorController extends AbstractController {
 
 	protected ModelAndView broadcastModelAndView(final Message broadcast, final String messageCode) {
 		ModelAndView result;
-		Customisation customisation;
-		String priorities_str;
 		List<String> priorities;
 
-		customisation = this.customisationService.find();
-		priorities_str = customisation.getPriorities();
-		priorities = this.utilityService.ListByString(priorities_str);
+		priorities = this.customisationService.prioritiesAsList();
 
-		result = new ModelAndView("message/send");
+		result = new ModelAndView("message/broadcast");
 		result.addObject("message", broadcast);
 		result.addObject("priorities", priorities);
-		result.addObject("isBroadcastMessage", true);
-		result.addObject("actionURI", "message/administrator/broadcast.do");
 		result.addObject("messageCode", messageCode);
 
 		return result;

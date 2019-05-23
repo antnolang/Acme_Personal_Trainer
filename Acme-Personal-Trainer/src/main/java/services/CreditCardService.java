@@ -91,6 +91,16 @@ public class CreditCardService {
 		return result;
 	}
 
+	public void deleteByPrincipal() {
+		Customer customer;
+		Collection<CreditCard> creditCards;
+
+		customer = this.customerService.findByPrincipal();
+		creditCards = this.creditCardRepository.findAllByCustomer(customer.getId());
+
+		this.creditCardRepository.delete(creditCards);
+	}
+
 	// Reconstruct ----------------------------------------------
 
 	// Other business methods ---------------------

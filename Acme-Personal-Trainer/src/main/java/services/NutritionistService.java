@@ -14,6 +14,7 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import security.UserAccountService;
+import domain.Administrator;
 import domain.Nutritionist;
 import forms.RegistrationForm;
 
@@ -39,6 +40,9 @@ public class NutritionistService {
 
 	@Autowired
 	private Validator				validator;
+
+	@Autowired
+	private ArticleService			articleService;
 
 
 	// Constructors -------------------------------
@@ -83,9 +87,22 @@ public class NutritionistService {
 	public Nutritionist save(final Nutritionist nutritionist) {
 		Nutritionist result;
 
+		if (nutritionist.getId() == 0)
+			Assert.isTrue(this.actorService.findPrincipal() instanceof Administrator);
+
 		result = (Nutritionist) this.actorService.save(nutritionist);
 
 		return result;
+	}
+
+	public void delete(final Nutritionist nutritionist) {
+		Assert.notNull(nutritionist);
+		Assert.isTrue(nutritionist.getId() != 0);
+
+		// Delete articles
+		this.articleService.deleteArticlesByNutritionist(nutritionist);
+
+		this.actorService.delete(nutritionist);
 	}
 
 	// Other business methods ---------------------
@@ -234,6 +251,10 @@ public class NutritionistService {
 		if (this.actorService.existEmail(nutritionist.getEmail()))
 			binding.rejectValue("email", "actor.email.used", "Email already in use");
 
+	}
+
+	protected void flush() {
+		this.nutritionistRepository.flush();
 	}
 
 }

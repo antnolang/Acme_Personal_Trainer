@@ -10,21 +10,24 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form action="workingOut/trainer/edit.do" modelAttribute="workingOut">
+<form:form action="session/trainer/edit.do" modelAttribute="session">
 	<form:hidden path="id" />
-	<form:hidden path="version" />
+	<input type="hidden" name="workingOutId" value="${workingOutId}"/>
 	
-	<acme:textarea code="workingOut.description" path="description" />
+	<acme:textbox code="session.title" path="title"/>
 	
-	<acme:textbox code="workingOut.price" path="price"/>
+	<acme:textarea code="session.description" path="description" />
 	
-	<acme:selectMandatory items="${categories}" multiple="true" 
-		 itemLabel="name" code="workingOut.categories" path="categories"/>
+	<acme:textbox code="session.address" path="address"/>
 	
-	<acme:submit name="save" code="workingOut.save"/>	
-	<jstl:if test="${workingOut.id != 0}">
-		<acme:submit name="delete" code="workingOut.delete"/>	
+	<jstl:if test="${session.id == 0}">
+		<acme:textbox code="session.starMoment" placeholder="dd/MM/yyyy HH:mm" path="startMoment"/>
+	
+		<acme:textbox code="session.endMoment" placeholder="dd/MM/yyyy HH:mm" path="endMoment"/>	
 	</jstl:if>
-	<acme:cancel url="workingOut/trainer/list.do" code="workingOut.cancel"/>
+	
+	<acme:submit name="save" code="session.save"/>	
+	
+	<acme:cancel url="workingOut/trainer/list.do" code="session.cancel"/>
 	<br />
 </form:form>

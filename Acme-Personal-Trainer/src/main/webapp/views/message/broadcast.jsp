@@ -20,25 +20,17 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="${actionURI}" modelAttribute="message" >
+<form:form action="message/administrator/broadcast.do" modelAttribute="message" >
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
 	
 	<acme:textbox path="subject" code="message.display.subject" />
 	<acme:textarea path="body" code="message.display.body" />
 	<acme:selectPrime path="priority" code="message.display.priority" items="${priorities}" />
-	
-	<jstl:if test="${!isBroadcastMessage}">
-		<acme:selectMandatory path="recipients" code="message.display.recipients" items="${actors}" itemLabel="fullname" multiple="true" />
-	</jstl:if>
-	<jstl:if test="${isBroadcastMessage}">
-		<form:hidden path="recipients" />
-	</jstl:if>
-	
 	<acme:textarea path="tags" code="message.display.tags" />	
  	<br />
 	
 	<!-- Buttons -->
 	<acme:submit name="send" code="message.button.send" />
-	<acme:cancel url="box/administrator,brotherhood,chapter,member,sponsor/list.do" code="message.button.cancel" />
+	<acme:cancel url="box/administrator,auditor,customer,nutritionist,trainer/list.do" code="message.button.cancel" />
 </form:form>

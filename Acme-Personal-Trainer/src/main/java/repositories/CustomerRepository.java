@@ -31,4 +31,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 	@Query("select e.customer from Endorsement e where e.trainerToCustomer = false group by e.customer order by count(e) desc")
 	Page<Customer> findCustomerWriteMostEndorsement(Pageable page);
 
+	@Query("select sum(a.workingOut.price) from Application a where a.customer.id = ?1 and a.status = 'ACCEPTED'")
+	double spendCustomer(Customer customer);
 }

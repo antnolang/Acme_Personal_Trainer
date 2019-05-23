@@ -57,6 +57,7 @@
 		
 		<security:intercept-url pattern="/article/customer,nutritionist/**" access="hasAnyRole('CUSTOMER','NUTRITIONIST')" />
 		<security:intercept-url pattern="/article/nutritionist/**" access="hasRole('NUTRITIONIST')" /> 
+		<security:intercept-url pattern="/article/customer/**" access="hasRole('CUSTOMER')" /> 
 		
 		<security:intercept-url pattern="/application/customer,trainer/**" access="hasAnyRole('CUSTOMER','TRAINER')" />
 		<security:intercept-url pattern="/application/trainer/**" access="hasRole('TRAINER')" /> 
@@ -100,6 +101,9 @@
 		<security:intercept-url pattern="/workingOut/customer,trainer/**" access="hasAnyRole('CUSTOMER','TRAINER')" />
 		
 		<security:intercept-url pattern="/creditCard/customer/**" access="hasRole('CUSTOMER')" />
+		
+		
+		<security:intercept-url pattern="/session/trainer/**" access="hasRole('TRAINER')" />
 		
 		<security:intercept-url pattern="/error.do" access="permitAll" />
 		

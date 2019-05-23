@@ -45,9 +45,8 @@
 		<value>/views/message/tiles.xml</value> 
 		<value>/views/miscellaneousRecord/tiles.xml</value>				
 		<value>/views/personalRecord/tiles.xml</value>			
-		<value>/views/professionalRecord/tiles.xml</value>
-		<!--				
-		<value>/views/session/tiles.xml</value>  -->
+		<value>/views/professionalRecord/tiles.xml</value>				
+		<value>/views/session/tiles.xml</value> 
 		<value>/views/socialProfile/tiles.xml</value>
 		<value>/views/workingOut/tiles.xml</value> 
 	</util:list>

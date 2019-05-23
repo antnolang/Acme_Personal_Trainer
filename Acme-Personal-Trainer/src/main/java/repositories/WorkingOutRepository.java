@@ -2,6 +2,8 @@
 package repositories;
 
 import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -23,8 +25,8 @@ public interface WorkingOutRepository extends JpaRepository<WorkingOut, Integer>
 	@Query("select w from WorkingOut w where w.trainer.id = ?1 and w.isFinalMode = true")
 	Collection<WorkingOut> findFinalWorkingOutsByTrainer(int id);
 
-	@Query("select w from WorkingOut w where w.isFinalMode = true")
-	Collection<WorkingOut> findAllVisible();
+	@Query("select w from WorkingOut w where w.isFinalMode = true and w.startMoment >= ?1")
+	Collection<WorkingOut> findAllVisible(Date now);
 
 	@Query("select w.sessions from WorkingOut w where w.id=?1")
 	Collection<Session> getSessionsByWorkingOut(int id);
@@ -43,4 +45,10 @@ public interface WorkingOutRepository extends JpaRepository<WorkingOut, Integer>
 	// Requirement 11.4.1
 	@Query("select avg(1.0 * (select count(w) from WorkingOut w where w.trainer.id = t.id)), min(1.0 * (select count(w) from WorkingOut w where w.trainer.id = t.id)), max(1.0 * (select count(w) from WorkingOut w where w.trainer.id = t.id)),stddev(1.0 * (select count(w) from WorkingOut w where w.trainer.id = t.id)) from Trainer t)")
 	Double[] findDataNumberWorkingOutPerTrainer();
+
+	@Query("select w from WorkingOut w join w.sessions s where s.id=?1")
+	WorkingOut findBySession(int sessionId);
+
+	@Query("select s from WorkingOut w join w.sessions s where w.id=?1 order by s.startMoment ASC")
+	List<Session> getSssionsOrdered(int id);
 }

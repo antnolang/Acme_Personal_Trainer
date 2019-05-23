@@ -3,6 +3,8 @@ package services;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -136,15 +138,6 @@ public class WorkingOutService {
 		//		this.messageService.notification_newWorkingOut(workingOut);
 
 	}
-	private boolean checkAtLeastOneSession(final WorkingOut workingOut) {
-		boolean res;
-		Collection<Session> sessions;
-
-		sessions = workingOut.getSessions();
-		res = sessions.size() >= 1;
-
-		return res;
-	}
 
 	public WorkingOut findOneFinalByPrincipal(final int workingOutId) {
 		WorkingOut result;
@@ -174,8 +167,10 @@ public class WorkingOutService {
 	}
 	public Collection<WorkingOut> findAllVisible() {
 		Collection<WorkingOut> workingOuts;
+		Date now;
 
-		workingOuts = this.workingOutRepository.findAllVisible();
+		now = this.utilityService.current_moment();
+		workingOuts = this.workingOutRepository.findAllVisible(now);
 
 		return workingOuts;
 	}
@@ -223,6 +218,16 @@ public class WorkingOutService {
 		return result;
 	}
 
+	public void deleteByPrincipal() {
+		Trainer trainer;
+		Collection<WorkingOut> workingOuts;
+
+		trainer = this.trainerService.findByPrincipal();
+		workingOuts = this.workingOutRepository.findAllWorkingOutsByTrainer(trainer.getId());
+
+		this.workingOutRepository.delete(workingOuts);
+	}
+
 	// Protected methods -----------------------------------------------
 	protected String existTicker(final String ticker) {
 		String result;
@@ -231,9 +236,7 @@ public class WorkingOutService {
 
 		return result;
 	}
-
-	// Private methods-----------------------------------------------
-	private void checkByPrincipal(final WorkingOut workingOut) {
+	protected void checkByPrincipal(final WorkingOut workingOut) {
 		Trainer owner;
 		Trainer principal;
 
@@ -241,6 +244,36 @@ public class WorkingOutService {
 		principal = this.trainerService.findByPrincipal();
 
 		Assert.isTrue(owner.equals(principal));
+	}
+
+	protected void updateMomentWorkingOut(final WorkingOut workingOut, final Session session) {
+		List<Session> sessionsOrdered;
+		int sizeSessions;
+		Session lastSession;
+
+		sessionsOrdered = this.workingOutRepository.getSssionsOrdered(workingOut.getId());
+		sizeSessions = sessionsOrdered.size();
+
+		if (sizeSessions == 0) {
+			workingOut.setStartMoment(session.getStartMoment());
+			workingOut.setEndMoment(session.getEndMoment());
+		} else if (sizeSessions != 0) {
+			lastSession = sessionsOrdered.get(sizeSessions - 1);
+			Assert.isTrue(!lastSession.getEndMoment().after(session.getStartMoment()), "End moment last session before star moment");
+			workingOut.setEndMoment(session.getEndMoment());
+		}
+
+	}
+
+	// Private methods-----------------------------------------------
+	private boolean checkAtLeastOneSession(final WorkingOut workingOut) {
+		boolean res;
+		Collection<Session> sessions;
+
+		sessions = workingOut.getSessions();
+		res = sessions.size() >= 1;
+
+		return res;
 	}
 
 	// Reconstruct ----------------------------------------------
@@ -275,6 +308,33 @@ public class WorkingOutService {
 		this.validator.validate(result, binding);
 
 		return result;
+	}
+
+	public WorkingOut findOneToCreateSession(final Integer workingOutId) {
+		WorkingOut res;
+
+		res = this.findOne(workingOutId);
+		Assert.isTrue(!res.getIsFinalMode());
+		this.checkByPrincipal(res);
+
+		return res;
+	}
+
+	public WorkingOut findBySession(final int sessionId) {
+		WorkingOut res;
+
+		res = this.workingOutRepository.findBySession(sessionId);
+
+		return res;
+	}
+
+	public void findToCreateSession(final int workingOutId) {
+		WorkingOut workingOut;
+
+		workingOut = this.findOne(workingOutId);
+		Assert.isTrue(!workingOut.getIsFinalMode());
+		this.checkByPrincipal(workingOut);
+
 	}
 
 }

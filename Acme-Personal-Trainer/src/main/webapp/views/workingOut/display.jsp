@@ -51,8 +51,9 @@
 		<jstl:out value="${workingOut.description}"/>
 	<br/>
 	
+	<spring:message code="workingOut.vat" var="vatTag"/>
 	<strong><spring:message code="workingOut.price"/>:</strong>
-		<fmt:formatNumber type="number" maxFractionDigits="2" value="${workingOut.price * (1 + VAT /100)}"/> &#8364; <jstl:out value="(VAT% Inc.)"/>
+		<fmt:formatNumber type="number" maxFractionDigits="2" value="${workingOut.price * (1 + VAT /100)}"/> &#8364; <jstl:out value="(${VAT}%  ${vatTag}  Inc.)"/>
 	<br/>
 	
 	
@@ -70,14 +71,31 @@
 	
 	
 	<br/>
-	
+
+<fieldset>
+	<legend><spring:message code="workingOut.categories"/></legend>
+		
 <display:table name="categories" id="row1" requestURI="workingOut/customer,trainer/display.do" class="displaytag" pagesize="5">
 		
 	<display:column property="name" titleKey="workingOut.name" />
 </display:table>
-	
-	
+</fieldset>
+
+<fieldset>
+	<legend><spring:message code="workingOut.sessions"/></legend>	
 <display:table name="sessions" id="row2" requestURI="workingOut/customer,trainer/display.do" class="displaytag" pagesize="5">
+
+	<security:authorize access="hasRole('TRAINER')">
+	<display:column>
+		<jstl:if test="${principal == workingOut.trainer && !workingOut.isFinalMode}">
+		<a href="session/trainer/edit.do?sessionId=${row2.id}">
+			<spring:message	code="workingOut.edit" />			
+		</a>
+	
+		</jstl:if>
+		</display:column>
+	</security:authorize>	
+	
 	<display:column property="title" titleKey="workingOut.title" />
 	
 	<display:column property="description" titleKey="workingOut.description" />
@@ -90,18 +108,30 @@
 	<spring:message code="workingOut.formatMoment" var="formatMoment" />
 	<display:column property="endMoment" titleKey="workingOut.endMoment" sortable="true" format="${formatMoment}"/>
 </display:table>
+
+
+<security:authorize access="hasRole('TRAINER')">
+	<jstl:if test="${principal == workingOut.trainer && !workingOut.isFinalMode}">
+	<a href="session/trainer/create.do?workingOutId=${workingOut.id}">
+		<spring:message	code="workingOut.create.session" />			
+	</a>
 	
-	
+	</jstl:if>
+</security:authorize>	
+</fieldset>
+
+	<br/>
 	<!-- Links -->	
 	
 <security:authorize access="hasRole('TRAINER')">
+
 	<a href="workingOut/trainer/list.do">
 		<spring:message	code="workingOut.back" />			
 	</a>
 </security:authorize>
 
 <security:authorize access="hasRole('CUSTOMER')">
-	<a href="workingOut/customer/list.do">
+	<a href="workingOut/customer/listAvailable.do">
 		<spring:message	code="workingOut.back" />			
 	</a>
 </security:authorize>
