@@ -265,6 +265,10 @@ public class CustomerService {
 
 	}
 
+	public double spendCustomer(final Customer customer) {
+		return this.customerRepository.spendCustomer(customer);
+	}
+
 	protected void flush() {
 		this.customerRepository.flush();
 	}

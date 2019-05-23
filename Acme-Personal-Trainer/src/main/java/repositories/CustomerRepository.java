@@ -21,4 +21,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 	@Query("select c from Customer c where c.isPremium=true")
 	Collection<Customer> findPremiumCustomers();
 
+	@Query("select sum(a.workingOut.price) from Application a where a.customer.id = ?1 and a.status = 'ACCEPTED'")
+	double spendCustomer(Customer customer);
+
 }

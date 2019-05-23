@@ -45,6 +45,9 @@ public class ApplicationService {
 	@Autowired
 	private CreditCardService		creditCardService;
 
+	@Autowired
+	private CustomisationService	customisationService;
+
 
 	//Constructor ----------------------------------------------------
 	public ApplicationService() {
@@ -103,6 +106,9 @@ public class ApplicationService {
 		Collection<Application> pendingApplications;
 
 		application.setStatus("ACCEPTED");
+		if (this.customerService.spendCustomer(application.getCustomer()) >= (this.customisationService.find().getPremiumAmount()))
+			application.getCustomer().setIsPremium(true);
+
 		pendingApplications = this.findPendingApplicationsByWorkingOut(application.getWorkingOut().getId());
 		//this.messageService.notification_applicationStatusChanges(application);
 
