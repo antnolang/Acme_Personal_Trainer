@@ -53,6 +53,7 @@ public class EndorserRecordService {
 
 		EndorserRecord saved;
 
+		endorserRecord.setPhoneNumber(this.utilityService.getValidPhone(endorserRecord.getPhoneNumber()));
 		saved = this.endorserRecordRepository.save(endorserRecord);
 
 		return saved;

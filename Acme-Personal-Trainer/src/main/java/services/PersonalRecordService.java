@@ -24,6 +24,9 @@ public class PersonalRecordService {
 	@Autowired
 	private TrainerService				trainerService;
 
+	@Autowired
+	private UtilityService				utilityService;
+
 
 	// Constructors ------------------------------------------------------
 
@@ -52,6 +55,7 @@ public class PersonalRecordService {
 		this.checkOwner(principal, personalRecord.getId());
 		this.checkFullname(principal, personalRecord);
 
+		personalRecord.setPhoneNumber(this.utilityService.getValidPhone(personalRecord.getPhoneNumber()));
 		saved = this.personalRecordRepository.save(personalRecord);
 
 		return saved;

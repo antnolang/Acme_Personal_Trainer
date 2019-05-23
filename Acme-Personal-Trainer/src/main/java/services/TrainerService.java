@@ -18,6 +18,7 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import security.UserAccountService;
+import domain.Administrator;
 import domain.Endorsement;
 import domain.Trainer;
 import forms.RegistrationForm;
@@ -50,6 +51,15 @@ public class TrainerService {
 
 	@Autowired
 	private CustomisationService	customisationService;
+
+	@Autowired
+	private WorkingOutService		workingOutService;
+
+	@Autowired
+	private CurriculumService		curriculumService;
+
+	@Autowired
+	private ApplicationService		applicationService;
 
 
 	// Constructors -------------------------------
@@ -108,6 +118,26 @@ public class TrainerService {
 		return result;
 	}
 
+	public void delete(final Trainer trainer) {
+		Assert.notNull(trainer);
+		Assert.isTrue(trainer.getId() != 0);
+
+		// Delete applications of his/her working outs
+		this.applicationService.deleteApplicationByTrainer(trainer);
+
+		// Delete working outs
+		this.workingOutService.deleteByPrincipal();
+
+		//Delete curriculums
+		this.curriculumService.deleteCurriculums(trainer);
+
+		// Delete endorsements
+		this.endorsementService.deleteEndorsements(trainer);
+
+		this.actorService.delete(trainer);
+
+	}
+
 	// Other business methods ---------------------
 
 	public Trainer findByPrincipal() {
@@ -139,6 +169,7 @@ public class TrainerService {
 	}
 
 	public void scoreProcess() {
+		Assert.isTrue(this.actorService.findPrincipal() instanceof Administrator);
 		Collection<Trainer> all;
 
 		all = this.findAll();

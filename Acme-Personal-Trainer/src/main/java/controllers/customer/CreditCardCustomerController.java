@@ -103,6 +103,8 @@ public class CreditCardCustomerController extends AbstractController {
 	public ModelAndView save(final CreditCard creditCard, final BindingResult binding) {
 		ModelAndView result;
 		CreditCard creditCardRec;
+		String messageError;
+
 		creditCardRec = this.creditCardService.reconstruct(creditCard, binding);
 
 		if (binding.hasErrors())
@@ -115,7 +117,12 @@ public class CreditCardCustomerController extends AbstractController {
 				result = new ModelAndView("redirect:../../error.do");
 
 			} catch (final Throwable oops) {
-				result = this.createModelAndView(creditCard, "creditCard.commit.error");
+
+				if (oops.getMessage().contains("Expired credit card"))
+					messageError = "creditCard.save.error";
+				else
+					messageError = "creditCard.commit.error";
+				result = this.createModelAndView(creditCard, messageError);
 			}
 
 		return result;

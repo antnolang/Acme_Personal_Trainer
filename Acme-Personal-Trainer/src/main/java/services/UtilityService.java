@@ -65,7 +65,7 @@ public class UtilityService {
 	}
 
 	public void checkEmail(final String email) {
-		Assert.isTrue(email.matches("[A-Za-z0-9]+@[a-zA-Z0-9.-]+|[\\w]+[\\s]*[\\<][A-Za-z0-9]+@[a-zA-Z0-9.-]+[\\>]"));
+		Assert.isTrue(email.matches("[A-Za-z0-9]+@[a-zA-Z0-9.-]+|[\\w]+[\\s]*[\\<][A-Za-z0-9]+@[a-zA-Z0-9.-]+[\\>]"), "Invalid email format");
 	}
 
 	protected boolean checkIsExpired(final CreditCard creditCard) {

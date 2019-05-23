@@ -13,6 +13,7 @@ import repositories.ActorRepository;
 import security.LoginService;
 import security.UserAccount;
 import domain.Actor;
+import domain.Administrator;
 
 @Service
 @Transactional
@@ -33,6 +34,9 @@ public class ActorService {
 
 	@Autowired
 	private MessageService			messageService;
+
+	@Autowired
+	private BoxService				boxService;
 
 
 	// Constructors -------------------------------
@@ -70,6 +74,7 @@ public class ActorService {
 		this.messageService.deleteMessagesFromActor(actor);
 
 		// Delete boxes
+		this.boxService.deleteBoxesFromActor(actor);
 
 		// Delete social profiles
 		this.socialProfileService.deleteSocialProfiles(actor);
@@ -142,6 +147,7 @@ public class ActorService {
 	public void ban(final Actor actor) {
 		Assert.notNull(actor);
 		Assert.isTrue(actor.getIsSuspicious());
+		Assert.isTrue(this.findPrincipal() instanceof Administrator);
 
 		final UserAccount userAccount;
 
@@ -155,6 +161,7 @@ public class ActorService {
 	public void unBan(final Actor actor) {
 		Assert.notNull(actor);
 		Assert.isTrue(actor.getUserAccount().getIsBanned());
+		Assert.isTrue(this.findPrincipal() instanceof Administrator);
 
 		final UserAccount userAccount;
 
