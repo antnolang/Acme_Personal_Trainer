@@ -2783,12 +2783,20 @@
 
 	<!-- Finder -->
 	<bean id="finder1" class="domain.Finder">
-		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
-		<property name="category" value="comba" />
-		<property name="startPrice" value="25.24" />
-		<property name="endPrice" value="275.24" />
-		<property name="startDate" value="2019/11/05" />
-		<property name="endDate" value="2020/01/01 10:10" />
+		<property name="keyword" value="" />
+		<property name="category" value="" />
+		<property name="startPrice">
+			<null></null>
+		</property>
+		<property name="endPrice">
+			<null></null>
+		</property>
+		<property name="startDate">
+			<null></null>
+		</property>
+		<property name="endDate">
+			<null></null>
+		</property>
 		<property name="customer" ref="customer1" />
 		<property name="workingOuts">
 			<list>
