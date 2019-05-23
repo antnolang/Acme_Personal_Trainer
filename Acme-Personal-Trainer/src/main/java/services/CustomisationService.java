@@ -1,6 +1,8 @@
 
 package services;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +22,10 @@ public class CustomisationService {
 	@Autowired
 	private CustomisationRepository	customisationRepository;
 
-
 	// Other supporting services ------------------------
+	@Autowired
+	private UtilityService			utilityService;
+
 
 	// Constructors -------------------------------------
 	public CustomisationService() {
@@ -86,6 +90,20 @@ public class CustomisationService {
 
 		return result;
 	}
+
+	public List<String> prioritiesAsList() {
+		Customisation customisation;
+		String priorities_str;
+		List<String> results;
+
+		customisation = this.find();
+
+		priorities_str = customisation.getPriorities();
+		results = this.utilityService.ListByString(priorities_str);
+
+		return results;
+	}
+
 	// Protected methods ---------------------------------
 	protected void flush() {
 		this.customisationRepository.flush();

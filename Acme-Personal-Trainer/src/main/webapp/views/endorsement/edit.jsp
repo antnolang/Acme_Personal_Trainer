@@ -15,10 +15,7 @@
 	<form:hidden path="version"/>
 	
 	<acme:textbox code="endorsement.mark" path="mark"/>
-	<br/>
-	
 	<acme:textarea code="endorsement.comments" path="comments" />
-	<br/>
 	
 	<jstl:if test="${!isUpdating}">
 		<security:authorize access="hasRole('CUSTOMER')">

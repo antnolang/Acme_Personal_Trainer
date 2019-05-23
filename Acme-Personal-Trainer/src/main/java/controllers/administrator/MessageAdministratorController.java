@@ -13,9 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import services.ActorService;
 import services.CustomisationService;
 import services.MessageService;
-import services.UtilityService;
 import controllers.AbstractController;
-import domain.Customisation;
 import domain.Message;
 
 @Controller
@@ -27,9 +25,6 @@ public class MessageAdministratorController extends AbstractController {
 
 	@Autowired
 	private CustomisationService	customisationService;
-
-	@Autowired
-	private UtilityService			utilityService;
 
 	@Autowired
 	private ActorService			actorService;
@@ -103,13 +98,9 @@ public class MessageAdministratorController extends AbstractController {
 
 	protected ModelAndView broadcastModelAndView(final Message broadcast, final String messageCode) {
 		ModelAndView result;
-		Customisation customisation;
-		String priorities_str;
 		List<String> priorities;
 
-		customisation = this.customisationService.find();
-		priorities_str = customisation.getPriorities();
-		priorities = this.utilityService.ListByString(priorities_str);
+		priorities = this.customisationService.prioritiesAsList();
 
 		result = new ModelAndView("message/broadcast");
 		result.addObject("message", broadcast);
