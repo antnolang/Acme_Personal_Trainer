@@ -101,7 +101,7 @@ public class SessionTrainerController extends AbstractController {
 				else if (oops.getMessage().contains("Start moment in the future"))
 					messageError = "session.save.error2";
 				else
-					messageError = "ssession.commit.error";
+					messageError = "session.commit.error";
 				result = this.createModelAndView(session, workingOutId, messageError);
 
 			}
