@@ -78,6 +78,7 @@ public class SessionTrainerController extends AbstractController {
 		Integer workingOutId;
 		String paramWorkingOutId;
 		Session sessionRec;
+		String messageError;
 
 		paramWorkingOutId = request.getParameter("workingOutId");
 		workingOutId = paramWorkingOutId.isEmpty() ? null : Integer.parseInt(paramWorkingOutId);
@@ -93,7 +94,16 @@ public class SessionTrainerController extends AbstractController {
 				result = new ModelAndView("redirect:/workingOut/customer,trainer/display.do?workingOutId=" + workingOut.getId());
 
 			} catch (final Throwable oops) {
-				result = this.createModelAndView(session, workingOutId, "session.commit.error");
+				if (oops.getMessage().contains("End moment last session before star moment"))
+					messageError = "session.save.error";
+				else if (oops.getMessage().contains("Start moment before end moment"))
+					messageError = "session.save.error1";
+				else if (oops.getMessage().contains("Start moment in the future"))
+					messageError = "session.save.error2";
+				else
+					messageError = "ssession.commit.error";
+				result = this.createModelAndView(session, workingOutId, messageError);
+
 			}
 		return result;
 	}
