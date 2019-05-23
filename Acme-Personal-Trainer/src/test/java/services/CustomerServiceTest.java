@@ -50,57 +50,57 @@ public class CustomerServiceTest extends AbstractTest {
 
 	// Tests ------------------------------------------------------------------
 
-	//	/* TODO: Test funcional query 11.4.8
-	//	 * A: An actor who is authenticated as an administrator must be able to
-	//	 * display a dashboard with the following information:
-	//	 * The listing of customers who have got accepted at least 10% more 
-	//	 * applications than the average, ordered by name.
-	//	 * 
-	//	 * B: Positive test
-	//	 * 
-	//	 * C: 100% of sentence coverage.
-	//	 * 
-	//	 * D: 100% of data coverage.
-	//	 */
-	//	@Test
-	//	public void testFindUsualCustomers() {
-	//		Collection<Customer> customers;
-	//		Customer c1;
-	//		int c1Id, numberCustomers;
-	//
-	//		customers = this.curriculumService.findUsualCustomers();
-	//		c1Id = super.getEntityId("customer1");
-	//		c1 = this.customerRepository.findOne(c1Id);
-	//		numberCustomers = 1;
-	//
-	//		Assert.isTrue(customers.contains(c1));
-	//		Assert.isTrue(customers.size() == numberCustomers);
-	//	}
+	/*
+	 * A: An actor who is authenticated as an administrator must be able to
+	 * display a dashboard with the following information:
+	 * The listing of customers who have got accepted at least 10% more
+	 * applications than the average, ordered by name.
+	 * 
+	 * B: Positive test
+	 * 
+	 * C: 100% of sentence coverage.
+	 * 
+	 * D: 100% of data coverage.
+	 */
+	@Test
+	public void testFindUsualCustomers() {
+		Collection<Customer> customers;
+		Customer c1;
+		int c1Id, numberCustomers;
 
-	//	/* TODO: Test funcional query 37.5.3
-	//	 * A: An actor who is authenticated as an administrator must be able to
-	//	 * display a dashboard with the following information:
-	//	 * The top-three customers that write more endorsement.
-	//	 * 
-	//	 * B: Positive test
-	//	 * 
-	//	 * C: 100% of sentence coverage.
-	//	 * 
-	//	 * D: 100% of data coverage.
-	//	 */
-	//	@Test
-	//	public void testCustomerWriteMostEndorsement() {
-	//		Collection<Customer> customers;
-	//		Customer c1;
-	//		int c1Id;
-	//
-	//		customers = this.curriculumService.findCustomerWriteMostEndorsement();
-	//		c1Id = super.getEntityId("customer1");
-	//		c1 = this.customerRepository.findOne(c1Id);
-	//
-	//		Assert.isTrue(customers.contains(c1));
-	//		Assert.isTrue(customers.size() == 1);
-	//	}
+		customers = this.customerService.findUsualCustomers();
+		c1Id = super.getEntityId("customer1");
+		c1 = this.customerRepository.findOne(c1Id);
+		numberCustomers = 1;
+
+		Assert.isTrue(customers.contains(c1));
+		Assert.isTrue(customers.size() == numberCustomers);
+	}
+
+	/*
+	 * A: An actor who is authenticated as an administrator must be able to
+	 * display a dashboard with the following information:
+	 * The top-three customers that write more endorsement.
+	 * 
+	 * B: Positive test
+	 * 
+	 * C: 100% of sentence coverage.
+	 * 
+	 * D: 100% of data coverage.
+	 */
+	@Test
+	public void testCustomerWriteMostEndorsement() {
+		Collection<Customer> customers;
+		Customer c1;
+		int c1Id;
+
+		customers = this.customerService.findCustomerWriteMostEndorsement();
+		c1Id = super.getEntityId("customer1");
+		c1 = this.customerRepository.findOne(c1Id);
+
+		Assert.isTrue(customers.contains(c1));
+		Assert.isTrue(customers.size() == 1);
+	}
 
 	// Test
 
