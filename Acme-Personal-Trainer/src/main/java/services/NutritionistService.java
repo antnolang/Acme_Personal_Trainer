@@ -41,6 +41,9 @@ public class NutritionistService {
 	@Autowired
 	private Validator				validator;
 
+	@Autowired
+	private ArticleService			articleService;
+
 
 	// Constructors -------------------------------
 
@@ -90,6 +93,16 @@ public class NutritionistService {
 		result = (Nutritionist) this.actorService.save(nutritionist);
 
 		return result;
+	}
+
+	public void delete(final Nutritionist nutritionist) {
+		Assert.notNull(nutritionist);
+		Assert.isTrue(nutritionist.getId() != 0);
+
+		// Delete articles
+		this.articleService.deleteArticlesByNutritionist(nutritionist);
+
+		this.actorService.delete(nutritionist);
 	}
 
 	// Other business methods ---------------------

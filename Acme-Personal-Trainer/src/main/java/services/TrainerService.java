@@ -52,6 +52,15 @@ public class TrainerService {
 	@Autowired
 	private CustomisationService	customisationService;
 
+	@Autowired
+	private WorkingOutService		workingOutService;
+
+	@Autowired
+	private CurriculumService		curriculumService;
+
+	@Autowired
+	private ApplicationService		applicationService;
+
 
 	// Constructors -------------------------------
 
@@ -107,6 +116,26 @@ public class TrainerService {
 		Assert.notNull(result);
 
 		return result;
+	}
+
+	public void delete(final Trainer trainer) {
+		Assert.notNull(trainer);
+		Assert.isTrue(trainer.getId() != 0);
+
+		// Delete applications of his/her working outs
+		this.applicationService.deleteApplicationByTrainer(trainer);
+
+		// Delete working outs
+		this.workingOutService.deleteByPrincipal();
+
+		//Delete curriculums
+		this.curriculumService.deleteCurriculums(trainer);
+
+		// Delete endorsements
+		this.endorsementService.deleteEndorsements(trainer);
+
+		this.actorService.delete(trainer);
+
 	}
 
 	// Other business methods ---------------------

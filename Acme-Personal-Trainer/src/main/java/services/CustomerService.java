@@ -42,6 +42,15 @@ public class CustomerService {
 	@Autowired
 	private Validator			validator;
 
+	@Autowired
+	private ApplicationService	applicationService;
+
+	@Autowired
+	private CreditCardService	creditCardService;
+
+	@Autowired
+	private EndorsementService	endorsementService;
+
 
 	// Constructors -------------------------------
 
@@ -104,6 +113,27 @@ public class CustomerService {
 		result = (Customer) this.actorService.save(customer);
 
 		return result;
+	}
+
+	public void delete(final Customer customer) {
+		Assert.notNull(customer);
+		Assert.isTrue(customer.getId() != 0);
+
+		// Delete applications
+		this.applicationService.deleteApplicationByCustomer(customer);
+
+		// Delete finder
+
+		// Delete credit cards
+		this.creditCardService.deleteByPrincipal();
+
+		// Delete endorsements
+		this.endorsementService.deleteEndorsements(customer);
+
+		// Delete articles's comments.
+
+		this.actorService.delete(customer);
+
 	}
 
 	// Other business methods ---------------------

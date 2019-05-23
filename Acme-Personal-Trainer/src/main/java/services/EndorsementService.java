@@ -217,4 +217,20 @@ public class EndorsementService {
 		return result;
 	}
 
+	protected void deleteEndorsements(final Trainer trainer) {
+		Collection<Endorsement> endorsements;
+
+		endorsements = this.endorsementRepository.findSentReceivedEndorsementsByTrainer(trainer.getId());
+
+		this.endorsementRepository.delete(endorsements);
+	}
+
+	protected void deleteEndorsements(final Customer customer) {
+		Collection<Endorsement> endorsements;
+
+		endorsements = this.endorsementRepository.findSentReceivedEndorsementsByCustomer(customer.getId());
+
+		this.endorsementRepository.delete(endorsements);
+	}
+
 }

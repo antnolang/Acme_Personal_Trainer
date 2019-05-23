@@ -35,6 +35,9 @@ public class ActorService {
 	@Autowired
 	private MessageService			messageService;
 
+	@Autowired
+	private BoxService				boxService;
+
 
 	// Constructors -------------------------------
 
@@ -71,6 +74,7 @@ public class ActorService {
 		this.messageService.deleteMessagesFromActor(actor);
 
 		// Delete boxes
+		this.boxService.deleteBoxesFromActor(actor);
 
 		// Delete social profiles
 		this.socialProfileService.deleteSocialProfiles(actor);
