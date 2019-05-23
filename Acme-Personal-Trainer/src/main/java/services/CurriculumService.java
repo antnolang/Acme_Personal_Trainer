@@ -14,7 +14,6 @@ import repositories.CurriculumRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
-import domain.Audit;
 import domain.Curriculum;
 import domain.EducationRecord;
 import domain.EndorserRecord;
@@ -246,14 +245,6 @@ public class CurriculumService {
 
 	protected void removeProfessionalRecord(final Curriculum curriculum, final ProfessionalRecord professionalRecord) {
 		curriculum.getProfessionalRecords().remove(professionalRecord);
-	}
-
-	protected void deleteCurriculum(final Audit audit) {
-		Curriculum curriculum;
-
-		curriculum = audit.getCurriculum();
-
-		this.curriculumRepository.delete(curriculum);
 	}
 
 	protected void deleteCurriculums(final Trainer trainer) {
