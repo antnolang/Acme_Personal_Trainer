@@ -37,17 +37,16 @@ public class CurriculumServiceTest extends AbstractTest {
 	// Tests ------------------------------------------------------------------
 
 	/*
-	 * TODO: Test funcionales y análisis Curriculum
 	 * A: An actor who is authenticated as a trainer must be able to: Manage his
 	 * or her curriculum, which includes showing, CREATING them.
 	 * 
 	 * B: Positive test
 	 * 
-	 * C: x% of sentence coverage, since it has been covered
-	 * x lines of code of x possible.
+	 * C: 97.5% of sentence coverage, since it has been covered
+	 * 78 lines of code of 80 possible.
 	 * 
-	 * D: Approximately X% of data coverage, since it has been used x
-	 * values in the data of x different possible values.
+	 * D: Approximately 26.3% of data coverage, since it has been used 5
+	 * values in the data of 19 different possible values.
 	 * (See Possible values below.)
 	 */
 	@Test
@@ -94,11 +93,11 @@ public class CurriculumServiceTest extends AbstractTest {
 	 * 
 	 * B: LinkedIn profile must be a valid URL
 	 * 
-	 * C: x% of sentence coverage, since it has been covered
-	 * x lines of code of x possible.
+	 * C: 97.5% of sentence coverage, since it has been covered
+	 * 78 lines of code of 80 possible.
 	 * 
-	 * D: Approximately X% of data coverage, since it has been used x
-	 * values in the data of x different possible values.
+	 * D: Approximately 26.3% of data coverage, since it has been used 5
+	 * values in the data of 19 different possible values.
 	 */
 	@Test(expected = ConstraintViolationException.class)
 	public void curriculumCreateNegativeTest() {
@@ -144,11 +143,11 @@ public class CurriculumServiceTest extends AbstractTest {
 	 * 
 	 * B: Fullname must match with the full name of the trainer principal
 	 * 
-	 * C: x% of sentence coverage, since it has been covered
-	 * x lines of code of x possible.
+	 * C: 21.2% of sentence coverage, since it has been covered
+	 * 17 lines of code of 80 possible.
 	 * 
-	 * D: Approximately X% of data coverage, since it has been used x
-	 * values in the data of x different possible values.
+	 * D: Approximately 26.3% of data coverage, since it has been used 5
+	 * values in the data of 19 different possible values.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void curriculumCreateNegativeTest2() {
