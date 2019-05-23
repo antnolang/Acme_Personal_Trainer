@@ -14,3 +14,13 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
       
+      
+<tiles-definitions>
+	
+	<definition name="session/edit" extends="master.page">	
+		<put-attribute name="title" value="Editar una sesión" />
+		<put-attribute name="body" value="/views/session/edit.jsp" />
+	</definition>
+		
+	
+</tiles-definitions>

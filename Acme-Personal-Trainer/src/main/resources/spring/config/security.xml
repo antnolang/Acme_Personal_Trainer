@@ -102,6 +102,9 @@
 		
 		<security:intercept-url pattern="/creditCard/customer/**" access="hasRole('CUSTOMER')" />
 		
+		
+		<security:intercept-url pattern="/session/trainer/**" access="hasRole('TRAINER')" />
+		
 		<security:intercept-url pattern="/error.do" access="permitAll" />
 		
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" /> <!-- requires-channel="https" --> 

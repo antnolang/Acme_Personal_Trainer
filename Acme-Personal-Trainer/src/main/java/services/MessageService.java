@@ -126,12 +126,9 @@ public class MessageService {
 
 	public Message createBroadcast() {
 		Message result;
-		Actor principal;
 		Collection<Actor> recipients;
 
-		principal = this.actorService.findPrincipal();
-		recipients = this.actorService.findAll();
-		recipients.remove(principal);
+		recipients = this.actorService.findActorsWithoutPrincipal();
 
 		result = this.create();
 		result.setRecipients(recipients);
@@ -249,16 +246,8 @@ public class MessageService {
 
 		Message result;
 		boolean isSpam;
-		Actor principal;
 		Collection<Actor> recipients;
 		Box outBoxSender, notificationBoxRecipient, spamBoxRecipient;
-
-		principal = this.actorService.findPrincipal();
-
-		recipients = this.actorService.findAll();
-		recipients.remove(principal);
-
-		message.setRecipients(recipients);
 
 		result = this.messageRepository.save(message);
 
@@ -292,19 +281,13 @@ public class MessageService {
 
 	public Message reconstruct(final Message message, final BindingResult binding) {
 		Message result;
-		Collection<Actor> recipients;
 
 		result = this.create();
 		result.setSubject(message.getSubject());
 		result.setBody(message.getBody());
 		result.setPriority(message.getPriority());
 		result.setTags(message.getTags());
-
-		recipients = new ArrayList<>();
-		if (message.getRecipients() != null)
-			recipients.addAll(message.getRecipients());
-
-		result.setRecipients(recipients);
+		result.setRecipients(message.getRecipients());
 
 		this.validator.validate(result, binding);
 
@@ -463,7 +446,6 @@ public class MessageService {
 		}
 
 		return result;
-
 	}
 
 	protected Double numberSpamMessagesSentByActor(final int actorId) {

@@ -109,15 +109,16 @@ public class MessageMultiUserController extends AbstractController {
 		Message target;
 		Box origin, destination;
 
-		target = this.messageService.findOne(messageForm.getMessageId());
-		origin = this.boxService.findOne(messageForm.getOriginBoxId());
-		destination = this.boxService.findOne(messageForm.getDestinationBoxId());
-
 		this.messageService.validateDestinationBox(messageForm, locale.getLanguage(), binding);
+
 		if (binding.hasErrors())
 			result = this.moveModelAndView(messageForm);
 		else
 			try {
+				target = this.messageService.findOne(messageForm.getMessageId());
+				origin = this.boxService.findOne(messageForm.getOriginBoxId());
+				destination = this.boxService.findOne(messageForm.getDestinationBoxId());
+
 				this.messageService.moveMessage(target, origin, destination);
 				result = new ModelAndView("redirect:/box/administrator,auditor,customer,nutritionist,trainer/list.do");
 			} catch (final Throwable oops) {
@@ -177,7 +178,7 @@ public class MessageMultiUserController extends AbstractController {
 	protected ModelAndView createEditModelAndView(final Message message, final String messageCode) {
 		ModelAndView result;
 		Collection<Actor> actors;
-		Actor principal, system;
+		Actor system;
 		Customisation customisation;
 		String priorities_str;
 		List<String> priorities;
@@ -188,17 +189,13 @@ public class MessageMultiUserController extends AbstractController {
 		priorities = this.utilityService.ListByString(priorities_str);
 
 		system = this.administratorService.findSystem();
-		principal = this.actorService.findPrincipal();
-		actors = this.actorService.findAll();
-		actors.remove(principal);
+		actors = this.actorService.findActorsWithoutPrincipal();
 		actors.remove(system);
 
 		result = new ModelAndView("message/send");
 		result.addObject("message", message);
 		result.addObject("actors", actors);
 		result.addObject("priorities", priorities);
-		result.addObject("isBroadcastMessage", false);
-		result.addObject("actionURI", "message/administrator,auditor,customer,nutritionist,trainer/send.do");
 		result.addObject("messageCode", messageCode);
 
 		return result;

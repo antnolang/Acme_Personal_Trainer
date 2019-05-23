@@ -54,7 +54,6 @@
 		</display:column>
 		
 		<display:column property="name" titleKey="box.name" />
-		<display:column property="parent.name" titleKey="box.parent"/>
 	</display:table>
 </jstl:if>
 
@@ -72,7 +71,7 @@
 			</a>
 		</display:column>
 		<display:column>
-			<a href="message/administrator,auditor,customer,nutritionist,trainer/delete.do?messageId=${fila.id}&boxId=${box.id}">
+			<a href="message/administrator,auditor,customer,nutritionist,trainer/delete.do?messageId=${fila.id}&boxId=${box.id}" onclick="return confirm('<spring:message code="message.confirm.delete"/>')">
 				<spring:message code="box.delete" />
 			</a>
 		</display:column>
