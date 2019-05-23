@@ -18,11 +18,9 @@ import services.AdministratorService;
 import services.BoxService;
 import services.CustomisationService;
 import services.MessageService;
-import services.UtilityService;
 import controllers.AbstractController;
 import domain.Actor;
 import domain.Box;
-import domain.Customisation;
 import domain.Message;
 import forms.MessageForm;
 
@@ -44,9 +42,6 @@ public class MessageMultiUserController extends AbstractController {
 
 	@Autowired
 	private AdministratorService	administratorService;
-
-	@Autowired
-	private UtilityService			utilityService;
 
 
 	public MessageMultiUserController() {
@@ -179,14 +174,9 @@ public class MessageMultiUserController extends AbstractController {
 		ModelAndView result;
 		Collection<Actor> actors;
 		Actor system;
-		Customisation customisation;
-		String priorities_str;
 		List<String> priorities;
 
-		customisation = this.customisationService.find();
-
-		priorities_str = customisation.getPriorities();
-		priorities = this.utilityService.ListByString(priorities_str);
+		priorities = this.customisationService.prioritiesAsList();
 
 		system = this.administratorService.findSystem();
 		actors = this.actorService.findActorsWithoutPrincipal();
