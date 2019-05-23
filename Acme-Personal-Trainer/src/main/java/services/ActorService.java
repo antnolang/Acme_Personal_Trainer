@@ -13,6 +13,7 @@ import repositories.ActorRepository;
 import security.LoginService;
 import security.UserAccount;
 import domain.Actor;
+import domain.Administrator;
 
 @Service
 @Transactional
@@ -142,6 +143,7 @@ public class ActorService {
 	public void ban(final Actor actor) {
 		Assert.notNull(actor);
 		Assert.isTrue(actor.getIsSuspicious());
+		Assert.isTrue(this.findPrincipal() instanceof Administrator);
 
 		final UserAccount userAccount;
 
@@ -155,6 +157,7 @@ public class ActorService {
 	public void unBan(final Actor actor) {
 		Assert.notNull(actor);
 		Assert.isTrue(actor.getUserAccount().getIsBanned());
+		Assert.isTrue(this.findPrincipal() instanceof Administrator);
 
 		final UserAccount userAccount;
 

@@ -1,7 +1,9 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
@@ -16,7 +18,10 @@ import org.springframework.util.Assert;
 import security.Authority;
 import security.UserAccount;
 import utilities.AbstractTest;
+import domain.Actor;
 import domain.Administrator;
+import domain.Customer;
+import domain.Trainer;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -30,8 +35,17 @@ public class AdministratorServiceTest extends AbstractTest {
 	@Autowired
 	private AdministratorService	administratorService;
 
-
 	// Other services and repositories ----------------------------------------
+
+	@Autowired
+	private ActorService			actorService;
+
+	@Autowired
+	private CustomerService			customerService;
+
+	@Autowired
+	private TrainerService			trainerService;
+
 
 	// Tests ------------------------------------------------------------------
 
@@ -243,6 +257,266 @@ public class AdministratorServiceTest extends AbstractTest {
 
 		super.unauthenticate();
 
+	}
+
+	/*
+	 * A: An actor who is authenticated as an administrator must be able to:
+	 * Display a listing suspicious actors.
+	 * 
+	 * B: Positive test
+	 * 
+	 * C: 100% of data coverage
+	 * 
+	 * D: Intentionally blank
+	 */
+	@Test
+	public void list_suspicious_actors() {
+		List<Actor> actors;
+		Actor suspicious;
+
+		super.authenticate("admin1");
+
+		actors = new ArrayList<>(this.actorService.findAll());
+		suspicious = actors.get(0);
+		suspicious.setIsSuspicious(true);
+
+		Assert.notNull(suspicious);
+
+		super.unauthenticate();
+	}
+
+	/*
+	 * A: An actor who is authenticated as an administrator must be able to:
+	 * Ban an actor who is considered suspicious
+	 * 
+	 * B: Positive test
+	 * 
+	 * C: Approximately 100% of sentence coverage, since it has been
+	 * covered 7 lines of code of 7 possible.
+	 * 
+	 * D: Intentionally blank
+	 */
+	@Test
+	public void banActor_positive_test() {
+		Customer customer;
+
+		super.authenticate("admin1");
+
+		customer = this.customerService.findOne(super.getEntityId("customer1"));
+
+		customer.setIsSuspicious(true);
+
+		this.actorService.ban(customer);
+
+		Assert.isTrue(customer.getUserAccount().getIsBanned());
+
+		super.unauthenticate();
+	}
+
+	/*
+	 * A: An actor who is authenticated as an administrator must be able to:
+	 * Ban an actor who is considered suspicious
+	 * 
+	 * B: Ban an actor who is not suspicious
+	 * 
+	 * C: Approximately 29% of sentence coverage, since it has been
+	 * covered 2 lines of code of 7 possible.
+	 * 
+	 * D: Intentionally blank
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void banActor_negative_test() {
+		Customer customer;
+
+		super.authenticate("admin1");
+
+		customer = this.customerService.findOne(super.getEntityId("customer1"));
+
+		this.actorService.ban(customer);
+
+		Assert.isTrue(customer.getUserAccount().getIsBanned());
+
+		super.unauthenticate();
+	}
+
+	/*
+	 * A: An actor who is authenticated as an administrator must be able to:
+	 * Ban an actor who is considered suspicious
+	 * 
+	 * B: Customer tries to ban another customer
+	 * 
+	 * C: Approximately 43% of sentence coverage, since it has been
+	 * covered 3 lines of code of 7 possible.
+	 * 
+	 * D: Intentionally blank
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void banActor_negative_test2() {
+		Customer customer;
+
+		super.authenticate("customer2");
+
+		customer = this.customerService.findOne(super.getEntityId("customer1"));
+
+		customer.setIsSuspicious(true);
+
+		this.actorService.ban(customer);
+
+		Assert.isTrue(customer.getUserAccount().getIsBanned());
+
+		super.unauthenticate();
+	}
+
+	/*
+	 * A: An actor who is authenticated as an administrator must be able to:
+	 * Unban an actor
+	 * 
+	 * B: Positive test
+	 * 
+	 * C: Approximately 100% of sentence coverage, since it has been
+	 * covered 7 lines of code of 7 possible.
+	 * 
+	 * D: Intentionally blank
+	 */
+	@Test
+	public void unbanActor_positive_test() {
+		Customer customer;
+
+		super.authenticate("admin1");
+
+		customer = this.customerService.findOne(super.getEntityId("customer1"));
+
+		customer.setIsSuspicious(true);
+
+		this.actorService.ban(customer);
+
+		this.actorService.unBan(customer);
+
+		Assert.isTrue(!customer.getUserAccount().getIsBanned());
+
+		super.unauthenticate();
+	}
+
+	/*
+	 * A: An actor who is authenticated as an administrator must be able to:
+	 * Ban an actor who is considered suspicious
+	 * 
+	 * B: Ban an actor who is not banned previously
+	 * 
+	 * C: Approximately 29% of sentence coverage, since it has been
+	 * covered 2 lines of code of 7 possible.
+	 * 
+	 * D: Intentionally blank
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void unbanActor_negative_test() {
+		Customer customer;
+
+		super.authenticate("admin1");
+
+		customer = this.customerService.findOne(super.getEntityId("customer1"));
+
+		this.actorService.unBan(customer);
+
+		Assert.isTrue(!customer.getUserAccount().getIsBanned());
+
+		super.unauthenticate();
+	}
+
+	/*
+	 * A: An actor who is authenticated as an administrator must be able to:
+	 * Ban an actor who is considered suspicious
+	 * 
+	 * B: Customer tries to unban another customer
+	 * 
+	 * C: Approximately 43% of sentence coverage, since it has been
+	 * covered 3 lines of code of 7 possible.
+	 * 
+	 * D: Intentionally blank
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void unbanActor_negative_test2() {
+		Customer customer;
+
+		super.authenticate("admin1");
+
+		customer = this.customerService.findOne(super.getEntityId("customer1"));
+
+		customer.setIsSuspicious(true);
+
+		this.actorService.ban(customer);
+
+		super.unauthenticate();
+
+		super.authenticate("customer2");
+
+		this.actorService.unBan(customer);
+
+		Assert.isTrue(!customer.getUserAccount().getIsBanned());
+
+		super.unauthenticate();
+	}
+
+	/*
+	 * A: An actor who is authenticated as an administrator must be able to:
+	 * Launch a process that computes an internal score for every trainer. The process must flag the actors as suspicious when their polarity score is too negative.
+	 * 
+	 * B: Positive test
+	 * 
+	 * C: 100% of sentence coverage
+	 * 
+	 * D: Intentionally blank
+	 */
+	@Test
+	public void launch_score_process() {
+
+		super.authenticate("admin1");
+
+		this.trainerService.scoreProcess();
+
+		super.unauthenticate();
+	}
+
+	/*
+	 * A: An actor who is authenticated as an administrator must be able to:
+	 * Launch a process that computes an internal score for every trainer. The process must flag the actors as suspicious when their polarity score is too negative.
+	 * 
+	 * B: Customer tries to launch score process
+	 * 
+	 * C: 4% of sentence coverage -> It has covered 1 line of 25.
+	 * 
+	 * D: Intentionally blank
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void launch_score_process_negative_test() {
+
+		super.authenticate("customer1");
+
+		this.trainerService.scoreProcess();
+
+		super.unauthenticate();
+	}
+
+	/*
+	 * A: An actor who is authenticated as an administrator must be able to:
+	 * Display the internal score of the trainers
+	 * 
+	 * B: Positive test
+	 * 
+	 * C: 100% of sentence coverage
+	 * 
+	 * D: Intentionally blank
+	 */
+	@Test
+	public void display_score() {
+		Trainer trainer;
+
+		super.authenticate("admin1");
+
+		trainer = this.trainerService.findOne(super.getEntityId("trainer1"));
+		Assert.notNull(trainer);
+
+		super.unauthenticate();
 	}
 
 }

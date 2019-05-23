@@ -18,6 +18,7 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import security.UserAccountService;
+import domain.Administrator;
 import domain.Endorsement;
 import domain.Trainer;
 import forms.RegistrationForm;
@@ -139,6 +140,7 @@ public class TrainerService {
 	}
 
 	public void scoreProcess() {
+		Assert.isTrue(this.actorService.findPrincipal() instanceof Administrator);
 		Collection<Trainer> all;
 
 		all = this.findAll();

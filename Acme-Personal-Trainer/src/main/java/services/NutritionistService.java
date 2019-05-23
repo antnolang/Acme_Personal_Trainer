@@ -14,6 +14,7 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import security.UserAccountService;
+import domain.Administrator;
 import domain.Nutritionist;
 import forms.RegistrationForm;
 
@@ -82,6 +83,9 @@ public class NutritionistService {
 
 	public Nutritionist save(final Nutritionist nutritionist) {
 		Nutritionist result;
+
+		if (nutritionist.getId() == 0)
+			Assert.isTrue(this.actorService.findPrincipal() instanceof Administrator);
 
 		result = (Nutritionist) this.actorService.save(nutritionist);
 
@@ -234,6 +238,10 @@ public class NutritionistService {
 		if (this.actorService.existEmail(nutritionist.getEmail()))
 			binding.rejectValue("email", "actor.email.used", "Email already in use");
 
+	}
+
+	protected void flush() {
+		this.nutritionistRepository.flush();
 	}
 
 }
