@@ -24,4 +24,8 @@ public interface EndorsementRepository extends JpaRepository<Endorsement, Intege
 	@Query("select e from Endorsement e where e.customer.id = ?1 and e.trainerToCustomer = true")
 	Collection<Endorsement> findReceivedEndorsementsByCustomer(int customerId);
 
+	// Requirement 37.5.1
+	@Query("select min(1.0 * (select count(e) from Endorsement e where e.trainer.id = t.id)), max(1.0 * (select count(e) from Endorsement e where e.trainer.id = t.id)), avg(1.0 * (select count(e) from Endorsement e where e.trainer.id = t.id)), stddev(1.0 * (select count(e) from Endorsement e where e.trainer.id = t.id)) from Trainer t)")
+	Double[] findDataNumberEndorsementPerTrainer();
+
 }

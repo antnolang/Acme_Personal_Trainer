@@ -39,4 +39,8 @@ public interface WorkingOutRepository extends JpaRepository<WorkingOut, Integer>
 	// Requirement 4.3: The average, the minimum, the maximum, and the standard deviation of the maximum price of the working-outs.
 	@Query("select avg(1.0*w.price), min(1.0*w.price), max(1.0*w.price), stddev(1.0*w.price) from WorkingOut w")
 	Double[] findDataPricePerWorkingOut();
+
+	// Requirement 11.4.1
+	@Query("select avg(1.0 * (select count(w) from WorkingOut w where w.trainer.id = t.id)), min(1.0 * (select count(w) from WorkingOut w where w.trainer.id = t.id)), max(1.0 * (select count(w) from WorkingOut w where w.trainer.id = t.id)),stddev(1.0 * (select count(w) from WorkingOut w where w.trainer.id = t.id)) from Trainer t)")
+	Double[] findDataNumberWorkingOutPerTrainer();
 }

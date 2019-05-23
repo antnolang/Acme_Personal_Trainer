@@ -43,7 +43,7 @@ public class CustomerServiceTest extends AbstractTest {
 	//	 * A: An actor who is authenticated as an administrator must be able to
 	//	 * display a dashboard with the following information:
 	//	 * The listing of customers who have got accepted at least 10% more 
-	//	 * applications than the average, ordered by number of applications.
+	//	 * applications than the average, ordered by name.
 	//	 * 
 	//	 * B: Positive test
 	//	 * 
@@ -54,17 +54,15 @@ public class CustomerServiceTest extends AbstractTest {
 	//	@Test
 	//	public void testFindUsualCustomers() {
 	//		Collection<Customer> customers;
-	//		Customer c1, c2;
-	//		int c1Id, c2Id, numberCustomers;
+	//		Customer c1;
+	//		int c1Id, numberCustomers;
 	//
 	//		customers = this.curriculumService.findUsualCustomers();
 	//		c1Id = super.getEntityId("customer1");
-	//		c2Id = super.getEntityId("customer2");
 	//		c1 = this.customerRepository.findOne(c1Id);
-	//		c2 = this.customerRepository.findOne(c2Id);
-	//		numberCustomers = 2;
+	//		numberCustomers = 1;
 	//
-	//		Assert.isTrue(customers.contains(c1) && customers.contains(c2));
+	//		Assert.isTrue(customers.contains(c1));
 	//		Assert.isTrue(customers.size() == numberCustomers);
 	//	}
 
@@ -82,19 +80,15 @@ public class CustomerServiceTest extends AbstractTest {
 	//	@Test
 	//	public void testCustomerWriteMostEndorsement() {
 	//		Collection<Customer> customers;
-	//		Customer c1, c2, c3;
-	//		int c1Id, c2Id, c3Id;
+	//		Customer c1;
+	//		int c1Id;
 	//
 	//		customers = this.curriculumService.findCustomerWriteMostEndorsement();
 	//		c1Id = super.getEntityId("customer1");
-	//		c2Id = super.getEntityId("customer2");
-	//		c3Id = super.getEntityId("customer3");
 	//		c1 = this.customerRepository.findOne(c1Id);
-	//		c2 = this.customerRepository.findOne(c2Id);
-	//		c3 = this.customerRepository.findOne(c3Id);
 	//
-	//		Assert.isTrue(customers.contains(c1) && customers.contains(c2) && customers.contains(c3));
-	//		Assert.isTrue(customers.size() == 3);
+	//		Assert.isTrue(customers.contains(c1));
+	//		Assert.isTrue(customers.size() == 1);
 	//	}
 
 	// Test

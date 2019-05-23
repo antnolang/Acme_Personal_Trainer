@@ -213,6 +213,16 @@ public class WorkingOutService {
 		return results;
 	}
 
+	// Requirement 11.4.1
+	public Double[] findDataNumberWorkingOutPerTrainer() {
+		Double[] result;
+
+		result = this.workingOutRepository.findDataNumberWorkingOutPerTrainer();
+		Assert.notNull(result);
+
+		return result;
+	}
+
 	// Protected methods -----------------------------------------------
 	protected String existTicker(final String ticker) {
 		String result;

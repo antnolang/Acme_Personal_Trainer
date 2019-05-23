@@ -82,10 +82,10 @@ public class WorkingOutServiceTest extends AbstractTest {
 	//
 	//		data = this.curriculumService.findDataNumberWorkingOutPerTrainer();
 	//
-	//		Assert.isTrue(data[0] == 0.0);
-	//		Assert.isTrue(data[1] == 1.0);
-	//		Assert.isTrue(data[2] == 0.8889);
-	//		Assert.isTrue(data[3] == 0.3143);
+	//		Assert.isTrue(data[0] == 1.28571);
+	//		Assert.isTrue(data[1] == 0.0);
+	//		Assert.isTrue(data[2] == 2.0);
+	//		Assert.isTrue(data[3] == 0.69985);
 	//	}
 
 	// Ancillary methods ------------------------------------------------------

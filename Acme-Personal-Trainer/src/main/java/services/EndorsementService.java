@@ -217,4 +217,13 @@ public class EndorsementService {
 		return result;
 	}
 
+	public Double[] findDataNumberEndorsementPerTrainer() {
+		Double[] result;
+
+		result = this.endorsementRepository.findDataNumberEndorsementPerTrainer();
+		Assert.notNull(result);
+
+		return result;
+	}
+
 }

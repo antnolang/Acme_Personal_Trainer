@@ -40,7 +40,7 @@ public class FinderServiceTest extends AbstractTest {
 	//
 	//		data = this.finderService.findRatioEmptyVsNonEmpty();
 	//
-	//		Assert.isTrue(data == 0.28571);
+	//		Assert.isTrue(data == 0.166666666667);
 	//	}
 
 	//	/* TODO: Test funcionales y análisis Finder

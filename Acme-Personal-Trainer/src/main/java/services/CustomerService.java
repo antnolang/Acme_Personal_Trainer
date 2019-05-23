@@ -6,6 +6,9 @@ import java.util.Collection;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -134,6 +137,28 @@ public class CustomerService {
 		result = this.customerRepository.findCustomersWithAcceptedApplicationsByTrainer(trainerId);
 
 		return result;
+	}
+
+	public Collection<Customer> findUsualCustomers() {
+		Collection<Customer> result;
+
+		result = this.customerRepository.findUsualCustomers();
+		Assert.notNull(result);
+
+		return result;
+	}
+
+	public Collection<Customer> findCustomerWriteMostEndorsement() {
+		Collection<Customer> results;
+		Pageable page;
+		Page<Customer> customers;
+
+		page = new PageRequest(0, 5);
+		customers = this.customerRepository.findCustomerWriteMostEndorsement(page);
+		results = customers.getContent();
+		Assert.notNull(results);
+
+		return results;
 	}
 
 	public RegistrationForm createForm(final Customer customer) {
