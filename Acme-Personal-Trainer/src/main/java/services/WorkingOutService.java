@@ -249,7 +249,7 @@ public class WorkingOutService {
 			workingOut.setEndMoment(session.getEndMoment());
 		} else if (sizeSessions != 0) {
 			lastSession = sessionsOrdered.get(sizeSessions - 1);
-			Assert.isTrue(!lastSession.getEndMoment().before(session.getStartMoment()));
+			Assert.isTrue(!lastSession.getEndMoment().after(session.getStartMoment()), "End moment last session before star moment");
 			workingOut.setEndMoment(session.getEndMoment());
 		}
 

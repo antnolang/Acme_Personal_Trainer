@@ -71,13 +71,18 @@
 	
 	
 	<br/>
-	
+
+<fieldset>
+	<legend><spring:message code="workingOut.categories"/></legend>
+		
 <display:table name="categories" id="row1" requestURI="workingOut/customer,trainer/display.do" class="displaytag" pagesize="5">
 		
 	<display:column property="name" titleKey="workingOut.name" />
 </display:table>
-	
-	
+</fieldset>
+
+<fieldset>
+	<legend><spring:message code="workingOut.sessions"/></legend>	
 <display:table name="sessions" id="row2" requestURI="workingOut/customer,trainer/display.do" class="displaytag" pagesize="5">
 
 	<security:authorize access="hasRole('TRAINER')">
@@ -104,6 +109,7 @@
 	<display:column property="endMoment" titleKey="workingOut.endMoment" sortable="true" format="${formatMoment}"/>
 </display:table>
 
+
 <security:authorize access="hasRole('TRAINER')">
 	<jstl:if test="${principal == workingOut.trainer && !workingOut.isFinalMode}">
 	<a href="session/trainer/create.do?workingOutId=${workingOut.id}">
@@ -112,7 +118,9 @@
 	
 	</jstl:if>
 </security:authorize>	
-	
+</fieldset>
+
+	<br/>
 	<!-- Links -->	
 	
 <security:authorize access="hasRole('TRAINER')">
