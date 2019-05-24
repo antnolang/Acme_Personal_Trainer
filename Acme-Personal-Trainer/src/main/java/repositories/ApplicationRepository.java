@@ -50,7 +50,7 @@ public interface ApplicationRepository extends JpaRepository<Application, Intege
 	Double findRatioPendingApplications();
 
 	@Query("select case when (count(a) > 0) then true else false end from Application a where a.customer.id = ?1 and a.workingOut.trainer.id = ?2 and a.status = 'ACCEPTED'")
-	boolean existApplicationAcceptedBetweenCustomerTrainer(int customerId, int trainerId);
+	Boolean existApplicationAcceptedBetweenCustomerTrainer(int customerId, int trainerId);
 
 	@Query("select a from Application a where a.creditCard.id=?1")
 	Collection<Application> applicationsWithCreditCard(int id);

@@ -30,4 +30,7 @@ public interface EndorsementRepository extends JpaRepository<Endorsement, Intege
 	@Query("select e from Endorsement e where e.customer.id = ?1")
 	Collection<Endorsement> findSentReceivedEndorsementsByCustomer(int customerId);
 
+	@Query("select avg(e.mark) from Endorsement e where e.trainer.id = ?1 and e.trainerToCustomer = false")
+	Double avgMarkByTrainer(int trainerId);
+
 }

@@ -72,7 +72,7 @@
 		<security:intercept-url pattern="/educationRecord/trainer/**" access="hasRole('TRAINER')" /> 
 		<security:intercept-url pattern="/educationRecord/**" access="permitAll" /> 
 		
-		<security:intercept-url pattern="/endorsement/list.do/**" access="hasRole('CUSTOMER')" />
+		<security:intercept-url pattern="/endorsement/customer/list.do/**" access="hasRole('CUSTOMER')" />
 		<security:intercept-url pattern="/endorsement/customer,trainer/**" access="hasAnyRole('CUSTOMER','TRAINER')" />
 		
 		<security:intercept-url pattern="/endorserRecord/trainer/**" access="hasRole('TRAINER')" /> 

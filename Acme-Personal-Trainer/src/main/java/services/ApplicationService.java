@@ -256,8 +256,8 @@ public class ApplicationService {
 		return applications;
 	}
 
-	public boolean existApplicationAcceptedBetweenCustomerTrainer(final int customerId, final int trainerId) {
-		boolean result;
+	public Boolean existApplicationAcceptedBetweenCustomerTrainer(final int customerId, final int trainerId) {
+		Boolean result;
 
 		result = this.applicationRepository.existApplicationAcceptedBetweenCustomerTrainer(customerId, trainerId);
 

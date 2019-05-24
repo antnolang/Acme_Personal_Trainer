@@ -256,18 +256,9 @@ public class TrainerService {
 	protected void calculateMark(final Trainer trainer) {
 		Assert.isTrue(trainer.getId() != 0);
 
-		Collection<Endorsement> endorsementsReceived;
-		int n, counter;
 		Double avgMark;
 
-		endorsementsReceived = this.endorsementService.findReceivedEndorsementsByTrainer(trainer.getId());
-		n = endorsementsReceived.size();
-
-		counter = 0;
-		for (final Endorsement e : endorsementsReceived)
-			counter = counter + e.getMark();
-
-		avgMark = (counter * 1.0) / (n * 1.0);
+		avgMark = this.endorsementService.avgMarkByTrainer(trainer.getId());
 
 		trainer.setMark(avgMark);
 
