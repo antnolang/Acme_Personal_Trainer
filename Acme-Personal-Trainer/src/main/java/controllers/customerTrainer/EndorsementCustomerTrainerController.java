@@ -153,10 +153,11 @@ public class EndorsementCustomerTrainerController extends AbstractController {
 
 		if (binding.hasErrors()) {
 			result = this.createEditModelAndView(endorsement);
-			if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]"))
-				result.addObject("trainerFullname", endorsementRec.getTrainer().getFullname());
-			else if (LoginService.getPrincipal().getAuthorities().toString().equals("[TRAINER]"))
-				result.addObject("customerFullname", endorsementRec.getCustomer().getFullname());
+			if (endorsement.getId() != 0)
+				if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]"))
+					result.addObject("trainerFullname", endorsementRec.getTrainer().getFullname());
+				else if (LoginService.getPrincipal().getAuthorities().toString().equals("[TRAINER]"))
+					result.addObject("customerFullname", endorsementRec.getCustomer().getFullname());
 		} else
 			try {
 				this.endorsementService.save(endorsementRec);
