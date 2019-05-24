@@ -43,6 +43,9 @@ public class WorkingOutService {
 	private MessageService			messageService;
 
 	@Autowired
+	private FinderService			finderService;
+
+	@Autowired
 	private Validator				validator;
 
 
@@ -88,10 +91,10 @@ public class WorkingOutService {
 		Assert.isTrue(this.workingOutRepository.exists(workingOut.getId()));
 		this.checkByPrincipal(workingOut);
 		Assert.isTrue(!workingOut.getIsFinalMode());
+		this.finderService.deleteFromFinders(workingOut);
 
 		this.workingOutRepository.delete(workingOut);
 	}
-
 	public WorkingOut findOne(final int workingOutId) {
 		WorkingOut result;
 
