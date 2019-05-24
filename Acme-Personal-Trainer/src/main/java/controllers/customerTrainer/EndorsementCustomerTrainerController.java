@@ -131,7 +131,6 @@ public class EndorsementCustomerTrainerController extends AbstractController {
 
 			endorsement = this.endorsementService.findOne(endorsementId);
 			result = this.createEditModelAndView(endorsement);
-			result.addObject("isUpdating", true);
 			if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]"))
 				result.addObject("trainerFullname", endorsement.getTrainer().getFullname());
 			else if (LoginService.getPrincipal().getAuthorities().toString().equals("[TRAINER]"))
@@ -152,9 +151,13 @@ public class EndorsementCustomerTrainerController extends AbstractController {
 
 		endorsementRec = this.endorsementService.reconstruct(endorsement, binding);
 
-		if (binding.hasErrors())
+		if (binding.hasErrors()) {
 			result = this.createEditModelAndView(endorsement);
-		else
+			if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]"))
+				result.addObject("trainerFullname", endorsementRec.getTrainer().getFullname());
+			else if (LoginService.getPrincipal().getAuthorities().toString().equals("[TRAINER]"))
+				result.addObject("customerFullname", endorsementRec.getCustomer().getFullname());
+		} else
 			try {
 				this.endorsementService.save(endorsementRec);
 				result = new ModelAndView("redirect:list.do");
@@ -223,9 +226,14 @@ public class EndorsementCustomerTrainerController extends AbstractController {
 
 		result = new ModelAndView("endorsement/edit");
 		result.addObject("endorsement", endorsement);
-		result.addObject("trainers", trainers);
-		result.addObject("customers", customers);
-		result.addObject("isUpdating", false);
+		if (endorsement.getId() == 0) {
+			result.addObject("isUpdating", false);
+			if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]"))
+				result.addObject("trainers", trainers);
+			else if (LoginService.getPrincipal().getAuthorities().toString().equals("[TRAINER]"))
+				result.addObject("customers", customers);
+		} else
+			result.addObject("isUpdating", true);
 		result.addObject("messageCode", messageCode);
 
 		return result;

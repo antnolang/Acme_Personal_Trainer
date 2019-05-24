@@ -60,19 +60,16 @@ public class EndorsementService {
 		trainer = null;
 		customer = null;
 
-		if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]"))
-			customer = this.customerService.findByPrincipal();
-		else if (LoginService.getPrincipal().getAuthorities().toString().equals("[TRAINER]"))
-			trainer = this.trainerService.findByPrincipal();
-
 		result = new Endorsement();
 		result.setWrittenMoment(this.utilityService.current_moment());
 
-		if (trainer == null && customer != null) {
+		if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]")) {
+			customer = this.customerService.findByPrincipal();
 			// Customer is logged so we have to set Endorsement::trainerToCustomer to false and set Endorsement::customer
 			result.setTrainerToCustomer(false);
 			result.setCustomer(customer);
-		} else if (trainer != null && customer == null) {
+		} else if (LoginService.getPrincipal().getAuthorities().toString().equals("[TRAINER]")) {
+			trainer = this.trainerService.findByPrincipal();
 			// Trainer is logged so we have to set Endorsement::trainerToCustomer to true and set Endorsement::Trainer
 			result.setTrainerToCustomer(true);
 			result.setTrainer(trainer);
@@ -120,14 +117,16 @@ public class EndorsementService {
 		trainerPrincipal = null;
 		customerPrincipal = null;
 
-		if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]"))
-			customerPrincipal = this.customerService.findByPrincipal();
-		else if (LoginService.getPrincipal().getAuthorities().toString().equals("[TRAINER]"))
-			trainerPrincipal = this.trainerService.findByPrincipal();
-
 		result = this.endorsementRepository.findOne(endorsementId);
 		Assert.notNull(result);
-		Assert.isTrue(result.getTrainer().equals(trainerPrincipal) || result.getCustomer().equals(customerPrincipal));
+
+		if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]")) {
+			customerPrincipal = this.customerService.findByPrincipal();
+			Assert.isTrue(result.getCustomer().equals(customerPrincipal) && !result.isTrainerToCustomer());
+		} else if (LoginService.getPrincipal().getAuthorities().toString().equals("[TRAINER]")) {
+			trainerPrincipal = this.trainerService.findByPrincipal();
+			Assert.isTrue(result.getTrainer().equals(trainerPrincipal) && result.isTrainerToCustomer());
+		}
 
 		return result;
 	}
@@ -140,8 +139,6 @@ public class EndorsementService {
 		if (endorsement.getId() == 0) {
 			result = this.create();
 
-			result.setMark(endorsement.getMark());
-			result.setComments(endorsement.getComments());
 			if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]"))
 				result.setTrainer(endorsement.getTrainer());
 			else if (LoginService.getPrincipal().getAuthorities().toString().equals("[TRAINER]"))
@@ -150,8 +147,6 @@ public class EndorsementService {
 			result = new Endorsement();
 			endorsementSaved = this.findOne(endorsement.getId());
 
-			result.setComments(endorsement.getComments());
-			result.setMark(endorsement.getMark());
 			result.setId(endorsementSaved.getId());
 			result.setVersion(endorsementSaved.getVersion());
 			result.setCustomer(endorsementSaved.getCustomer());
@@ -160,6 +155,9 @@ public class EndorsementService {
 			result.setWrittenMoment(endorsementSaved.getWrittenMoment());
 
 		}
+
+		result.setMark(endorsement.getMark());
+		result.setComments(endorsement.getComments().trim());
 
 		this.validator.validate(result, binding);
 
@@ -173,15 +171,13 @@ public class EndorsementService {
 		trainerPrincipal = null;
 		customerPrincipal = null;
 
-		if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]"))
+		if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]")) {
 			customerPrincipal = this.customerService.findByPrincipal();
-		else if (LoginService.getPrincipal().getAuthorities().toString().equals("[TRAINER]"))
-			trainerPrincipal = this.trainerService.findByPrincipal();
-
-		if (trainerPrincipal == null && customerPrincipal != null)
 			Assert.isTrue(customerPrincipal.equals(endorsement.getCustomer()) && !endorsement.isTrainerToCustomer());
-		else if (trainerPrincipal != null && customerPrincipal == null)
+		} else if (LoginService.getPrincipal().getAuthorities().toString().equals("[TRAINER]")) {
+			trainerPrincipal = this.trainerService.findByPrincipal();
 			Assert.isTrue(trainerPrincipal.equals(endorsement.getTrainer()) && endorsement.isTrainerToCustomer());
+		}
 
 	}
 
@@ -240,6 +236,14 @@ public class EndorsementService {
 		endorsements = this.endorsementRepository.findSentReceivedEndorsementsByCustomer(customer.getId());
 
 		this.endorsementRepository.delete(endorsements);
+	}
+
+	protected Double avgMarkByTrainer(final int trainerId) {
+		Double result;
+
+		result = this.endorsementRepository.avgMarkByTrainer(trainerId);
+
+		return result;
 	}
 
 }

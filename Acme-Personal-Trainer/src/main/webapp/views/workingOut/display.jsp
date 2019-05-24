@@ -81,9 +81,9 @@
 <fieldset>
 	<legend><spring:message code="workingOut.categories"/></legend>
 		
-<display:table name="categories" id="row1" requestURI="workingOut/customer,trainer/display.do" class="displaytag" pagesize="5">
+<display:table name="${categories.keySet()}" id="fila" requestURI="workingOut/customer,trainer/display.do" class="displaytag" pagesize="5">
 		
-	<display:column property="name" titleKey="workingOut.name" />
+	<display:column value="${categories.get(fila)}" titleKey="workingOut.name" />
 </display:table>
 </fieldset>
 

@@ -18,8 +18,16 @@
 	
 	<acme:textbox code="workingOut.price" path="price"/>
 	
-	<acme:selectMandatory items="${categories}" multiple="true" 
-		 itemLabel="name" code="workingOut.categories" path="categories"/>
+	<form:label path="categories">
+			<spring:message code="workingOut.categories"/>:
+	</form:label>
+	<form:select path="categories" multiple="true">
+		<jstl:forEach var="categoryId" items="${categories.keySet()}">
+			<form:option label="${categories.get(categoryId)}" value="${categoryId}"/>
+		</jstl:forEach>
+	</form:select>
+	<form:errors cssClass="error" path="categories"/>
+	<br />
 	
 	<acme:submit name="save" code="workingOut.save"/>	
 	<jstl:if test="${workingOut.id != 0}">

@@ -266,8 +266,8 @@ public class ApplicationService {
 		return applications;
 	}
 
-	public boolean existApplicationAcceptedBetweenCustomerTrainer(final int customerId, final int trainerId) {
-		boolean result;
+	public Boolean existApplicationAcceptedBetweenCustomerTrainer(final int customerId, final int trainerId) {
+		Boolean result;
 
 		result = this.applicationRepository.existApplicationAcceptedBetweenCustomerTrainer(customerId, trainerId);
 
@@ -298,6 +298,29 @@ public class ApplicationService {
 			&& workingOut.getStartMoment().after(moment) && (!creditCards.isEmpty());
 
 		return result;
+	}
+
+	public Double findRatioRejectedApplications() {
+		Double res;
+
+		res = this.applicationRepository.findRatioRejectedApplications();
+
+		return res;
+	}
+	public Double findRatioAcceptedApplications() {
+		Double res;
+
+		res = this.applicationRepository.findRatioAcceptedApplications();
+
+		return res;
+	}
+
+	public Double findRatioPendingApplications() {
+		Double res;
+
+		res = this.applicationRepository.findRatioPendingApplications();
+
+		return res;
 	}
 
 }
