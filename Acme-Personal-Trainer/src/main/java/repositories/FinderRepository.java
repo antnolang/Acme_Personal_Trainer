@@ -1,6 +1,8 @@
 
 package repositories;
 
+import java.util.Collection;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -16,5 +18,8 @@ public interface FinderRepository extends JpaRepository<Finder, Integer> {
 
 	@Query("select f from Finder f where f.customer.id = ?1")
 	Finder findByCustomerId(int customerId);
+
+	@Query("select f from Finder f join f.workingOuts w where w.id = ?1")
+	Collection<Finder> findAllByWorkingOutId(int workingOutId);
 
 }

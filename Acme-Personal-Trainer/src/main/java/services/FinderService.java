@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -213,6 +214,15 @@ public class FinderService {
 		Assert.notNull(finder);
 
 		this.finderRepository.delete(finder);
+	}
+
+	protected void deleteFromFinders(final WorkingOut workingOut) {
+		Collection<Finder> finders;
+
+		finders = this.finderRepository.findAllByWorkingOutId(workingOut.getId());
+
+		for (final Finder f : finders)
+			f.getWorkingOuts().remove(workingOut);
 	}
 
 }

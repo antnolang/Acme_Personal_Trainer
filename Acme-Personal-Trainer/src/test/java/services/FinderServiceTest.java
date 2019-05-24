@@ -60,7 +60,6 @@ public class FinderServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * TODO: Test funcionales y análisis Finder
 	 * A: An actor who is authenticated as a customer must be able to: Change
 	 * the filters of his or her finder.
 	 * 
