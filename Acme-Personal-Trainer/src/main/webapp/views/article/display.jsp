@@ -7,8 +7,12 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<p> <strong> <spring:message code="article.publishedMoment" />:  </strong>  <jstl:out value="${article.publishedMoment}" /></p>
+<spring:message code="article.formatMoment1" var="formatMoment"/>
+
+<p> <strong><spring:message code="article.publishedMoment"/>:</strong>
+		<fmt:formatDate value="${article.publishedMoment}" pattern="${formatMoment}"/></p>
 
 <p> <strong> <spring:message code="article.title" />:  </strong>  <jstl:out value="${article.title}" /></p>
 
