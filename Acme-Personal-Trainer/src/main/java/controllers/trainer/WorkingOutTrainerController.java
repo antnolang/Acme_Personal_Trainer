@@ -2,8 +2,10 @@
 package controllers.trainer;
 
 import java.util.Collection;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.TransactionSystemException;
 import org.springframework.validation.BindingResult;
@@ -19,7 +21,6 @@ import services.CustomerService;
 import services.TrainerService;
 import services.WorkingOutService;
 import controllers.AbstractController;
-import domain.Category;
 import domain.Trainer;
 import domain.WorkingOut;
 
@@ -174,10 +175,13 @@ public class WorkingOutTrainerController extends AbstractController {
 	protected ModelAndView createEditModelAndView(final WorkingOut workingOut, final String messageCode) {
 		ModelAndView result;
 		Trainer principal;
-		Collection<Category> categories;
+		Map<Integer, String> categories;
+		String language;
+
+		language = LocaleContextHolder.getLocale().getLanguage();
 
 		principal = this.trainerService.findByPrincipal();
-		categories = this.categoryService.findAll();
+		categories = this.categoryService.categoriesByLanguage(language);
 
 		result = new ModelAndView("workingOut/edit");
 		result.addObject("workingOut", workingOut);
