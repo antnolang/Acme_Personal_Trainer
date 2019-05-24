@@ -138,7 +138,6 @@ public class CreditCardService {
 	}
 
 	private void isDeletable(final CreditCard creditCard) {
-		final Boolean res;
 		Collection<Application> applicationsWithCreditCard;
 
 		applicationsWithCreditCard = this.applicationService.applicationsWithCreditCard(creditCard.getId());
