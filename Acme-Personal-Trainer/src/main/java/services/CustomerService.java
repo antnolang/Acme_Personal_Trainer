@@ -321,7 +321,7 @@ public class CustomerService {
 	}
 
 	public double spendCustomer(final Customer customer) {
-		return this.customerRepository.spendCustomer(customer);
+		return this.customerRepository.spendCustomer(customer.getId());
 	}
 
 	protected void flush() {

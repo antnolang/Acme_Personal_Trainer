@@ -104,9 +104,13 @@ public class ApplicationService {
 		Assert.isTrue(application.getStatus().equals("PENDING"));
 
 		Collection<Application> pendingApplications;
+		double spendCustomer, premiumAmountCustomisation;
 
 		application.setStatus("ACCEPTED");
-		if (this.customerService.spendCustomer(application.getCustomer()) >= (this.customisationService.find().getPremiumAmount()))
+		spendCustomer = this.customerService.spendCustomer(application.getCustomer());
+		premiumAmountCustomisation = this.customisationService.find().getPremiumAmount();
+
+		if ((spendCustomer) >= (premiumAmountCustomisation))
 			application.getCustomer().setIsPremium(true);
 
 		pendingApplications = this.findPendingApplicationsByWorkingOut(application.getWorkingOut().getId());

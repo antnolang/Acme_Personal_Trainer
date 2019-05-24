@@ -31,6 +31,9 @@ public class ArticleService {
 	private UtilityService		utilityService;
 
 	@Autowired
+	private CommentService		commentService;
+
+	@Autowired
 	private Validator			validator;
 
 
@@ -104,6 +107,7 @@ public class ArticleService {
 	public void deleteArticlesByNutritionist(final Nutritionist nutritionist) {
 		Collection<Article> articles;
 
+		this.commentService.deleteCommentByArticlesByNutritionist(nutritionist.getId());
 		articles = this.articleRepository.findArticlesByNutritionist(nutritionist.getId());
 		this.articleRepository.delete(articles);
 	}
