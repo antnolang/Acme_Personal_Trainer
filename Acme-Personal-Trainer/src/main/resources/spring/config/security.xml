@@ -50,6 +50,8 @@
 
 		<security:intercept-url pattern="/category/**" access="hasRole('ADMIN')" />
 
+		<security:intercept-url pattern="/comment/customer,nutritionist/**" access="hasAnyRole('CUSTOMER','NUTRITIONIST')" />
+		
 		
 		<security:intercept-url pattern="/actor/administrator/**" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/actor/display.do**" access="permitAll" />  
@@ -73,7 +75,7 @@
 		<security:intercept-url pattern="/educationRecord/trainer/**" access="hasRole('TRAINER')" /> 
 		<security:intercept-url pattern="/educationRecord/**" access="permitAll" /> 
 		
-		<security:intercept-url pattern="/endorsement/list.do/**" access="hasRole('CUSTOMER')" />
+		<security:intercept-url pattern="/endorsement/customer/list.do/**" access="hasRole('CUSTOMER')" />
 		<security:intercept-url pattern="/endorsement/customer,trainer/**" access="hasAnyRole('CUSTOMER','TRAINER')" />
 		
 		<security:intercept-url pattern="/endorserRecord/trainer/**" access="hasRole('TRAINER')" /> 

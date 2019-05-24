@@ -15,4 +15,7 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	@Query("select a from Article a where a.nutritionist.id = ?1")
 	Collection<Article> findArticlesByNutritionist(int id);
 
+	@Query("select a from Article a where a.isFinalMode = true")
+	Collection<Article> findFinalArticle();
+
 }

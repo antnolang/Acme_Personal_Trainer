@@ -209,4 +209,24 @@ public class ApplicationServiceTest extends AbstractTest {
 		super.unauthenticate();
 	}
 
+	/*
+	 * A: Requirement 11.4: The ratio of the pending, accepted, rejected applications
+	 * C: Analysis of sentence coverage: 3/3 -> 100.00% of executed lines codes .
+	 * D: Analysis of data coverage: intentionally blank.
+	 */
+	@Test
+	public void findRatioPendingApplications_positiveTest() {
+		Double dataRejected;
+		Double dataPending;
+		Double dataAccepted;
+		Double suma;
+
+		dataAccepted = this.applicationService.findRatioAcceptedApplications();
+		dataPending = this.applicationService.findRatioPendingApplications();
+		dataRejected = this.applicationService.findRatioRejectedApplications();
+
+		suma = dataRejected + dataPending + dataAccepted;
+		Assert.isTrue(suma == 1.00001);
+	}
+
 }

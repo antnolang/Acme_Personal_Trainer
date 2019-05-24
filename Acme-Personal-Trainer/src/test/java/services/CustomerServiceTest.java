@@ -383,7 +383,7 @@ public class CustomerServiceTest extends AbstractTest {
 	 * 
 	 * B: A customer tries to display an endorsemenet that does not belongs to him/her
 	 * 
-	 * C: 92% of sentence coverage. -> It has covered 12 lines of 13.
+	 * C: 71% of sentence coverage. -> It has covered 10 lines of 14.
 	 * 
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
@@ -438,7 +438,7 @@ public class CustomerServiceTest extends AbstractTest {
 	 * B: A customer tries to create an endorsement for a trainer that not attends his/her
 	 * working outs.
 	 * 
-	 * C: 49% of sentence coverage -> It has covered 3 lines of 7.
+	 * C: 38% of sentence coverage -> It has covered 3 lines of 8.
 	 * 
 	 * D: 100% of data coverage because every fields are obligatory.
 	 */
@@ -469,7 +469,7 @@ public class CustomerServiceTest extends AbstractTest {
 	 * 
 	 * B: Endorsement::comments is blank
 	 * 
-	 * C: 71% of sentence coverage -> It has covered 5 lines of 7.
+	 * C: 63% of sentence coverage -> It has covered 5 lines of 8.
 	 * 
 	 * D: 100% of data coverage because every fields are obligatory.
 	 */
@@ -529,7 +529,7 @@ public class CustomerServiceTest extends AbstractTest {
 	 * 
 	 * B: A customer tries to updates an endorsement that it has been written by a trainer
 	 * 
-	 * C: 29% of sentence coverage -> Its covered 2 lines of 7.
+	 * C: 25% of sentence coverage -> Its covered 2 lines of 8.
 	 * 
 	 * D: Intentionally blank
 	 */

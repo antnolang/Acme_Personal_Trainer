@@ -37,4 +37,6 @@ public interface TrainerRepository extends JpaRepository<Trainer, Integer> {
 	@Query("select w.trainer from WorkingOut w where w.isFinalMode = true group by w.trainer having count(w)>= 1.1*((select count(w) from WorkingOut w where w.isFinalMode = true)/(select count(t) from Trainer t)) order by w.trainer.name")
 	Collection<Trainer> findTrainersWithPublishedWorkingOutMoreThanAverageOrderByName();
 
+	@Query("select count(t)*1.0/(select count(t1) from Trainer t1) from Trainer t where t in (select e.trainer from Endorsement e)")
+	Double ratioTrainerWithEndorsement();
 }

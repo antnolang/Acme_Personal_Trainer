@@ -32,5 +32,5 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 	Page<Customer> findCustomerWriteMostEndorsement(Pageable page);
 
 	@Query("select sum(a.workingOut.price) from Application a where a.customer.id = ?1 and a.status = 'ACCEPTED'")
-	double spendCustomer(Customer customer);
+	double spendCustomer(int customerId);
 }
