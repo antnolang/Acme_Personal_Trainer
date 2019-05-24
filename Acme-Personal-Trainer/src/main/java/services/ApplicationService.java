@@ -288,7 +288,6 @@ public class ApplicationService {
 		final List<CreditCard> creditCards;
 
 		creditCards = new ArrayList<>(this.creditCardService.findAllByCustomer());
-		Assert.isTrue(!creditCards.isEmpty());
 
 		moment = this.utilityService.current_moment();
 		result = this.checkWorkingOutNoAcceptedApplication(workingOut.getId()) && this.applicationRepository.findApplicationsByWorkingOutByCustomer(workingOut.getId(), customerPrincipal.getId()).isEmpty() && workingOut.getIsFinalMode()

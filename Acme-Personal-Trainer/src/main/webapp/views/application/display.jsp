@@ -26,7 +26,7 @@
 
 <strong><spring:message code="application.creditCard" />:</strong>
 <a
-	href="creditCard/display.do?creditCardId=${application.creditCard.id}"><spring:message
+	href="creditCard/customer/display.do?creditCardId=${application.creditCard.id}"><spring:message
 		code="application.creditCard" /></a>
 <br />		
 

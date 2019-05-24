@@ -2,6 +2,7 @@
 package controllers.customerTrainer;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,12 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ApplicationService;
+import services.CreditCardService;
 import services.CustomerService;
 import services.CustomisationService;
 import services.TrainerService;
 import services.WorkingOutService;
 import controllers.AbstractController;
 import domain.Category;
+import domain.CreditCard;
 import domain.Customer;
 import domain.Session;
 import domain.Trainer;
@@ -43,6 +46,9 @@ public class WorkingOutCustomerTrainerController extends AbstractController {
 	@Autowired
 	private ApplicationService		applicationService;
 
+	@Autowired
+	private CreditCardService		creditCardService;
+
 
 	// Constructors -----------------------------------------------------------
 
@@ -60,6 +66,7 @@ public class WorkingOutCustomerTrainerController extends AbstractController {
 		final Boolean isApplied;
 		Collection<Category> categories;
 		Collection<Session> sessions;
+		List<CreditCard> creditCards;
 		double VAT;
 
 		try {
@@ -90,10 +97,14 @@ public class WorkingOutCustomerTrainerController extends AbstractController {
 			} else {
 				workingOut = this.workingOutService.findOneToDisplay(workingOutId);
 				isApplied = this.applicationService.isApplied(workingOut, customerPrincipal);
+				creditCards = this.creditCardService.findAllByCustomer();
 
 				result.addObject("workingOut", workingOut);
 				result.addObject("principal", null);
 				result.addObject("isApplied", isApplied);
+				result.addObject("noCreditCard", false);
+				if (creditCards.isEmpty())
+					result.addObject("noCreditCard", true);
 
 			}
 			result.addObject("VAT", VAT);

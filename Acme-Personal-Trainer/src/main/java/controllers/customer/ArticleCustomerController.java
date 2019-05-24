@@ -53,7 +53,6 @@ public class ArticleCustomerController extends AbstractController {
 
 				articles = this.articleService.findAll();
 
-				result.addObject("owner", null);
 				result.addObject("articles", articles);
 				result.addObject("requestURI", "article/customer/allArticlesList.do");
 			} else {
