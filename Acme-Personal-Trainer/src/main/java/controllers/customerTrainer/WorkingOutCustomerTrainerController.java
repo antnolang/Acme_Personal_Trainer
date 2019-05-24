@@ -2,8 +2,8 @@
 package controllers.customerTrainer;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
@@ -11,14 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import services.ApplicationService;
+import services.CreditCardService;
 import services.CategoryService;
 import services.CustomerService;
 import services.CustomisationService;
 import services.TrainerService;
 import services.WorkingOutService;
 import controllers.AbstractController;
+import domain.Category;
+import domain.CreditCard;
 import domain.Customer;
 import domain.Session;
 import domain.Trainer;
@@ -46,7 +48,11 @@ public class WorkingOutCustomerTrainerController extends AbstractController {
 	private ApplicationService		applicationService;
 
 	@Autowired
+	private CreditCardService		creditCardService;
+
+	@Autowired
 	private CategoryService			categoryService;
+
 
 
 	// Constructors -----------------------------------------------------------
@@ -65,6 +71,7 @@ public class WorkingOutCustomerTrainerController extends AbstractController {
 		final Boolean isApplied;
 		Map<Integer, String> categories;
 		Collection<Session> sessions;
+		List<CreditCard> creditCards;
 		double VAT;
 		String language;
 
@@ -101,10 +108,14 @@ public class WorkingOutCustomerTrainerController extends AbstractController {
 			} else {
 				workingOut = this.workingOutService.findOneToDisplay(workingOutId);
 				isApplied = this.applicationService.isApplied(workingOut, customerPrincipal);
+				creditCards = this.creditCardService.findAllByCustomer();
 
 				result.addObject("workingOut", workingOut);
 				result.addObject("principal", null);
 				result.addObject("isApplied", isApplied);
+				result.addObject("noCreditCard", false);
+				if (creditCards.isEmpty())
+					result.addObject("noCreditCard", true);
 
 			}
 			result.addObject("VAT", VAT);

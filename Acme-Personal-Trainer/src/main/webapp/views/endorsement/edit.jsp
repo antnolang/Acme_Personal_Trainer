@@ -47,6 +47,8 @@
 	
 	<!-- Buttons -->
 	<acme:submit name="save" code="endorsement.save" />
-	<input type="submit" name="delete" value="<spring:message code="endorsement.delete"/>" onclick="return confirm('<spring:message code="endorsement.confirm.delete"/>')"/>
+	<jstl:if test="${isUpdating}">
+		<input type="submit" name="delete" value="<spring:message code="endorsement.delete"/>" onclick="return confirm('<spring:message code="endorsement.confirm.delete"/>')"/>
+	</jstl:if>
 	<acme:cancel url="endorsement/customer,trainer/list.do" code="endorsement.cancel" />
 </form:form>

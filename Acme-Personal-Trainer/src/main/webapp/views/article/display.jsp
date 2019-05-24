@@ -7,8 +7,12 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<p> <strong> <spring:message code="article.publishedMoment" />:  </strong>  <jstl:out value="${article.publishedMoment}" /></p>
+<spring:message code="article.formatMoment1" var="formatMoment"/>
+
+<p> <strong><spring:message code="article.publishedMoment"/>:</strong>
+		<fmt:formatDate value="${article.publishedMoment}" pattern="${formatMoment}"/></p>
 
 <p> <strong> <spring:message code="article.title" />:  </strong>  <jstl:out value="${article.title}" /></p>
 
@@ -19,14 +23,21 @@
 <br />
 
 <!-- Links -->
+<jstl:if test="${article.isFinalMode}">
+<a href="comment/customer,nutritionist/list.do?articleId=${article.id}">
+		<spring:message	code="article.comments" />			
+	</a>
+</jstl:if>
+<br />
+
 <security:authorize access="hasRole('NUTRITIONIST')">
 	<a href="article/nutritionist/list.do">
-		<spring:message	code="workingOut.back" />			
+		<spring:message	code="article.back" />			
 	</a>
 </security:authorize>
 
 <security:authorize access="hasRole('CUSTOMER')">
 	<a href="article/customer/allArticlesList.do">
-		<spring:message	code="workingOut.back" />			
+		<spring:message	code="article.back" />			
 	</a>
 </security:authorize>

@@ -169,6 +169,29 @@ public class ActorMultiUserController extends ActorAbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "deleteCustomer")
+	public ModelAndView deleteCustomer(final RegistrationForm registrationForm, final BindingResult binding, final HttpSession session) {
+		Customer customer;
+		ModelAndView result;
+
+		customer = this.customerService.findOneToDisplayEdit(registrationForm.getId());
+
+		if (binding.hasErrors()) {
+			result = this.createModelAndView(registrationForm);
+			result.addObject("rol", "Customer");
+		} else
+			try {
+				this.customerService.delete(customer);
+				session.invalidate();
+				result = new ModelAndView("redirect:/welcome/index.do");
+			} catch (final Throwable oops) {
+				result = this.createModelAndView(registrationForm, "actor.commit.error");
+				result.addObject("rol", "Customer");
+			}
+
+		return result;
+	}
+
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "saveTrainer")
 	public ModelAndView saveTrainer(final RegistrationForm registrationForm, final BindingResult binding) {
 		ModelAndView result;
@@ -183,6 +206,29 @@ public class ActorMultiUserController extends ActorAbstractController {
 			try {
 				this.trainerService.save(trainer);
 				result = new ModelAndView("redirect:/actor/display.do");
+			} catch (final Throwable oops) {
+				result = this.createModelAndView(registrationForm, "actor.commit.error");
+				result.addObject("rol", "Trainer");
+			}
+
+		return result;
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "deleteTrainer")
+	public ModelAndView deleteTrainer(final RegistrationForm registrationForm, final BindingResult binding, final HttpSession session) {
+		Trainer trainer;
+		ModelAndView result;
+
+		trainer = this.trainerService.findOneToDisplayEdit(registrationForm.getId());
+
+		if (binding.hasErrors()) {
+			result = this.createModelAndView(registrationForm);
+			result.addObject("rol", "Trainer");
+		} else
+			try {
+				this.trainerService.delete(trainer);
+				session.invalidate();
+				result = new ModelAndView("redirect:/welcome/index.do");
 			} catch (final Throwable oops) {
 				result = this.createModelAndView(registrationForm, "actor.commit.error");
 				result.addObject("rol", "Trainer");
@@ -213,6 +259,29 @@ public class ActorMultiUserController extends ActorAbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "deleteAuditor")
+	public ModelAndView deleteAuditor(final RegistrationForm registrationForm, final BindingResult binding, final HttpSession session) {
+		Auditor auditor;
+		ModelAndView result;
+
+		auditor = this.auditorService.findOneToDisplayEdit(registrationForm.getId());
+
+		if (binding.hasErrors()) {
+			result = this.createModelAndView(registrationForm);
+			result.addObject("rol", "Auditor");
+		} else
+			try {
+				this.auditorService.delete(auditor);
+				session.invalidate();
+				result = new ModelAndView("redirect:/welcome/index.do");
+			} catch (final Throwable oops) {
+				result = this.createModelAndView(registrationForm, "actor.commit.error");
+				result.addObject("rol", "Auditor");
+			}
+
+		return result;
+	}
+
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "saveNutritionist")
 	public ModelAndView saveNutritionist(final RegistrationForm registrationForm, final BindingResult binding) {
 		ModelAndView result;
@@ -227,6 +296,29 @@ public class ActorMultiUserController extends ActorAbstractController {
 			try {
 				this.nutritionistService.save(nutritionist);
 				result = new ModelAndView("redirect:/actor/display.do");
+			} catch (final Throwable oops) {
+				result = this.createModelAndView(registrationForm, "actor.commit.error");
+				result.addObject("rol", "Nutritionist");
+			}
+
+		return result;
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "deleteNutritionist")
+	public ModelAndView deleteNutritionist(final RegistrationForm registrationForm, final BindingResult binding, final HttpSession session) {
+		Nutritionist nutritionist;
+		ModelAndView result;
+
+		nutritionist = this.nutritionistService.findOneToDisplayEdit(registrationForm.getId());
+
+		if (binding.hasErrors()) {
+			result = this.createModelAndView(registrationForm);
+			result.addObject("rol", "Nutritionist");
+		} else
+			try {
+				this.nutritionistService.delete(nutritionist);
+				session.invalidate();
+				result = new ModelAndView("redirect:/welcome/index.do");
 			} catch (final Throwable oops) {
 				result = this.createModelAndView(registrationForm, "actor.commit.error");
 				result.addObject("rol", "Nutritionist");

@@ -50,9 +50,10 @@
 		
 		<display:column style="background-color:grey" 
 			property="workingOut.ticker" titleKey="application.workingOut" />
-			
+		
+		<spring:message code="application.formatMoment" var="formatMoment" />		
 		<display:column style="background-color:grey" 
-			property="registeredMoment" titleKey="application.registeredMoment" />
+			property="registeredMoment" titleKey="application.registeredMoment" sortable="true" format="${formatMoment}"/>
 
 		<security:authorize access="hasRole('TRAINER')">
 			<display:column style="background-color:grey" 
@@ -83,9 +84,10 @@
 
 				<display:column style="background-color:orange" 
 			property="workingOut.ticker" titleKey="application.workingOut" />
-			
+		
+		<spring:message code="application.formatMoment" var="formatMoment" />	
 		<display:column style="background-color:orange" 
-			property="registeredMoment" titleKey="application.registeredMoment" />
+			property="registeredMoment" titleKey="application.registeredMoment" sortable="true" format="${formatMoment}"/>
 
 		<security:authorize access="hasRole('TRAINER')">
 			<display:column style="background-color:orange" 
@@ -117,9 +119,10 @@
 
 				<display:column style="background-color:green" 
 			property="workingOut.ticker" titleKey="application.workingOut" />
-			
+		
+		<spring:message code="application.formatMoment" var="formatMoment" />		
 		<display:column style="background-color:green" 
-			property="registeredMoment" titleKey="application.registeredMoment" />
+			property="registeredMoment" titleKey="application.registeredMoment" sortable="true" format="${formatMoment}"/>
 
 		<security:authorize access="hasRole('TRAINER')">
 			<display:column style="background-color:green" 

@@ -12,7 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.ArticleRepository;
+import security.LoginService;
 import domain.Article;
+import domain.Customer;
 import domain.Nutritionist;
 
 @Service
@@ -28,7 +30,13 @@ public class ArticleService {
 	private NutritionistService	nutritionistService;
 
 	@Autowired
+	private CustomerService		customerService;
+
+	@Autowired
 	private UtilityService		utilityService;
+
+	@Autowired
+	private CommentService		commentService;
 
 	@Autowired
 	private Validator			validator;
@@ -72,12 +80,39 @@ public class ArticleService {
 		return result;
 	}
 
+	public Article findOneToDisplayCustomer(final int articleId) {
+		Article result;
+
+		result = this.articleRepository.findOne(articleId);
+
+		Assert.notNull(result);
+		if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]")) {
+			final Customer customer;
+			customer = this.customerService.findByPrincipal();
+			Assert.isTrue(customer.getIsPremium());
+		}
+		Assert.isTrue(result.getIsFinalMode());
+
+		return result;
+	}
+
+	public Article findOneToDisplayNutritionist(final int articleId) {
+		Article result;
+
+		result = this.articleRepository.findOne(articleId);
+
+		Assert.notNull(result);
+		if (!(result.getIsFinalMode()))
+			this.checkByPrincipal(result);
+
+		return result;
+	}
+
 	public Article findOneToNutritionistEdit(final int articleId) {
 		Article result;
 
 		result = this.findOne(articleId);
 
-		this.checkByPrincipal(result);
 		this.checkByPrincipal(result);
 		Assert.isTrue(!(result.getIsFinalMode()));
 
@@ -104,6 +139,7 @@ public class ArticleService {
 	public void deleteArticlesByNutritionist(final Nutritionist nutritionist) {
 		Collection<Article> articles;
 
+		this.commentService.deleteCommentByArticlesByNutritionist(nutritionist.getId());
 		articles = this.articleRepository.findArticlesByNutritionist(nutritionist.getId());
 		this.articleRepository.delete(articles);
 	}
@@ -169,5 +205,13 @@ public class ArticleService {
 
 		return results;
 
+	}
+
+	public Collection<Article> findFinalArticle() {
+		Collection<Article> articles;
+
+		articles = this.articleRepository.findFinalArticle();
+
+		return articles;
 	}
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import security.LoginService;
 import services.ArticleService;
 import controllers.AbstractController;
 import domain.Article;
@@ -35,8 +36,10 @@ public class ArticleCustomerNutritionistController extends AbstractController {
 
 		try {
 			result = new ModelAndView("article/display");
-			article = this.articleService.findOne(articleId);
-
+			if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]"))
+				article = this.articleService.findOneToDisplayCustomer(articleId);
+			else
+				article = this.articleService.findOneToDisplayNutritionist(articleId);
 			result.addObject("article", article);
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:../../error.do");

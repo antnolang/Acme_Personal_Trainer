@@ -166,7 +166,7 @@
 		<jstl:if test="${trainerAttended}">
 		<p>
 			<strong> <spring:message code="actor.trainer.endorsements" />
-			</strong> <a href="endorsement/list.do?trainerId=${actor.id}"><spring:message
+			</strong> <a href="endorsement/customer/list.do?trainerId=${actor.id}"><spring:message
 					code="table.endorsements" /></a>
 		</p>
 		</jstl:if>

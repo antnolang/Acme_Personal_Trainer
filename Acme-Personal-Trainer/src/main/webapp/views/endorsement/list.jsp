@@ -49,9 +49,9 @@
 </a>
 
 <h3> <spring:message code="endorsement.received" /> </h3>
-<display:table name="receivedEndorsements" id="row" requestURI="${requestURI}" class="displaytag" pagesize="5">
+<display:table name="receivedEndorsements" id="row1" requestURI="${requestURI}" class="displaytag" pagesize="5">
 	<display:column>
-		<a href="endorsement/customer,trainer/display.do?endorsementId=${row.id}">
+		<a href="endorsement/customer,trainer/display.do?endorsementId=${row1.id}">
 			<spring:message code="endorsement.display" />
 		</a>
 	</display:column>

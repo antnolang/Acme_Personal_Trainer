@@ -256,23 +256,13 @@ public class TrainerService {
 	protected void calculateMark(final Trainer trainer) {
 		Assert.isTrue(trainer.getId() != 0);
 
-		Collection<Endorsement> endorsementsReceived;
-		int n, counter;
-		Double avgMark;
+		final Double avgMark;
 
-		endorsementsReceived = this.endorsementService.findReceivedEndorsementsByTrainer(trainer.getId());
-		n = endorsementsReceived.size();
+		avgMark = this.endorsementService.avgMarkByTrainer(trainer.getId());
 
-		counter = 0;
-		for (final Endorsement e : endorsementsReceived)
-			counter = counter + e.getMark();
-
-		avgMark = (counter * 1.0) / (n * 1.0);
-
-		trainer.setMark(avgMark);
+		trainer.setMark(Math.round(avgMark * 100d) / 100d);
 
 	}
-
 	public Collection<Trainer> findTrainersWithPublishedWorkingOutMoreThanAverageOrderByName() {
 		Collection<Trainer> result;
 
@@ -459,6 +449,14 @@ public class TrainerService {
 
 	protected void flush() {
 		this.trainerRepository.flush();
+	}
+
+	public Double ratioTrainerWithEndorsement() {
+		Double result;
+
+		result = this.trainerRepository.ratioTrainerWithEndorsement();
+
+		return result;
 	}
 
 }
