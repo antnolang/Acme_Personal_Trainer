@@ -31,7 +31,7 @@
 	</security:authorize>
 	
 	<security:authorize access="hasRole('CUSTOMER')">
-		<display:column property="trainer.name" titleKey="workingOut.trainerName" />
+		<display:column property="trainer.fullname" titleKey="workingOut.trainerName" />
 	</security:authorize>
 	
 	<display:column property="ticker" titleKey="workingOut.ticker" />
