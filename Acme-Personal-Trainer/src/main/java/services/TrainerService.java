@@ -451,4 +451,12 @@ public class TrainerService {
 		this.trainerRepository.flush();
 	}
 
+	public Double ratioTrainerWithEndorsement() {
+		Double result;
+
+		result = this.trainerRepository.ratioTrainerWithEndorsement();
+
+		return result;
+	}
+
 }
