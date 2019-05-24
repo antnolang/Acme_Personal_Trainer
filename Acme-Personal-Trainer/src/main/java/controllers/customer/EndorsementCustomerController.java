@@ -1,5 +1,5 @@
 
-package controllers;
+package controllers.customer;
 
 import java.util.Collection;
 
@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import controllers.AbstractController;
+
 import services.ApplicationService;
 import services.CustomerService;
 import services.EndorsementService;
@@ -17,8 +19,8 @@ import domain.Customer;
 import domain.Endorsement;
 
 @Controller
-@RequestMapping(value = "/endorsement")
-public class EndorsementController extends AbstractController {
+@RequestMapping(value = "/endorsement/customer")
+public class EndorsementCustomerController extends AbstractController {
 
 	// Services------------------------------------
 
@@ -34,7 +36,7 @@ public class EndorsementController extends AbstractController {
 
 	// Constructor
 
-	public EndorsementController() {
+	public EndorsementCustomerController() {
 		super();
 	}
 
