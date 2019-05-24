@@ -19,14 +19,21 @@
 <br />
 
 <!-- Links -->
+<jstl:if test="${article.isFinalMode}">
+<a href="comment/customer,nutritionist/list.do?articleId=${article.id}">
+		<spring:message	code="article.comments" />			
+	</a>
+</jstl:if>
+<br />
+
 <security:authorize access="hasRole('NUTRITIONIST')">
 	<a href="article/nutritionist/list.do">
-		<spring:message	code="workingOut.back" />			
+		<spring:message	code="article.back" />			
 	</a>
 </security:authorize>
 
 <security:authorize access="hasRole('CUSTOMER')">
 	<a href="article/customer/allArticlesList.do">
-		<spring:message	code="workingOut.back" />			
+		<spring:message	code="article.back" />			
 	</a>
 </security:authorize>

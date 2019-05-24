@@ -65,8 +65,8 @@ public class CommentService {
 		return result;
 	}
 
-	public final Comment save(final Comment comment, final Article article) {
-		Assert.isTrue(this.principalCanWrite(article));
+	public final Comment save(final Comment comment) {
+		Assert.isTrue(this.principalCanWrite(comment.getArticle()));
 		Comment result;
 		Date moment;
 
@@ -79,7 +79,7 @@ public class CommentService {
 		return result;
 	}
 
-	public final Comment findOne(final int commentId) {
+	public Comment findOne(final int commentId) {
 		Comment result;
 
 		result = this.commentRepository.findOne(commentId);
@@ -89,7 +89,7 @@ public class CommentService {
 		return result;
 	}
 
-	public final Comment findOneToDisplay(final int commentId) {
+	public Comment findOneToDisplay(final int commentId) {
 		Comment result;
 
 		result = this.findOne(commentId);
@@ -149,5 +149,22 @@ public class CommentService {
 
 		comments = this.commentRepository.findCommentByArticlesByNutritionist(nutritionistId);
 		this.commentRepository.delete(comments);
+	}
+
+	public Collection<Comment> findCommentsByArticle(final int articleId) {
+		Collection<Comment> comments;
+		Article article;
+
+		comments = this.commentRepository.findCommentsByArticle(articleId);
+		article = this.articleService.findOne(articleId);
+
+		Assert.isTrue(article.getIsFinalMode());
+		if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]")) {
+			final Customer customer;
+			customer = this.customerService.findByPrincipal();
+			Assert.isTrue(customer.getIsPremium());
+		}
+
+		return comments;
 	}
 }

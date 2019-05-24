@@ -18,4 +18,7 @@ public interface CommentRepository extends JpaRepository<Comment, Integer> {
 	@Query("select distinct c from Comment c join c.article a where a.nutritionist.id=?1")
 	Collection<Comment> findCommentByArticlesByNutritionist(int nutritionistId);
 
+	@Query("select distinct c from Comment c join c.article a where a.id=?1")
+	Collection<Comment> findCommentsByArticle(int articleId);
+
 }

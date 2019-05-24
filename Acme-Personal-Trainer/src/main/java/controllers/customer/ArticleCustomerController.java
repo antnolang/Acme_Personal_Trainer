@@ -51,7 +51,7 @@ public class ArticleCustomerController extends AbstractController {
 			if (principal.getIsPremium()) {
 				result = new ModelAndView("article/list");
 
-				articles = this.articleService.findAll();
+				articles = this.articleService.findFinalArticle();
 
 				result.addObject("articles", articles);
 				result.addObject("requestURI", "article/customer/allArticlesList.do");
