@@ -9,6 +9,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -16,6 +18,7 @@ import org.springframework.validation.Validator;
 
 import repositories.WorkingOutRepository;
 import domain.Category;
+import domain.Finder;
 import domain.Session;
 import domain.Trainer;
 import domain.WorkingOut;
@@ -263,7 +266,16 @@ public class WorkingOutService {
 			Assert.isTrue(!lastSession.getEndMoment().after(session.getStartMoment()), "End moment last session before star moment");
 			workingOut.setEndMoment(session.getEndMoment());
 		}
+	}
 
+	protected void searchWorkingOutFinder(final Finder finder, final Pageable pageable) {
+		Page<WorkingOut> workingOuts;
+
+		workingOuts = this.workingOutRepository.searchWorkingOutFinder(finder.getKeyword(), finder.getCategory(), finder.getStartDate(), finder.getEndDate(), finder.getStartPrice(), finder.getEndPrice(), pageable);
+		Assert.notNull(workingOuts);
+
+		finder.setWorkingOuts(workingOuts.getContent());
+		finder.setUpdatedMoment(this.utilityService.current_moment());
 	}
 
 	// Private methods-----------------------------------------------

@@ -31,22 +31,24 @@
 					<li class="arrow"></li>
 					<li><a href="application/customer/list.do"><spring:message code="master.page.application.list" /></a></li>
 				</ul>
-
 			</li>
+			
 			<li><a class="fNiv"><spring:message	code="master.page.article" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="article/customer/allArticlesList.do"><spring:message code="master.page.article.list" /></a></li>
 				</ul>
-
 			</li>
+			
 			<li><a class="fNiv"><spring:message	code="master.page.creditCard" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="creditCard/customer/list.do"><spring:message code="master.page.creditCard.list" /></a></li>
 				</ul>
-
 			</li>
+			
+			<li><a class="fNiv" href="finder/customer/display.do"><spring:message code="master.page.finder" /></a></li>
+			
 			<li><a class="fNiv"><spring:message	code="master.page.workingOut" /></a>
 				<ul>
 					<li class="arrow"></li>

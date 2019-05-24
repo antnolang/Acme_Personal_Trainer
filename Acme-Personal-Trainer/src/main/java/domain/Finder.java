@@ -8,6 +8,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,7 +33,6 @@ public class Finder extends DomainEntity {
 	// Attributes
 
 	private String	keyword;
-	private String	category;
 	private Double	startPrice;
 	private Double	endPrice;
 	private Date	startDate;
@@ -47,15 +47,6 @@ public class Finder extends DomainEntity {
 
 	public void setKeyword(final String keyword) {
 		this.keyword = keyword;
-	}
-
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
-	public String getCategory() {
-		return this.category;
-	}
-
-	public void setCategory(final String category) {
-		this.category = category;
 	}
 
 	public Double getStartPrice() {
@@ -111,6 +102,7 @@ public class Finder extends DomainEntity {
 
 	private Customer				customer;
 	private Collection<WorkingOut>	workingOuts;
+	private Category				category;
 
 
 	@Valid
@@ -132,6 +124,16 @@ public class Finder extends DomainEntity {
 
 	public void setWorkingOuts(final Collection<WorkingOut> workingOuts) {
 		this.workingOuts = workingOuts;
+	}
+
+	@Valid
+	@ManyToOne(optional = true)
+	public Category getCategory() {
+		return this.category;
+	}
+
+	public void setCategory(final Category category) {
+		this.category = category;
 	}
 
 }

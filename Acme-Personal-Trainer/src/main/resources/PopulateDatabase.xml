@@ -2784,7 +2784,6 @@
 	<!-- Finder -->
 	<bean id="finder1" class="domain.Finder">
 		<property name="keyword" value="" />
-		<property name="category" value="" />
 		<property name="startPrice">
 			<null></null>
 		</property>
@@ -2808,7 +2807,6 @@
 
 	<bean id="finder2" class="domain.Finder">
 		<property name="keyword" value="workingOut8" />
-		<property name="category" value="" />
 		<property name="startPrice" value="2.00" />
 		<property name="endPrice" value="250.24" />
 		<property name="startDate" value="2020/12/15 17:00" />
@@ -2824,7 +2822,9 @@
 
 	<bean id="finder3" class="domain.Finder">
 		<property name="keyword" value="" />
-		<property name="category" value="Tabata" />
+		<property name="category">
+			<ref bean="category20"/>
+		</property>
 		<property name="startPrice" value="25.24" />
 		<property name="endPrice" value="255.24" />
 		<property name="startDate" value="2020/12/15 17:00" />
@@ -2840,7 +2840,9 @@
 
 	<bean id="finder4" class="domain.Finder">
 		<property name="keyword" value="" />
-		<property name="category" value="Boot Camp" />
+		<property name="category">
+			<ref bean="category4"/>
+		</property>
 		<property name="startPrice" value="0.00" />
 		<property name="endPrice" value="220.24" />
 		<property name="startDate" value="2020/11/04 17:00" />
@@ -2856,7 +2858,6 @@
 
 	<bean id="finder5" class="domain.Finder">
 		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
-		<property name="category" value="comba" />
 		<property name="startPrice" value="25.24" />
 		<property name="endPrice" value="255.24" />
 		<property name="startDate" value="2020/11/04 17:00" />
@@ -2872,7 +2873,6 @@
 
 	<bean id="finder6" class="domain.Finder">
 		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
-		<property name="category" value="comba" />
 		<property name="startPrice" value="25.24" />
 		<property name="endPrice" value="255.24" />
 		<property name="startDate" value="2020/11/04 17:00" />
@@ -2888,7 +2888,6 @@
 
 	<bean id="finder7" class="domain.Finder">
 		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
-		<property name="category" value="comba" />
 		<property name="startPrice" value="25.24" />
 		<property name="endPrice" value="255.24" />
 		<property name="startDate" value="2020/11/04 17:00" />
