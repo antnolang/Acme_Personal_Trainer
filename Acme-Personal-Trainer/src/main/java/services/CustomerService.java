@@ -54,6 +54,12 @@ public class CustomerService {
 	@Autowired
 	private EndorsementService	endorsementService;
 
+	@Autowired
+	private FinderService		finderService;
+
+	@Autowired
+	private CommentService		commentService;
+
 
 	// Constructors -------------------------------
 
@@ -115,6 +121,9 @@ public class CustomerService {
 
 		result = (Customer) this.actorService.save(customer);
 
+		if (customer.getId() == 0)
+			this.finderService.assignNewFinder(customer);
+
 		return result;
 	}
 
@@ -126,6 +135,7 @@ public class CustomerService {
 		this.applicationService.deleteApplicationByCustomer(customer);
 
 		// Delete finder
+		this.finderService.deleteFinder(customer);
 
 		// Delete credit cards
 		this.creditCardService.deleteByPrincipal();
@@ -134,6 +144,7 @@ public class CustomerService {
 		this.endorsementService.deleteEndorsements(customer);
 
 		// Delete articles's comments.
+		this.commentService.deleteCommentByCustomer(customer);
 
 		this.actorService.delete(customer);
 
