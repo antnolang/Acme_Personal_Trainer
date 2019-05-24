@@ -19,6 +19,14 @@
 <br />
 
 <!-- Links -->
-<a href="article/allArticlesList.do"> <spring:message
-		code="article.back" />
-</a>
+<security:authorize access="hasRole('NUTRITIONIST')">
+	<a href="article/nutritionist/list.do">
+		<spring:message	code="workingOut.back" />			
+	</a>
+</security:authorize>
+
+<security:authorize access="hasRole('CUSTOMER')">
+	<a href="article/customer/allArticlesList.do">
+		<spring:message	code="workingOut.back" />			
+	</a>
+</security:authorize>

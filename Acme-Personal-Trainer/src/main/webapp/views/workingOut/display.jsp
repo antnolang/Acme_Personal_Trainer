@@ -64,7 +64,7 @@
 		<br/>
 		
 		<strong><spring:message code="workingOut.applications"/>:</strong>
-		<a href="application/trainer/list.do?actorId=${workingOut.trainer.id}"><spring:message code="workingOut.applications"/></a>
+		<a href="application/trainer/list.do?workingOutId=${workingOut.id}"><spring:message code="workingOut.applications"/></a>
 	<br/>
 	</jstl:if>
 	</security:authorize>
@@ -75,9 +75,9 @@
 <fieldset>
 	<legend><spring:message code="workingOut.categories"/></legend>
 		
-<display:table name="categories" id="row1" requestURI="workingOut/customer,trainer/display.do" class="displaytag" pagesize="5">
+<display:table name="${categories.keySet()}" id="row1" requestURI="workingOut/customer,trainer/display.do" class="displaytag" pagesize="5">
 		
-	<display:column property="name" titleKey="workingOut.name" />
+	<display:column value="${categories.get(row1)}" titleKey="workingOut.name" />
 </display:table>
 </fieldset>
 

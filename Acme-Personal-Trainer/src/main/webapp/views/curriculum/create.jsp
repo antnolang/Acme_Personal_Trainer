@@ -17,7 +17,7 @@
 	<acme:textbox code="curriculum.personalRecord.fullName" path="personalRecord.fullName" readonly="true"/>
 	<acme:textbox code="curriculum.personalRecord.photo" path="personalRecord.photo" placeholder="https://examplePhotoUrl.com"/>
 	<acme:textbox code="curriculum.personalRecord.email" path="personalRecord.email"/>
-	<acme:textbox code="curriculum.personalRecord.phoneNumber" path="personalRecord.phoneNumber" id="phoneNumber"/>
+	<acme:textbox code="curriculum.personalRecord.phoneNumber" path="personalRecord.phoneNumber" placeholder="+34 (111) 654654654" id="phoneNumber"/>
 	<acme:textbox code="curriculum.personalRecord.linkedInProfile" path="personalRecord.linkedInProfile" placeholder="https://www.linkedin.com/..."/>
 	
 	<!-- Buttons -->

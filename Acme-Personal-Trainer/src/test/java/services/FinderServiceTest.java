@@ -3,9 +3,12 @@ package services;
 
 import javax.transaction.Transactional;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
 import domain.Finder;
@@ -19,29 +22,33 @@ public class FinderServiceTest extends AbstractTest {
 
 	// Service under test -----------------------------------------------------
 
+	@Autowired
+	private FinderService	finderService;
+
+
 	// Other services and repositories ----------------------------------------
 
 	// Tests ------------------------------------------------------------------
 
-	//	/* TODO: Test funcional query 37.5.4
-	//	 * A: An actor who is authenticated as an administrator must be able to
-	//	 * display a dashboard with the following information:
-	//	 * The ratio of empty versus non-empty finders.
-	//	 * 
-	//	 * B: Positive test
-	//	 * 
-	//	 * C: 100% of sentence coverage.
-	//	 * 
-	//	 * D: 100% of data coverage.
-	//	 */
-	//	@Test
-	//	public void testRatioEmptyVsNonEmpty() {
-	//		Double data;
-	//
-	//		data = this.finderService.findRatioEmptyVsNonEmpty();
-	//
-	//		Assert.isTrue(data == 0.28571);
-	//	}
+	/*
+	 * A: An actor who is authenticated as an administrator must be able to
+	 * display a dashboard with the following information:
+	 * The ratio of empty versus non-empty finders.
+	 * 
+	 * B: Positive test
+	 * 
+	 * C: 100% of sentence coverage.
+	 * 
+	 * D: 100% of data coverage.
+	 */
+	@Test
+	public void testRatioEmptyVsNonEmpty() {
+		Double data;
+
+		data = this.finderService.findRatioEmptyVsNonEmpty();
+
+		Assert.isTrue(data == 0.16667);
+	}
 
 	//	/* TODO: Test funcionales y análisis Finder
 	//	 * A: An actor who is authenticated as a trainer must be able to: Change

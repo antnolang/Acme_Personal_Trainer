@@ -4,8 +4,8 @@ package controllers.nutritionist;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionSystemException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -68,13 +68,12 @@ public class ArticleNutritionistController extends AbstractController {
 		Article article;
 
 		try {
-			article = this.articleService.findOne(articleId);
+			article = this.articleService.findOneToNutritionistEdit(articleId);
 			this.articleService.makeFinal(article);
+			result = new ModelAndView("redirect:/article/nutritionist/list.do");
 		} catch (final Throwable oops) {
-			redir.addFlashAttribute("messageCode", "article.make.final.error");
+			result = new ModelAndView("redirect:../../error.do");
 		}
-
-		result = new ModelAndView("redirect:/article/nutritionist/list.do");
 
 		return result;
 	}
@@ -114,24 +113,20 @@ public class ArticleNutritionistController extends AbstractController {
 		ModelAndView result;
 		Article articleRec;
 
-		try {
-			articleRec = this.articleService.reconstruct(article, binding);
+		articleRec = this.articleService.reconstruct(article, binding);
 
-			if (binding.hasErrors())
-				result = this.createEditModelAndView(article);
-			else
-				try {
-					this.articleService.save(articleRec);
-					result = new ModelAndView("redirect:../list.do?nutritionistId=" + articleRec.getNutritionist().getId());
-				} catch (final DataIntegrityViolationException e1) {
-					result = this.createEditModelAndView(articleRec, "article.commit.url");
-				} catch (final Throwable oops) {
-					result = this.createEditModelAndView(articleRec, "article.commit.error");
+		if (binding.hasErrors())
+			result = this.createEditModelAndView(article);
+		else
+			try {
+				this.articleService.save(articleRec);
+				result = new ModelAndView("redirect:/article/nutritionist/list.do");
+			} catch (final TransactionSystemException oops) {
+				result = new ModelAndView("redirect:../../error.do");
 
-				}
-		} catch (final Exception e) {
-			result = new ModelAndView("redirect:../../error.do");
-		}
+			} catch (final Throwable oops) {
+				result = this.createEditModelAndView(article, "article.commit.error");
+			}
 
 		return result;
 	}
@@ -140,13 +135,11 @@ public class ArticleNutritionistController extends AbstractController {
 	public ModelAndView delete(final Article article) {
 		ModelAndView result;
 		Article articleBd;
-		int nutritionistId;
 
 		try {
 			articleBd = this.articleService.findOneToNutritionistEdit(article.getId());
-			nutritionistId = articleBd.getNutritionist().getId();
 			this.articleService.delete(articleBd);
-			result = new ModelAndView("redirect:../list.do?nutritionistId=" + nutritionistId);
+			result = new ModelAndView("redirect:/article/nutritionist/list.do");
 		} catch (final Throwable oops) {
 			result = new ModelAndView("redirect:../../error.do");
 		}

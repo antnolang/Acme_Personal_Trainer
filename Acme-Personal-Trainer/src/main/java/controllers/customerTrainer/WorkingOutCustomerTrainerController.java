@@ -2,8 +2,10 @@
 package controllers.customerTrainer;
 
 import java.util.Collection;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ApplicationService;
+import services.CategoryService;
 import services.CustomerService;
 import services.CustomisationService;
 import services.TrainerService;
@@ -43,6 +46,9 @@ public class WorkingOutCustomerTrainerController extends AbstractController {
 	@Autowired
 	private ApplicationService		applicationService;
 
+	@Autowired
+	private CategoryService			categoryService;
+
 
 	// Constructors -----------------------------------------------------------
 
@@ -58,15 +64,19 @@ public class WorkingOutCustomerTrainerController extends AbstractController {
 		Customer customerPrincipal;
 		Trainer trainerPrincipal;
 		final Boolean isApplied;
-		Collection<Category> categories;
+		Map<Integer, String> categories;
+		Collection<Category> categoriesWorkingOut;
 		Collection<Session> sessions;
 		double VAT;
+		String language;
 
 		try {
+			language = LocaleContextHolder.getLocale().getLanguage();
 			VAT = this.customisationService.find().getVAT();
 			result = new ModelAndView("workingOut/display");
 			workingOut = this.workingOutService.findOne(workingOutId);
-			categories = this.workingOutService.getCategoriesByWorkingOut(workingOut);
+			categoriesWorkingOut = this.workingOutService.getCategoriesByWorkingOut(workingOut);
+			categories = this.categoryService.categoriesByLanguage(categoriesWorkingOut, language);
 			sessions = this.workingOutService.getSessionsByWorkingOut(workingOut);
 
 			try {

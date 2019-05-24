@@ -20,11 +20,11 @@
 	</li>
 	<li>
 		<strong><spring:message code="endorserRecord.phoneNumber"/></strong>
-		<fmt:formatDate value="${endorserRecord.phoneNumber}"/>
+		<jstl:out value="${endorserRecord.phoneNumber}"/>
 	</li>
 	<li>
 		<strong><spring:message code="endorserRecord.linkedInProfile"/></strong>
-		<fmt:formatDate value="${endorserRecord.linkedInProfile}"/>
+		<jstl:out value="${endorserRecord.linkedInProfile}"/>
 	</li>
 </ul>
 

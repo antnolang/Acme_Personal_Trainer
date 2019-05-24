@@ -64,29 +64,29 @@ public class WorkingOutServiceTest extends AbstractTest {
 		Assert.isTrue(data[3] == 20.94967514996089);
 	}
 
-	//	/* TODO: Test funcional query 11.4.1
-	//	 * A: An actor who is authenticated as an administrator must be able to
-	//	 * display a dashboard with the following information:
-	//	 * The average, the minimum, the maximum and the standard deviation of the
-	//	 * number of working-outs per trainer.
-	//	 * 
-	//	 * B: Positive test
-	//	 * 
-	//	 * C: 100% of sentence coverage.
-	//	 * 
-	//	 * D: 100% of data coverage.
-	//	 */
-	//	@Test
-	//	public void testDataNumberWorkingOutPerTrainer() {
-	//		Double[] data;
-	//
-	//		data = this.curriculumService.findDataNumberWorkingOutPerTrainer();
-	//
-	//		Assert.isTrue(data[0] == 0.0);
-	//		Assert.isTrue(data[1] == 1.0);
-	//		Assert.isTrue(data[2] == 0.8889);
-	//		Assert.isTrue(data[3] == 0.3143);
-	//	}
+	/*
+	 * A: An actor who is authenticated as an administrator must be able to
+	 * display a dashboard with the following information:
+	 * The average, the minimum, the maximum and the standard deviation of the
+	 * number of working-outs per trainer.
+	 * 
+	 * B: Positive test
+	 * 
+	 * C: 100% of sentence coverage.
+	 * 
+	 * D: 100% of data coverage.
+	 */
+	@Test
+	public void testDataNumberWorkingOutPerTrainer() {
+		Double[] data;
+
+		data = this.workingOutService.findDataNumberWorkingOutPerTrainer();
+
+		Assert.isTrue(data[0] == 1.28571);
+		Assert.isTrue(data[1] == 0.0);
+		Assert.isTrue(data[2] == 2.0);
+		Assert.isTrue(data[3] == 0.69985);
+	}
 
 	// Ancillary methods ------------------------------------------------------
 }

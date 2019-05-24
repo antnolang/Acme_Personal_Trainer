@@ -27,5 +27,10 @@
 	<definition name="article/list" extends="master.page">	
 		<put-attribute name="title" value="Lista de articulos" />
 		<put-attribute name="body" value="/views/article/list.jsp" />
+	</definition>
+	
+	<definition name="article/noAccess" extends="master.page">	
+		<put-attribute name="title" value="No tienes acceso" />
+		<put-attribute name="body" value="/views/article/noAccess.jsp" />
 	</definition>	
 </tiles-definitions>

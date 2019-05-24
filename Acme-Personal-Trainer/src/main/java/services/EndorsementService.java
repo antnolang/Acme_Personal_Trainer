@@ -211,6 +211,15 @@ public class EndorsementService {
 		return result;
 	}
 
+	public Double[] findDataNumberEndorsementPerTrainer() {
+		Double[] result;
+
+		result = this.endorsementRepository.findDataNumberEndorsementPerTrainer();
+		Assert.notNull(result);
+
+		return result;
+	}
+
 	protected void deleteEndorsements(final Trainer trainer) {
 		Collection<Endorsement> endorsements;
 

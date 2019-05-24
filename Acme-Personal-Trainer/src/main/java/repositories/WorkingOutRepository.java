@@ -42,6 +42,10 @@ public interface WorkingOutRepository extends JpaRepository<WorkingOut, Integer>
 	@Query("select avg(1.0*w.price), min(1.0*w.price), max(1.0*w.price), stddev(1.0*w.price) from WorkingOut w")
 	Double[] findDataPricePerWorkingOut();
 
+	// Requirement 11.4.1
+	@Query("select avg(1.0 * (select count(w) from WorkingOut w where w.trainer.id = t.id)), min(1.0 * (select count(w) from WorkingOut w where w.trainer.id = t.id)), max(1.0 * (select count(w) from WorkingOut w where w.trainer.id = t.id)),stddev(1.0 * (select count(w) from WorkingOut w where w.trainer.id = t.id)) from Trainer t)")
+	Double[] findDataNumberWorkingOutPerTrainer();
+
 	@Query("select w from WorkingOut w join w.sessions s where s.id=?1")
 	WorkingOut findBySession(int sessionId);
 

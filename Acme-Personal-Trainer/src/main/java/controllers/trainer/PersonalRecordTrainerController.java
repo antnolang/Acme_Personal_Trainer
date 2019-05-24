@@ -60,7 +60,9 @@ public class PersonalRecordTrainerController extends AbstractController {
 				result = new ModelAndView("redirect:/curriculum/trainer/display.do");
 			} catch (final Throwable oops) {
 				if (oops.getMessage().contains("Fullname does not match"))
-					binding.rejectValue("fullname", "personalRecord.fullname.error", "Must match with the full name of your profile.");
+					binding.rejectValue("fullName", "personalRecord.fullname.error", "Must match with the full name of your profile.");
+				else if (oops.getMessage().contains("Invalid email format"))
+					binding.rejectValue("email", "personalRecord.email.error", "The email has an invalid format.");
 
 				result = this.editModelAndView(personalRecord, "personalRecord.commit.error");
 			}

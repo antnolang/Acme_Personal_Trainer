@@ -47,11 +47,11 @@ public class MiscellaneousRecordController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/backCurriculum", method = RequestMethod.GET)
-	public ModelAndView back(@RequestParam final int miscellaneousDataId) {
+	public ModelAndView back(@RequestParam final int miscellaneousRecordId) {
 		ModelAndView result;
 		int curriculumId;
 
-		curriculumId = this.curriculumService.findIdByMiscellaneousRecordId(miscellaneousDataId);
+		curriculumId = this.curriculumService.findIdByMiscellaneousRecordId(miscellaneousRecordId);
 		result = new ModelAndView("redirect:/curriculum/display.do?curriculumId=" + curriculumId);
 
 		return result;

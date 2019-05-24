@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.ArticleRepository;
 import domain.Article;
@@ -28,6 +29,9 @@ public class ArticleService {
 
 	@Autowired
 	private UtilityService		utilityService;
+
+	@Autowired
+	private Validator			validator;
 
 
 	//Constructor ----------------------------------------------------
@@ -74,6 +78,8 @@ public class ArticleService {
 		result = this.findOne(articleId);
 
 		this.checkByPrincipal(result);
+		this.checkByPrincipal(result);
+		Assert.isTrue(!(result.getIsFinalMode()));
 
 		return result;
 	}
@@ -128,6 +134,8 @@ public class ArticleService {
 		result.setTitle(article.getTitle().trim());
 		result.setDescription(article.getDescription().trim());
 		result.setTags(article.getTags().trim());
+
+		this.validator.validate(result, binding);
 
 		return result;
 	}

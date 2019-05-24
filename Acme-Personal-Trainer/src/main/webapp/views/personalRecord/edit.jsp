@@ -15,10 +15,10 @@
 	<fieldset>
 		<legend><spring:message code="personalRecord.fieldset"/></legend>
 		
-		<acme:textbox code="personalRecord.fullname" path="fullname"/>
+		<acme:textbox code="personalRecord.fullname" path="fullName"/>
 		<acme:textbox code="personalRecord.photo" path="photo"/>
 		<acme:textbox code="personalRecord.email" path="email"/>
-		<acme:textbox code="personalRecord.phoneNumber" path="phoneNumber" id="phoneNumber"/>
+		<acme:textbox code="personalRecord.phoneNumber" path="phoneNumber" placeholder="+34 (111) 654654654" id="phoneNumber"/>
 		<acme:textbox code="personalRecord.linkedInProfile" path="linkedInProfile" placeholder="https://www.linkedin.com/..."/>
 	</fieldset>
 	
