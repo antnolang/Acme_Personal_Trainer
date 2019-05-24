@@ -33,7 +33,7 @@ public class CreditCardServiceTest extends AbstractTest {
 	// Tests ------------------------------------------------------------------
 
 	/*
-	 * Req 10.4 An actor who is authenticated as a trainer must be able to manage
+	 * Req 10.4 An actor who is authenticated as a customer must be able to manage
 	 * their credit card, which includes listing,showing,creating and deleting them
 	 */
 

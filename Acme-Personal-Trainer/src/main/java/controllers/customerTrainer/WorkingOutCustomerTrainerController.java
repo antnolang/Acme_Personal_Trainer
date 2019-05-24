@@ -92,7 +92,7 @@ public class WorkingOutCustomerTrainerController extends AbstractController {
 			}
 
 			if (trainerPrincipal != null) {
-				workingOut = this.workingOutService.findOne(workingOutId);
+				workingOut = this.workingOutService.findOneToPrincipal(workingOutId);
 
 				result.addObject("workingOut", workingOut);
 				result.addObject("principal", trainerPrincipal);
