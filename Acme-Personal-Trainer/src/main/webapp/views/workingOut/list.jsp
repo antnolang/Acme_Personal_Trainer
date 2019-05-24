@@ -10,7 +10,58 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<display:table name="workingOuts" id="row" requestURI="${requestURI}" class="displaytag" pagesize="5">	
+
+<!------------ FINDER ------------>
+<spring:message code="workingOut.formatDate1" var="dateFormat"/>
+<jstl:if test="${finder ne null}">
+	<fieldset>
+		<legend><spring:message code="workingOut.finder.legend"/></legend>
+		
+		<p style="color:blue;">
+			<spring:message code="workingOut.finder.warning"/><jstl:out value="${numberOfResults}"/>
+		</p>
+		
+		<ul>
+			<li>
+				<strong><spring:message code="finder.keyword"/></strong>
+				<jstl:out value="${finder.keyword}"/>
+			</li>
+			<li>
+				<strong><spring:message code="finder.category"/></strong>
+				<jstl:out value="${finder.category}"/>
+			</li>
+			<li>
+				<strong><spring:message code="finder.startDate"/></strong>
+				<fmt:formatDate value="${finder.startDate}" pattern="${dateFormat}"/>
+			</li>
+			<li>
+				<strong><spring:message code="finder.endDate"/></strong>
+				<fmt:formatDate value="${finder.startDate}" pattern="${dateFormat}"/>
+			</li>
+			<li>
+				<strong><spring:message code="finder.startPrice"/></strong>
+				<jstl:out value="${finder.startPrice}"/>
+			</li>
+			<li>
+				<strong><spring:message code="finder.endPrice"/></strong>
+				<jstl:out value="${finder.endPrice}"/>
+			</li>
+			
+		</ul>
+		
+		<div>
+			<a href="finder/customer/edit.do"><spring:message code="finder.edit"/></a>
+			&nbsp;
+			<a href="finder/customer/clear.do"><spring:message code="finder.clear"/></a>
+		</div>
+	</fieldset>
+	
+	<jstl:set var="workingOuts" value="${finder.workingOuts}"/>
+</jstl:if>
+
+
+<!------------ WORKING OUT LIST ------------>
+<display:table name="${workingOuts}" id="row" requestURI="${requestURI}" class="displaytag" pagesize="5">	
 	<display:column>
 		<a href="workingOut/customer,trainer/display.do?workingOutId=${row.id}"><spring:message code="workingOut.display"/></a>
 	</display:column>	

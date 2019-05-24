@@ -79,6 +79,8 @@
 		<security:intercept-url pattern="/endorserRecord/trainer/**" access="hasRole('TRAINER')" /> 
 		<security:intercept-url pattern="/endorserRecord/**" access="permitAll" /> 
 		
+		<security:intercept-url pattern="/finder/customer/**" access="hasRole('CUSTOMER')" />  
+		
 		<security:intercept-url pattern="/personalRecord/trainer/**" access="hasRole('TRAINER')" /> 
 		<security:intercept-url pattern="/personalRecord/**" access="permitAll" /> 
 		
