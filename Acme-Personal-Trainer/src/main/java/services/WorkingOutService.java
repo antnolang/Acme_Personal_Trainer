@@ -337,4 +337,8 @@ public class WorkingOutService {
 
 	}
 
+	public void flush() {
+		this.workingOutRepository.flush();
+
+	}
 }
