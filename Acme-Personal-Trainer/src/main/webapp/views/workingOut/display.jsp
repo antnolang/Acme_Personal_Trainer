@@ -86,6 +86,9 @@
 	<display:column value="${categories.get(fila)}" titleKey="workingOut.name" />
 </display:table>
 </fieldset>
+<br>
+
+
 
 <fieldset>
 	<legend><spring:message code="workingOut.sessions"/></legend>	
@@ -125,6 +128,7 @@
 	</jstl:if>
 </security:authorize>	
 </fieldset>
+
 
 	<br/>
 	<!-- Links -->	

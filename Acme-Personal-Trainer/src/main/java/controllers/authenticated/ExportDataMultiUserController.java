@@ -14,23 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import services.ActorService;
-import services.ApplicationService;
 import services.ArticleService;
-import services.AuditService;
-import services.AuditorService;
 import services.CreditCardService;
 import services.CurriculumService;
-import services.EducationRecordService;
-import services.EndorsementService;
-import services.EndorserRecordService;
-import services.FinderService;
 import services.MessageService;
-import services.MiscellaneousRecordService;
-import services.PersonalRecordService;
-import services.ProfessionalRecordService;
-import services.SessionService;
 import services.SocialProfileService;
-import services.TrainerService;
 import services.WorkingOutService;
 import controllers.AbstractController;
 import domain.Actor;
@@ -54,61 +42,25 @@ import domain.WorkingOut;
 public class ExportDataMultiUserController extends AbstractController {
 
 	@Autowired
-	private ActorService				actorService;
+	private ActorService			actorService;
 
 	@Autowired
-	private SocialProfileService		socialProfileService;
+	private SocialProfileService	socialProfileService;
 
 	@Autowired
-	private MessageService				messageService;
+	private MessageService			messageService;
 
 	@Autowired
-	private CurriculumService			curriculumService;
+	private CurriculumService		curriculumService;
 
 	@Autowired
-	private AuditService				auditService;
+	private ArticleService			articleService;
 
 	@Autowired
-	private AuditorService				auditorService;
+	private CreditCardService		creditCardService;
 
 	@Autowired
-	private ArticleService				articleService;
-
-	@Autowired
-	private CreditCardService			creditCardService;
-
-	@Autowired
-	private FinderService				finderService;
-
-	@Autowired
-	private WorkingOutService			workingOutService;
-
-	@Autowired
-	private ApplicationService			applicationService;
-
-	@Autowired
-	private EndorsementService			endorsementService;
-
-	@Autowired
-	private TrainerService				trainerService;
-
-	@Autowired
-	private SessionService				sessionService;
-
-	@Autowired
-	private EndorserRecordService		endorserRecordService;
-
-	@Autowired
-	private ProfessionalRecordService	professionalRecordService;
-
-	@Autowired
-	private EducationRecordService		educationRecordService;
-
-	@Autowired
-	private PersonalRecordService		personalRecordService;
-
-	@Autowired
-	private MiscellaneousRecordService	miscellaneousRecordService;
+	private WorkingOutService		workingOutService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -222,116 +174,120 @@ public class ExportDataMultiUserController extends AbstractController {
 				if (ss1 < creditCards.size())
 					data += "\r\n" + "......................." + "\r\n\r\n";
 			}
-			/*
-			 * USER IS AUTHENTICATED AS TRAINER
-			 */
-
-			if (actor.getUserAccount().getAuthorities().toString().equals("[TRAINER]")) {
-				Collection<WorkingOut> workingOuts;
-
-				workingOuts = this.workingOutService.findWorkingOutsByPrincipal();
-
-				data += "\r\n";
-				data += "-------------------------------------------------------------";
-				data += "\r\n\r\n";
-
-				data += "Working-outs:\r\n\r\n";
-				final Integer ss2 = 0;
-				for (final WorkingOut workingOut : workingOuts) {
-					Collection<Category> categories;
-					Collection<Session> sessions;
-					Curriculum curriculum;
-					PersonalRecord personalRecord;
-					Collection<EndorserRecord> endorserRecords;
-					Collection<ProfessionalRecord> professionalRecords;
-					Collection<EducationRecord> educationRecords;
-					Collection<MiscellaneousRecord> miscellaneousRecords;
-
-					curriculum = this.curriculumService.findByPrincipal();
-					categories = this.workingOutService.getCategoriesByWorkingOut(workingOut);
-					sessions = this.workingOutService.getSessionsByWorkingOut(workingOut);
-					endorserRecords = curriculum.getEndorserRecords();
-					professionalRecords = curriculum.getProfessionalRecords();
-					educationRecords = curriculum.getEducationRecords();
-					miscellaneousRecords = curriculum.getMiscellaneousRecords();
-					personalRecord = curriculum.getPersonalRecord();
-
-					data += "Ticker: " + workingOut.getTicker() + " \r\n" + "Published moment: " + workingOut.getPublishedMoment() + " \r\n" + "Description: " + workingOut.getDescription() + " \r\n" + "Price: " + workingOut.getPrice() + " \r\n"
-						+ "Start moment: " + workingOut.getStartMoment() + " \r\n" + "End moment: " + workingOut.getEndMoment() + " \r\n" + "Final mode: " + workingOut.getIsFinalMode() + " \r\n" + "Categories: " + workingOut.getEndMoment() + " \r\n";
-
-					data += "Categories:\r\n\r\n";
-					for (final Category category : categories)
-						data += "Name: " + category.getName();
-
-					data += "Sessions:\r\n\r\n";
-					for (final Session session1 : sessions)
-						data += "Title: " + session1.getTitle() + " \r\n" + "Address: " + session1.getAddress() + " \r\n" + "Description" + session1.getDescription() + " \r\n" + "Start/End moment" + session1.getStartMoment() + "/"
-							+ session1.getEndMoment();
-
-					data += "\r\n";
-					data += "-------------------------------------------------------------";
-					data += "\r\n\r\n";
-
-					data += "Curriculum:\r\n\r\n";
-
-					data += "Ticker: " + curriculum.getTicker() + " \r\n" + "Email: " + personalRecord.getEmail() + " \r\n" + "Full name: " + personalRecord.getFullName() + " \r\n" + "LinkedLink profile: " + personalRecord.getLinkedInProfile() + " \r\n"
-						+ "Phone nu,ber: " + personalRecord.getPhoneNumber() + " \r\n" + "Photo: " + personalRecord.getPhoto() + " \r\n" + "\r\n" + "\r\n";
-
-					data += "Miscelleneous records:\r\n\r\n";
-					for (final MiscellaneousRecord miscellaneousRecord : miscellaneousRecords)
-						data += "Title: " + miscellaneousRecord.getTitle() + " \r\n" + "Attachments: " + miscellaneousRecord.getAttachment() + "\r\n" + "\r\n" + "\r\n";
-
-					data += "Education records:\r\n\r\n";
-					for (final EducationRecord educationRecord : educationRecords)
-						data += "Diploma: " + educationRecord.getDiplomaTitle() + " \r\n" + "Attachment: " + educationRecord.getAttachment() + "\r\n" + "Institution: " + educationRecord.getInstitution() + "\r\n" + "Start/End date: "
-							+ educationRecord.getStartDate() + "/" + educationRecord.getEndDate() + "\r\n" + "\r\n" + "\r\n";
-
-					data += "Professional record:\r\n\r\n";
-					for (final ProfessionalRecord professionalRecord : professionalRecords)
-						data += "Attachment: " + professionalRecord.getAttachment() + " \r\n" + "Comments: " + professionalRecord.getComments() + "\r\n" + "Role: " + professionalRecord.getRole() + "\r\n" + "End date: " + professionalRecord.getStartDate()
-							+ "/" + professionalRecord.getEndDate() + "\r\n" + "\r\n" + "\r\n";
-
-					data += "Endorser record:\r\n\r\n";
-					for (final EndorserRecord endorserRecord : endorserRecords)
-						data += "Email: " + endorserRecord.getEmail() + " \r\n" + "Full name: " + endorserRecord.getFullname() + "\r\n" + "LinkedIn profile: " + endorserRecord.getLinkedInProfile() + "\r\n" + "Phone number: "
-							+ endorserRecord.getPhoneNumber() + "\r\n" + "\r\n" + "\r\n";
-
-					data += "\r\n" + "......................." + "\r\n\r\n";
-				}
-			}
-
-			/*
-			 * USER IS AUTHENTICATED AS AUDITOR
-			 */
-
-			if (actor.getUserAccount().getAuthorities().toString().equals("[AUDITOR]")) {
-				final Collection<Audit> audits;
-
-				//	audits = this.auditService.
-
-				data += "\r\n";
-				data += "-------------------------------------------------------------";
-				data += "\r\n\r\n";
-
-				data += "Audits:\r\n\r\n";
-				final Integer ss5 = 0;
-				//						for (final Audit audit: audits) {
-				//							data +=  "Title: " + audit.getTitle() + " \r\n"+ "Moment: " + audit.getMoment() + " \r\n" + "Attachment: " + audit.getAttachments() + " \r\n" + "Description: " + audit.getDescription() + " \r\n" + "Curriculum name personal"+ audit.getCurriculum().getPersonalRecord().getFullName() +  " \r\n";
-				//
-				//							ss5++;
-				//							if (ss5 < audits.size())
-				//								data += "\r\n" + "......................." + "\r\n\r\n";
-				//						}
-
-			}
-
-			response.setContentType("text/plain");
-			response.setHeader("Content-Disposition", "attachment;filename=data_user_account.txt");
-			final ServletOutputStream out = response.getOutputStream();
-			out.println(data);
-			out.flush();
-			out.close();
 		}
+		/*
+		 * USER IS AUTHENTICATED AS TRAINER
+		 */
+
+		if (actor.getUserAccount().getAuthorities().toString().equals("[TRAINER]")) {
+			Collection<WorkingOut> workingOuts;
+
+			workingOuts = this.workingOutService.findWorkingOutsByPrincipal();
+
+			data += "\r\n";
+			data += "-------------------------------------------------------------";
+			data += "\r\n\r\n";
+
+			data += "Working-outs:\r\n\r\n";
+			Integer ss2 = 0;
+			for (final WorkingOut workingOut : workingOuts) {
+				Collection<Category> categories;
+				Collection<Session> sessions;
+
+				categories = this.workingOutService.getCategoriesByWorkingOut(workingOut);
+				sessions = this.workingOutService.getSessionsByWorkingOut(workingOut);
+
+				data += "Ticker: " + workingOut.getTicker() + " \r\n" + "Published moment: " + workingOut.getPublishedMoment() + " \r\n" + "Description: " + workingOut.getDescription() + " \r\n" + "Price: " + workingOut.getPrice() + " \r\n"
+					+ "Start moment: " + workingOut.getStartMoment() + " \r\n" + "End moment: " + workingOut.getEndMoment() + " \r\n" + "Final mode: " + workingOut.getIsFinalMode();
+
+				data += "Categories:";
+				for (final Category category : categories)
+					data += " ;" + category.getName();
+
+				data += "\r\n\r\n";
+				data += "Sessions:\r\n\r\n";
+				for (final Session session1 : sessions)
+					data += "Title: " + session1.getTitle() + " \r\n" + "Address: " + session1.getAddress() + " \r\n" + "Description" + session1.getDescription() + " \r\n" + "Start/End moment" + session1.getStartMoment() + "/" + session1.getEndMoment()
+						+ "\r\n" + "\r\n" + "\r\n";
+				ss2++;
+				if (ss2 < workingOuts.size())
+					data += "\r\n" + "......................." + "\r\n\r\n";
+			}
+			data += "\r\n";
+			data += "-------------------------------------------------------------";
+			data += "\r\n\r\n";
+
+			data += "Curriculum:\r\n\r\n";
+
+			Curriculum curriculum;
+			PersonalRecord personalRecord;
+			Collection<EndorserRecord> endorserRecords;
+			Collection<ProfessionalRecord> professionalRecords;
+			Collection<EducationRecord> educationRecords;
+			Collection<MiscellaneousRecord> miscellaneousRecords;
+
+			curriculum = this.curriculumService.findByPrincipal();
+			endorserRecords = curriculum.getEndorserRecords();
+			professionalRecords = curriculum.getProfessionalRecords();
+			educationRecords = curriculum.getEducationRecords();
+			miscellaneousRecords = curriculum.getMiscellaneousRecords();
+			personalRecord = curriculum.getPersonalRecord();
+
+			data += "Ticker: " + curriculum.getTicker() + " \r\n" + "Email: " + personalRecord.getEmail() + " \r\n" + "Full name: " + personalRecord.getFullName() + " \r\n" + "LinkedLink profile: " + personalRecord.getLinkedInProfile() + " \r\n"
+				+ "Phone nu,ber: " + personalRecord.getPhoneNumber() + " \r\n" + "Photo: " + personalRecord.getPhoto() + " \r\n" + "\r\n" + "\r\n";
+
+			data += "Miscelleneous records:\r\n\r\n";
+			for (final MiscellaneousRecord miscellaneousRecord : miscellaneousRecords)
+				data += "Title: " + miscellaneousRecord.getTitle() + " \r\n" + "Attachments: " + miscellaneousRecord.getAttachment() + "\r\n" + "\r\n" + "\r\n";
+
+			data += "Education records:\r\n\r\n";
+			for (final EducationRecord educationRecord : educationRecords)
+				data += "Diploma: " + educationRecord.getDiplomaTitle() + " \r\n" + "Attachment: " + educationRecord.getAttachment() + "\r\n" + "Institution: " + educationRecord.getInstitution() + "\r\n" + "Start/End date: "
+					+ educationRecord.getStartDate() + "/" + educationRecord.getEndDate() + "\r\n" + "\r\n" + "\r\n";
+
+			data += "Professional record:\r\n\r\n";
+			for (final ProfessionalRecord professionalRecord : professionalRecords)
+				data += "Attachment: " + professionalRecord.getAttachment() + " \r\n" + "Comments: " + professionalRecord.getComments() + "\r\n" + "Role: " + professionalRecord.getRole() + "\r\n" + "End date: " + professionalRecord.getStartDate() + "/"
+					+ professionalRecord.getEndDate() + "\r\n" + "\r\n" + "\r\n";
+
+			data += "Endorser record:\r\n\r\n";
+			for (final EndorserRecord endorserRecord : endorserRecords)
+				data += "Email: " + endorserRecord.getEmail() + " \r\n" + "Full name: " + endorserRecord.getFullname() + "\r\n" + "LinkedIn profile: " + endorserRecord.getLinkedInProfile() + "\r\n" + "Phone number: " + endorserRecord.getPhoneNumber()
+					+ "\r\n" + "\r\n" + "\r\n";
+
+			data += "\r\n" + "......................." + "\r\n\r\n";
+		}
+
+		/*
+		 * USER IS AUTHENTICATED AS AUDITOR
+		 */
+
+		if (actor.getUserAccount().getAuthorities().toString().equals("[AUDITOR]")) {
+			final Collection<Audit> audits;
+
+			//	audits = this.auditService.
+
+			data += "\r\n";
+			data += "-------------------------------------------------------------";
+			data += "\r\n\r\n";
+
+			data += "Audits:\r\n\r\n";
+			final Integer ss5 = 0;
+			//						for (final Audit audit: audits) {
+			//							data +=  "Title: " + audit.getTitle() + " \r\n"+ "Moment: " + audit.getMoment() + " \r\n" + "Attachment: " + audit.getAttachments() + " \r\n" + "Description: " + audit.getDescription() + " \r\n" + "Curriculum name personal"+ audit.getCurriculum().getPersonalRecord().getFullName() +  " \r\n";
+			//
+			//							ss5++;
+			//							if (ss5 < audits.size())
+			//								data += "\r\n" + "......................." + "\r\n\r\n";
+			//						}
+
+		}
+		response.setContentType("text/plain");
+		response.setHeader("Content-Disposition", "attachment;filename=data_user_account.txt");
+		final ServletOutputStream out = response.getOutputStream();
+		out.println(data);
+		out.flush();
+		out.close();
 
 	}
 }
