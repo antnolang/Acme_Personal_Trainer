@@ -335,9 +335,9 @@ public class BoxService {
 	private void checkName(final Box box) {
 		boolean validName;
 
-		validName = box.getName().equals("in box") || box.getName().equals("out box") || box.getName().equals("notification box") || box.getName().equals("trash box") || box.getName().equals("spam box");
+		validName = !box.getName().equals("in box") && !box.getName().equals("out box") && !box.getName().equals("notification box") && !box.getName().equals("trash box") && !box.getName().equals("spam box");
 
-		Assert.isTrue(!validName, "Invalid name");
+		Assert.isTrue(validName, "Invalid name");
 	}
 
 	// Check that box doesn't create a cycle.

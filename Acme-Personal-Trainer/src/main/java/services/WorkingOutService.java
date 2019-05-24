@@ -68,7 +68,8 @@ public class WorkingOutService {
 		Assert.notNull(workingOut);
 		this.checkByPrincipal(workingOut);
 		Assert.isTrue(!workingOut.getIsFinalMode());
-		workingOut.setTicker(this.utilityService.generateValidTicker());
+		if (workingOut.getId() == 0)
+			workingOut.setTicker(this.utilityService.generateValidTicker());
 
 		final WorkingOut result;
 
@@ -337,4 +338,8 @@ public class WorkingOutService {
 
 	}
 
+	public void flush() {
+		this.workingOutRepository.flush();
+
+	}
 }

@@ -137,15 +137,14 @@ public class CreditCardService {
 		Assert.isTrue(owner.equals(principal));
 	}
 
-	private boolean isDeletable(final CreditCard creditCard) {
+	private void isDeletable(final CreditCard creditCard) {
 		final Boolean res;
 		Collection<Application> applicationsWithCreditCard;
 
 		applicationsWithCreditCard = this.applicationService.applicationsWithCreditCard(creditCard.getId());
 
-		res = applicationsWithCreditCard.isEmpty();
+		Assert.isTrue(applicationsWithCreditCard.isEmpty());
 
-		return res;
 	}
 
 	// Reconstruct ----------------------------------------------
@@ -163,6 +162,11 @@ public class CreditCardService {
 		this.validator.validate(result, binding);
 
 		return result;
+	}
+
+	public void flush() {
+		this.creditCardRepository.flush();
+
 	}
 
 }

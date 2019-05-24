@@ -187,7 +187,6 @@ public class BoxServiceTest extends AbstractTest {
 		box.setName("private box");
 
 		saved = this.boxService.save(box);
-		this.boxService.flush();
 
 		Assert.notNull(saved);
 
@@ -197,17 +196,6 @@ public class BoxServiceTest extends AbstractTest {
 	@Test
 	public void driverSave() {
 		final Object testingData[][] = {
-			/*
-			 * A: Requirement 8.5 (An authenticated user can save a box)
-			 * B: Invalid data in box::name.
-			 * C: Analysis of sentence coverage: 23/41 -> 56.97% executed code lines.
-			 * D: Analysis of data coverage: Box::name is null => 1/9 -> 11.11%.
-			 */
-			//TODO:
-			//			{
-			//				null, "box35", ConstraintViolationException.class
-			//			},
-
 			/*
 			 * A: Requirement 8.5 (An authenticated user can save a box)
 			 * B: Invalid data in box::name.

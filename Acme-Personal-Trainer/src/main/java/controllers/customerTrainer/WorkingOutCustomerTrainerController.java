@@ -19,7 +19,6 @@ import services.CustomisationService;
 import services.TrainerService;
 import services.WorkingOutService;
 import controllers.AbstractController;
-import domain.Category;
 import domain.Customer;
 import domain.Session;
 import domain.Trainer;
@@ -65,19 +64,21 @@ public class WorkingOutCustomerTrainerController extends AbstractController {
 		Trainer trainerPrincipal;
 		final Boolean isApplied;
 		Map<Integer, String> categories;
-		Collection<Category> categoriesWorkingOut;
 		Collection<Session> sessions;
 		double VAT;
 		String language;
 
 		try {
 			language = LocaleContextHolder.getLocale().getLanguage();
+
 			VAT = this.customisationService.find().getVAT();
-			result = new ModelAndView("workingOut/display");
+
 			workingOut = this.workingOutService.findOne(workingOutId);
-			categoriesWorkingOut = this.workingOutService.getCategoriesByWorkingOut(workingOut);
-			categories = this.categoryService.categoriesByLanguage(categoriesWorkingOut, language);
+			categories = this.categoryService.categoriesByLanguage(workingOut.getCategories(), language);
+
 			sessions = this.workingOutService.getSessionsByWorkingOut(workingOut);
+
+			result = new ModelAndView("workingOut/display");
 
 			try {
 				customerPrincipal = this.customerService.findByPrincipal();
@@ -92,7 +93,7 @@ public class WorkingOutCustomerTrainerController extends AbstractController {
 			}
 
 			if (trainerPrincipal != null) {
-				workingOut = this.workingOutService.findOne(workingOutId);
+				workingOut = this.workingOutService.findOneToPrincipal(workingOutId);
 
 				result.addObject("workingOut", workingOut);
 				result.addObject("principal", trainerPrincipal);

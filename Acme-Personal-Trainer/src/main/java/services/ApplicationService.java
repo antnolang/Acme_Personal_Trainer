@@ -297,4 +297,27 @@ public class ApplicationService {
 		return result;
 	}
 
+	public Double findRatioRejectedApplications() {
+		Double res;
+
+		res = this.applicationRepository.findRatioRejectedApplications();
+
+		return res;
+	}
+	public Double findRatioAcceptedApplications() {
+		Double res;
+
+		res = this.applicationRepository.findRatioAcceptedApplications();
+
+		return res;
+	}
+
+	public Double findRatioPendingApplications() {
+		Double res;
+
+		res = this.applicationRepository.findRatioPendingApplications();
+
+		return res;
+	}
+
 }
