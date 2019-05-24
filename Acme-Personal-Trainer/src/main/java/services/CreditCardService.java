@@ -102,8 +102,6 @@ public class CreditCardService {
 		this.creditCardRepository.delete(creditCards);
 	}
 
-	// Reconstruct ----------------------------------------------
-
 	// Other business methods ---------------------
 
 	public List<CreditCard> findAllByCustomer() {

@@ -4,6 +4,7 @@ package controllers.customerTrainer;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
@@ -11,15 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 import services.ApplicationService;
-import services.CreditCardService;
 import services.CategoryService;
+import services.CreditCardService;
 import services.CustomerService;
 import services.CustomisationService;
 import services.TrainerService;
 import services.WorkingOutService;
 import controllers.AbstractController;
-import domain.Category;
 import domain.CreditCard;
 import domain.Customer;
 import domain.Session;
@@ -52,7 +53,6 @@ public class WorkingOutCustomerTrainerController extends AbstractController {
 
 	@Autowired
 	private CategoryService			categoryService;
-
 
 
 	// Constructors -----------------------------------------------------------

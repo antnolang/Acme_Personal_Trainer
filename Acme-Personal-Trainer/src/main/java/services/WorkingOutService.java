@@ -234,6 +234,32 @@ public class WorkingOutService {
 
 		this.workingOutRepository.delete(workingOuts);
 	}
+	public WorkingOut findOneToCreateSession(final Integer workingOutId) {
+		WorkingOut res;
+
+		res = this.findOne(workingOutId);
+		Assert.isTrue(!res.getIsFinalMode());
+		this.checkByPrincipal(res);
+
+		return res;
+	}
+
+	public WorkingOut findBySession(final int sessionId) {
+		WorkingOut res;
+
+		res = this.workingOutRepository.findBySession(sessionId);
+
+		return res;
+	}
+
+	public void findToCreateSession(final int workingOutId) {
+		WorkingOut workingOut;
+
+		workingOut = this.findOne(workingOutId);
+		Assert.isTrue(!workingOut.getIsFinalMode());
+		this.checkByPrincipal(workingOut);
+
+	}
 
 	// Protected methods -----------------------------------------------
 	protected String existTicker(final String ticker) {
@@ -324,33 +350,6 @@ public class WorkingOutService {
 		this.validator.validate(result, binding);
 
 		return result;
-	}
-
-	public WorkingOut findOneToCreateSession(final Integer workingOutId) {
-		WorkingOut res;
-
-		res = this.findOne(workingOutId);
-		Assert.isTrue(!res.getIsFinalMode());
-		this.checkByPrincipal(res);
-
-		return res;
-	}
-
-	public WorkingOut findBySession(final int sessionId) {
-		WorkingOut res;
-
-		res = this.workingOutRepository.findBySession(sessionId);
-
-		return res;
-	}
-
-	public void findToCreateSession(final int workingOutId) {
-		WorkingOut workingOut;
-
-		workingOut = this.findOne(workingOutId);
-		Assert.isTrue(!workingOut.getIsFinalMode());
-		this.checkByPrincipal(workingOut);
-
 	}
 
 	public void flush() {

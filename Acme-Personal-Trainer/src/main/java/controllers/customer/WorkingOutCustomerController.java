@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.ApplicationService;
-import services.CustomerService;
 import services.TrainerService;
 import services.WorkingOutService;
 import controllers.AbstractController;
@@ -29,12 +27,6 @@ public class WorkingOutCustomerController extends AbstractController {
 
 	@Autowired
 	private TrainerService		trainerService;
-
-	@Autowired
-	private CustomerService		customerService;
-
-	@Autowired
-	private ApplicationService	applicationService;
 
 
 	// Constructors -----------------------------------------------------------
