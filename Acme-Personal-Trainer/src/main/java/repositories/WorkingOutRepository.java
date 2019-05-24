@@ -50,5 +50,5 @@ public interface WorkingOutRepository extends JpaRepository<WorkingOut, Integer>
 	WorkingOut findBySession(int sessionId);
 
 	@Query("select s from WorkingOut w join w.sessions s where w.id=?1 order by s.startMoment ASC")
-	List<Session> getSssionsOrdered(int id);
+	List<Session> getSessionsOrdered(int id);
 }

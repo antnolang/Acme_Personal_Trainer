@@ -36,6 +36,8 @@ public class WorkingOutService {
 
 	@Autowired
 	private UtilityService			utilityService;
+	@Autowired
+	private MessageService			messageService;
 
 	@Autowired
 	private Validator				validator;
@@ -135,11 +137,9 @@ public class WorkingOutService {
 		workingOut.setPublishedMoment(this.utilityService.current_moment());
 		Assert.isTrue(workingOut.getEndMoment().after(workingOut.getStartMoment()));
 		Assert.isTrue(workingOut.getStartMoment().after(workingOut.getPublishedMoment()));
-		//TODO
-		//		this.messageService.notification_newWorkingOut(workingOut);
+		this.messageService.notification_publishedWorkingOut(workingOut);
 
 	}
-
 	public WorkingOut findOneFinalByPrincipal(final int workingOutId) {
 		WorkingOut result;
 
@@ -252,7 +252,7 @@ public class WorkingOutService {
 		int sizeSessions;
 		Session lastSession;
 
-		sessionsOrdered = this.workingOutRepository.getSssionsOrdered(workingOut.getId());
+		sessionsOrdered = this.workingOutRepository.getSessionsOrdered(workingOut.getId());
 		sizeSessions = sessionsOrdered.size();
 
 		if (sizeSessions == 0) {
