@@ -127,7 +127,7 @@ public class BoxServiceTest extends AbstractTest {
 	/*
 	 * A: Requirement 8.4 (An authenticated user can edit his or her boxes).
 	 * B: A user try to edit a system box.
-	 * C: Analysis of sentence coverage: 2/41 -> 4.88% of executed lines codes .
+	 * C: Analysis of sentence coverage: 2/59 -> 3.39% of executed lines codes .
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -150,7 +150,7 @@ public class BoxServiceTest extends AbstractTest {
 	/*
 	 * A: Requirement 8.4 (An authenticated user can edit his or her boxes).
 	 * B: A user try to edit a box that belongs to another actor.
-	 * C: Analysis of sentence coverage: 15/41 -> 36.58% of executed lines codes .
+	 * C: Analysis of sentence coverage: 15/59 -> 25.42% of executed lines codes .
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -173,7 +173,7 @@ public class BoxServiceTest extends AbstractTest {
 
 	/*
 	 * A: Requirement 8.4 (An authenticated user can edit his or her boxes).
-	 * C: Analysis of sentence coverage: 41/41 -> 100.00% of executed lines codes .
+	 * C: Analysis of sentence coverage: 28/59 -> 47.45% of executed lines codes .
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
 	@Test
@@ -181,12 +181,20 @@ public class BoxServiceTest extends AbstractTest {
 		super.authenticate("auditor1");
 
 		final int boxId = super.getEntityId("box35");
-		Box saved, box;
+		Box saved, box, b;
 
 		box = this.boxService.findOne(boxId);
-		box.setName("private box");
 
-		saved = this.boxService.save(box);
+		b = new Box();
+		b.setId(box.getId());
+		b.setVersion(box.getVersion());
+		b.setMessages(box.getMessages());
+		b.setActor(box.getActor());
+		b.setParent(box.getParent());
+		b.setIsSystemBox(box.getIsSystemBox());
+		b.setName("zzz box");
+
+		saved = this.boxService.save(b);
 
 		Assert.notNull(saved);
 
@@ -199,7 +207,7 @@ public class BoxServiceTest extends AbstractTest {
 			/*
 			 * A: Requirement 8.5 (An authenticated user can save a box)
 			 * B: Invalid data in box::name.
-			 * C: Analysis of sentence coverage: 23/41 -> 56.97% executed code lines.
+			 * C: Analysis of sentence coverage: 41/59 -> 69.49% executed code lines.
 			 * D: Analysis of data coverage: Box::name is empty string => 1/9 -> 11.11%.
 			 */
 			{
@@ -208,7 +216,7 @@ public class BoxServiceTest extends AbstractTest {
 			/*
 			 * A: Requirement 8.5 (An authenticated user can save a box)
 			 * B: Invalid data in box::name.
-			 * C: Analysis of sentence coverage: 23/41 -> 56.97% executed code lines.
+			 * C: Analysis of sentence coverage: 41/59 -> 69.49% executed code lines.
 			 * D: Analysis of data coverage: Box::name is a malicious script => 1/9 -> 11.11%.
 			 */
 			{
@@ -216,7 +224,7 @@ public class BoxServiceTest extends AbstractTest {
 			},
 			/*
 			 * A: Requirement 8.5 (An authenticated user can save a box)
-			 * C: Analysis of sentence coverage: 23/41 -> 56.97% executed code lines.
+			 * C: Analysis of sentence coverage: 41/59 -> 69.49% executed code lines.
 			 * D: Analysis of data coverage: Every attribute has a valid value => 1/9 -> 11.11%.
 			 */
 			{

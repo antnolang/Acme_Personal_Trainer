@@ -161,6 +161,7 @@ public class MessageService {
 		Assert.isTrue(message.getId() == 0);
 		this.checkByPrincipal(message);
 		this.checkPriority(message);
+		Assert.isTrue(!message.getRecipients().contains(message.getSender()));
 
 		Message result;
 		Box inBoxRecipient, outBoxSender, spamBoxRecipient;
