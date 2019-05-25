@@ -18,8 +18,8 @@
 			<spring:message code="finder.category" />
 		</form:label>		
 		<form:select path="category" multiple="false" size="1">
+			<form:option value="" label="----" />
 			<jstl:forEach var="categoryId" items="${categories.keySet()}">
-				<form:option value="" label="----" />
 				<form:option label="${categories.get(categoryId)}" value="${categoryId}"/>
 			</jstl:forEach>
 		</form:select>

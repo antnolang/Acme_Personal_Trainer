@@ -28,7 +28,7 @@
 			</li>
 			<li>
 				<strong><spring:message code="finder.category"/></strong>
-				<jstl:out value="${finder.category}"/>
+				<jstl:out value="${category}"/>
 			</li>
 			<li>
 				<strong><spring:message code="finder.startDate"/></strong>
