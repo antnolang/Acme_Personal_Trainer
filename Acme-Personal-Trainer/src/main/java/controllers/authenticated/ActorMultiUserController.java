@@ -107,13 +107,12 @@ public class ActorMultiUserController extends ActorAbstractController {
 		ModelAndView result;
 		Administrator administrator;
 
-		administrator = this.administratorService.reconstruct(registrationForm, binding);
-
 		if (binding.hasErrors()) {
 			result = this.createModelAndView(registrationForm);
 			result.addObject("rol", "Administrator");
 		} else
 			try {
+				administrator = this.administratorService.reconstruct(registrationForm, binding);
 				this.administratorService.save(administrator);
 				result = new ModelAndView("redirect:/actor/display.do");
 			} catch (final Throwable oops) {
@@ -152,13 +151,12 @@ public class ActorMultiUserController extends ActorAbstractController {
 		ModelAndView result;
 		Customer customer;
 
-		customer = this.customerService.reconstruct(registrationForm, binding);
-
 		if (binding.hasErrors()) {
 			result = this.createModelAndView(registrationForm);
 			result.addObject("rol", "Customer");
 		} else
 			try {
+				customer = this.customerService.reconstruct(registrationForm, binding);
 				this.customerService.save(customer);
 				result = new ModelAndView("redirect:/actor/display.do");
 			} catch (final Throwable oops) {
@@ -197,13 +195,12 @@ public class ActorMultiUserController extends ActorAbstractController {
 		ModelAndView result;
 		Trainer trainer;
 
-		trainer = this.trainerService.reconstruct(registrationForm, binding);
-
 		if (binding.hasErrors()) {
 			result = this.createModelAndView(registrationForm);
 			result.addObject("rol", "Trainer");
 		} else
 			try {
+				trainer = this.trainerService.reconstruct(registrationForm, binding);
 				this.trainerService.save(trainer);
 				result = new ModelAndView("redirect:/actor/display.do");
 			} catch (final Throwable oops) {
@@ -242,13 +239,12 @@ public class ActorMultiUserController extends ActorAbstractController {
 		ModelAndView result;
 		Auditor auditor;
 
-		auditor = this.auditorService.reconstruct(registrationForm, binding);
-
 		if (binding.hasErrors()) {
 			result = this.createModelAndView(registrationForm);
 			result.addObject("rol", "Auditor");
 		} else
 			try {
+				auditor = this.auditorService.reconstruct(registrationForm, binding);
 				this.auditorService.save(auditor);
 				result = new ModelAndView("redirect:/actor/display.do");
 			} catch (final Throwable oops) {
@@ -287,13 +283,12 @@ public class ActorMultiUserController extends ActorAbstractController {
 		ModelAndView result;
 		Nutritionist nutritionist;
 
-		nutritionist = this.nutritionistService.reconstruct(registrationForm, binding);
-
 		if (binding.hasErrors()) {
 			result = this.createModelAndView(registrationForm);
 			result.addObject("rol", "Nutritionist");
 		} else
 			try {
+				nutritionist = this.nutritionistService.reconstruct(registrationForm, binding);
 				this.nutritionistService.save(nutritionist);
 				result = new ModelAndView("redirect:/actor/display.do");
 			} catch (final Throwable oops) {
