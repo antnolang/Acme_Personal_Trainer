@@ -114,7 +114,7 @@ public class MessageServiceTest extends AbstractTest {
 		receivedMessages = this.messageService.findReceivedMessagesByActor(actorId);
 
 		Assert.isTrue(sentMessages.size() == 0);
-		Assert.isTrue(receivedMessages.size() == 9);
+		Assert.isTrue(receivedMessages.size() == 6);
 
 		super.unauthenticate();
 	}
@@ -148,7 +148,7 @@ public class MessageServiceTest extends AbstractTest {
 	/*
 	 * A: Requirement 8.3 (An authenticated user can send a message).
 	 * B: An user try to edit a message.
-	 * C: Analysis of sentence coverage: 2/82 -> 2.44% of executed lines codes .
+	 * C: Analysis of sentence coverage: 2/83 -> 2.41% of executed lines codes .
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -172,7 +172,7 @@ public class MessageServiceTest extends AbstractTest {
 	/*
 	 * A: Requirement 8.3 (An authenticated user can send a message).
 	 * B: An user try to send a message with an invalid priority.
-	 * C: Analysis of sentence coverage: 25/82 -> 30.49% of executed lines codes .
+	 * C: Analysis of sentence coverage: 25/83 -> 30.12% of executed lines codes .
 	 * D: Analysis of data coverage: intentionally blank.
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -210,7 +210,7 @@ public class MessageServiceTest extends AbstractTest {
 			/*
 			 * A: Requirement 8.3 (An authenticated user can send a message).
 			 * B: Invalid data in Message::subject.
-			 * C: Analysis of sentence coverage: 76/82 -> 92.68% of executed lines codes .
+			 * C: Analysis of sentence coverage: 77/83 -> 92.77% of executed lines codes .
 			 * D: Analysis of data coverage: Message::subject is null => 1/12 -> 8.33%.
 			 */
 			{
@@ -219,7 +219,7 @@ public class MessageServiceTest extends AbstractTest {
 			/*
 			 * A: Requirement 8.3 (An authenticated user can send a message).
 			 * B: Invalid data in Message::subject.
-			 * C: Analysis of sentence coverage: 76/82 -> 92.68% of executed lines codes .
+			 * C: Analysis of sentence coverage: 77/83 -> 92.77% of executed lines codes .
 			 * D: Analysis of data coverage: Message::subject is a empty string => 1/12 -> 8.33%.
 			 */
 			{
@@ -228,7 +228,7 @@ public class MessageServiceTest extends AbstractTest {
 			/*
 			 * A: Requirement 8.3 (An authenticated user can send a message).
 			 * B: Invalid data in Message::subject.
-			 * C: Analysis of sentence coverage: 76/82 -> 92.68% of executed lines codes .
+			 * C: Analysis of sentence coverage: 77/83 -> 92.77% of executed lines codes .
 			 * D: Analysis of data coverage: Message::subject is a malicious script => 1/12 -> 8.33%.
 			 */
 			{
@@ -237,7 +237,7 @@ public class MessageServiceTest extends AbstractTest {
 			/*
 			 * A: Requirement 8.3 (An authenticated user can send a message).
 			 * B: Invalid data in Message::body.
-			 * C: Analysis of sentence coverage: 76/82 -> 92.68% of executed lines codes .
+			 * C: Analysis of sentence coverage: 77/83 -> 92.77% of executed lines codes .
 			 * D: Analysis of data coverage: Message::body is null => 1/12 -> 8.33%.
 			 */
 			{
@@ -246,7 +246,7 @@ public class MessageServiceTest extends AbstractTest {
 			/*
 			 * A: Requirement 8.3 (An authenticated user can send a message).
 			 * B: Invalid data in Message::body.
-			 * C: Analysis of sentence coverage: 76/82 -> 92.68% of executed lines codes .
+			 * C: Analysis of sentence coverage: 77/83 -> 92.77% of executed lines codes .
 			 * D: Analysis of data coverage: Message::body is a empty string => 1/12 -> 8.33%.
 			 */
 			{
@@ -255,7 +255,7 @@ public class MessageServiceTest extends AbstractTest {
 			/*
 			 * A: Requirement 8.3 (An authenticated user can send a message).
 			 * B: Invalid data in Message::body.
-			 * C: Analysis of sentence coverage: 76/82 -> 92.68% of executed lines codes .
+			 * C: Analysis of sentence coverage: 77/83 -> 92.77% of executed lines codes .
 			 * D: Analysis of data coverage: Message::body is a malicious script => 1/12 -> 8.33%.
 			 */
 			{
@@ -264,7 +264,7 @@ public class MessageServiceTest extends AbstractTest {
 			/*
 			 * A: Requirement 8.3 (An authenticated user can send a message).
 			 * B: Invalid data in Message::subject.
-			 * C: Analysis of sentence coverage: 76/82 -> 92.68% of executed lines codes .
+			 * C: Analysis of sentence coverage: 77/83 -> 92.77% of executed lines codes .
 			 * D: Analysis of data coverage: Message::tags is a malicious script => 1/12 -> 8.33%.
 			 */
 			{
@@ -272,7 +272,7 @@ public class MessageServiceTest extends AbstractTest {
 			},
 			/*
 			 * A: Requirement 8.3 (An authenticated user can send a message).
-			 * C: Analysis of sentence coverage: 76/82 -> 92.68% of executed lines codes .
+			 * C: Analysis of sentence coverage: 77/83 -> 92.77% of executed lines codes .
 			 * D: Analysis of data coverage: Every attribute has a valid value => 12/12 -> 100.00%.
 			 */
 			{
@@ -280,7 +280,7 @@ public class MessageServiceTest extends AbstractTest {
 			},
 			/*
 			 * A: Requirement 8.3 (An authenticated user can send a message).
-			 * C: Analysis of sentence coverage: 76/82 -> 92.68% of executed lines codes .
+			 * C: Analysis of sentence coverage: 77/83 -> 92.77% of executed lines codes .
 			 * D: Analysis of data coverage: Every attribute has a valid value => 12/12 -> 100.00%.
 			 */
 			{
@@ -288,7 +288,7 @@ public class MessageServiceTest extends AbstractTest {
 			},
 			/*
 			 * A: Requirement 8.3 (An authenticated user can send a message).
-			 * C: Analysis of sentence coverage: 76/82 -> 92.68% of executed lines codes .
+			 * C: Analysis of sentence coverage: 77/83 -> 92.77% of executed lines codes .
 			 * D: Analysis of data coverage: Every attribute has a valid value => 12/12 -> 100.00%.
 			 */
 			{
