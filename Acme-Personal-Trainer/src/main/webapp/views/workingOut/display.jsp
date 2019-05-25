@@ -66,7 +66,13 @@
 	<security:authorize access="hasRole('TRAINER')">
 	<jstl:if test="${principal == workingOut.trainer}">
 		<strong><spring:message code="workingOut.finalMode"/>:</strong>
-			<jstl:out value="${workingOut.isFinalMode}"/>
+			<jstl:if test="${workingOut.isFinalMode == true }">
+					<spring:message code="workingOut.yes" />
+			</jstl:if>
+			<jstl:if test="${workingOut.isFinalMode == false }">
+					<spring:message code="workingOut.no" />
+			</jstl:if>
+		
 		<br/>
 		
 		<strong><spring:message code="workingOut.applications"/>:</strong>
@@ -86,6 +92,9 @@
 	<display:column value="${categories.get(fila)}" titleKey="workingOut.name" />
 </display:table>
 </fieldset>
+<br>
+
+
 
 <fieldset>
 	<legend><spring:message code="workingOut.sessions"/></legend>	
@@ -125,6 +134,7 @@
 	</jstl:if>
 </security:authorize>	
 </fieldset>
+
 
 	<br/>
 	<!-- Links -->	

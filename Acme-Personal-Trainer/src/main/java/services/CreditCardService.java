@@ -63,8 +63,9 @@ public class CreditCardService {
 
 	public CreditCard save(final CreditCard creditCard) {
 		Assert.notNull(creditCard);
-		this.checkByPrincipal(creditCard);
+		Assert.isTrue(creditCard.getId() == 0);
 		Assert.isTrue(!this.utilityService.checkIsExpired(creditCard), "Expired credit card");
+		this.checkByPrincipal(creditCard);
 
 		final CreditCard result;
 
@@ -101,8 +102,6 @@ public class CreditCardService {
 		this.creditCardRepository.delete(creditCards);
 	}
 
-	// Reconstruct ----------------------------------------------
-
 	// Other business methods ---------------------
 
 	public List<CreditCard> findAllByCustomer() {
@@ -138,7 +137,6 @@ public class CreditCardService {
 	}
 
 	private void isDeletable(final CreditCard creditCard) {
-		final Boolean res;
 		Collection<Application> applicationsWithCreditCard;
 
 		applicationsWithCreditCard = this.applicationService.applicationsWithCreditCard(creditCard.getId());
@@ -152,12 +150,12 @@ public class CreditCardService {
 		CreditCard result;
 
 		result = this.create();
-		result.setBrandName(creditCard.getBrandName());
+		result.setBrandName(creditCard.getBrandName().trim());
 		result.setCvvCode(creditCard.getCvvCode());
-		result.setExpirationMonth(creditCard.getExpirationMonth());
-		result.setExpirationYear(creditCard.getExpirationYear());
-		result.setHolderName(creditCard.getHolderName());
-		result.setNumber(creditCard.getNumber());
+		result.setExpirationMonth(creditCard.getExpirationMonth().trim());
+		result.setExpirationYear(creditCard.getExpirationYear().trim());
+		result.setHolderName(creditCard.getHolderName().trim());
+		result.setNumber(creditCard.getNumber().trim());
 
 		this.validator.validate(result, binding);
 

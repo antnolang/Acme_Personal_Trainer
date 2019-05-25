@@ -97,7 +97,8 @@
 			href="actor/administrator,auditor,customer,nutritionist,trainer/edit.do?actorId=${actor.id}"><spring:message
 				code="actor.edit" /></a>
 	</jstl:if>
-	
+	<br>
+	<br>
 	<jstl:if test="${isAuthorized == true}">
 		<a href="exportData/administrator,auditor,customer,nutritionist,trainer/export.do"><spring:message code="actor.exportData" /> </a>
 	</jstl:if>

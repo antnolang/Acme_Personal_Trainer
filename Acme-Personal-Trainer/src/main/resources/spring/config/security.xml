@@ -81,6 +81,8 @@
 		<security:intercept-url pattern="/endorserRecord/trainer/**" access="hasRole('TRAINER')" /> 
 		<security:intercept-url pattern="/endorserRecord/**" access="permitAll" /> 
 		
+		<security:intercept-url pattern="/finder/customer/**" access="hasRole('CUSTOMER')" />  
+		
 		<security:intercept-url pattern="/personalRecord/trainer/**" access="hasRole('TRAINER')" /> 
 		<security:intercept-url pattern="/personalRecord/**" access="permitAll" /> 
 		
@@ -104,6 +106,7 @@
 		
 		<security:intercept-url pattern="/creditCard/customer/**" access="hasRole('CUSTOMER')" />
 		
+		<security:intercept-url pattern="/exportData/administrator,auditor,customer,nutritionist,trainer/export.do" access="isAuthenticated()" />
 		
 		<security:intercept-url pattern="/session/trainer/**" access="hasRole('TRAINER')" />
 		

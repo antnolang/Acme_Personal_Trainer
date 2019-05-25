@@ -27,9 +27,6 @@ public class SessionService {
 	// Supporting services -------------------------------------------
 
 	@Autowired
-	private TrainerService		trainerService;
-
-	@Autowired
 	private WorkingOutService	workingOutService;
 
 	@Autowired
@@ -64,12 +61,15 @@ public class SessionService {
 
 		Assert.isTrue(!workingOut.getIsFinalMode());
 		this.workingOutService.checkByPrincipal(workingOut);
-		Assert.isTrue(!session.getEndMoment().before(session.getStartMoment()), "Start moment before end moment");
-		Assert.isTrue(session.getStartMoment().after(this.utilityService.current_moment()), "Start moment in the future");
-		this.workingOutService.updateMomentWorkingOut(workingOut, session);
 
-		if (session.getId() == 0)
+		if (session.getId() == 0) {
 			sessionsWO.add(session);
+			Assert.isTrue(session.getEndMoment().after(session.getStartMoment()), "Start moment before end moment");
+			Assert.isTrue(session.getStartMoment().after(this.utilityService.current_moment()), "Start moment in the future");
+			this.workingOutService.updateMomentWorkingOut(workingOut, session);
+		}
+
+		this.sessionRepository.save(session);
 
 		return result;
 	}
@@ -82,12 +82,6 @@ public class SessionService {
 
 		return result;
 	}
-
-	// Other business methods ---------------------
-
-	// Protected methods -----------------------------------------------
-
-	// Private methods-----------------------------------------------
 
 	// Reconstruct ----------------------------------------------
 
@@ -109,9 +103,9 @@ public class SessionService {
 
 		}
 
-		result.setAddress(session.getAddress());
-		result.setDescription(session.getDescription());
-		result.setTitle(session.getTitle());
+		result.setAddress(session.getAddress().trim());
+		result.setDescription(session.getDescription().trim());
+		result.setTitle(session.getTitle().trim());
 
 		this.validator.validate(result, binding);
 

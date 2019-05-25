@@ -27,6 +27,5 @@
 </display:table>
 
 
-<security:authorize access="hasRole('CUSTOMER')">
- 			<a href="creditCard/customer/create.do"><spring:message code="creditCard.create"/></a>
- 	</security:authorize>
+ <a href="creditCard/customer/create.do"><spring:message code="creditCard.create"/></a>
+ 	
