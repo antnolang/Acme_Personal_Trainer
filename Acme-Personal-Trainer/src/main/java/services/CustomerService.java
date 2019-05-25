@@ -194,7 +194,7 @@ public class CustomerService {
 		Pageable page;
 		Page<Customer> customers;
 
-		page = new PageRequest(0, 5);
+		page = new PageRequest(0, 3);
 		customers = this.customerRepository.findCustomerWriteMostEndorsement(page);
 		results = customers.getContent();
 		Assert.notNull(results);
