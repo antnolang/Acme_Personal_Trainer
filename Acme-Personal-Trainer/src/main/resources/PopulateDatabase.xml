@@ -512,7 +512,7 @@
 		<property name="title" value="Audit6" />
 		<property name="description" value="Description audit1" />
 		<property name="attachments" value="http://www.attachment.es" />
-		<property name="auditor" ref="auditor1" />
+		<property name="auditor" ref="auditor2" />
 		<property name="curriculum" ref="curriculum1" />
 	</bean>
 

@@ -33,15 +33,17 @@ public class CurriculumController extends AbstractController {
 	public ModelAndView display(@RequestParam final int curriculumId) {
 		ModelAndView result;
 		Curriculum curriculum;
-		boolean isOwner;
+		boolean isOwner, isAuditable;
 
 		curriculum = this.curriculumService.findOne(curriculumId);
 		isOwner = this.curriculumService.checkPrincipalIsOwner(curriculum);
+		isAuditable = this.curriculumService.checkIsAuditable(curriculum);
 
 		result = new ModelAndView("curriculum/display");
 		result.addObject("requestURI", "curriculum/display.do");
 		result.addObject("curriculum", curriculum);
 		result.addObject("isOwner", isOwner);
+		result.addObject("isAuditable", isAuditable);
 
 		return result;
 	}

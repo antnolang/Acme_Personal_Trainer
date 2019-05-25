@@ -132,7 +132,7 @@ public class AuditorService {
 		return result;
 	}
 
-	private Auditor findByUserAccount(final int userAccountId) {
+	protected Auditor findByUserAccount(final int userAccountId) {
 		Auditor result;
 
 		result = this.auditorRepository.findByUserAccount(userAccountId);

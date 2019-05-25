@@ -14,6 +14,8 @@ import repositories.CurriculumRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import domain.Audit;
+import domain.Auditor;
 import domain.Curriculum;
 import domain.EducationRecord;
 import domain.EndorserRecord;
@@ -35,6 +37,9 @@ public class CurriculumService {
 
 	@Autowired
 	private PersonalRecordService	personalRecordService;
+
+	@Autowired
+	private AuditorService			auditorService;
 
 	@Autowired
 	private TrainerService			trainerService;
@@ -189,6 +194,27 @@ public class CurriculumService {
 		if (principal != null && principal.getAuthorities().contains(auth)) {
 			trainer = this.trainerService.findByPrincipal();
 			res = curriculum.getTrainer().equals(trainer);
+		} else
+			res = false;
+
+		return res;
+	}
+
+	public boolean checkIsAuditable(final Curriculum curriculum) {
+		Audit audit;
+		Auditor auditor;
+		UserAccount principal;
+		Authority auth;
+		boolean res;
+
+		principal = LoginService.getPrincipal();
+		auth = new Authority();
+		auth.setAuthority(Authority.AUDITOR);
+
+		if (principal != null && principal.getAuthorities().contains(auth)) {
+			auditor = this.auditorService.findByUserAccount(principal.getId());
+			audit = this.auditService.findByAuditorIdCurriculumId(auditor.getId(), curriculum.getId());
+			res = audit == null;
 		} else
 			res = false;
 

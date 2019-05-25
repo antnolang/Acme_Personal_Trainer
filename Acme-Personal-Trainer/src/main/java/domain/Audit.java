@@ -7,19 +7,23 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
-import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {
+	"auditor", "curriculum"
+}))
 public class Audit extends DomainEntity {
 
 	// Constructor
@@ -69,7 +73,6 @@ public class Audit extends DomainEntity {
 		this.description = description;
 	}
 
-	@URL
 	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getAttachments() {
 		return this.attachments;
