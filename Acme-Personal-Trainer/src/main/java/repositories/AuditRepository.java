@@ -16,5 +16,8 @@ public interface AuditRepository extends JpaRepository<Audit, Integer> {
 	Collection<Audit> findAllByCurriculumId(int curriculumId);
 
 	@Query("select a from Audit a where a.auditor.id = ?1")
-	Collection<Audit> findByAuditorId(int auditorId);
+	Collection<Audit> findAllByAuditorId(int auditorId);
+
+	@Query("select a from Audit a where a.auditor.id = ?1 and a.curriculum.id = ?2")
+	Audit findByAuditorIdCurriculumId(int auditorId, int curriculumId);
 }

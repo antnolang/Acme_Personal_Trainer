@@ -8,6 +8,13 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 
+<jstl:if test="${isAuditable}">
+	<h2>
+		<a href="audit/auditor/create.do?curriculumId=${curriculum.id}"><spring:message code="curriculum.create.audit"/></a>
+	</h2>
+</jstl:if>
+
+
 <fieldset>
 	<legend><spring:message code="curriculum.fieldset.general"/></legend>
 	<p>

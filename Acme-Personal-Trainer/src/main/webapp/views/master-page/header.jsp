@@ -25,6 +25,10 @@
 			</li>
 		</security:authorize>
 		
+		<security:authorize access="hasRole('AUDITOR')">
+			<li><a class="fNiv" href="audit/auditor/list.do"><spring:message code="master.page.audit" /></a></li>
+		</security:authorize>
+		
 		<security:authorize access="hasRole('CUSTOMER')">
 			<li><a class="fNiv"><spring:message	code="master.page.application" /></a>
 				<ul>

@@ -65,6 +65,8 @@
 		<security:intercept-url pattern="/application/trainer/**" access="hasRole('TRAINER')" /> 
 		<security:intercept-url pattern="/application/customer/**" access="hasRole('CUSTOMER')" /> 
 		
+		<security:intercept-url pattern="/audit/auditor/**" access="hasRole('AUDITOR')" />
+		
 		<security:intercept-url pattern="/curriculum/trainer/**" access="hasRole('TRAINER')" />
 		<security:intercept-url pattern="/curriculum/**" access="isAuthenticated()" />
 		
