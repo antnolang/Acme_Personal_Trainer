@@ -86,15 +86,17 @@
 
 <fieldset>
 	<legend><spring:message code="workingOut.categories"/></legend>
-		
-<display:table name="${categories.keySet()}" id="fila" requestURI="workingOut/customer,trainer/display.do" class="displaytag" pagesize="5">
-		
-	<display:column value="${categories.get(fila)}" titleKey="workingOut.name" />
-</display:table>
+	<table>
+		<tr>
+			<th> <spring:message code="workingOut.name" /> </th>
+		</tr>
+		<jstl:forEach var="fila" items="${categories.keySet()}">
+			<tr>
+				<td> <jstl:out value="${categories.get(fila)}" /> </td>
+			</tr>
+		</jstl:forEach>
+	</table>
 </fieldset>
-<br>
-
-
 
 <fieldset>
 	<legend><spring:message code="workingOut.sessions"/></legend>	
