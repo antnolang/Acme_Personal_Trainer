@@ -64,6 +64,9 @@ public class ActorService {
 			result.setPhoto(actor.getPhoto().trim());
 		result.setPhoneNumber(this.utilityService.getValidPhone(actor.getPhoneNumber()));
 
+		if (!isUpdating)
+			this.boxService.createSystemBoxes(result);
+
 		return result;
 
 	}

@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import services.ApplicationService;
 import services.CategoryService;
-import services.CustomerService;
 import services.TrainerService;
 import services.WorkingOutService;
 import controllers.AbstractController;
@@ -35,12 +33,6 @@ public class WorkingOutTrainerController extends AbstractController {
 
 	@Autowired
 	private TrainerService		trainerService;
-
-	@Autowired
-	private CustomerService		customerService;
-
-	@Autowired
-	private ApplicationService	applicationService;
 
 	@Autowired
 	private CategoryService		categoryService;

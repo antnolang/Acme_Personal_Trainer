@@ -52,8 +52,9 @@ public interface WorkingOutRepository extends JpaRepository<WorkingOut, Integer>
 	WorkingOut findBySession(int sessionId);
 
 	@Query("select s from WorkingOut w join w.sessions s where w.id=?1 order by s.startMoment ASC")
-	List<Session> getSssionsOrdered(int id);
+	List<Session> getSessionsOrdered(int id);
 
 	@Query("select distinct w from WorkingOut w join w.sessions s where (w.isFinalMode = true) and ((w.ticker like concat('%', concat(?1, '%'))) or (w.description like concat('%', concat(?1, '%'))) or (s.address like concat('%', concat(?1, '%')))) and (?2 member of w.categories or ?2 = NULL) and (w.startMoment >= ?3 or ?3 = NULL) and (w.endMoment <= ?4 or ?4 = NULL) and (w.price >= ?5 or ?5 = NULL) and (w.price <= ?6 or ?6 = NULL)")
 	Page<WorkingOut> searchWorkingOutFinder(String keyword, Category category, Date startDate, Date endDate, Double startPrice, Double endPrice, Pageable pageable);
+
 }

@@ -39,6 +39,11 @@ public class WorkingOutService {
 
 	@Autowired
 	private UtilityService			utilityService;
+	@Autowired
+	private MessageService			messageService;
+
+	@Autowired
+	private FinderService			finderService;
 
 	@Autowired
 	private Validator				validator;
@@ -86,10 +91,10 @@ public class WorkingOutService {
 		Assert.isTrue(this.workingOutRepository.exists(workingOut.getId()));
 		this.checkByPrincipal(workingOut);
 		Assert.isTrue(!workingOut.getIsFinalMode());
+		this.finderService.deleteFromFinders(workingOut);
 
 		this.workingOutRepository.delete(workingOut);
 	}
-
 	public WorkingOut findOne(final int workingOutId) {
 		WorkingOut result;
 
@@ -138,11 +143,9 @@ public class WorkingOutService {
 		workingOut.setPublishedMoment(this.utilityService.current_moment());
 		Assert.isTrue(workingOut.getEndMoment().after(workingOut.getStartMoment()));
 		Assert.isTrue(workingOut.getStartMoment().after(workingOut.getPublishedMoment()));
-		//TODO
-		//		this.messageService.notification_newWorkingOut(workingOut);
+		this.messageService.notification_publishedWorkingOut(workingOut);
 
 	}
-
 	public WorkingOut findOneFinalByPrincipal(final int workingOutId) {
 		WorkingOut result;
 
@@ -231,6 +234,32 @@ public class WorkingOutService {
 
 		this.workingOutRepository.delete(workingOuts);
 	}
+	public WorkingOut findOneToCreateSession(final Integer workingOutId) {
+		WorkingOut res;
+
+		res = this.findOne(workingOutId);
+		Assert.isTrue(!res.getIsFinalMode());
+		this.checkByPrincipal(res);
+
+		return res;
+	}
+
+	public WorkingOut findBySession(final int sessionId) {
+		WorkingOut res;
+
+		res = this.workingOutRepository.findBySession(sessionId);
+
+		return res;
+	}
+
+	public void findToCreateSession(final int workingOutId) {
+		WorkingOut workingOut;
+
+		workingOut = this.findOne(workingOutId);
+		Assert.isTrue(!workingOut.getIsFinalMode());
+		this.checkByPrincipal(workingOut);
+
+	}
 
 	// Protected methods -----------------------------------------------
 	protected String existTicker(final String ticker) {
@@ -255,7 +284,7 @@ public class WorkingOutService {
 		int sizeSessions;
 		Session lastSession;
 
-		sessionsOrdered = this.workingOutRepository.getSssionsOrdered(workingOut.getId());
+		sessionsOrdered = this.workingOutRepository.getSessionsOrdered(workingOut.getId());
 		sizeSessions = sessionsOrdered.size();
 
 		if (sizeSessions == 0) {
@@ -321,33 +350,6 @@ public class WorkingOutService {
 		this.validator.validate(result, binding);
 
 		return result;
-	}
-
-	public WorkingOut findOneToCreateSession(final Integer workingOutId) {
-		WorkingOut res;
-
-		res = this.findOne(workingOutId);
-		Assert.isTrue(!res.getIsFinalMode());
-		this.checkByPrincipal(res);
-
-		return res;
-	}
-
-	public WorkingOut findBySession(final int sessionId) {
-		WorkingOut res;
-
-		res = this.workingOutRepository.findBySession(sessionId);
-
-		return res;
-	}
-
-	public void findToCreateSession(final int workingOutId) {
-		WorkingOut workingOut;
-
-		workingOut = this.findOne(workingOutId);
-		Assert.isTrue(!workingOut.getIsFinalMode());
-		this.checkByPrincipal(workingOut);
-
 	}
 
 	public void flush() {

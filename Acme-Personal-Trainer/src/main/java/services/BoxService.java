@@ -92,6 +92,9 @@ public class BoxService {
 		this.checkByPrincipal(box);
 		this.checkName(box);
 
+		if (box.getParent() != null)
+			this.checkByPrincipal(box.getParent());
+
 		Box result;
 
 		if (this.boxRepository.exists(box.getId()) && box.getParent() != null)
@@ -334,8 +337,15 @@ public class BoxService {
 	// Private methods ---------------------------
 	private void checkName(final Box box) {
 		boolean validName;
+		Integer number;
 
 		validName = !box.getName().equals("in box") && !box.getName().equals("out box") && !box.getName().equals("notification box") && !box.getName().equals("trash box") && !box.getName().equals("spam box");
+
+		if (box.getParent() == null) {
+			number = this.findNumberOfBoxByNameActor(box.getActor().getId(), box.getName());
+
+			validName = validName && number == 0;
+		}
 
 		Assert.isTrue(validName, "Invalid name");
 	}
@@ -361,6 +371,14 @@ public class BoxService {
 		box.setName(name);
 
 		this.boxRepository.save(box);
+	}
+
+	private Integer findNumberOfBoxByNameActor(final int actorId, final String name) {
+		Integer result;
+
+		result = this.boxRepository.findNumberOfBoxByNameActor(actorId, name);
+
+		return result;
 	}
 
 }

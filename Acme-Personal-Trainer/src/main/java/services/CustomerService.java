@@ -122,7 +122,7 @@ public class CustomerService {
 		result = (Customer) this.actorService.save(customer);
 
 		if (customer.getId() == 0)
-			this.finderService.assignNewFinder(customer);
+			this.finderService.assignNewFinder(result);
 
 		return result;
 	}

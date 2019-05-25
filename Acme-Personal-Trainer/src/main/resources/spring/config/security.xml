@@ -108,6 +108,7 @@
 		
 		<security:intercept-url pattern="/creditCard/customer/**" access="hasRole('CUSTOMER')" />
 		
+		<security:intercept-url pattern="/exportData/administrator,auditor,customer,nutritionist,trainer/export.do" access="isAuthenticated()" />
 		
 		<security:intercept-url pattern="/session/trainer/**" access="hasRole('TRAINER')" />
 		

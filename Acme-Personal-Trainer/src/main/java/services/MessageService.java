@@ -161,6 +161,7 @@ public class MessageService {
 		Assert.isTrue(message.getId() == 0);
 		this.checkByPrincipal(message);
 		this.checkPriority(message);
+		Assert.isTrue(!message.getRecipients().contains(message.getSender()));
 
 		Message result;
 		Box inBoxRecipient, outBoxSender, spamBoxRecipient;
@@ -401,7 +402,7 @@ public class MessageService {
 		ticker = workingOut.getTicker();
 
 		subject = "Working-out notification. / Notificación de programa de entrenamiento.";
-		body = "A working-out whose ticker is " + ticker + " has been published. / Un programa de entrenamiento cuyo ticker es " + " ha sido publicado.";
+		body = "A working-out whose ticker is " + ticker + " has been published. / Un programa de entrenamiento cuyo ticker es " + ticker + " ha sido publicado.";
 
 		notification = this.createNotification(recipients, subject, body);
 

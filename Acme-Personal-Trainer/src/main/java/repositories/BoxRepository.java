@@ -45,4 +45,7 @@ public interface BoxRepository extends JpaRepository<Box, Integer> {
 	@Query("select b from Box b join b.messages m where m.id=?1")
 	Collection<Box> findBoxesByMessage(int messageId);
 
+	@Query("select count(b) from Box b where b.actor.id=?1 and b.name=?2 and b.parent is null")
+	Integer findNumberOfBoxByNameActor(int actorId, String name);
+
 }
