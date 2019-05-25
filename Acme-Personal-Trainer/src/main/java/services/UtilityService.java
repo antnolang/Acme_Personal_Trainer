@@ -247,18 +247,4 @@ public class UtilityService {
 
 	}
 
-	public void checkAttachments(final String attachments) {
-		final List<String> attachmentsList;
-
-		Assert.notNull(attachments);
-		attachmentsList = this.getSplittedString(attachments);
-
-		for (final String at : attachmentsList)
-			try {
-				new URL(at);
-			} catch (final MalformedURLException e) {
-				throw new DataIntegrityViolationException("Invalid URL");
-			}
-	}
-
 }

@@ -25,4 +25,5 @@
 
 	<display:column property="title" titleKey="audit.table.title" sortable="true"/>
 	<display:column property="moment" titleKey="audit.table.moment" sortable="true" format="${formatMoment}"/>
+	<display:column property="curriculum.ticker" titleKey="audit.table.curriculum" sortable="true" href="curriculum/display.do" paramId="curriculumId" paramProperty="curriculum.id"/>
 </display:table>

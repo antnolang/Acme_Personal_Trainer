@@ -56,6 +56,7 @@ public class AuditService {
 		result = new Audit();
 		result.setCurriculum(curriculum);
 		result.setAuditor(principal);
+		result.setMoment(this.utilityService.current_moment());
 
 		return result;
 	}
@@ -72,13 +73,10 @@ public class AuditService {
 
 	public Audit save(final Audit audit) {
 		Assert.notNull(audit);
-		this.utilityService.checkAttachments(audit.getAttachments());
+		this.utilityService.checkURLS(audit.getAttachments());
 		this.checkOwner(audit);
 
 		Audit saved;
-
-		if (!this.auditRepository.exists(audit.getId()))
-			audit.setMoment(this.utilityService.current_moment());
 
 		saved = this.auditRepository.save(audit);
 
@@ -137,8 +135,9 @@ public class AuditService {
 
 			result.setId(audit.getId());
 			result.setVersion(auditStored.getVersion());
-			result.setCurriculum(audit.getCurriculum());
-			result.setAuditor(audit.getAuditor());
+			result.setCurriculum(auditStored.getCurriculum());
+			result.setAuditor(auditStored.getAuditor());
+			result.setMoment(auditStored.getMoment());
 		}
 
 		result.setTitle(audit.getTitle().trim());

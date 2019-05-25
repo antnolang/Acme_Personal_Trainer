@@ -10,13 +10,12 @@
 
 <form:form action="audit/auditor/edit.do" modelAttribute="audit">
 	<form:hidden path="id"/>
+	<jstl:if test="${audit.id == 0}">
+		<form:hidden path="curriculum"/>
+	</jstl:if>
 	
-	<p>
-		<strong><spring:message code="audit.curriculum"/> </strong>
-		<a href="curriculum/display.do?curriculumId=${audit.curriculum.id}"><jstl:out value="${audit.curriculum.ticker}"/></a>
-	</p>
 	<acme:textbox code="audit.title" path="title"/>
-	<acme:textbox code="audit.description" path="description"/>
+	<acme:textarea code="audit.description" path="description"/>
 	
 	<p style="color:blue;"><spring:message code="audit.info.attachments"/></p>
 	<acme:textarea code="audit.attachments" path="attachments"/>

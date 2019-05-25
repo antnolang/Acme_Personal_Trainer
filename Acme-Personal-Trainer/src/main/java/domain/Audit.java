@@ -17,7 +17,6 @@ import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
-import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -74,7 +73,6 @@ public class Audit extends DomainEntity {
 		this.description = description;
 	}
 
-	@URL
 	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getAttachments() {
 		return this.attachments;
