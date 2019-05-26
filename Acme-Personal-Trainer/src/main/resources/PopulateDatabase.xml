@@ -2988,7 +2988,7 @@
 
 	<!-- PersonalRecords -->
 	<bean id="personalRecord1" class="domain.PersonalRecord">
-		<property name="fullName" value="personalRecord1" />
+		<property name="fullName" value="Trainer1 trainer" />
 		<property name="photo"
 			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
 		<property name="email" value="personalRecord1@gmail.com" />
@@ -2997,7 +2997,7 @@
 	</bean>
 
 	<bean id="personalRecord2" class="domain.PersonalRecord">
-		<property name="fullName" value="personalRecord2" />
+		<property name="fullName" value="Trainer2 trainer" />
 		<property name="photo"
 			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
 		<property name="email" value="personalRecord2@gmail.com" />
@@ -3006,7 +3006,7 @@
 	</bean>
 
 	<bean id="personalRecord3" class="domain.PersonalRecord">
-		<property name="fullName" value="personalRecord3" />
+		<property name="fullName" value="Trainer3 trainer" />
 		<property name="photo"
 			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
 		<property name="email" value="personalRecord3@gmail.com" />
@@ -3015,7 +3015,7 @@
 	</bean>
 
 	<bean id="personalRecord4" class="domain.PersonalRecord">
-		<property name="fullName" value="personalRecord4" />
+		<property name="fullName" value="Trainer4 trainer" />
 		<property name="photo"
 			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
 		<property name="email" value="personalRecord4@gmail.com" />
@@ -3024,7 +3024,7 @@
 	</bean>
 
 	<bean id="personalRecord5" class="domain.PersonalRecord">
-		<property name="fullName" value="personalRecord5" />
+		<property name="fullName" value="Trainer5 trainer" />
 		<property name="photo"
 			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
 		<property name="email" value="personalRecord5@gmail.com" />
