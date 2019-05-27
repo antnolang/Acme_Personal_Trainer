@@ -64,7 +64,7 @@ public class CommentCustomerNutritionistController extends AbstractController {
 
 		try {
 
-			comment = this.commentService.findOne(commentId);
+			comment = this.commentService.findOneToEdit(commentId);
 			result = this.createEditModelAndView(comment);
 
 		} catch (final Exception e) {
@@ -82,21 +82,25 @@ public class CommentCustomerNutritionistController extends AbstractController {
 		String paramArticleId;
 		Comment commentRec;
 
-		paramArticleId = request.getParameter("articleId");
-		articleId = paramArticleId.isEmpty() ? null : Integer.parseInt(paramArticleId);
+		try {
+			paramArticleId = request.getParameter("articleId");
+			articleId = paramArticleId.isEmpty() ? null : Integer.parseInt(paramArticleId);
 
-		commentRec = this.commentService.reconstruct(comment, binding, articleId);
-		if (binding.hasErrors())
-			result = this.createEditModelAndView(comment, articleId);
-		else
-			try {
-				this.commentService.save(commentRec);
-				result = new ModelAndView("redirect:../customer,nutritionist/list.do?articleId=" + comment.getArticle());
-			}
+			commentRec = this.commentService.reconstruct(comment, binding, articleId);
+			if (binding.hasErrors())
+				result = this.createEditModelAndView(comment, articleId);
+			else
+				try {
+					this.commentService.save(commentRec);
+					result = new ModelAndView("redirect:/comment/customer,nutritionist/list.do?articleId=" + commentRec.getArticle().getId());
+				}
 
-			catch (final Throwable oops) {
-				result = this.createEditModelAndView(comment, comment.getArticle().getId(), "comment.commit.error");
-			}
+				catch (final Throwable oops) {
+					result = this.createEditModelAndView(commentRec, commentRec.getArticle().getId(), "comment.commit.error");
+				}
+		} catch (final Exception e) {
+			result = new ModelAndView("redirect:../../error.do");
+		}
 
 		return result;
 	}
