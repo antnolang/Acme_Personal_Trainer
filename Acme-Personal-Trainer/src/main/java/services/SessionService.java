@@ -88,6 +88,19 @@ public class SessionService {
 		return result;
 	}
 
+	public void delete(final Session session) {
+		WorkingOut workingOutSession;
+
+		workingOutSession = this.workingOutService.findBySession(session.getId());
+
+		this.workingOutService.checkByPrincipal(workingOutSession);
+		Assert.isTrue(!workingOutSession.getIsFinalMode());
+		Assert.notNull(session);
+		Assert.isTrue(this.sessionRepository.exists(session.getId()));
+		this.workingOutService.updateDeleteSession(session, workingOutSession);
+		this.sessionRepository.delete(session);
+	}
+
 	// Reconstruct ----------------------------------------------
 
 	public Session reconstruct(final Session session, final BindingResult binding) {

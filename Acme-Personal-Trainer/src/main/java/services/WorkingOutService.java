@@ -356,4 +356,16 @@ public class WorkingOutService {
 		this.workingOutRepository.flush();
 
 	}
+
+	protected void updateDeleteSession(final Session session, final WorkingOut workingOutSession) {
+		Collection<Session> sessions;
+		List<Session> sessionsOrdered;
+
+		sessions = workingOutSession.getSessions();
+		sessions.remove(session);
+		sessionsOrdered = this.workingOutRepository.getSessionsOrdered(workingOutSession.getId());
+		workingOutSession.setStartMoment(sessionsOrdered.get(0).getStartMoment());
+		workingOutSession.setEndMoment(sessionsOrdered.get(sessionsOrdered.size() - 1).getEndMoment());
+
+	}
 }

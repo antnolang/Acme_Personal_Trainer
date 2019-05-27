@@ -135,6 +135,8 @@
 	</a>
 	
 	</jstl:if>
+	
+	
 </security:authorize>	
 </fieldset>
 
