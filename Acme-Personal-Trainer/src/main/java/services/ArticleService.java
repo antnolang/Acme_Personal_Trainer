@@ -107,8 +107,6 @@ public class ArticleService {
 
 		this.checkByPrincipal(result);
 		Assert.notNull(result);
-		if (!(result.getIsFinalMode()))
-			this.checkByPrincipal(result);
 
 		return result;
 	}
@@ -136,6 +134,7 @@ public class ArticleService {
 		Assert.notNull(article);
 		Assert.isTrue(this.articleRepository.exists(article.getId()));
 		this.checkByPrincipal(article);
+		Assert.isTrue(article.getIsFinalMode());
 
 		this.articleRepository.delete(article);
 	}
