@@ -114,6 +114,8 @@ public class ApplicationCustomerController extends AbstractController {
 		Application applicationRec;
 
 		applicationRec = this.applicationService.reconstruct(application, binding);
+		this.applicationService.validateCreditCard(applicationRec, binding);
+
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(application);
 		else

@@ -91,6 +91,7 @@ public class ApplicationService {
 		Assert.isNull(this.applicationRepository.findOne(application.getId()));
 		Assert.isTrue(!(this.creditCardService.findAllByCustomer()).isEmpty());
 		Assert.isTrue(application.getCreditCard().getCustomer().equals(this.customerService.findByPrincipal()));
+		Assert.isTrue(!(this.utilityService.checkIsExpired(application.getCreditCard())));
 
 		Application result;
 		result = this.applicationRepository.save(application);
@@ -214,6 +215,16 @@ public class ApplicationService {
 		result.setComments(application.getComments().trim());
 
 		this.validator.validate(result, binding);
+
+		return result;
+	}
+
+	public CreditCard validateCreditCard(final Application application, final BindingResult binding) {
+		CreditCard result;
+
+		result = application.getCreditCard();
+		if (this.utilityService.checkIsExpired(result))
+			binding.rejectValue("creditCard", "application.error.expired");
 
 		return result;
 	}
