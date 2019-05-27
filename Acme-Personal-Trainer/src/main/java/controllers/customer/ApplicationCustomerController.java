@@ -97,7 +97,7 @@ public class ApplicationCustomerController extends AbstractController {
 
 		try {
 
-			application = this.applicationService.findOneToCustomer(applicationId);
+			application = this.applicationService.findOneToEditCustomer(applicationId);
 			result = this.createEditModelAndView(application);
 
 		} catch (final Exception e) {

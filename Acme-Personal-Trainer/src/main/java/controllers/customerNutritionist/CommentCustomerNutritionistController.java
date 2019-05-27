@@ -166,7 +166,7 @@ public class CommentCustomerNutritionistController extends AbstractController {
 			result = new ModelAndView("comment/list");
 			result.addObject("comments", comments);
 			result.addObject("articleId", articleId);
-			result.addObject("requestURI", "comment/list.do");
+			result.addObject("requestURI", "comment/customer,nutritionist/list.do");
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:/error.do");
 		}

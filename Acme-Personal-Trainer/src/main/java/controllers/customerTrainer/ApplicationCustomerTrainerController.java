@@ -40,12 +40,13 @@ public class ApplicationCustomerTrainerController extends AbstractController {
 			result = new ModelAndView("application/display");
 			if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]")) {
 				application = this.applicationService.findOneToCustomer(applicationId);
+				result.addObject("application", application);
 				rolActor = "customer";
 			} else {
 				application = this.applicationService.findOneToTrainer(applicationId);
+				result.addObject("application", application);
 				rolActor = "trainer";
 			}
-			result.addObject("application", application);
 			result.addObject("rolActor", rolActor);
 
 		} catch (final Exception e) {
