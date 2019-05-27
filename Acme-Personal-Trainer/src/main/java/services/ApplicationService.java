@@ -148,7 +148,7 @@ public class ApplicationService {
 		return result;
 	}
 
-	public Application findOneToCustomer(final int applicationId) {
+	public Application findOneToEditCustomer(final int applicationId) {
 		Application result;
 
 		result = this.findOne(applicationId);
@@ -156,6 +156,17 @@ public class ApplicationService {
 		Assert.notNull(result);
 		Assert.isTrue(this.customerService.findByPrincipal().equals(result.getCustomer()));
 		Assert.isNull(this.applicationRepository.findOne(applicationId));
+
+		return result;
+	}
+
+	public Application findOneToCustomer(final int applicationId) {
+		Application result;
+
+		result = this.findOne(applicationId);
+
+		Assert.notNull(result);
+		Assert.isTrue(this.customerService.findByPrincipal().equals(result.getCustomer()));
 
 		return result;
 	}

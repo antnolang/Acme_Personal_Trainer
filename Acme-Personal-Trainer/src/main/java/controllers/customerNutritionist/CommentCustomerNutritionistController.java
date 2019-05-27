@@ -92,11 +92,11 @@ public class CommentCustomerNutritionistController extends AbstractController {
 			else
 				try {
 					this.commentService.save(commentRec);
-					result = new ModelAndView("redirect:/comment/customer,nutritionist/list.do?articleId=" + commentRec.getArticle().getId());
+					result = new ModelAndView("redirect:/comment/customer,nutritionist/list.do?articleId=" + articleId);
 				}
 
 				catch (final Throwable oops) {
-					result = this.createEditModelAndView(commentRec, commentRec.getArticle().getId(), "comment.commit.error");
+					result = this.createEditModelAndView(comment, articleId, "comment.commit.error");
 				}
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:../../error.do");
@@ -166,7 +166,7 @@ public class CommentCustomerNutritionistController extends AbstractController {
 			result = new ModelAndView("comment/list");
 			result.addObject("comments", comments);
 			result.addObject("articleId", articleId);
-			result.addObject("requestURI", "comment/list.do");
+			result.addObject("requestURI", "comment/customer,nutritionist/list.do");
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:/error.do");
 		}
