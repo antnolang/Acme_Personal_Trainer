@@ -177,7 +177,7 @@ public class ArticleService {
 
 		result.setTitle(article.getTitle().trim());
 		result.setDescription(article.getDescription().trim());
-		result.setTags(article.getTags().trim());
+		result.setTags(article.getTags());
 
 		this.validator.validate(result, binding);
 

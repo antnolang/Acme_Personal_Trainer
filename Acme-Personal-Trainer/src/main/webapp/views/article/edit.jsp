@@ -28,7 +28,8 @@
 	
 	<acme:textarea code="article.description" path="description" />
 
-	<acme:textbox code="article.tags" path="tags"/>	
+	<p style="color:blue;"><spring:message code="article.info.tags"/></p>
+	<acme:textarea code="article.tags" path="tags"/>
 
 	<br />
 	<acme:submit name="save" code="article.save"/>	

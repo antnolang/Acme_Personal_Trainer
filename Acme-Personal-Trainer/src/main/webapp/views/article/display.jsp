@@ -18,7 +18,16 @@
 
 <p> <strong> <spring:message code="article.description" />:  </strong>  <jstl:out value="${article.description}" /></p>
 
-<p> <strong> <spring:message code="article.tags" />:  </strong>  <jstl:out value="${article.tags}" /></p>
+<p> <jstl:if test="${not empty tags}">
+			<strong><spring:message code="article.tags"/></strong>
+			<br>
+			<ul>
+				<jstl:forEach var="tag" items="${tags}">
+					<li> <jstl:out value="${tag}"/> </li>
+				</jstl:forEach>
+			</ul>
+		</jstl:if>
+</p>
 	
 <br />
 
