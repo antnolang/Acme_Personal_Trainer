@@ -56,23 +56,22 @@ public class CommentService {
 		article = this.articleService.findOne(articleId);
 		Assert.isTrue(this.principalCanWrite(article));
 		Comment result;
+		Date moment;
+
+		moment = this.utilityService.current_moment();
 
 		result = new Comment();
 		result.setArticle(article);
 		if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]"))
 			result.setCustomer(this.customerService.findByPrincipal());
 
+		result.setPublicationMoment(moment);
 		return result;
 	}
 
 	public final Comment save(final Comment comment) {
 		Assert.isTrue(this.principalCanWrite(comment.getArticle()));
 		Comment result;
-		Date moment;
-
-		moment = this.utilityService.current_moment();
-
-		comment.setPublicationMoment(moment);
 
 		result = this.commentRepository.save(comment);
 
@@ -133,10 +132,10 @@ public class CommentService {
 		}
 	}
 
-	public final Comment reconstruct(final Comment comment, final BindingResult binding) {
+	public Comment reconstruct(final Comment comment, final BindingResult binding, final int articleId) {
 		Comment result;
 
-		result = this.create(comment.getArticle().getId());
+		result = this.create(articleId);
 		result.setText(comment.getText());
 
 		this.validator.validate(result, binding);

@@ -41,6 +41,9 @@ public class ArticleService {
 	@Autowired
 	private Validator			validator;
 
+	@Autowired
+	private MessageService		messageService;
+
 
 	//Constructor ----------------------------------------------------
 	public ArticleService() {
@@ -63,6 +66,7 @@ public class ArticleService {
 	public Article save(final Article article) {
 		Assert.notNull(article);
 		this.checkByPrincipal(article);
+		Assert.isTrue(!(article.getIsFinalMode()));
 		Article result;
 
 		result = this.articleRepository.save(article);
@@ -101,6 +105,7 @@ public class ArticleService {
 
 		result = this.articleRepository.findOne(articleId);
 
+		this.checkByPrincipal(result);
 		Assert.notNull(result);
 		if (!(result.getIsFinalMode()))
 			this.checkByPrincipal(result);
@@ -151,6 +156,8 @@ public class ArticleService {
 
 		article.setIsFinalMode(true);
 		article.setPublishedMoment(this.utilityService.current_moment());
+		this.messageService.notification_newArticle(article);
+
 	}
 
 	public Article reconstruct(final Article article, final BindingResult binding) {
@@ -164,6 +171,7 @@ public class ArticleService {
 			result = new Article();
 			result.setId(stored_article.getId());
 			result.setVersion(stored_article.getVersion());
+			result.setIsFinalMode(stored_article.getIsFinalMode());
 			result.setNutritionist(stored_article.getNutritionist());
 		}
 

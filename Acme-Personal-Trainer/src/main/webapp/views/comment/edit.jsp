@@ -24,6 +24,8 @@
 <form:form action="comment/customer,nutritionist/edit.do" modelAttribute="comment">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<input type="hidden" name="articleId" value="${articleId}"/>
+	
 	
 	<acme:textarea code="comment.text" path="text" />
 	<br />

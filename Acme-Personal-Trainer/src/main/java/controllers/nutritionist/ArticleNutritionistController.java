@@ -112,21 +112,24 @@ public class ArticleNutritionistController extends AbstractController {
 	public ModelAndView save(final Article article, final BindingResult binding) {
 		ModelAndView result;
 		Article articleRec;
+		try {
+			articleRec = this.articleService.reconstruct(article, binding);
 
-		articleRec = this.articleService.reconstruct(article, binding);
+			if (binding.hasErrors())
+				result = this.createEditModelAndView(article);
+			else
+				try {
+					this.articleService.save(articleRec);
+					result = new ModelAndView("redirect:/article/nutritionist/list.do");
+				} catch (final TransactionSystemException oops) {
+					result = new ModelAndView("redirect:../../error.do");
 
-		if (binding.hasErrors())
-			result = this.createEditModelAndView(article);
-		else
-			try {
-				this.articleService.save(articleRec);
-				result = new ModelAndView("redirect:/article/nutritionist/list.do");
-			} catch (final TransactionSystemException oops) {
-				result = new ModelAndView("redirect:../../error.do");
-
-			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(article, "article.commit.error");
-			}
+				} catch (final Throwable oops) {
+					result = this.createEditModelAndView(article, "article.commit.error");
+				}
+		} catch (final Exception e) {
+			result = new ModelAndView("redirect:../../error.do");
+		}
 
 		return result;
 	}
