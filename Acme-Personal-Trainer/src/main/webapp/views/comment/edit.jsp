@@ -34,7 +34,7 @@
 		<acme:submit name="save" code="comment.save" />
 		&nbsp;
 		<acme:cancel code="comment.cancel"
-			url="comment/customer,nutritionist/list.do?articleId=${comment.article.id}"/>
+			url="comment/customer,nutritionist/list.do?articleId=${articleId}"/>
 	</div>
 
 </form:form>

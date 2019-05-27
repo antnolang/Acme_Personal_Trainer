@@ -27,6 +27,10 @@
 		<a href="comment/customer,nutritionist/display.do?commentId=${row.id}"><spring:message code="comment.table.display"/></a>
 	</display:column>	
 	
+	<spring:message code="comment.formatMoment" var="formatMoment" />
+	<display:column property="publicationMoment" titleKey="comment.publicationMoment" sortable="true" format="${formatMoment}"/>
+	
+	
 	<display:column property="text" titleKey="comment.text" />
 
 </display:table>
