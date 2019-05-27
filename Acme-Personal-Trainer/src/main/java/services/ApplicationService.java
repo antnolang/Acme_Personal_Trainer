@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.ApplicationRepository;
 import domain.Application;
@@ -41,6 +42,9 @@ public class ApplicationService {
 
 	@Autowired
 	private MessageService			messageService;
+
+	@Autowired
+	private Validator				validator;
 
 	@Autowired
 	private CreditCardService		creditCardService;
@@ -201,6 +205,8 @@ public class ApplicationService {
 		result = this.create(application.getWorkingOut());
 		result.setCreditCard(application.getCreditCard());
 		result.setComments(application.getComments());
+
+		this.validator.validate(result, binding);
 
 		return result;
 	}
