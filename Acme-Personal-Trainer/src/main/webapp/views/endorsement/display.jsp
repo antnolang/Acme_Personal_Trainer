@@ -44,7 +44,7 @@
 <security:authorize access="hasRole('CUSTOMER')">
 <p>
 	<strong> <spring:message code="endorsement.trainer" />: </strong>
-	<jstl:out value="${endorsement.trainer.fullname}" />
+	<a href="actor/display.do?actorId=${endorsement.trainer.id}"><jstl:out value="${endorsement.trainer.fullname}"/></a>
 </p>
 </security:authorize>
 	
@@ -52,7 +52,7 @@
 <security:authorize access="hasRole('TRAINER')">
 <p>
 	<strong> <spring:message code="endorsement.customer" />: </strong>
-	<jstl:out value="${endorsement.customer.fullname}" />
+	<a href="actor/display.do?actorId=${endorsement.customer.id}"><jstl:out value="${endorsement.customer.fullname}"/></a>
 </p>
 </security:authorize>
 

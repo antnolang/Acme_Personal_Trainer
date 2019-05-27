@@ -170,6 +170,14 @@
 					code="table.endorsements" /></a>
 		</p>
 		</jstl:if>
+		
+		<security:authorize access="hasRole('TRAINER')">
+		<p>
+			<strong> <spring:message code="actor.trainer.curriculum" />
+			</strong> <a href="curriculum/trainer/display.do"><spring:message
+					code="table.curriculum" /></a>
+		</p>
+		</security:authorize>
 	</fieldset>
 </jstl:if>
 

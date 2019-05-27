@@ -70,19 +70,33 @@ public class EndorsementCustomerTrainerController extends AbstractController {
 		Collection<Endorsement> sentEndorsements, receivedEndorsements;
 		Customer customerPrincipal;
 		Trainer trainerPrincipal;
+		Collection<Customer> customers;
+		Collection<Trainer> trainers;
+		Boolean haveActorAttended;
 
 		sentEndorsements = new ArrayList<>();
 		receivedEndorsements = new ArrayList<>();
+		haveActorAttended = null;
 
 		try {
 			try {
 				customerPrincipal = this.customerService.findByPrincipal();
+				trainers = this.trainerService.findTrainersWithAcceptedApplicationsByCustomer(customerPrincipal.getId());
+				if (trainers.isEmpty())
+					haveActorAttended = false;
+				else
+					haveActorAttended = true;
 			} catch (final Throwable oops) {
 				customerPrincipal = null;
 			}
 
 			try {
 				trainerPrincipal = this.trainerService.findByPrincipal();
+				customers = this.customerService.findCustomersWithAcceptedApplicationsByTrainer(trainerPrincipal.getId());
+				if (customers.isEmpty())
+					haveActorAttended = false;
+				else
+					haveActorAttended = true;
 			} catch (final Throwable oops) {
 				trainerPrincipal = null;
 			}
@@ -98,6 +112,7 @@ public class EndorsementCustomerTrainerController extends AbstractController {
 			result = new ModelAndView("endorsement/list");
 			result.addObject("sentEndorsements", sentEndorsements);
 			result.addObject("receivedEndorsements", receivedEndorsements);
+			result.addObject("haveActorAttended", haveActorAttended);
 			result.addObject("requestURI", "endorsement/customer,trainer/list.do");
 
 		} catch (final Throwable oops) {
@@ -129,7 +144,7 @@ public class EndorsementCustomerTrainerController extends AbstractController {
 
 		try {
 
-			endorsement = this.endorsementService.findOne(endorsementId);
+			endorsement = this.endorsementService.findOneToEdit(endorsementId);
 			result = this.createEditModelAndView(endorsement);
 			if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]"))
 				result.addObject("trainerFullname", endorsement.getTrainer().getFullname());
@@ -181,31 +196,37 @@ public class EndorsementCustomerTrainerController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
 	public ModelAndView delete(final Endorsement endorsement, final BindingResult binding) {
 		ModelAndView result;
-		Endorsement endorsementRec;
+		Endorsement endorsementRec, endorsementSaved;
 
 		endorsementRec = null;
 
 		try {
-			endorsementRec = this.endorsementService.findOne(endorsement.getId());
+			endorsementRec = this.endorsementService.findOneToEdit(endorsement.getId());
 		} catch (final Throwable oops) {
+			endorsementSaved = this.endorsementService.findOne(endorsement.getId());
 			result = this.createEditModelAndView(endorsement, "endorsement.commit.error");
+			if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]"))
+				result.addObject("trainerFullname", endorsementSaved.getTrainer().getFullname());
+			else if (LoginService.getPrincipal().getAuthorities().toString().equals("[TRAINER]"))
+				result.addObject("customerFullname", endorsementSaved.getCustomer().getFullname());
 		}
 
-		if (binding.hasErrors())
-			result = this.createEditModelAndView(endorsement);
-		else
-			try {
-				this.endorsementService.delete(endorsementRec);
-				result = new ModelAndView("redirect:list.do");
-			}
+		try {
+			this.endorsementService.delete(endorsementRec);
+			result = new ModelAndView("redirect:list.do");
+		}
 
-			catch (final Throwable oops) {
-				result = this.createEditModelAndView(endorsement, "endorsement.commit.error");
-			}
+		catch (final Throwable oops) {
+			endorsementSaved = this.endorsementService.findOne(endorsement.getId());
+			result = this.createEditModelAndView(endorsement, "endorsement.commit.error");
+			if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]"))
+				result.addObject("trainerFullname", endorsementSaved.getTrainer().getFullname());
+			else if (LoginService.getPrincipal().getAuthorities().toString().equals("[TRAINER]"))
+				result.addObject("customerFullname", endorsementSaved.getCustomer().getFullname());
+		}
 
 		return result;
 	}
-
 	// Ancillary methods
 
 	protected ModelAndView createEditModelAndView(final Endorsement endorsement) {

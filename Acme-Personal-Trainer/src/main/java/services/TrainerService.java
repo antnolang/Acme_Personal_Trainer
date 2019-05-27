@@ -265,11 +265,14 @@ public class TrainerService {
 	protected void calculateMark(final Trainer trainer) {
 		Assert.isTrue(trainer.getId() != 0);
 
-		final Double avgMark;
+		Double avgMark;
 
 		avgMark = this.endorsementService.avgMarkByTrainer(trainer.getId());
 
-		trainer.setMark(Math.round(avgMark * 100d) / 100d);
+		if (avgMark == null)
+			trainer.setMark(0.0);
+		else
+			trainer.setMark(Math.round(avgMark * 100d) / 100d);
 
 	}
 	public Collection<Trainer> findTrainersWithPublishedWorkingOutMoreThanAverageOrderByName() {

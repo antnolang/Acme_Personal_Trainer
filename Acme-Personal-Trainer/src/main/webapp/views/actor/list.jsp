@@ -27,15 +27,23 @@
 	
 	<security:authorize access="hasRole('ADMIN')">
 		<jstl:if test="${row.isSuspicious == null}">
-			<display:column value="" titleKey="table.isSuspicious" />
+			<display:column value="" titleKey="table.isSuspicious" sortable="true"/>
 		</jstl:if>
 		<jstl:if test="${row.isSuspicious != null && row.isSuspicious}">
 			<spring:message code="actor.yes" var="b" />
-			<display:column value="${b}" titleKey="table.isSuspicious" />
+			<display:column value="${b}" titleKey="table.isSuspicious" sortable="true"/>
 		</jstl:if>
 		<jstl:if test="${row.isSuspicious != null && !row.isSuspicious}">
 			<spring:message code="actor.no" var="b" />
-			<display:column value="${b}" titleKey="table.isSuspicious" />
+			<display:column value="${b}" titleKey="table.isSuspicious" sortable="true"/>
+		</jstl:if>
+		<jstl:if test="${row.userAccount.isBanned != null && !row.userAccount.isBanned}">
+			<spring:message code="actor.no" var="b" />
+			<display:column value="${b}" titleKey="table.isBanned" sortable="true"/>
+		</jstl:if>
+		<jstl:if test="${row.userAccount.isBanned != null && row.userAccount.isBanned}">
+			<spring:message code="actor.yes" var="b" />
+			<display:column value="${b}" titleKey="table.isBanned" sortable="true"/>
 		</jstl:if>
 	</security:authorize>
 	

@@ -109,7 +109,7 @@ public class EndorsementService {
 			this.trainerService.calculateMark(trainer);
 	}
 
-	public Endorsement findOne(final int endorsementId) {
+	public Endorsement findOneToEdit(final int endorsementId) {
 		Endorsement result;
 		Trainer trainerPrincipal;
 		Customer customerPrincipal;
@@ -152,6 +152,17 @@ public class EndorsementService {
 
 		return result;
 	}
+
+	public Endorsement findOne(final int endorsementId) {
+		Assert.isTrue(endorsementId != 0);
+
+		Endorsement result;
+
+		result = this.endorsementRepository.findOne(endorsementId);
+		Assert.notNull(result);
+
+		return result;
+	}
 	// Other business methods
 
 	public Endorsement reconstruct(final Endorsement endorsement, final BindingResult binding) {
@@ -166,7 +177,7 @@ public class EndorsementService {
 				result.setCustomer(endorsement.getCustomer());
 		} else {
 			result = new Endorsement();
-			endorsementSaved = this.findOne(endorsement.getId());
+			endorsementSaved = this.findOneToEdit(endorsement.getId());
 
 			result.setId(endorsementSaved.getId());
 			result.setVersion(endorsementSaved.getVersion());

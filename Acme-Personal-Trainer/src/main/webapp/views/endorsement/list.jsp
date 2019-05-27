@@ -44,9 +44,14 @@
 </display:table>
 </jstl:if>
 <br />
+<jstl:if test="${!haveActorAttended}">
+	<p style="color:blue;"><spring:message code="endorsement.info"/></p>
+</jstl:if>
+<jstl:if test="${haveActorAttended}">
 <a href="endorsement/customer,trainer/create.do">
 	<spring:message code="endorsement.create" />
 </a>
+</jstl:if>
 
 <h3> <spring:message code="endorsement.received" /> </h3>
 <display:table name="receivedEndorsements" id="row1" requestURI="${requestURI}" class="displaytag" pagesize="5">
