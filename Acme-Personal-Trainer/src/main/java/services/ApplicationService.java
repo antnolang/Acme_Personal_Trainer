@@ -64,7 +64,9 @@ public class ApplicationService {
 		Customer customer;
 		final CreditCard creditCard;
 		final List<CreditCard> creditCards;
+		Date moment;
 
+		moment = this.utilityService.current_moment();
 		customer = this.customerService.findByPrincipal();
 		Assert.isTrue(this.isApplied(workingOut, customer));
 		creditCards = new ArrayList<>(this.creditCardService.findAllByCustomer());
@@ -75,6 +77,7 @@ public class ApplicationService {
 		result.setCustomer(customer);
 		result.setCreditCard(creditCard);
 		result.setWorkingOut(workingOut);
+		result.setRegisteredMoment(moment);
 		result.setStatus("PENDING");
 
 		return result;
@@ -88,15 +91,8 @@ public class ApplicationService {
 		Assert.isNull(this.applicationRepository.findOne(application.getId()));
 		Assert.isTrue(!(this.creditCardService.findAllByCustomer()).isEmpty());
 		Assert.isTrue(application.getCreditCard().getCustomer().equals(this.customerService.findByPrincipal()));
-		Assert.isNull(application.getRegisteredMoment());
 
 		Application result;
-
-		Date moment;
-		moment = this.utilityService.current_moment();
-
-		application.setRegisteredMoment(moment);
-
 		result = this.applicationRepository.save(application);
 
 		return result;

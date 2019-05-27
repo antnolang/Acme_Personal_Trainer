@@ -24,6 +24,7 @@
 <form:form action="application/customer/edit.do"
 	modelAttribute="application">
 	<form:hidden path="id" />
+	<form:hidden path="version" />
 	<form:hidden path="workingOut" />
 
 		<acme:selectMandatory items="${creditCards}" multiple="false" 
