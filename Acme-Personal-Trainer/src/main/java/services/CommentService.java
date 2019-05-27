@@ -56,23 +56,22 @@ public class CommentService {
 		article = this.articleService.findOne(articleId);
 		Assert.isTrue(this.principalCanWrite(article));
 		Comment result;
+		Date moment;
+
+		moment = this.utilityService.current_moment();
 
 		result = new Comment();
 		result.setArticle(article);
 		if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]"))
 			result.setCustomer(this.customerService.findByPrincipal());
 
+		result.setPublicationMoment(moment);
 		return result;
 	}
 
-	public final Comment save(final Comment comment) {
+	public Comment save(final Comment comment) {
 		Assert.isTrue(this.principalCanWrite(comment.getArticle()));
 		Comment result;
-		Date moment;
-
-		moment = this.utilityService.current_moment();
-
-		comment.setPublicationMoment(moment);
 
 		result = this.commentRepository.save(comment);
 
@@ -89,17 +88,25 @@ public class CommentService {
 		return result;
 	}
 
+	public Comment findOneToEdit(final int commentId) {
+		Comment result;
+
+		result = this.commentRepository.findOne(commentId);
+
+		Assert.notNull(result);
+		Assert.isNull(this.commentRepository.findOne(commentId));
+		Assert.isTrue(this.principalCanWrite(result.getArticle()));
+
+		return result;
+	}
+
 	public Comment findOneToDisplay(final int commentId) {
 		Comment result;
 
 		result = this.findOne(commentId);
 
 		Assert.notNull(result);
-		if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]")) {
-			final Customer customer;
-			customer = this.customerService.findByPrincipal();
-			Assert.isTrue(customer.getIsPremium());
-		}
+		Assert.isTrue(this.principalCanWrite(result.getArticle()));
 
 		return result;
 	}
@@ -133,11 +140,11 @@ public class CommentService {
 		}
 	}
 
-	public final Comment reconstruct(final Comment comment, final BindingResult binding) {
+	public Comment reconstruct(final Comment comment, final BindingResult binding, final int articleId) {
 		Comment result;
 
-		result = this.create(comment.getArticle().getId());
-		result.setText(comment.getText());
+		result = this.create(articleId);
+		result.setText(comment.getText().trim());
 
 		this.validator.validate(result, binding);
 
@@ -159,11 +166,7 @@ public class CommentService {
 		article = this.articleService.findOne(articleId);
 
 		Assert.isTrue(article.getIsFinalMode());
-		if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]")) {
-			final Customer customer;
-			customer = this.customerService.findByPrincipal();
-			Assert.isTrue(customer.getIsPremium());
-		}
+		Assert.isTrue(this.principalCanWrite(article));
 
 		return comments;
 	}

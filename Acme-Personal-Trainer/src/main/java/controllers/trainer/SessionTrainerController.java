@@ -108,6 +108,27 @@ public class SessionTrainerController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
+	public ModelAndView delete(final Session session, final BindingResult binding, final HttpServletRequest request) {
+		ModelAndView result;
+		Session sessionBbdd;
+		Integer workingOutId;
+		String paramWorkingOutId;
+
+		paramWorkingOutId = request.getParameter("workingOutId");
+		workingOutId = paramWorkingOutId.isEmpty() ? null : Integer.parseInt(paramWorkingOutId);
+		try {
+
+			sessionBbdd = this.sessionService.findOneToEdit(session.getId());
+			this.sessionService.delete(sessionBbdd);
+			result = new ModelAndView("redirect:../../workingOut/trainer/list.do");
+		} catch (final Throwable oops) {
+			result = this.createModelAndView(session, workingOutId, "session.delete.error");
+		}
+
+		return result;
+	}
+
 	// Arcillary methods --------------------------
 
 	protected ModelAndView createModelAndView(final Session session) {

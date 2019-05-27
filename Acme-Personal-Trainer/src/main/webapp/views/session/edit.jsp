@@ -28,6 +28,10 @@
 	
 	<acme:submit name="save" code="session.save"/>	
 	
+	<jstl:if test="${session.id != 0}">
+		<acme:submit name="delete" code="session.delete"/>	
+	</jstl:if>
+	
 	<acme:cancel url="workingOut/trainer/list.do" code="session.cancel"/>
 	<br />
 </form:form>

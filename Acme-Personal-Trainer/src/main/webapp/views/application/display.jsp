@@ -24,11 +24,13 @@
 <jstl:out value="${application.status}" />
 <br />
 
+<jstl:if test="${rolActor=='customer'}">
 <strong><spring:message code="application.creditCard" />:</strong>
 <a
 	href="creditCard/customer/display.do?creditCardId=${application.creditCard.id}"><spring:message
 		code="application.creditCard" /></a>
-<br />		
+<br />	
+</jstl:if>	
 
 <strong><spring:message code="application.workingOut" />:</strong>
 <a href="workingOut/customer,trainer/display.do?workingOutId=${application.workingOut.id}"><jstl:out value="${application.workingOut.ticker}"/></a>

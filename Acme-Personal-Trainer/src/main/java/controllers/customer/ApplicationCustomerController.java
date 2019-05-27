@@ -74,8 +74,8 @@ public class ApplicationCustomerController extends AbstractController {
 		ModelAndView result;
 
 		try {
-			final WorkingOut workingOut;
-			final Application application;
+			WorkingOut workingOut;
+			Application application;
 
 			workingOut = this.workingOutService.findOneToDisplay(workingOutId);
 			application = this.applicationService.create(workingOut);

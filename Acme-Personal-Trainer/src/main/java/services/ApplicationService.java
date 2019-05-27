@@ -108,17 +108,16 @@ public class ApplicationService {
 		Assert.isTrue(application.getStatus().equals("PENDING"));
 
 		Collection<Application> pendingApplications;
-		double spendCustomer, premiumAmountCustomisation;
+		Double spendCustomer, premiumAmountCustomisation;
 
 		application.setStatus("ACCEPTED");
 		spendCustomer = this.customerService.spendCustomer(application.getCustomer());
 		premiumAmountCustomisation = this.customisationService.find().getPremiumAmount();
 
-		if ((spendCustomer) >= (premiumAmountCustomisation))
-			application.getCustomer().setIsPremium(true);
+		application.getCustomer().setIsPremium(spendCustomer >= premiumAmountCustomisation);
 
 		pendingApplications = this.findPendingApplicationsByWorkingOut(application.getWorkingOut().getId());
-		//this.messageService.notification_applicationStatusChanges(application);
+		this.messageService.notification_applicationStatusChanges(application);
 
 		if (!(pendingApplications.isEmpty()))
 			for (final Application a : pendingApplications)
@@ -130,7 +129,7 @@ public class ApplicationService {
 		Assert.isTrue(this.trainerService.findByPrincipal().equals(application.getWorkingOut().getTrainer()));
 		Assert.isTrue(application.getStatus().equals("PENDING"));
 		application.setStatus("REJECTED");
-		//this.messageService.notification_applicationStatusChanges(application);
+		this.messageService.notification_applicationStatusChanges(application);
 	}
 
 	protected Application findOne(final int applicationId) {
@@ -160,6 +159,7 @@ public class ApplicationService {
 
 		Assert.notNull(result);
 		Assert.isTrue(this.customerService.findByPrincipal().equals(result.getCustomer()));
+		Assert.isNull(this.applicationRepository.findOne(applicationId));
 
 		return result;
 	}
@@ -204,7 +204,7 @@ public class ApplicationService {
 
 		result = this.create(application.getWorkingOut());
 		result.setCreditCard(application.getCreditCard());
-		result.setComments(application.getComments());
+		result.setComments(application.getComments().trim());
 
 		this.validator.validate(result, binding);
 

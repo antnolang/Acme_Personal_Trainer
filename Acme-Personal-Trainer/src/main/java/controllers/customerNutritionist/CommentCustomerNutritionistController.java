@@ -3,6 +3,8 @@ package controllers.customerNutritionist;
 
 import java.util.Collection;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -62,7 +64,7 @@ public class CommentCustomerNutritionistController extends AbstractController {
 
 		try {
 
-			comment = this.commentService.findOne(commentId);
+			comment = this.commentService.findOneToEdit(commentId);
 			result = this.createEditModelAndView(comment);
 
 		} catch (final Exception e) {
@@ -74,22 +76,31 @@ public class CommentCustomerNutritionistController extends AbstractController {
 
 	//Save
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(final Comment comment, final BindingResult binding) {
+	public ModelAndView save(final Comment comment, final BindingResult binding, final HttpServletRequest request) {
 		ModelAndView result;
+		Integer articleId;
+		String paramArticleId;
 		Comment commentRec;
 
-		commentRec = this.commentService.reconstruct(comment, binding);
-		if (binding.hasErrors())
-			result = this.createEditModelAndView(comment);
-		else
-			try {
-				this.commentService.save(commentRec);
-				result = new ModelAndView("redirect:../customer,nutritionist/list.do?articleId=" + comment.getArticle());
-			}
+		try {
+			paramArticleId = request.getParameter("articleId");
+			articleId = paramArticleId.isEmpty() ? null : Integer.parseInt(paramArticleId);
 
-			catch (final Throwable oops) {
-				result = this.createEditModelAndView(comment, comment.getArticle().getId(), "comment.commit.error");
-			}
+			commentRec = this.commentService.reconstruct(comment, binding, articleId);
+			if (binding.hasErrors())
+				result = this.createEditModelAndView(comment, articleId);
+			else
+				try {
+					this.commentService.save(commentRec);
+					result = new ModelAndView("redirect:/comment/customer,nutritionist/list.do?articleId=" + commentRec.getArticle().getId());
+				}
+
+				catch (final Throwable oops) {
+					result = this.createEditModelAndView(commentRec, commentRec.getArticle().getId(), "comment.commit.error");
+				}
+		} catch (final Exception e) {
+			result = new ModelAndView("redirect:../../error.do");
+		}
 
 		return result;
 	}
