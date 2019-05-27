@@ -51,7 +51,7 @@ public class EndorsementCustomerTrainerController extends AbstractController {
 		Endorsement endorsement;
 
 		try {
-			endorsement = this.endorsementService.findOne(endorsementId);
+			endorsement = this.endorsementService.findOneToDisplay(endorsementId);
 
 			result = new ModelAndView("endorsement/display");
 			result.addObject("endorsement", endorsement);
@@ -149,7 +149,13 @@ public class EndorsementCustomerTrainerController extends AbstractController {
 		ModelAndView result;
 		Endorsement endorsementRec;
 
-		endorsementRec = this.endorsementService.reconstruct(endorsement, binding);
+		endorsementRec = null;
+
+		try {
+			endorsementRec = this.endorsementService.reconstruct(endorsement, binding);
+		} catch (final Throwable oops) {
+			result = this.createEditModelAndView(endorsement, "endorsement.commit.error");
+		}
 
 		if (binding.hasErrors()) {
 			result = this.createEditModelAndView(endorsement);
@@ -177,7 +183,13 @@ public class EndorsementCustomerTrainerController extends AbstractController {
 		ModelAndView result;
 		Endorsement endorsementRec;
 
-		endorsementRec = this.endorsementService.findOne(endorsement.getId());
+		endorsementRec = null;
+
+		try {
+			endorsementRec = this.endorsementService.findOne(endorsement.getId());
+		} catch (final Throwable oops) {
+			result = this.createEditModelAndView(endorsement, "endorsement.commit.error");
+		}
 
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(endorsement);

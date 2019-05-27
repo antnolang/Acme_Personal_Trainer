@@ -131,6 +131,27 @@ public class EndorsementService {
 		return result;
 	}
 
+	public Endorsement findOneToDisplay(final int endorsementId) {
+		Endorsement result;
+		Trainer trainerPrincipal;
+		Customer customerPrincipal;
+
+		trainerPrincipal = null;
+		customerPrincipal = null;
+
+		result = this.endorsementRepository.findOne(endorsementId);
+		Assert.notNull(result);
+
+		if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]")) {
+			customerPrincipal = this.customerService.findByPrincipal();
+			Assert.isTrue(result.getCustomer().equals(customerPrincipal));
+		} else if (LoginService.getPrincipal().getAuthorities().toString().equals("[TRAINER]")) {
+			trainerPrincipal = this.trainerService.findByPrincipal();
+			Assert.isTrue(result.getTrainer().equals(trainerPrincipal));
+		}
+
+		return result;
+	}
 	// Other business methods
 
 	public Endorsement reconstruct(final Endorsement endorsement, final BindingResult binding) {

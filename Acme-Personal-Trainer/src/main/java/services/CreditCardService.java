@@ -41,6 +41,9 @@ public class CreditCardService {
 	@Autowired
 	private Validator				validator;
 
+	@Autowired
+	private CustomisationService	customisationService;
+
 
 	//Constructor ----------------------------------------------------
 	public CreditCardService() {
@@ -65,6 +68,7 @@ public class CreditCardService {
 		Assert.notNull(creditCard);
 		Assert.isTrue(creditCard.getId() == 0);
 		Assert.isTrue(!this.utilityService.checkIsExpired(creditCard), "Expired credit card");
+		Assert.isTrue(this.customisationService.find().getCreditCardMakes().contains(creditCard.getBrandName()));
 		this.checkByPrincipal(creditCard);
 
 		final CreditCard result;
