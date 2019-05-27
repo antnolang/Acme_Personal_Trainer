@@ -39,4 +39,7 @@ public interface TrainerRepository extends JpaRepository<Trainer, Integer> {
 
 	@Query("select count(t)*1.0/(select count(t1) from Trainer t1) from Trainer t where t in (select e.trainer from Endorsement e where e.trainerToCustomer = false)")
 	Double ratioTrainerWithEndorsement();
+
+	@Query("select t from Trainer t where t.userAccount.isBanned = false")
+	Collection<Trainer> findAllNotBanned();
 }

@@ -28,6 +28,7 @@
 		
 		<security:authorize access="hasRole('AUDITOR')">
 			<li><a class="fNiv" href="audit/auditor/list.do"><spring:message code="master.page.audit" /></a></li>
+			<li><a class="fNiv" href="trainer/auditor/list.do"><spring:message code="master.page.trainers" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('CUSTOMER')">
