@@ -2277,7 +2277,7 @@
 		<property name="brandName" value="VISA" />
 		<property name="number" value="4716895067094219" />
 		<property name="expirationMonth" value="10" />
-		<property name="expirationYear" value="22" />
+		<property name="expirationYear" value="18" />
 		<property name="cvvCode" value="587" />
 		<property name="customer" ref="customer1" />
 	</bean>
