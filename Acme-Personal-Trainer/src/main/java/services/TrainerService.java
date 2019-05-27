@@ -140,6 +140,15 @@ public class TrainerService {
 
 	// Other business methods ---------------------
 
+	public Collection<Trainer> findAllNotBanned() {
+		Collection<Trainer> result;
+
+		result = this.trainerRepository.findAllNotBanned();
+		Assert.notNull(result);
+
+		return result;
+	}
+
 	public Trainer findByPrincipal() {
 		Trainer result;
 		UserAccount userAccount;
