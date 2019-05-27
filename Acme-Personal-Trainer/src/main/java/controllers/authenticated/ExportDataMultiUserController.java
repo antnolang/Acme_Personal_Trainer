@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import services.ActorService;
 import services.ArticleService;
+import services.AuditService;
 import services.CreditCardService;
 import services.CurriculumService;
 import services.MessageService;
@@ -61,6 +62,9 @@ public class ExportDataMultiUserController extends AbstractController {
 
 	@Autowired
 	private WorkingOutService		workingOutService;
+
+	@Autowired
+	private AuditService			auditService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -265,21 +269,22 @@ public class ExportDataMultiUserController extends AbstractController {
 		if (actor.getUserAccount().getAuthorities().toString().equals("[AUDITOR]")) {
 			final Collection<Audit> audits;
 
-			//	audits = this.auditService.
+			audits = this.auditService.findAllByPrincipal();
 
 			data += "\r\n";
 			data += "-------------------------------------------------------------";
 			data += "\r\n\r\n";
 
 			data += "Audits:\r\n\r\n";
-			final Integer ss5 = 0;
-			//						for (final Audit audit: audits) {
-			//							data +=  "Title: " + audit.getTitle() + " \r\n"+ "Moment: " + audit.getMoment() + " \r\n" + "Attachment: " + audit.getAttachments() + " \r\n" + "Description: " + audit.getDescription() + " \r\n" + "Curriculum name personal"+ audit.getCurriculum().getPersonalRecord().getFullName() +  " \r\n";
-			//
-			//							ss5++;
-			//							if (ss5 < audits.size())
-			//								data += "\r\n" + "......................." + "\r\n\r\n";
-			//						}
+			Integer ss5 = 0;
+			for (final Audit audit : audits) {
+				data += "Title: " + audit.getTitle() + " \r\n" + "Moment: " + audit.getMoment() + " \r\n" + "Attachment: " + audit.getAttachments() + " \r\n" + "Description: " + audit.getDescription() + " \r\n" + "Curriculum name personal"
+					+ audit.getCurriculum().getPersonalRecord().getFullName() + " \r\n";
+
+				ss5++;
+				if (ss5 < audits.size())
+					data += "\r\n" + "......................." + "\r\n\r\n";
+			}
 
 		}
 		response.setContentType("text/plain");
