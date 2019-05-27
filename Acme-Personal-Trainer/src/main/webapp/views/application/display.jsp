@@ -10,9 +10,9 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <jstl:if test="${rolActor=='trainer'}">
-	<strong><spring:message code="application.customer" />:</strong>
-	<jstl:out value="${application.customer.fullname}" />
-	<br />
+	<strong><spring:message code="application.customer"/>:</strong>
+		<a href="actor/display.do?actorId=${application.customer.id}"><jstl:out value="${application.customer.fullname}"/></a>
+	<br/>
 </jstl:if>
 
 <strong><spring:message code="application.registeredMoment" />:</strong>
