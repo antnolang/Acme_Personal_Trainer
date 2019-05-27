@@ -74,9 +74,10 @@
 			</jstl:if>
 		
 		<br/>
-		
-		<strong><spring:message code="workingOut.applications"/>:</strong>
-		<a href="application/trainer/list.do?workingOutId=${workingOut.id}"><spring:message code="workingOut.applications"/></a>
+		<jstl:if test="${workingOut.isFinalMode == true }">
+			<strong><spring:message code="workingOut.applications"/>:</strong>
+				<a href="application/trainer/list.do?workingOutId=${workingOut.id}"><spring:message code="workingOut.applications"/></a>
+		</jstl:if>
 	<br/>
 	</jstl:if>
 	</security:authorize>

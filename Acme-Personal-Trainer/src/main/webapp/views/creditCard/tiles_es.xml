@@ -22,7 +22,7 @@
 	</definition>
 	
 	<definition name="creditCard/list" extends="master.page">	
-		<put-attribute name="title" value="Listar tarjetas de crédito card" />
+		<put-attribute name="title" value="Listar tarjetas de crédito" />
 		<put-attribute name="body" value="/views/creditCard/list.jsp" />
 	</definition>
 	

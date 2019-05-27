@@ -53,25 +53,28 @@ public class SessionService {
 	}
 
 	public Session save(final Session session, final WorkingOut workingOut) {
-		Assert.notNull(session);
-		Assert.isTrue(!workingOut.getIsFinalMode());
-		this.workingOutService.checkByPrincipal(workingOut);
-
 		Session result;
 		Collection<Session> sessionsWO;
 
 		sessionsWO = workingOut.getSessions();
 
+		Assert.notNull(session);
+		Assert.isTrue(!workingOut.getIsFinalMode());
+		this.workingOutService.checkByPrincipal(workingOut);
+
 		if (session.getId() == 0) {
 			Assert.isTrue(session.getEndMoment().after(session.getStartMoment()), "Start moment before end moment");
 			Assert.isTrue(session.getStartMoment().after(this.utilityService.current_moment()), "Start moment in the future");
+			Assert.isTrue(sessionsWO.contains(workingOut));
 			this.workingOutService.updateMomentWorkingOut(workingOut, session);
 
 			result = this.sessionRepository.save(session);
 
 			sessionsWO.add(result);
-		} else
+		} else {
+			Assert.isTrue(workingOut.equals(this.workingOutService.findBySession(session.getId())));
 			result = this.sessionRepository.save(session);
+		}
 
 		return result;
 	}
