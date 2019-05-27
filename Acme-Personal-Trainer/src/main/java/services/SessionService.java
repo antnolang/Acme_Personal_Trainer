@@ -65,7 +65,7 @@ public class SessionService {
 		if (session.getId() == 0) {
 			Assert.isTrue(session.getEndMoment().after(session.getStartMoment()), "Start moment before end moment");
 			Assert.isTrue(session.getStartMoment().after(this.utilityService.current_moment()), "Start moment in the future");
-			Assert.isTrue(sessionsWO.contains(workingOut));
+
 			this.workingOutService.updateMomentWorkingOut(workingOut, session);
 
 			result = this.sessionRepository.save(session);
@@ -73,6 +73,7 @@ public class SessionService {
 			sessionsWO.add(result);
 		} else {
 			Assert.isTrue(workingOut.equals(this.workingOutService.findBySession(session.getId())));
+			Assert.isTrue(sessionsWO.contains(session));
 			result = this.sessionRepository.save(session);
 		}
 
