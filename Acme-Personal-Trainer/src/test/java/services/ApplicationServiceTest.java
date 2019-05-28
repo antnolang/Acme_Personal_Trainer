@@ -43,7 +43,7 @@ public class ApplicationServiceTest extends AbstractTest {
 			 * D: Intencionadamente en blanco. No se comprueban datos
 			 */
 			{
-				"customer1", "workingOut7", "creditCard2", null
+				"customer1", "workingOut7", "creditCard1", null
 			},
 			/*
 			 * A: Req.10.1 Crear una solicitud
@@ -61,7 +61,7 @@ public class ApplicationServiceTest extends AbstractTest {
 			 * D: Intencionadamente en blanco. No se comprueban datos
 			 */
 			{
-				"customer1", "workingOut6", "creditCard2", IllegalArgumentException.class
+				"customer1", "workingOut6", "creditCard1", IllegalArgumentException.class
 			},
 			/*
 			 * A: Req.10.1 Crear una solicitud
@@ -170,12 +170,12 @@ public class ApplicationServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: Req.9.2 Cambiar estado de application de otro company a "ACCEPTED"
+	 * A: Req.9.2 Cambiar estado de application de otro trainer a "ACCEPTED"
 	 * C:96.7% 18/28 Recorre 18 de las 28 líneas totales
 	 * D: Intencionadamente en blanco. No se comprueban datos
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void acceptedApplication_negative_test() {
+	public void acceptedApplication_negative_test1() {
 		super.authenticate("trainer2");
 
 		int applicationId;
@@ -190,12 +190,52 @@ public class ApplicationServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: Req.9.2 Cambiar estado de application de otro company a "REJECTED"
+	 * A: Req.9.2 Cambiar estado de application ya Recazada a Aceptada
 	 * C:96.7% 18/28 Recorre 18 de las 28 líneas totales
 	 * D: Intencionadamente en blanco. No se comprueban datos
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void rejectedApplication_negative_test() {
+	public void acceptedApplication_negative_test2() {
+		super.authenticate("trainer2");
+
+		int applicationId;
+		Application application;
+
+		applicationId = super.getEntityId("application3");
+		application = this.applicationService.findOneToTrainer(applicationId);
+
+		this.applicationService.acceptedApplication(application);
+
+		super.unauthenticate();
+	}
+
+	/*
+	 * A: Req.9.2 Cambiar estado de application ya Aceptada a Rechazada
+	 * C:96.7% 18/28 Recorre 18 de las 28 líneas totales
+	 * D: Intencionadamente en blanco. No se comprueban datos
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void rejectedApplication_negative_test1() {
+		super.authenticate("trainer1");
+
+		int applicationId;
+		Application application;
+
+		applicationId = super.getEntityId("application1");
+		application = this.applicationService.findOneToTrainer(applicationId);
+
+		this.applicationService.rejectedApplication(application);
+
+		super.unauthenticate();
+	}
+
+	/*
+	 * A: Req.9.2 Cambiar estado de application de otro trainer a "REJECTED"
+	 * C:96.7% 18/28 Recorre 18 de las 28 líneas totales
+	 * D: Intencionadamente en blanco. No se comprueban datos
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void rejectedApplication_negative_test2() {
 		super.authenticate("trainer2");
 
 		int applicationId;
