@@ -37,7 +37,7 @@ public class ApplicationServiceTest extends AbstractTest {
 	public void driverCreate() {
 		final Object testingData[][] = {
 			/*
-			 * A: Req.10.3 Crear una solicitud
+			 * A: Req.10.1 Crear una solicitud
 			 * B: Test positivo
 			 * C: 100%. 77/77 Recorre 77 de las 77 líneas de código totales
 			 * D: Intencionadamente en blanco. No se comprueban datos
