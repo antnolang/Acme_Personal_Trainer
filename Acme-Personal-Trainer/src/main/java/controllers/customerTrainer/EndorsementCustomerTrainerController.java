@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -231,7 +232,9 @@ public class EndorsementCustomerTrainerController extends AbstractController {
 				result = new ModelAndView("redirect:list.do");
 			}
 
-			catch (final Throwable oops) {
+			catch (final DataIntegrityViolationException oops) {
+				result = this.createEditModelAndView(endorsement, "endorsement.exist");
+			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(endorsement, "endorsement.commit.error");
 			}
 
