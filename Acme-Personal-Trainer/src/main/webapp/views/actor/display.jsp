@@ -201,7 +201,7 @@
 		<security:authorize access="hasRole('AUDITOR')">
 		<p>
 			<strong> <spring:message code="actor.trainer.curriculum" />
-			</strong> <a href=""><spring:message 
+			</strong> <a href="curriculum/displayFromTrainer.do?trainerId=${actor.id }"><spring:message 
 					code="table.curriculum" /></a> <!-- TODO -->
 		</p>
 		</security:authorize>

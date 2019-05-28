@@ -41,7 +41,7 @@ public class CurriculumMultiUserController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	@RequestMapping(value = "/displayFromTrainer", method = RequestMethod.GET)
 	public ModelAndView displayFromTrainer(@RequestParam final int trainerId) {
 		ModelAndView result;
 		Curriculum curriculum;

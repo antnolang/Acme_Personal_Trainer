@@ -1,0 +1,1 @@
+1. Customer can endorse a trainer once and viceversa.
