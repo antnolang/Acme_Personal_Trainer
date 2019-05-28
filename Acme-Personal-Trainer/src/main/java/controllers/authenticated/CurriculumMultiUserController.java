@@ -1,5 +1,5 @@
 
-package controllers;
+package controllers.authenticated;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.CurriculumService;
+import controllers.AbstractController;
 import domain.Curriculum;
 
 @Controller
 @RequestMapping("curriculum/")
-public class CurriculumController extends AbstractController {
+public class CurriculumMultiUserController extends AbstractController {
 
 	// Services ---------------------------------------------------------------
 
@@ -23,7 +24,7 @@ public class CurriculumController extends AbstractController {
 
 	// Constructors -----------------------------------------------------------
 
-	public CurriculumController() {
+	public CurriculumMultiUserController() {
 		super();
 	}
 
@@ -33,9 +34,30 @@ public class CurriculumController extends AbstractController {
 	public ModelAndView display(@RequestParam final int curriculumId) {
 		ModelAndView result;
 		Curriculum curriculum;
-		boolean isOwner, isAuditable;
 
 		curriculum = this.curriculumService.findOne(curriculumId);
+		result = this.displayModelAndView(curriculum);
+
+		return result;
+	}
+
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView displayFromTrainer(@RequestParam final int trainerId) {
+		ModelAndView result;
+		Curriculum curriculum;
+
+		curriculum = this.curriculumService.findByTrainerId(trainerId);
+		result = this.displayModelAndView(curriculum);
+
+		return result;
+	}
+
+	// Ancillary methods ------------------------------------------------------
+
+	protected ModelAndView displayModelAndView(final Curriculum curriculum) {
+		ModelAndView result;
+		boolean isOwner, isAuditable;
+
 		isOwner = this.curriculumService.checkPrincipalIsOwner(curriculum);
 		isAuditable = this.curriculumService.checkIsAuditable(curriculum);
 
