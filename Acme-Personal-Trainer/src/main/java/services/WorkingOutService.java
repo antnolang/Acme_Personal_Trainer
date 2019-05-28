@@ -364,8 +364,14 @@ public class WorkingOutService {
 		sessions = workingOutSession.getSessions();
 		sessions.remove(session);
 		sessionsOrdered = this.workingOutRepository.getSessionsOrdered(workingOutSession.getId());
-		workingOutSession.setStartMoment(sessionsOrdered.get(0).getStartMoment());
-		workingOutSession.setEndMoment(sessionsOrdered.get(sessionsOrdered.size() - 1).getEndMoment());
+
+		if (sessionsOrdered.size() != 0) {
+			workingOutSession.setStartMoment(sessionsOrdered.get(0).getStartMoment());
+			workingOutSession.setEndMoment(sessionsOrdered.get(sessionsOrdered.size() - 1).getEndMoment());
+		} else {
+			workingOutSession.setStartMoment(null);
+			workingOutSession.setEndMoment(null);
+		}
 
 	}
 }
