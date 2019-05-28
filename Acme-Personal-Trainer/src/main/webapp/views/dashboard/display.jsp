@@ -121,5 +121,10 @@
 
 <p>
 	<strong> <spring:message code="dashboard.37.5.4" /> </strong>:
-	<jstl:out value="${findRatioEmptyVsNonEmpty}" />
+	<jstl:if test="${isInfinite==true}">
+		<spring:message code="isInfinity" />
+	</jstl:if>
+	<jstl:if test="${isInfinite==false}">
+		<jstl:out value="${findRatioEmptyVsNonEmpty}" />
+	</jstl:if>
 </p>

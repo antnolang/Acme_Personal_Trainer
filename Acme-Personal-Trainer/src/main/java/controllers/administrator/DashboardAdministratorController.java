@@ -119,6 +119,10 @@ public class DashboardAdministratorController extends AbstractController {
 		// Req 37.5.4
 		Double findRatioEmptyVsNonEmpty;
 		findRatioEmptyVsNonEmpty = this.finderService.findRatioEmptyVsNonEmpty();
+		if (findRatioEmptyVsNonEmpty.isInfinite())
+			result.addObject("isInfinite", true);
+		else
+			result.addObject("isInfinite", false);
 		result.addObject("findRatioEmptyVsNonEmpty", findRatioEmptyVsNonEmpty);
 
 		return result;

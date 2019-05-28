@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.ArticleService;
 import services.CommentService;
 import controllers.AbstractController;
 import domain.Comment;
@@ -23,9 +22,6 @@ import domain.Comment;
 public class CommentCustomerNutritionistController extends AbstractController {
 
 	// Services------------------------------------
-
-	@Autowired
-	private ArticleService	articleService;
 
 	@Autowired
 	private CommentService	commentService;

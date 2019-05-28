@@ -20,7 +20,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
-<h2><p> <strong> <spring:message code="error.premium" /> </strong>  <jstl:out value="${price}" /> u.m. <spring:message code="withoutVaT" /></p>
+<h2><strong> <spring:message code="error.premium" /> </strong>  <jstl:out value="${price}" /> u.m. <spring:message code="withoutVaT" /> 
 
 
 	<a href="welcome/index.do"><spring:message code="error.index"/></a>
