@@ -121,6 +121,25 @@
 			</jstl:if>
 			
 		</p>
+		
+		<p>
+			<strong> <spring:message code="actor.trainer.mark" />
+			</strong>
+			<jstl:if test="${customerMark != null }">
+					<jstl:out value="${customerMark}" />
+			</jstl:if>
+			<jstl:if test="${customerMark == null }">
+				<jstl:out value="0.0" />
+			</jstl:if>
+		</p>
+		
+		<security:authorize access="hasRole('TRAINER')">
+		<p>
+			<strong> <spring:message code="actor.trainer.endorsements" />
+			</strong> <a href="endorsement/customer,trainer/listEndorsements.do?actorId=${actor.id}"><spring:message
+					code="table.endorsements" /></a>
+		</p>
+		</security:authorize>
 
 	</fieldset>
 </jstl:if>
@@ -166,7 +185,7 @@
 		<jstl:if test="${trainerAttended}">
 		<p>
 			<strong> <spring:message code="actor.trainer.endorsements" />
-			</strong> <a href="endorsement/customer/list.do?trainerId=${actor.id}"><spring:message
+			</strong> <a href="endorsement/customer,trainer/listEndorsements.do?actorId=${actor.id}"><spring:message
 					code="table.endorsements" /></a>
 		</p>
 		</jstl:if>
@@ -176,6 +195,14 @@
 			<strong> <spring:message code="actor.trainer.curriculum" />
 			</strong> <a href="curriculum/trainer/display.do"><spring:message
 					code="table.curriculum" /></a>
+		</p>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('AUDITOR')">
+		<p>
+			<strong> <spring:message code="actor.trainer.curriculum" />
+			</strong> <a href=""><spring:message 
+					code="table.curriculum" /></a> <!-- TODO -->
 		</p>
 		</security:authorize>
 	</fieldset>

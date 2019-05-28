@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import security.LoginService;
+import services.ApplicationService;
 import services.CustomerService;
 import services.EndorsementService;
 import services.TrainerService;
@@ -35,6 +37,9 @@ public class EndorsementCustomerTrainerController extends AbstractController {
 
 	@Autowired
 	private TrainerService		trainerService;
+
+	@Autowired
+	private ApplicationService	applicationService;
 
 
 	// Constructor
@@ -122,6 +127,48 @@ public class EndorsementCustomerTrainerController extends AbstractController {
 		return result;
 	}
 
+	// List endorsements by an actorId
+
+	@RequestMapping(value = "/listEndorsements", method = RequestMethod.GET)
+	public ModelAndView list(@RequestParam final int actorId) {
+		ModelAndView result;
+		Collection<Endorsement> receivedEndorsements;
+		Customer customer;
+		boolean trainerAttended;
+
+		result = new ModelAndView();
+
+		if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]"))
+			try {
+				customer = this.customerService.findByPrincipal();
+				trainerAttended = this.applicationService.existApplicationAcceptedBetweenCustomerTrainer(customer.getId(), actorId);
+				if (trainerAttended == false)
+					throw new IllegalArgumentException();
+				else
+					receivedEndorsements = this.endorsementService.findReceivedEndorsementsByTrainer(actorId);
+
+				result = new ModelAndView("endorsement/list");
+				result.addObject("receivedEndorsements", receivedEndorsements);
+				result.addObject("haveActorAttended", trainerAttended);
+				result.addObject("requestURI", "endorsement/customer,trainer/listEndorsements.do");
+
+			} catch (final Throwable oops) {
+				result = new ModelAndView("redirect:/error.do");
+			}
+		else if (LoginService.getPrincipal().getAuthorities().toString().equals("[TRAINER]"))
+			try {
+				receivedEndorsements = this.endorsementService.findReceivedEndorsementsByCustomer(actorId);
+
+				result = new ModelAndView("endorsement/list");
+				result.addObject("receivedEndorsements", receivedEndorsements);
+				result.addObject("requestURI", "endorsement/customer,trainer/listEndorsements.do");
+			} catch (final Throwable oops) {
+				result = new ModelAndView("redirect:/error.do");
+			}
+
+		return result;
+	}
+
 	// Create
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
@@ -185,7 +232,9 @@ public class EndorsementCustomerTrainerController extends AbstractController {
 				result = new ModelAndView("redirect:list.do");
 			}
 
-			catch (final Throwable oops) {
+			catch (final DataIntegrityViolationException oops) {
+				result = this.createEditModelAndView(endorsement, "endorsement.exist");
+			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(endorsement, "endorsement.commit.error");
 			}
 

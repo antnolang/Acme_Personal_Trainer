@@ -322,29 +322,6 @@ public class TrainerServiceTest extends AbstractTest {
 
 	/*
 	 * A: An actor who is authenticated as a trainer must be able to:
-	 * Display one of his/her endorsements
-	 * 
-	 * B: A trainer tries to display an endorsemenet that does not belongs to him/her
-	 * 
-	 * C: 79% of sentence coverage. -> It has covered 11 lines of 14.
-	 * 
-	 * D: Analysis of data coverage: intentionally blank.
-	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void display_endorsement_negative_test() {
-		Endorsement endorsement;
-
-		super.authenticate("trainer2");
-
-		endorsement = this.endorsementService.findOne(super.getEntityId("endorsement1"));
-
-		Assert.notNull(endorsement);
-
-		super.unauthenticate();
-	}
-
-	/*
-	 * A: An actor who is authenticated as a trainer must be able to:
 	 * Create an endorsement
 	 * 
 	 * B: Positive test
@@ -492,5 +469,20 @@ public class TrainerServiceTest extends AbstractTest {
 
 		super.unauthenticate();
 
+	}
+
+	/*
+	 * A: Requirement 37.5.2: The ratio of trainers with an endorsement.
+	 * B: Positive test
+	 * C: 100% of sentence coverage.
+	 * D: 100% of data coverage.
+	 */
+	@Test
+	public void ratioTrainerWithEndorsement() {
+		Double data;
+
+		data = this.trainerService.ratioTrainerWithEndorsement();
+
+		Assert.isTrue(data == 0.14286);
 	}
 }

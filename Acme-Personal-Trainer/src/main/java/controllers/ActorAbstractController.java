@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import services.ActorService;
 import services.ApplicationService;
 import services.CustomerService;
+import services.EndorsementService;
 import domain.Actor;
 import domain.Administrator;
 import domain.Customer;
@@ -27,6 +28,9 @@ public class ActorAbstractController extends AbstractController {
 	@Autowired
 	private CustomerService		customerService;
 
+	@Autowired
+	private EndorsementService	endorsementService;
+
 
 	// Main methods -----------------------------------------------------------
 
@@ -36,6 +40,7 @@ public class ActorAbstractController extends AbstractController {
 		ModelAndView result;
 		Actor actor, principal;
 		Customer customerPrincipal;
+		Double customerMark;
 
 		actor = null;
 		principal = null;
@@ -50,6 +55,10 @@ public class ActorAbstractController extends AbstractController {
 			actor = this.actorService.findPrincipal();
 			result.addObject("isAuthorized", true);
 			result.addObject("isActorLogged", true);
+			if (actor instanceof Customer) {
+				customerMark = this.endorsementService.avgMarkByCustomer(actor.getId());
+				result.addObject("customerMark", customerMark);
+			}
 		} else {
 			actor = this.actorService.findOne(actorId);
 			result.addObject("isAuthorized", false);
@@ -65,6 +74,9 @@ public class ActorAbstractController extends AbstractController {
 					result.addObject("customerPremium", "true");
 				else
 					result.addObject("customerPremium", "false");
+			} else if (actor instanceof Customer) {
+				customerMark = this.endorsementService.avgMarkByCustomer(actor.getId());
+				result.addObject("customerMark", customerMark);
 			}
 
 		}

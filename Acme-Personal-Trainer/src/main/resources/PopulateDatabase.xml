@@ -2635,14 +2635,6 @@
 		<property name="trainer" ref="trainer1" />
 	</bean>
 
-	<bean id="endorsement3" class="domain.Endorsement">
-		<property name="writtenMoment" value="2018/11/01 14:00" />
-		<property name="mark" value="7" />
-		<property name="comments" value="endorsement3" />
-		<property name="trainerToCustomer" value="true" />
-		<property name="customer" ref="customer1" />
-		<property name="trainer" ref="trainer1" />
-	</bean>
 
 	<!-- Endorser Records -->
 	<bean id="endorserRecord1" class="domain.EndorserRecord">
