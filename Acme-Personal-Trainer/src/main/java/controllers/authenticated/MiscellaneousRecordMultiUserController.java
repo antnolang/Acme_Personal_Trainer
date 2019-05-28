@@ -1,5 +1,5 @@
 
-package controllers;
+package controllers.authenticated;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,50 +8,52 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import controllers.AbstractController;
+
 import services.CurriculumService;
-import services.EducationRecordService;
-import domain.EducationRecord;
+import services.MiscellaneousRecordService;
+import domain.MiscellaneousRecord;
 
 @Controller
-@RequestMapping("educationRecord/")
-public class EducationRecordController extends AbstractController {
+@RequestMapping("miscellaneousRecord/")
+public class MiscellaneousRecordMultiUserController extends AbstractController {
 
 	// Services ---------------------------------------------------------------
 
 	@Autowired
-	private EducationRecordService	educationRecordService;
+	private MiscellaneousRecordService	miscellaneousRecordService;
 
 	@Autowired
-	private CurriculumService		curriculumService;
+	private CurriculumService			curriculumService;
 
 
 	// Constructors -----------------------------------------------------------
 
-	public EducationRecordController() {
+	public MiscellaneousRecordMultiUserController() {
 		super();
 	}
 
 	// Controller methods -----------------------------------------------------		
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
-	public ModelAndView display(@RequestParam final int educationRecordId) {
+	public ModelAndView display(@RequestParam final int miscellaneousRecordId) {
 		ModelAndView result;
-		EducationRecord educationRecord;
+		MiscellaneousRecord miscellaneousRecord;
 
-		educationRecord = this.educationRecordService.findOne(educationRecordId);
+		miscellaneousRecord = this.miscellaneousRecordService.findOne(miscellaneousRecordId);
 
-		result = new ModelAndView("educationRecord/display");
-		result.addObject("educationRecord", educationRecord);
+		result = new ModelAndView("miscellaneousRecord/display");
+		result.addObject("miscellaneousRecord", miscellaneousRecord);
 
 		return result;
 	}
 
 	@RequestMapping(value = "/backCurriculum", method = RequestMethod.GET)
-	public ModelAndView back(@RequestParam final int educationRecordId) {
+	public ModelAndView back(@RequestParam final int miscellaneousRecordId) {
 		ModelAndView result;
 		int curriculumId;
 
-		curriculumId = this.curriculumService.findIdByEducationRecordId(educationRecordId);
+		curriculumId = this.curriculumService.findIdByMiscellaneousRecordId(miscellaneousRecordId);
 		result = new ModelAndView("redirect:/curriculum/display.do?curriculumId=" + curriculumId);
 
 		return result;

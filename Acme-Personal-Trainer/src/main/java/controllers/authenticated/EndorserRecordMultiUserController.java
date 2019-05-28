@@ -1,5 +1,5 @@
 
-package controllers;
+package controllers.authenticated;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,53 +8,54 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import controllers.AbstractController;
+
 import services.CurriculumService;
-import services.ProfessionalRecordService;
-import domain.ProfessionalRecord;
+import services.EndorserRecordService;
+import domain.EndorserRecord;
 
 @Controller
-@RequestMapping("professionalRecord/")
-public class ProfessionalRecordController extends AbstractController {
+@RequestMapping("endorserRecord/")
+public class EndorserRecordMultiUserController extends AbstractController {
 
 	// Services ---------------------------------------------------------------
 
 	@Autowired
-	private ProfessionalRecordService	professionalRecordService;
+	private EndorserRecordService	endorserRecordService;
 
 	@Autowired
-	private CurriculumService			curriculumService;
+	private CurriculumService		curriculumService;
 
 
 	// Constructors -----------------------------------------------------------
 
-	public ProfessionalRecordController() {
+	public EndorserRecordMultiUserController() {
 		super();
 	}
 
 	// Controller methods -----------------------------------------------------		
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
-	public ModelAndView display(@RequestParam final int professionalRecordId) {
+	public ModelAndView display(@RequestParam final int endorserRecordId) {
 		ModelAndView result;
-		ProfessionalRecord professionalRecord;
+		EndorserRecord endorserRecord;
 
-		professionalRecord = this.professionalRecordService.findOne(professionalRecordId);
+		endorserRecord = this.endorserRecordService.findOne(endorserRecordId);
 
-		result = new ModelAndView("professionalRecord/display");
-		result.addObject("professionalRecord", professionalRecord);
+		result = new ModelAndView("endorserRecord/display");
+		result.addObject("endorserRecord", endorserRecord);
 
 		return result;
 	}
 
 	@RequestMapping(value = "/backCurriculum", method = RequestMethod.GET)
-	public ModelAndView back(@RequestParam final int professionalRecordId) {
+	public ModelAndView back(@RequestParam final int endorserRecordId) {
 		ModelAndView result;
 		int curriculumId;
 
-		curriculumId = this.curriculumService.findIdByProfessionalRecordId(professionalRecordId);
+		curriculumId = this.curriculumService.findIdByEndorserRecordId(endorserRecordId);
 		result = new ModelAndView("redirect:/curriculum/display.do?curriculumId=" + curriculumId);
 
 		return result;
 	}
-
 }

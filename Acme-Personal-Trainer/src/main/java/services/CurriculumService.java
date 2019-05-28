@@ -136,6 +136,15 @@ public class CurriculumService {
 
 	// Ancillary methods -------------------------------------------------
 
+	public Curriculum findByTrainerId(final int trainerId) {
+		Curriculum result;
+
+		result = this.curriculumRepository.findByTrainerId(trainerId);
+		Assert.notNull(result);
+
+		return result;
+	}
+
 	public Integer findIdByPersonalRecordId(final int personalRecordId) {
 		Integer result;
 
