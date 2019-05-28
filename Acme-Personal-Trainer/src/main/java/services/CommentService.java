@@ -170,4 +170,8 @@ public class CommentService {
 
 		return comments;
 	}
+
+	protected void flush() {
+		this.commentRepository.flush();
+	}
 }

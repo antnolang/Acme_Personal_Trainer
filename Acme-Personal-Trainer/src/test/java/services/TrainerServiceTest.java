@@ -470,4 +470,19 @@ public class TrainerServiceTest extends AbstractTest {
 		super.unauthenticate();
 
 	}
+
+	/*
+	 * A: Requirement 37.5.2: The ratio of trainers with an endorsement.
+	 * B: Positive test
+	 * C: 100% of sentence coverage.
+	 * D: 100% of data coverage.
+	 */
+	@Test
+	public void ratioTrainerWithEndorsement() {
+		Double data;
+
+		data = this.trainerService.ratioTrainerWithEndorsement();
+
+		Assert.isTrue(data == 0.14286);
+	}
 }

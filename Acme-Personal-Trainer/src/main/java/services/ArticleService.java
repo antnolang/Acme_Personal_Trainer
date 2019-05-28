@@ -134,7 +134,7 @@ public class ArticleService {
 		Assert.notNull(article);
 		Assert.isTrue(this.articleRepository.exists(article.getId()));
 		this.checkByPrincipal(article);
-		Assert.isTrue(article.getIsFinalMode());
+		Assert.isTrue(!(article.getIsFinalMode()));
 
 		this.articleRepository.delete(article);
 	}
