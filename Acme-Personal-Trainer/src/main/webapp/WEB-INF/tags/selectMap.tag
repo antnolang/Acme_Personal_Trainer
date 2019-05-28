@@ -29,9 +29,6 @@
 <%@ attribute name="multiple" required="false" %>
 <%@ attribute name="code" required="true" %>
 
-<%-- <%@ attribute name="items" required="true" type="java.util.Collection" %> --%>
-<%-- <%@ attribute name="itemLabel" required="true" %> --%>
-
 <%@ attribute name="id" required="false" %>
 <%@ attribute name="onchange" required="false" %>
 
@@ -73,5 +70,4 @@
 		</jstl:forEach>
 	</form:select>
 	<form:errors cssClass="error" path="${path}"/>
-	<br />
 </div>
