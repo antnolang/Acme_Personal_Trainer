@@ -882,7 +882,6 @@
 	<!-- Finder -->
 	<bean id="finder1" class="domain.Finder">
 		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
-		<property name="category" value="comba" />
 		<property name="startPrice" value="25.24" />
 		<property name="endPrice" value="75.24" />
 		<property name="startDate" value="2019/11/05" />
@@ -898,7 +897,6 @@
 
 	<bean id="finder2" class="domain.Finder">
 		<property name="keyword" value="workingOut8" />
-		<property name="category" value="" />
 		<property name="startPrice" value="2.00" />
 		<property name="endPrice" value="50.24" />
 		<property name="startDate" value="2020/12/15 17:00" />
