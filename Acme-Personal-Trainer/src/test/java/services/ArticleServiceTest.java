@@ -13,7 +13,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
-import repositories.ArticleRepository;
 import utilities.AbstractTest;
 import domain.Article;
 
@@ -27,16 +26,10 @@ public class ArticleServiceTest extends AbstractTest {
 	// Service under testing ---------------------------------------------
 
 	@Autowired
-	private ArticleService		articleService;
+	private ArticleService	articleService;
 
-	@Autowired
-	private NutritionistService	nutritionistService;
 
 	// Other supporting services and repositories ------------------------
-
-	@Autowired
-	private ArticleRepository	articleRepository;
-
 
 	// Tests -------------------------------------------------------------
 
@@ -44,7 +37,7 @@ public class ArticleServiceTest extends AbstractTest {
 	public void driverCreateArticleNutritionist() {
 		final Object testingData[][] = {
 			/*
-			 * A: Req.10.1 Create article
+			 * A: Req.43. Every nutritionist can write a article.
 			 * B: Test positivo
 			 * C: 100%. 28/28 Recorre 28 de las 28 líneas de código totales
 			 * D: Intencionadamente en blanco. No se comprueban datos
@@ -53,8 +46,8 @@ public class ArticleServiceTest extends AbstractTest {
 				"nutritionist1", "articlePrueba1", "Description1", null
 			},
 			/*
-			 * A: Req.10.1 Create article
-			 * B: El nutricionista no puede comentar el articulo porque no es el que lo ha creado
+			 * A: Req.43. Every nutritionist can write a article.
+			 * B: El nutricionista no puede comentar el articulo porque no es el que lo ha creado.
 			 * C: 71%. 20/28 Recorre 20 de las 28 líneas de código totales
 			 * D: Intencionadamente en blanco. No se comprueban datos
 			 */
@@ -62,8 +55,8 @@ public class ArticleServiceTest extends AbstractTest {
 				"nutritionist1", null, "Text", ConstraintViolationException.class
 			},
 			/*
-			 * A: Req.10.1 Create article
-			 * B: El nutricionista no puede comentar el articulo porque está en modo no final
+			 * A: Req.43. Every nutritionist can write a article.
+			 * B: El nutricionista no puede comentar el articulo porque está en modo no final.
 			 * C: 67%. 19/28 Recorre 19 de las 28 líneas de código totales
 			 * D: Intencionadamente en blanco. No se comprueban datos
 			 */
@@ -71,8 +64,8 @@ public class ArticleServiceTest extends AbstractTest {
 				"nutritionist1", "articlePrueba2", "", ConstraintViolationException.class
 			},
 			/*
-			 * A: Req.10.1 Create article
-			 * B: El nutricionista no puede comentar el articulo porque está en modo no final
+			 * A: Req.43. Every nutritionist can write a article.
+			 * B: El nutricionista no puede comentar el articulo porque está en modo no final.
 			 * C: 67%. 19/28 Recorre 19 de las 28 líneas de código totales
 			 * D: Intencionadamente en blanco. No se comprueban datos
 			 */
@@ -116,9 +109,10 @@ public class ArticleServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: An actor who is authenticated as an articleor must be able to
-	 * manage his or her articles, which includes LISTING, showing,
-	 * creating, updating and deleting them.
+	 * A: Req. 46.1 An actor who is authenticated as a nutritionist must be able to
+	 * manage his or her articles, which includes listing them, showing them, creating,
+	 * updating and deleting them. An article can be saved in draft mode; once they are
+	 * saved in final mode, they cant be edited.
 	 * 
 	 * B: Positive test
 	 * 
@@ -146,11 +140,12 @@ public class ArticleServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: An actor who is authenticated as an articleor must be able to
-	 * manage his or her articles, which includes LISTING, showing,
-	 * creating, updating and deleting them.
+	 * A: Req. 46.1 An actor who is authenticated as a nutritionist must be able to
+	 * manage his or her articles, which includes listing them, showing them, creating,
+	 * updating and deleting them. An article can be saved in draft mode; once they are
+	 * saved in final mode, they cant be edited.
 	 * 
-	 * B: Positive test
+	 * B: El nutricionista no puede editar un articulo en modo final
 	 * 
 	 * C: 100% of sentence coverage, since it has been covered
 	 * 13 lines of code of 13 possible.
@@ -176,11 +171,12 @@ public class ArticleServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: An actor who is authenticated as an articleor must be able to
-	 * manage his or her articles, which includes LISTING, showing,
-	 * creating, updating and deleting them.
+	 * A: Req. 46.1 An actor who is authenticated as a nutritionist must be able to
+	 * manage his or her articles, which includes listing them, showing them, creating,
+	 * updating and deleting them. An article can be saved in draft mode; once they are
+	 * saved in final mode, they cant be edited.
 	 * 
-	 * B: Positive test
+	 * B: El nutricionista no puede editar un árticulo que no ha escrito él
 	 * 
 	 * C: 100% of sentence coverage, since it has been covered
 	 * 13 lines of code of 13 possible.
@@ -206,9 +202,10 @@ public class ArticleServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: An actor who is authenticated as an articleor must be able to
-	 * manage his or her articles, which includes LISTING, showing,
-	 * creating, updating and deleting them.
+	 * A: Req. 46.1 An actor who is authenticated as a nutritionist must be able to
+	 * manage his or her articles, which includes listing them, showing them, creating,
+	 * updating and deleting them. An article can be saved in draft mode; once they are
+	 * saved in final mode, they cant be edited.
 	 * 
 	 * B: Positive test
 	 * 
@@ -240,11 +237,12 @@ public class ArticleServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: An actor who is authenticated as an articleor must be able to
-	 * manage his or her articles, which includes LISTING, showing,
-	 * creating, updating and deleting them.
+	 * A: Req. 46.1 An actor who is authenticated as a nutritionist must be able to
+	 * manage his or her articles, which includes listing them, showing them, creating,
+	 * updating and deleting them. An article can be saved in draft mode; once they are
+	 * saved in final mode, they cant be edited.
 	 * 
-	 * B: Debe listar también el article7
+	 * B: Al nutricionista debe aparecerle tanto los articulos finales como los no finales
 	 * 
 	 * C: 100% of sentence coverage, since it has been covered
 	 * 13 lines of code of 13 possible.
@@ -272,11 +270,12 @@ public class ArticleServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: An actor who is authenticated as an articleor must be able to
-	 * manage his or her articles, which includes LISTING, showing,
-	 * creating, updating and deleting them.
+	 * A: Req. 46.1 An actor who is authenticated as a nutritionist must be able to
+	 * manage his or her articles, which includes listing them, showing them, creating,
+	 * updating and deleting them. An article can be saved in draft mode; once they are
+	 * saved in final mode, they cant be edited.
 	 * 
-	 * B: El nutritionist 2 no puede acceder a los comentarios de los articulos de otro nutritionist
+	 * B: Un nutricionista no puede listar los articulos de otro
 	 * 
 	 * C: 100% of sentence coverage, since it has been covered
 	 * 13 lines of code of 13 possible.
@@ -306,9 +305,8 @@ public class ArticleServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: An actor who is authenticated as an articleor must be able to
-	 * manage his or her articles, which includes LISTING, showing,
-	 * creating, updating and deleting them.
+	 * A: Req 47.1 An actor who is authenticated as a customer must be able to only premium customer can list
+	 * and displaying the articles that are published by the nutritionist.
 	 * 
 	 * B: Positive test
 	 * 
@@ -346,11 +344,10 @@ public class ArticleServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: An actor who is authenticated as an articleor must be able to
-	 * manage his or her articles, which includes LISTING, showing,
-	 * creating, updating and deleting them.
+	 * A: Req 47.1 An actor who is authenticated as a customer must be able to only premium customer can list
+	 * and displaying the articles that are published by the nutritionist.
 	 * 
-	 * B: Debe listar también el article7
+	 * B: Al cliente no debe aparecerle en el listado los articulos en modo no final
 	 * 
 	 * C: 100% of sentence coverage, since it has been covered
 	 * 13 lines of code of 13 possible.
@@ -388,11 +385,10 @@ public class ArticleServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: An actor who is authenticated as an articleor must be able to
-	 * manage his or her articles, which includes LISTING, showing,
-	 * creating, updating and deleting them.
+	 * A: Req 47.1 An actor who is authenticated as a customer must be able to only premium customer can list
+	 * and displaying the articles that are published by the nutritionist.
 	 * 
-	 * B: El nutritionist 2 no puede acceder a los comentarios de los articulos de otro nutritionist
+	 * B: Al cliente deben aparecerle todos los articulos en modo final existentes. Falta el article6.
 	 * 
 	 * C: 100% of sentence coverage, since it has been covered
 	 * 13 lines of code of 13 possible.
@@ -426,9 +422,10 @@ public class ArticleServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: An actor who is authenticated as an articleor must be able to
-	 * manage his or her articles, which includes LISTING, showing,
-	 * creating, updating and deleting them.
+	 * A: Req. 46.1 An actor who is authenticated as a nutritionist must be able to
+	 * manage his or her articles, which includes listing them, showing them, creating,
+	 * updating and deleting them. An article can be saved in draft mode; once they are
+	 * saved in final mode, they cant be edited.
 	 * 
 	 * B: Positive test
 	 * 
@@ -455,11 +452,12 @@ public class ArticleServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: An actor who is authenticated as an articleor must be able to
-	 * manage his or her articles, which includes LISTING, showing,
-	 * creating, updating and deleting them.
+	 * A: Req. 46.1 An actor who is authenticated as a nutritionist must be able to
+	 * manage his or her articles, which includes listing them, showing them, creating,
+	 * updating and deleting them. An article can be saved in draft mode; once they are
+	 * saved in final mode, they cant be edited.
 	 * 
-	 * B: Positive test
+	 * B: El articulo 3 ya está en Modo Final
 	 * 
 	 * C: 100% of sentence coverage, since it has been covered
 	 * 13 lines of code of 13 possible.
@@ -484,11 +482,12 @@ public class ArticleServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: An actor who is authenticated as an articleor must be able to
-	 * manage his or her articles, which includes LISTING, showing,
-	 * creating, updating and deleting them.
+	 * A: Req. 46.1 An actor who is authenticated as a nutritionist must be able to
+	 * manage his or her articles, which includes listing them, showing them, creating,
+	 * updating and deleting them. An article can be saved in draft mode; once they are
+	 * saved in final mode, they cant be edited.
 	 * 
-	 * B: Positive test
+	 * B: El nutricionista2 no puede marcar en modo final un articulo de otro nutricionista
 	 * 
 	 * C: 100% of sentence coverage, since it has been covered
 	 * 13 lines of code of 13 possible.
@@ -513,9 +512,10 @@ public class ArticleServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: An actor who is authenticated as an articleor must be able to
-	 * manage his or her articles, which includes LISTING, showing,
-	 * creating, updating and deleting them.
+	 * A: Req. 46.1 An actor who is authenticated as a nutritionist must be able to
+	 * manage his or her articles, which includes listing them, showing them, creating,
+	 * updating and deleting them. An article can be saved in draft mode; once they are
+	 * saved in final mode, they cant be edited.
 	 * 
 	 * B: Positive test
 	 * 
@@ -542,11 +542,12 @@ public class ArticleServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: An actor who is authenticated as an articleor must be able to
-	 * manage his or her articles, which includes LISTING, showing,
-	 * creating, updating and deleting them.
+	 * A: Req. 46.1 An actor who is authenticated as a nutritionist must be able to
+	 * manage his or her articles, which includes listing them, showing them, creating,
+	 * updating and deleting them. An article can be saved in draft mode; once they are
+	 * saved in final mode, they cant be edited.
 	 * 
-	 * B: Positive test
+	 * B: No se puede eliminar un articulo en modo final
 	 * 
 	 * C: 100% of sentence coverage, since it has been covered
 	 * 13 lines of code of 13 possible.
@@ -571,11 +572,12 @@ public class ArticleServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: An actor who is authenticated as an articleor must be able to
-	 * manage his or her articles, which includes LISTING, showing,
-	 * creating, updating and deleting them.
+	 * A: Req. 46.1 An actor who is authenticated as a nutritionist must be able to
+	 * manage his or her articles, which includes listing them, showing them, creating,
+	 * updating and deleting them. An article can be saved in draft mode; once they are
+	 * saved in final mode, they cant be edited.
 	 * 
-	 * B: Positive test
+	 * B: No se puede eliminar un articulo creado por otro nutricionista
 	 * 
 	 * C: 100% of sentence coverage, since it has been covered
 	 * 13 lines of code of 13 possible.
@@ -600,9 +602,10 @@ public class ArticleServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: An actor who is authenticated as an articleor must be able to
-	 * manage his or her articles, which includes listing, SHOWING,
-	 * creating, updating and deleting them.
+	 * A: Req. 46.1 An actor who is authenticated as a nutritionist must be able to
+	 * manage his or her articles, which includes listing them, showing them, creating,
+	 * updating and deleting them. An article can be saved in draft mode; once they are
+	 * saved in final mode, they cant be edited.
 	 * 
 	 * B: Positive test
 	 * 
@@ -628,11 +631,12 @@ public class ArticleServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: An actor who is authenticated as an articleor must be able to
-	 * manage his or her articles, which includes listing, SHOWING,
-	 * creating, updating and deleting them.
+	 * A: Req. 46.1 An actor who is authenticated as a nutritionist must be able to
+	 * manage his or her articles, which includes listing them, showing them, creating,
+	 * updating and deleting them. An article can be saved in draft mode; once they are
+	 * saved in final mode, they cant be edited.
 	 * 
-	 * B: The article to display must belong to the articleor principal.
+	 * B: Un nutricionista no puede mostrar un articulo creado por nutricionista
 	 * 
 	 * C: 92.8% of sentence coverage, since it has been covered
 	 * 13 lines of code of 14 possible.
@@ -656,11 +660,10 @@ public class ArticleServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: An actor who is authenticated as an articleor must be able to
-	 * manage his or her articles, which includes listing, SHOWING,
-	 * creating, updating and deleting them.
+	 * A: Req 47.1 An actor who is authenticated as a customer must be able to only premium customer can list
+	 * and displaying the articles that are published by the nutritionist.
 	 * 
-	 * B: The article to display must belong to the articleor principal.
+	 * B: un customer no premium no puede visualizar ningun articulo
 	 * 
 	 * C: 92.8% of sentence coverage, since it has been covered
 	 * 13 lines of code of 14 possible.

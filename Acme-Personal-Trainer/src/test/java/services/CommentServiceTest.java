@@ -23,9 +23,6 @@ public class CommentServiceTest extends AbstractTest {
 
 	// The SUT ---------------------------
 	@Autowired
-	private ArticleService	articleService;
-
-	@Autowired
 	private CommentService	commentService;
 
 
@@ -35,7 +32,7 @@ public class CommentServiceTest extends AbstractTest {
 	public void driverCreateCommentCustomer() {
 		final Object testingData[][] = {
 			/*
-			 * A: Req.10.1 Create comment
+			 * A: Req.47.2 Create comment
 			 * B: Test positivo
 			 * C: 100%. 28/28 Recorre 28 de las 28 líneas de código totales
 			 * D: Intencionadamente en blanco. No se comprueban datos
@@ -44,7 +41,7 @@ public class CommentServiceTest extends AbstractTest {
 				"customer1", "article1", "Text", null
 			},
 			/*
-			 * A: Req.10.1 Create comment
+			 * A: Req.47.2 Create comment
 			 * B: El articulo no está en modo final
 			 * C: 71%. 20/28 Recorre 20 de las 28 líneas de código totales
 			 * D: Intencionadamente en blanco. No se comprueban datos
@@ -53,7 +50,7 @@ public class CommentServiceTest extends AbstractTest {
 				"customer1", "article2", "Text", IllegalArgumentException.class
 			},
 			/*
-			 * A: Req.10.1 Create comment
+			 * A: Req.47.2 Create comment
 			 * B: El customer no es premium
 			 * C: 67%. 19/28 Recorre 19 de las 28 líneas de código totales
 			 * D: Intencionadamente en blanco. No se comprueban datos
@@ -100,7 +97,7 @@ public class CommentServiceTest extends AbstractTest {
 	public void driverCreateCommentNutritionist() {
 		final Object testingData[][] = {
 			/*
-			 * A: Req.10.1 Create comment
+			 * A: Req.46.1 Create comment
 			 * B: Test positivo
 			 * C: 100%. 28/28 Recorre 28 de las 28 líneas de código totales
 			 * D: Intencionadamente en blanco. No se comprueban datos
@@ -109,7 +106,7 @@ public class CommentServiceTest extends AbstractTest {
 				"nutritionist1", "article1", "Text", null
 			},
 			/*
-			 * A: Req.10.1 Create comment
+			 * A: Req.46.1 Create comment
 			 * B: El nutricionista no puede comentar el articulo porque no es el que lo ha creado
 			 * C: 71%. 20/28 Recorre 20 de las 28 líneas de código totales
 			 * D: Intencionadamente en blanco. No se comprueban datos
@@ -118,7 +115,7 @@ public class CommentServiceTest extends AbstractTest {
 				"nutritionist1", "article3", "Text", IllegalArgumentException.class
 			},
 			/*
-			 * A: Req.10.1 Create comment
+			 * A: Req.46.1 Create comment
 			 * B: El nutricionista no puede comentar el articulo porque está en modo no final
 			 * C: 67%. 19/28 Recorre 19 de las 28 líneas de código totales
 			 * D: Intencionadamente en blanco. No se comprueban datos
@@ -162,7 +159,7 @@ public class CommentServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * A: An actor who is authenticated as an commentor must be able to
+	 * A: Req 46.1 An actor who is authenticated as an commentor must be able to
 	 * manage his or her comments, which includes LISTING, showing,
 	 * creating, updating and deleting them.
 	 * 
