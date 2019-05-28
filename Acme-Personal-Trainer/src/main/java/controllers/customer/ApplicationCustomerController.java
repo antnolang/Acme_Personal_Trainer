@@ -113,20 +113,25 @@ public class ApplicationCustomerController extends AbstractController {
 		ModelAndView result;
 		Application applicationRec;
 
-		applicationRec = this.applicationService.reconstruct(application, binding);
-		this.applicationService.validateCreditCard(applicationRec, binding);
+		try {
+			applicationRec = this.applicationService.reconstruct(application, binding);
+			this.applicationService.validateCreditCard(applicationRec, binding);
 
-		if (binding.hasErrors())
-			result = this.createEditModelAndView(application);
-		else
-			try {
-				this.applicationService.save(applicationRec);
-				result = new ModelAndView("redirect:../customer/list.do");
-			}
+			if (binding.hasErrors())
+				result = this.createEditModelAndView(application);
+			else
+				try {
+					this.applicationService.save(applicationRec);
+					result = new ModelAndView("redirect:../customer/list.do");
+				}
 
-			catch (final Throwable oops) {
-				result = this.createEditModelAndView(application, "application.commit.error");
-			}
+				catch (final Throwable oops) {
+					result = this.createEditModelAndView(application, "application.commit.error");
+				}
+
+		} catch (final Exception e) {
+			result = new ModelAndView("redirect:../../error.do");
+		}
 
 		return result;
 	}
