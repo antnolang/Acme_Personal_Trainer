@@ -197,6 +197,14 @@
 					code="table.curriculum" /></a>
 		</p>
 		</security:authorize>
+		
+		<security:authorize access="hasRole('AUDITOR')">
+		<p>
+			<strong> <spring:message code="actor.trainer.curriculum" />
+			</strong> <a href=""><spring:message 
+					code="table.curriculum" /></a> <!-- TODO -->
+		</p>
+		</security:authorize>
 	</fieldset>
 </jstl:if>
 
