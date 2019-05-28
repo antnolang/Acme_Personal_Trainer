@@ -122,10 +122,13 @@ public class FinderService {
 		return result;
 	}
 
-	public Double findRatioEmptyVsNonEmpty() {
-		Double result;
+	// Query split due to a bug with JPQL
+	public double findRatioEmptyVsNonEmpty() {
+		double result, numEmptyFinders, numNonEmptyFinders;
 
-		result = this.finderRepository.findRatioEmptyVsNonEmpty();
+		numEmptyFinders = this.finderRepository.findNumberEmptyFinder();
+		numNonEmptyFinders = this.finderRepository.findNumberNonEmptyFinder();
+		result = numEmptyFinders / numNonEmptyFinders;
 
 		return result;
 	}
