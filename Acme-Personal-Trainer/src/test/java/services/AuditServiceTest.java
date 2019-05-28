@@ -39,7 +39,6 @@ public class AuditServiceTest extends AbstractTest {
 	// Tests ------------------------------------------------------------------
 
 	/*
-	 * TODO: Test funcionales y análisis Audit
 	 * A: An actor who is authenticated as an auditor must be able to
 	 * manage his or her audits, which includes LISTING, showing,
 	 * creating, updating and deleting them.

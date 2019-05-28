@@ -54,9 +54,9 @@ public class FinderServiceTest extends AbstractTest {
 	public void testRatioEmptyVsNonEmpty() {
 		Double data;
 
-		data = this.finderService.findRatioEmptyVsNonEmpty(); // TODO: Bug de JPQL
+		data = this.finderService.findRatioEmptyVsNonEmpty();
 
-		Assert.isTrue(data == 0.16667);
+		Assert.isTrue(data == 0.16666666666666666);
 	}
 
 	/*

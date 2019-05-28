@@ -83,7 +83,7 @@ public class CurriculumServiceTest extends AbstractTest {
 		Assert.isTrue(savedPersonalRecord.getFullName() == fullname);
 		Assert.isTrue(savedPersonalRecord.getEmail() == email);
 		Assert.isTrue(savedPersonalRecord.getLinkedInProfile() == linkedinProf);
-		Assert.isTrue(savedPersonalRecord.getPhoneNumber() == phone);
+		Assert.isTrue(savedPersonalRecord.getPhoneNumber().equals("+34 " + phone));
 		Assert.isTrue(savedPersonalRecord.getPhoto() == photo);
 	}
 
@@ -133,7 +133,7 @@ public class CurriculumServiceTest extends AbstractTest {
 		Assert.isTrue(savedPersonalRecord.getFullName() == fullname);
 		Assert.isTrue(savedPersonalRecord.getEmail() == email);
 		Assert.isTrue(savedPersonalRecord.getLinkedInProfile() == linkedinProf);
-		Assert.isTrue(savedPersonalRecord.getPhoneNumber() == phone);
+		Assert.isTrue(savedPersonalRecord.getPhoneNumber().equals("+34 " + phone));
 		Assert.isTrue(savedPersonalRecord.getPhoto() == photo);
 	}
 
@@ -183,7 +183,7 @@ public class CurriculumServiceTest extends AbstractTest {
 		Assert.isTrue(savedPersonalRecord.getFullName() == fullname);
 		Assert.isTrue(savedPersonalRecord.getEmail() == email);
 		Assert.isTrue(savedPersonalRecord.getLinkedInProfile() == linkedinProf);
-		Assert.isTrue(savedPersonalRecord.getPhoneNumber() == phone);
+		Assert.isTrue(savedPersonalRecord.getPhoneNumber().equals("+34 " + phone));
 		Assert.isTrue(savedPersonalRecord.getPhoto() == photo);
 	}
 
