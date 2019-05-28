@@ -20,6 +20,7 @@ import repositories.CustomerRepository;
 import security.Authority;
 import security.UserAccount;
 import utilities.AbstractTest;
+import domain.Application;
 import domain.Customer;
 import domain.Endorsement;
 import domain.Trainer;
@@ -46,6 +47,9 @@ public class CustomerServiceTest extends AbstractTest {
 
 	@Autowired
 	private TrainerService		trainerService;
+
+	@Autowired
+	private ApplicationService	applicationService;
 
 
 	// Tests ------------------------------------------------------------------
@@ -379,29 +383,6 @@ public class CustomerServiceTest extends AbstractTest {
 
 	/*
 	 * A: An actor who is authenticated as a customer must be able to:
-	 * Display one of his/her endorsements
-	 * 
-	 * B: A customer tries to display an endorsemenet that does not belongs to him/her
-	 * 
-	 * C: 71% of sentence coverage. -> It has covered 10 lines of 14.
-	 * 
-	 * D: Analysis of data coverage: intentionally blank.
-	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void display_endorsement_negative_test() {
-		Endorsement endorsement;
-
-		super.authenticate("customer2");
-
-		endorsement = this.endorsementService.findOne(super.getEntityId("endorsement2"));
-
-		Assert.notNull(endorsement);
-
-		super.unauthenticate();
-	}
-
-	/*
-	 * A: An actor who is authenticated as a customer must be able to:
 	 * Create an endorsement
 	 * 
 	 * B: Positive test
@@ -414,11 +395,27 @@ public class CustomerServiceTest extends AbstractTest {
 	public void create_endorsement_positive_test() {
 		Endorsement endorsement, saved;
 		Trainer trainer;
+		Application application;
+
+		super.authenticate("customer1");
+
+		application = this.applicationService.findOne(super.getEntityId("application4"));
+
+		application.setCustomer(this.customerService.findOne(super.getEntityId("customer1")));
+
+		super.unauthenticate();
+
+		super.authenticate("trainer3");
+
+		this.applicationService.acceptedApplication(application);
+		Assert.isTrue(application.getStatus().equals("ACCEPTED"));
+
+		super.unauthenticate();
 
 		super.authenticate("customer1");
 
 		endorsement = this.endorsementService.create();
-		trainer = this.trainerService.findOne(super.getEntityId("trainer1"));
+		trainer = this.trainerService.findOne(super.getEntityId("trainer3"));
 
 		endorsement.setComments("TEST");
 		endorsement.setMark(7);
@@ -430,7 +427,6 @@ public class CustomerServiceTest extends AbstractTest {
 
 		super.unauthenticate();
 	}
-
 	/*
 	 * A: An actor who is authenticated as a customer must be able to:
 	 * Create an endorsement
