@@ -44,7 +44,7 @@
 </display:table>
 </jstl:if>
 <br />
-<jstl:if test="${!haveActorAttended}">
+<jstl:if test="${!haveActorAttended && haveActorAttended!= null}">
 	<p style="color:blue;"><spring:message code="endorsement.info"/></p>
 </jstl:if>
 <jstl:if test="${haveActorAttended}">

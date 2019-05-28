@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import security.LoginService;
+import services.ApplicationService;
 import services.CustomerService;
 import services.EndorsementService;
 import services.TrainerService;
@@ -35,6 +36,9 @@ public class EndorsementCustomerTrainerController extends AbstractController {
 
 	@Autowired
 	private TrainerService		trainerService;
+
+	@Autowired
+	private ApplicationService	applicationService;
 
 
 	// Constructor
@@ -118,6 +122,48 @@ public class EndorsementCustomerTrainerController extends AbstractController {
 		} catch (final Throwable oops) {
 			result = new ModelAndView("redirect:/error.do");
 		}
+
+		return result;
+	}
+
+	// List endorsements by an actorId
+
+	@RequestMapping(value = "/listEndorsements", method = RequestMethod.GET)
+	public ModelAndView list(@RequestParam final int actorId) {
+		ModelAndView result;
+		Collection<Endorsement> receivedEndorsements;
+		Customer customer;
+		boolean trainerAttended;
+
+		result = new ModelAndView();
+
+		if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]"))
+			try {
+				customer = this.customerService.findByPrincipal();
+				trainerAttended = this.applicationService.existApplicationAcceptedBetweenCustomerTrainer(customer.getId(), actorId);
+				if (trainerAttended == false)
+					throw new IllegalArgumentException();
+				else
+					receivedEndorsements = this.endorsementService.findReceivedEndorsementsByTrainer(actorId);
+
+				result = new ModelAndView("endorsement/list");
+				result.addObject("receivedEndorsements", receivedEndorsements);
+				result.addObject("haveActorAttended", trainerAttended);
+				result.addObject("requestURI", "endorsement/customer,trainer/listEndorsements.do");
+
+			} catch (final Throwable oops) {
+				result = new ModelAndView("redirect:/error.do");
+			}
+		else if (LoginService.getPrincipal().getAuthorities().toString().equals("[TRAINER]"))
+			try {
+				receivedEndorsements = this.endorsementService.findReceivedEndorsementsByCustomer(actorId);
+
+				result = new ModelAndView("endorsement/list");
+				result.addObject("receivedEndorsements", receivedEndorsements);
+				result.addObject("requestURI", "endorsement/customer,trainer/listEndorsements.do");
+			} catch (final Throwable oops) {
+				result = new ModelAndView("redirect:/error.do");
+			}
 
 		return result;
 	}

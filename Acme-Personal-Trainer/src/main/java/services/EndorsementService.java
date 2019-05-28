@@ -278,4 +278,12 @@ public class EndorsementService {
 		return result;
 	}
 
+	public Double avgMarkByCustomer(final int customerId) {
+		Double result;
+
+		result = this.endorsementRepository.avgMarkByCustomer(customerId);
+
+		return result;
+	}
+
 }
