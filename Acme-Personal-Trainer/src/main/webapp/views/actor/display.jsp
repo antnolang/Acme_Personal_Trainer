@@ -199,11 +199,13 @@
 		</security:authorize>
 		
 		<security:authorize access="hasAnyRole('AUDITOR','CUSTOMER','ADMIN')">
+		<jstl:if test="${hasCurriculum}">
 		<p>
 			<strong> <spring:message code="actor.trainer.curriculum" />
 			</strong> <a href="curriculum/displayFromTrainer.do?trainerId=${actor.id }"><spring:message 
 					code="table.curriculum" /></a> 
 		</p>
+		</jstl:if>
 		</security:authorize>
 	</fieldset>
 </jstl:if>
