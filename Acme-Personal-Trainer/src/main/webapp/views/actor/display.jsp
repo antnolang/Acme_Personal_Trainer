@@ -198,11 +198,11 @@
 		</p>
 		</security:authorize>
 		
-		<security:authorize access="hasRole('AUDITOR')">
+		<security:authorize access="hasAnyRole('AUDITOR','CUSTOMER','ADMIN')">
 		<p>
 			<strong> <spring:message code="actor.trainer.curriculum" />
 			</strong> <a href="curriculum/displayFromTrainer.do?trainerId=${actor.id }"><spring:message 
-					code="table.curriculum" /></a> <!-- TODO -->
+					code="table.curriculum" /></a> 
 		</p>
 		</security:authorize>
 	</fieldset>
