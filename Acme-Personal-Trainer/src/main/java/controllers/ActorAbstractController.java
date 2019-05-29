@@ -7,10 +7,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
 import services.ApplicationService;
+import services.CurriculumService;
 import services.CustomerService;
 import services.EndorsementService;
 import domain.Actor;
 import domain.Administrator;
+import domain.Curriculum;
 import domain.Customer;
 import domain.Trainer;
 
@@ -31,6 +33,9 @@ public class ActorAbstractController extends AbstractController {
 	@Autowired
 	private EndorsementService	endorsementService;
 
+	@Autowired
+	private CurriculumService	curriculumService;
+
 
 	// Main methods -----------------------------------------------------------
 
@@ -41,6 +46,7 @@ public class ActorAbstractController extends AbstractController {
 		Actor actor, principal;
 		Customer customerPrincipal;
 		Double customerMark;
+		Curriculum curriculum;
 
 		actor = null;
 		principal = null;
@@ -77,6 +83,13 @@ public class ActorAbstractController extends AbstractController {
 			} else if (actor instanceof Customer) {
 				customerMark = this.endorsementService.avgMarkByCustomer(actor.getId());
 				result.addObject("customerMark", customerMark);
+			}
+			if (actor instanceof Trainer) {
+				curriculum = this.curriculumService.findByTrainerId(actor.getId());
+				if (curriculum == null)
+					result.addObject("hasCurriculum", false);
+				else
+					result.addObject("hasCurriculum", true);
 			}
 
 		}

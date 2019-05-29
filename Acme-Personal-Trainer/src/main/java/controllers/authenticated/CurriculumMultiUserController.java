@@ -46,8 +46,15 @@ public class CurriculumMultiUserController extends AbstractController {
 		ModelAndView result;
 		Curriculum curriculum;
 
-		curriculum = this.curriculumService.findByTrainerId(trainerId);
-		result = this.displayModelAndView(curriculum);
+		try {
+			curriculum = this.curriculumService.findByTrainerId(trainerId);
+			if (curriculum == null)
+				throw new IllegalArgumentException();
+			else
+				result = this.displayModelAndView(curriculum);
+		} catch (final Throwable oops) {
+			result = new ModelAndView("redirect:/error.do");
+		}
 
 		return result;
 	}

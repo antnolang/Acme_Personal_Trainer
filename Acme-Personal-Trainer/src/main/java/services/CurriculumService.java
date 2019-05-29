@@ -140,7 +140,6 @@ public class CurriculumService {
 		Curriculum result;
 
 		result = this.curriculumRepository.findByTrainerId(trainerId);
-		Assert.notNull(result);
 
 		return result;
 	}
