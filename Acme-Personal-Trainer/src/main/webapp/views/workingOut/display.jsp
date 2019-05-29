@@ -131,10 +131,11 @@
 <security:authorize access="hasRole('TRAINER')">
 	<jstl:if test="${principal == workingOut.trainer && !workingOut.isFinalMode}">
 	<a href="session/trainer/create.do?workingOutId=${workingOut.id}">
+		<spring:message	code="workingOut.create.session" />			
+		
+	</a>
 	
 		<p style="color:blue;"><spring:message code="workingOut.info.session"/></p>
-		<spring:message	code="workingOut.create.session" />			
-	</a>
 	
 	</jstl:if>
 	
