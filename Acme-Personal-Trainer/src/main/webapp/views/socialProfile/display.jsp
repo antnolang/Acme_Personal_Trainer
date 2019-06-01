@@ -28,9 +28,8 @@
 
 <p>
 	<strong> <spring:message code="socialProfile.linkProfile"/>: </strong>
-	<a href="${socialProfile.linkProfile}" target="_blank">
-		<spring:message code="socialProfile.linkProfile"/>
-	</a>
+	<!-- Intentional bug -->
+	<jstl:out value="${socialProfile.linkProfile}" />
 </p>
 	
 <a href="socialProfile/administrator,auditor,customer,nutritionist,trainer/list.do?actorId=${actorId}">

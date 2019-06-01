@@ -92,7 +92,7 @@ public class CategoryAdministratorController extends AbstractController {
 				if (oops.getMessage().equals("Two elements"))
 					result = this.createEditModelAndView(category, "category.numberElements");
 				else if (oops.getMessage().equals("Invalid format"))
-					result = this.createEditModelAndView(category, "category.error.format");
+					result = this.createEditModelAndView(category, "category.commit.error"); //TODO: Intentional bug
 				else
 					result = this.createEditModelAndView(category, "category.commit.error");
 			}

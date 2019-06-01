@@ -114,7 +114,7 @@ public class BoxMultiUserController extends AbstractController {
 				this.boxService.save(boxRec);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final DataIntegrityViolationException oops) {
-				result = this.createEditModelAndView(boxRec, "box.name.unique");
+				result = this.createEditModelAndView(boxRec, "box.commit.error"); //TODO: Intentional bug
 			} catch (final Throwable oops) {
 				if (oops.getMessage().equals("Invalid name"))
 					result = this.createEditModelAndView(boxRec, "box.error.name");
