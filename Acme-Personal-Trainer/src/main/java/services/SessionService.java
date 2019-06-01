@@ -66,8 +66,6 @@ public class SessionService {
 			Assert.isTrue(session.getEndMoment().after(session.getStartMoment()), "Start moment before end moment");
 			Assert.isTrue(session.getStartMoment().after(this.utilityService.current_moment()), "Start moment in the future");
 
-			this.workingOutService.updateMomentWorkingOut(workingOut, session);
-
 			result = this.sessionRepository.save(session);
 
 			sessionsWO.add(result);
