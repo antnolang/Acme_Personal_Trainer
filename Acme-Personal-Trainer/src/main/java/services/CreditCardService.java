@@ -67,7 +67,6 @@ public class CreditCardService {
 	public CreditCard save(final CreditCard creditCard) {
 		Assert.notNull(creditCard);
 		Assert.isTrue(creditCard.getId() == 0);
-		Assert.isTrue(!this.utilityService.checkIsExpired(creditCard), "Expired credit card");
 		Assert.isTrue(this.customisationService.find().getCreditCardMakes().contains(creditCard.getBrandName()));
 		this.checkByPrincipal(creditCard);
 
