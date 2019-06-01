@@ -33,6 +33,6 @@
 	</a>
 </p>
 	
-<a href="socialProfile/list.do?actorId=${actorId}">
+<a href="socialProfile/administrator,auditor,customer,nutritionist,trainer/list.do?actorId=${actorId}">
 	<spring:message	code="socialProfile.return" />			
 </a>
