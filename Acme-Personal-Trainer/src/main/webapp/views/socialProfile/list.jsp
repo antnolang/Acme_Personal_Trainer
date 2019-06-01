@@ -29,7 +29,7 @@
 	</jstl:if>
 	
 	<display:column>
-		<a href="socialProfile/display.do?socialProfileId=${row.id}">
+		<a href="socialProfile/administrator,auditor,customer,nutritionist,trainer/display.do?socialProfileId=${row.id}">
 			<spring:message code="socialProfile.display" />
 		</a>
 	</display:column>

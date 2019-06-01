@@ -90,8 +90,7 @@
 		<security:intercept-url pattern="/professionalRecord/trainer/**" access="hasRole('TRAINER')" /> 
 		<security:intercept-url pattern="/professionalRecord/**" access="isAuthenticated()" /> 
 		
-		<security:intercept-url pattern="/socialProfile/administrator,auditor,customer,nutritionist,trainer/**" access="isAuthenticated()" />
-		<security:intercept-url pattern="/socialProfile/**" access="permitAll" />
+		<security:intercept-url pattern="/socialProfile/**" access="isAuthenticated()" />
 		
 		<security:intercept-url pattern="/trainer/auditor/**" access="hasRole('AUDITOR')" /> 
 		

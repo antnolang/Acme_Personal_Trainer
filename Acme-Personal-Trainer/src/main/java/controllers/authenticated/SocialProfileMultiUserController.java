@@ -1,6 +1,8 @@
 
 package controllers.authenticated;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -32,6 +34,53 @@ public class SocialProfileMultiUserController extends AbstractController {
 		super();
 	}
 
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView list(@RequestParam final int actorId) {
+		ModelAndView result;
+		Integer principalId;
+		Collection<SocialProfile> socialProfiles;
+		Boolean isAuthorized;
+
+		try {
+			socialProfiles = this.socialProfileService.findSocialProfilesByActor(actorId);
+
+			principalId = this.actorService.findPrincipal().getId();
+
+			// We check if actor principal is owner's social profiles
+			isAuthorized = principalId != null && principalId == actorId;
+
+			result = new ModelAndView("socialProfile/list");
+			result.addObject("socialProfiles", socialProfiles);
+			result.addObject("actorId", actorId);
+			result.addObject("requestURI", "socialProfile/administrator,auditor,customer,nutritionist,trainer/list.do");
+			result.addObject("isAuthorized", isAuthorized);
+		} catch (final Exception e) {
+			result = new ModelAndView("redirect:/error.do");
+		}
+
+		return result;
+	}
+
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView display(@RequestParam final int socialProfileId) {
+		ModelAndView result;
+		SocialProfile socialProfile;
+
+		try {
+			socialProfile = this.socialProfileService.findOneDisplay(socialProfileId);
+
+			result = new ModelAndView("socialProfile/display");
+
+			result.addObject("socialProfile", socialProfile);
+			result.addObject("actorId", socialProfile.getActor().getId());
+
+		} catch (final Throwable oops) {
+			result = new ModelAndView("redirect:/error.do");
+		}
+
+		return result;
+	}
+
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result;
@@ -53,7 +102,7 @@ public class SocialProfileMultiUserController extends AbstractController {
 			socialProfile = this.socialProfileService.findOneToEdit(socialProfileId);
 
 			result = this.createEditModelAndView(socialProfile);
-		} catch (final Exception e) {
+		} catch (final Throwable oops) {
 			result = new ModelAndView("redirect:/error.do");
 		}
 
@@ -63,27 +112,20 @@ public class SocialProfileMultiUserController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(final SocialProfile socialProfile, final BindingResult binding) {
 		ModelAndView result;
-		Actor actor;
 		SocialProfile socialProfileRec;
 
-		try {
-			actor = this.actorService.findPrincipal();
-
-			socialProfileRec = this.socialProfileService.reconstruct(socialProfile, binding);
-			if (binding.hasErrors())
-				result = this.createEditModelAndView(socialProfile);
-			else
-				try {
-					this.socialProfileService.save(socialProfileRec);
-					result = new ModelAndView("redirect:/socialProfile/list.do?actorId=" + actor.getId());
-				} catch (final DataIntegrityViolationException oops) {
-					result = this.createEditModelAndView(socialProfileRec, "socialProfile.linkProfile.unique");
-				} catch (final Throwable oops) {
-					result = this.createEditModelAndView(socialProfileRec, "socialProfile.commit.error");
-				}
-		} catch (final Exception e) {
-			result = new ModelAndView("redirect:/error.do");
-		}
+		socialProfileRec = this.socialProfileService.reconstruct(socialProfile, binding);
+		if (binding.hasErrors())
+			result = this.createEditModelAndView(socialProfile);
+		else
+			try {
+				this.socialProfileService.save(socialProfileRec);
+				result = new ModelAndView("redirect:/socialProfile/administrator,auditor,customer,nutritionist,trainer/list.do?actorId=" + socialProfileRec.getActor().getId());
+			} catch (final DataIntegrityViolationException oops) {
+				result = this.createEditModelAndView(socialProfileRec, "socialProfile.linkProfile.unique");
+			} catch (final Throwable oops) {
+				result = this.createEditModelAndView(socialProfileRec, "socialProfile.commit.error");
+			}
 
 		return result;
 	}
@@ -99,7 +141,7 @@ public class SocialProfileMultiUserController extends AbstractController {
 		try {
 			this.socialProfileService.delete(social_profile);
 
-			result = new ModelAndView("redirect:/socialProfile/list.do?actorId=" + actorId);
+			result = new ModelAndView("redirect:/socialProfile/administrator,auditor,customer,nutritionist,trainer/list.do?actorId=" + actorId);
 		} catch (final Throwable oops) {
 			result = this.createEditModelAndView(socialProfile, "socialProfile.commit.error");
 		}
