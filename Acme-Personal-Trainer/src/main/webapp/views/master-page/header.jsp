@@ -91,7 +91,7 @@
 			<li><a class="fNiv"><spring:message	code="master.page.register" /></a>	
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="actor/registerCustomer.do"><spring:message code="master.page.customer.create" /></a></li>
+					<li><a href="actor/registerTrainer.do"><spring:message code="master.page.customer.create" /></a></li>
 					<li><a href="actor/registerTrainer.do"><spring:message code="master.page.trainer.create" /></a></li>
 				</ul>
 			</li>

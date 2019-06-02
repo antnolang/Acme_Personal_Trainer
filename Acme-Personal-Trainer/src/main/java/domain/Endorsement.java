@@ -16,7 +16,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -57,7 +56,6 @@ public class Endorsement extends DomainEntity {
 		this.writtenMoment = writtenMoment;
 	}
 
-	@NotBlank
 	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getComments() {
 		return this.comments;
