@@ -201,8 +201,8 @@ public class CommentServiceTest extends AbstractTest {
 	 * 
 	 * B: Debe listar también el comment7
 	 * 
-	 * C: 100% of sentence coverage, since it has been covered
-	 * 13 lines of code of 13 possible.
+	 * C: 80% of sentence coverage, since it has been covered
+	 * 10 lines of code of 13 possible.
 	 * 
 	 * D: 100% of data coverage
 	 */
@@ -233,8 +233,8 @@ public class CommentServiceTest extends AbstractTest {
 	 * 
 	 * B: El nutritionist 2 no puede acceder a los comentarios de los articulos de otro nutritionist
 	 * 
-	 * C: 100% of sentence coverage, since it has been covered
-	 * 13 lines of code of 13 possible.
+	 * C: 84.6% of sentence coverage, since it has been covered
+	 * 11 lines of code of 13 possible.
 	 * 
 	 * D: 100% of data coverage
 	 */
@@ -303,8 +303,8 @@ public class CommentServiceTest extends AbstractTest {
 	 * 
 	 * B: Debe listar también el comment7
 	 * 
-	 * C: 100% of sentence coverage, since it has been covered
-	 * 13 lines of code of 13 possible.
+	 * C: 84.6% of sentence coverage, since it has been covered
+	 * 11 lines of code of 13 possible.
 	 * 
 	 * D: 100% of data coverage
 	 */
@@ -339,8 +339,8 @@ public class CommentServiceTest extends AbstractTest {
 	 * 
 	 * B: El nutritionist 2 no puede acceder a los comentarios de los articulos de otro nutritionist
 	 * 
-	 * C: 100% of sentence coverage, since it has been covered
-	 * 13 lines of code of 13 possible.
+	 * C: 80% of sentence coverage, since it has been covered
+	 * 10 lines of code of 13 possible.
 	 * 
 	 * D: 100% of data coverage
 	 */
@@ -427,7 +427,7 @@ public class CommentServiceTest extends AbstractTest {
 	 * manage his or her comments, which includes listing, SHOWING,
 	 * creating, updating and deleting them.
 	 * 
-	 * B: The comment to display must belong to the commentor principal.
+	 * B: El cliente autenticado debe ser premium
 	 * 
 	 * C: 92.8% of sentence coverage, since it has been covered
 	 * 13 lines of code of 14 possible.

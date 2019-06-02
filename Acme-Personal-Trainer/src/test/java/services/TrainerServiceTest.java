@@ -485,4 +485,86 @@ public class TrainerServiceTest extends AbstractTest {
 
 		Assert.isTrue(data == 0.14286);
 	}
+
+	/*
+	 * A: Req 35.1 An actor who is authenticated as a auditor must be able to list the trainers and display their curriculum.
+	 * 
+	 * B: Positive test
+	 * 
+	 * C: 100% of sentence coverage, since it has been covered
+	 * 93 lines of code of 93 possible.
+	 * 
+	 * D: 100% of data coverage
+	 */
+	@Test
+	public void testListTrainersPositive() {
+		final Collection<Trainer> trainers;
+		int trainerId, numberTrainers;
+		Trainer trainer1, trainer2, trainer3, trainer4, trainer5, trainer6, trainer7;
+
+		super.authenticate("auditor1");
+
+		trainerId = super.getEntityId("trainer1");
+		trainer1 = this.trainerService.findOne(trainerId);
+		trainerId = super.getEntityId("trainer2");
+		trainer2 = this.trainerService.findOne(trainerId);
+		trainerId = super.getEntityId("trainer3");
+		trainer3 = this.trainerService.findOne(trainerId);
+		trainerId = super.getEntityId("trainer4");
+		trainer4 = this.trainerService.findOne(trainerId);
+		trainerId = super.getEntityId("trainer5");
+		trainer5 = this.trainerService.findOne(trainerId);
+		trainerId = super.getEntityId("trainer6");
+		trainer6 = this.trainerService.findOne(trainerId);
+		trainerId = super.getEntityId("trainer7");
+		trainer7 = this.trainerService.findOne(trainerId);
+		numberTrainers = 7;
+
+		trainers = this.trainerService.findAllNotBanned();
+
+		super.unauthenticate();
+
+		Assert.isTrue(trainers.contains(trainer1) && trainers.contains(trainer2) && trainers.contains(trainer3) && trainers.contains(trainer4) && trainers.contains(trainer5) && trainers.contains(trainer6) && trainers.contains(trainer7));
+		Assert.isTrue(trainers.size() == numberTrainers);
+	}
+
+	/*
+	 * A: Req 35.1 An actor who is authenticated as a auditor must be able to list the trainers and display their curriculum.
+	 * 
+	 * B: No se han listado todos los traines no baneados existentes
+	 * 
+	 * C: 98% of sentence coverage, since it has been covered
+	 * 92 lines of code of 93 possible.
+	 * 
+	 * D: 100% of data coverage
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testListTrainersNegative1() {
+		final Collection<Trainer> trainers;
+		int trainerId, numberTrainers;
+		Trainer trainer1, trainer2, trainer3, trainer4, trainer5, trainer6;
+
+		super.authenticate("auditor1");
+
+		trainerId = super.getEntityId("trainer1");
+		trainer1 = this.trainerService.findOne(trainerId);
+		trainerId = super.getEntityId("trainer2");
+		trainer2 = this.trainerService.findOne(trainerId);
+		trainerId = super.getEntityId("trainer3");
+		trainer3 = this.trainerService.findOne(trainerId);
+		trainerId = super.getEntityId("trainer4");
+		trainer4 = this.trainerService.findOne(trainerId);
+		trainerId = super.getEntityId("trainer5");
+		trainer5 = this.trainerService.findOne(trainerId);
+		trainerId = super.getEntityId("trainer6");
+		trainer6 = this.trainerService.findOne(trainerId);
+		numberTrainers = 6;
+
+		trainers = this.trainerService.findAllNotBanned();
+
+		super.unauthenticate();
+
+		Assert.isTrue(trainers.contains(trainer1) && trainers.contains(trainer2) && trainers.contains(trainer3) && trainers.contains(trainer4) && trainers.contains(trainer5) && trainers.contains(trainer6));
+		Assert.isTrue(trainers.size() == numberTrainers);
+	}
 }
