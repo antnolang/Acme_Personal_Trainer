@@ -28,11 +28,6 @@
 			<a href="application/customer/create.do?workingOutId=${workingOut.id}"><spring:message code="workingOut.apply" /></a>
 		</h2>
 </jstl:if>
-<jstl:if test="${isApplied==false}">
-<jstl:if test="${noCreditCard}">
-		<p style="color:blue;"><spring:message code="workingOut.info.creditCard"/></p>
-	</jstl:if>
-</jstl:if>
 
 <strong><spring:message code="workingOut.trainerName"/>:</strong>
 		<a href="actor/display.do?actorId=${workingOut.trainer.id}"><jstl:out value="${workingOut.trainer.name}"/></a>
