@@ -36,7 +36,7 @@
 			</li>
 			<li>
 				<strong><spring:message code="finder.endDate"/></strong>
-				<fmt:formatDate value="${finder.startDate}" pattern="${dateFormat}"/>
+				<fmt:formatDate value="${finder.endDate}" pattern="${dateFormat}"/>
 			</li>
 			<li>
 				<strong><spring:message code="finder.startPrice"/></strong>

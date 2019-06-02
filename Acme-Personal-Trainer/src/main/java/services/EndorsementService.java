@@ -144,7 +144,7 @@ public class EndorsementService {
 
 		if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]")) {
 			customerPrincipal = this.customerService.findByPrincipal();
-			Assert.isTrue(result.getCustomer().equals(customerPrincipal));
+			Assert.isTrue(result.getCustomer().equals(customerPrincipal) || this.applicationService.existApplicationAcceptedBetweenCustomerTrainer(customerPrincipal.getId(), result.getTrainer().getId()));
 		} else if (LoginService.getPrincipal().getAuthorities().toString().equals("[TRAINER]")) {
 			trainerPrincipal = this.trainerService.findByPrincipal();
 			Assert.isTrue(result.getTrainer().equals(trainerPrincipal));

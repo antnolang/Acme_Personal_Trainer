@@ -33,5 +33,5 @@
 	<jstl:if test="${socialProfile.id != 0}">
 		<acme:submit name="delete" code="socialProfile.delete" />
 	</jstl:if>		
-	<acme:cancel url="socialProfile/list.do?actorId=${actorId}" code="socialProfile.cancel"/>
+	<acme:cancel url="socialProfile/administrator,auditor,customer,nutritionist,trainer/list.do?actorId=${actorId}" code="socialProfile.cancel"/>
 </form:form>

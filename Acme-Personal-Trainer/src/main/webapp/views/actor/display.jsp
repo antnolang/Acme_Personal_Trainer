@@ -236,7 +236,7 @@
 
 <fieldset>
 	<legend><spring:message code="other.legend"/></legend>
-	<p> <strong> <spring:message code="actor.socialProfiles" />: </strong>  <a href="socialProfile/list.do?actorId=${actor.id}"><spring:message code="actor.socialProfiles"/></a></p>
+	<p> <strong> <spring:message code="actor.socialProfiles" />: </strong>  <a href="socialProfile/administrator,auditor,customer,nutritionist,trainer/list.do?actorId=${actor.id}"><spring:message code="actor.socialProfiles"/></a></p>
 
 </fieldset>
 

@@ -146,8 +146,8 @@ public class FinderService {
 		result.setCategory(finder.getCategory());
 		result.setStartPrice(finder.getStartPrice());
 		result.setEndPrice(finder.getEndPrice());
-		result.setStartDate(finderStored.getStartDate());
-		result.setEndDate(finderStored.getEndDate());
+		result.setStartDate(finder.getStartDate());
+		result.setEndDate(finder.getEndDate());
 		result.setCustomer(finderStored.getCustomer());
 		result.setWorkingOuts(finderStored.getWorkingOuts());
 		result.setUpdatedMoment(finderStored.getUpdatedMoment());
