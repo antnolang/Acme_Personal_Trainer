@@ -187,4 +187,29 @@ public class CurriculumServiceTest extends AbstractTest {
 		Assert.isTrue(savedPersonalRecord.getPhoto() == photo);
 	}
 
+	/*
+	 * A: Req 35.1 An actor who is authenticated as a auditor must be able to list the trainers and display their curriculum.
+	 * 
+	 * B: Positive test
+	 * 
+	 * C: 100% of sentence coverage, since it has been covered
+	 * 21 lines of code of 21 possible.
+	 * 
+	 * D: 100% of data coverage
+	 */
+	@Test
+	public void testDisplayCurriculum() {
+		int curriculumId;
+		Curriculum stored;
+
+		super.authenticate("auditor1");
+
+		curriculumId = super.getEntityId("curriculum1");
+		stored = this.curriculumService.findOne(curriculumId);
+
+		super.unauthenticate();
+
+		Assert.notNull(stored);
+	}
+
 }

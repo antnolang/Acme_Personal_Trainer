@@ -47,7 +47,7 @@ public class ArticleServiceTest extends AbstractTest {
 			},
 			/*
 			 * A: Req.43. Every nutritionist can write a article.
-			 * B: El nutricionista no puede comentar el articulo porque no es el que lo ha creado.
+			 * B: El titulo del articulo no puede ser nulo.
 			 * C: 71%. 20/28 Recorre 20 de las 28 líneas de código totales
 			 * D: Intencionadamente en blanco. No se comprueban datos
 			 */
@@ -56,7 +56,7 @@ public class ArticleServiceTest extends AbstractTest {
 			},
 			/*
 			 * A: Req.43. Every nutritionist can write a article.
-			 * B: El nutricionista no puede comentar el articulo porque está en modo no final.
+			 * B: La descripcion del articulo no puede ser vacía.
 			 * C: 67%. 19/28 Recorre 19 de las 28 líneas de código totales
 			 * D: Intencionadamente en blanco. No se comprueban datos
 			 */
@@ -65,7 +65,7 @@ public class ArticleServiceTest extends AbstractTest {
 			},
 			/*
 			 * A: Req.43. Every nutritionist can write a article.
-			 * B: El nutricionista no puede comentar el articulo porque está en modo no final.
+			 * B: Solo pueden crear articulos los nutricionistas.
 			 * C: 67%. 19/28 Recorre 19 de las 28 líneas de código totales
 			 * D: Intencionadamente en blanco. No se comprueban datos
 			 */
@@ -147,8 +147,8 @@ public class ArticleServiceTest extends AbstractTest {
 	 * 
 	 * B: El nutricionista no puede editar un articulo en modo final
 	 * 
-	 * C: 100% of sentence coverage, since it has been covered
-	 * 13 lines of code of 13 possible.
+	 * C: 84.6% of sentence coverage, since it has been covered
+	 * 11 lines of code of 13 possible.
 	 * 
 	 * D: 100% of data coverage
 	 */
@@ -178,8 +178,8 @@ public class ArticleServiceTest extends AbstractTest {
 	 * 
 	 * B: El nutricionista no puede editar un árticulo que no ha escrito él
 	 * 
-	 * C: 100% of sentence coverage, since it has been covered
-	 * 13 lines of code of 13 possible.
+	 * C: 80% of sentence coverage, since it has been covered
+	 * 10 lines of code of 13 possible.
 	 * 
 	 * D: 100% of data coverage
 	 */
@@ -244,8 +244,8 @@ public class ArticleServiceTest extends AbstractTest {
 	 * 
 	 * B: Al nutricionista debe aparecerle tanto los articulos finales como los no finales
 	 * 
-	 * C: 100% of sentence coverage, since it has been covered
-	 * 13 lines of code of 13 possible.
+	 * C: 80% of sentence coverage, since it has been covered
+	 * 10 lines of code of 13 possible.
 	 * 
 	 * D: 100% of data coverage
 	 */
@@ -277,8 +277,8 @@ public class ArticleServiceTest extends AbstractTest {
 	 * 
 	 * B: Un nutricionista no puede listar los articulos de otro
 	 * 
-	 * C: 100% of sentence coverage, since it has been covered
-	 * 13 lines of code of 13 possible.
+	 * C: 84.6% of sentence coverage, since it has been covered
+	 * 11 lines of code of 13 possible.
 	 * 
 	 * D: 100% of data coverage
 	 */
@@ -349,8 +349,8 @@ public class ArticleServiceTest extends AbstractTest {
 	 * 
 	 * B: Al cliente no debe aparecerle en el listado los articulos en modo no final
 	 * 
-	 * C: 100% of sentence coverage, since it has been covered
-	 * 13 lines of code of 13 possible.
+	 * C: 84.6% of sentence coverage, since it has been covered
+	 * 11 lines of code of 13 possible.
 	 * 
 	 * D: 100% of data coverage
 	 */
@@ -390,8 +390,8 @@ public class ArticleServiceTest extends AbstractTest {
 	 * 
 	 * B: Al cliente deben aparecerle todos los articulos en modo final existentes. Falta el article6.
 	 * 
-	 * C: 100% of sentence coverage, since it has been covered
-	 * 13 lines of code of 13 possible.
+	 * C: 80% of sentence coverage, since it has been covered
+	 * 10 lines of code of 13 possible.
 	 * 
 	 * D: 100% of data coverage
 	 */
@@ -459,8 +459,8 @@ public class ArticleServiceTest extends AbstractTest {
 	 * 
 	 * B: El articulo 3 ya está en Modo Final
 	 * 
-	 * C: 100% of sentence coverage, since it has been covered
-	 * 13 lines of code of 13 possible.
+	 * C: 80% of sentence coverage, since it has been covered
+	 * 10 lines of code of 13 possible.
 	 * 
 	 * D: 100% of data coverage
 	 */
@@ -489,8 +489,8 @@ public class ArticleServiceTest extends AbstractTest {
 	 * 
 	 * B: El nutricionista2 no puede marcar en modo final un articulo de otro nutricionista
 	 * 
-	 * C: 100% of sentence coverage, since it has been covered
-	 * 13 lines of code of 13 possible.
+	 * C: 84.6% of sentence coverage, since it has been covered
+	 * 11 lines of code of 13 possible.
 	 * 
 	 * D: 100% of data coverage
 	 */
@@ -549,8 +549,8 @@ public class ArticleServiceTest extends AbstractTest {
 	 * 
 	 * B: No se puede eliminar un articulo en modo final
 	 * 
-	 * C: 100% of sentence coverage, since it has been covered
-	 * 13 lines of code of 13 possible.
+	 * C: 84.6% of sentence coverage, since it has been covered
+	 * 11 lines of code of 13 possible.
 	 * 
 	 * D: 100% of data coverage
 	 */
@@ -579,8 +579,8 @@ public class ArticleServiceTest extends AbstractTest {
 	 * 
 	 * B: No se puede eliminar un articulo creado por otro nutricionista
 	 * 
-	 * C: 100% of sentence coverage, since it has been covered
-	 * 13 lines of code of 13 possible.
+	 * C: 80% of sentence coverage, since it has been covered
+	 * 10 lines of code of 13 possible.
 	 * 
 	 * D: 100% of data coverage
 	 */
