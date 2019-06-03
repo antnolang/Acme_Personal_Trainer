@@ -25,7 +25,7 @@
 		<fmt:formatDate value="${educationRecord.startDate}" pattern="${dateFormat}"/>
 	</li>
 	<li>
-		<strong><spring:message code="educationRecord.endDate"/></strong>
+		<strong><spring:message code="educationRecord.startDate"/></strong>
 		<fmt:formatDate value="${educationRecord.endDate}" pattern="${dateFormat}"/>
 	</li>
 	<li>

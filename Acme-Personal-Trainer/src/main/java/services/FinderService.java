@@ -69,7 +69,7 @@ public class FinderService {
 
 	public void save(final Finder finder) {
 		Assert.notNull(finder);
-		Assert.isTrue(this.validDates(finder));
+		//Assert.isTrue(this.validDates(finder));
 		Assert.isTrue(this.validPrices(finder));
 		this.checkOwner(finder);
 
@@ -154,24 +154,25 @@ public class FinderService {
 		result.setVersion(finderStored.getVersion());
 
 		this.validator.validate(result, binding);
-		if (!this.validDates(finder))
-			binding.rejectValue("startDate", "finder.dates.error", "End date cannot be earlier than Start date.");
-		else if (!this.validPrices(finder))
+		//		if (!this.validDates(finder))
+		//			binding.rejectValue("startDate", "finder.dates.error", "End date cannot be earlier than Start date.");
+		//		else 
+		if (!this.validPrices(finder))
 			binding.rejectValue("startPrice", "finder.prices.error", "End price cannot be fewer than Start price.");
 
 		return result;
 	}
 
-	private boolean validDates(final Finder finder) {
-		boolean result;
-
-		if (finder.getStartDate() != null && finder.getEndDate() != null)
-			result = !finder.getEndDate().before(finder.getStartDate());
-		else
-			result = true;
-
-		return result;
-	}
+	//	private boolean validDates(final Finder finder) {
+	//		boolean result;
+	//
+	//		if (finder.getStartDate() != null && finder.getEndDate() != null)
+	//			result = !finder.getEndDate().before(finder.getStartDate());
+	//		else
+	//			result = true;
+	//
+	//		return result;
+	//	}
 
 	private boolean validPrices(final Finder finder) {
 		boolean result;
