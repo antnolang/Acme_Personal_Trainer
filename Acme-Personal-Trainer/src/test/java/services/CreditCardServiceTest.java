@@ -46,7 +46,7 @@ public class CreditCardServiceTest extends AbstractTest {
 			 * D: Analysis of data coverage: 6/9 -> 66.6% of executed lines codes .
 			 */
 			{
-				"customer1", "holderName", "brandName", "4929406212694094", "01", "22", 123, null
+				"customer1", "holderName", "VISA", "4929406212694094", "01", "22", 123, null
 			},
 
 			/*
@@ -56,7 +56,7 @@ public class CreditCardServiceTest extends AbstractTest {
 			 * D: Analysis of data coverage: 6/9 -> 66.6% of executed lines codes .
 			 */
 			{
-				"customer1", "holderName", "brandName", "4929406212694094", "01", "18", 123, IllegalArgumentException.class
+				"customer1", "holderName", "VISA", "4929406212694094", "01", "18", 123, IllegalArgumentException.class
 			},
 			/*
 			 * A:Req 10.4 Customer create creditCard
@@ -65,7 +65,7 @@ public class CreditCardServiceTest extends AbstractTest {
 			 * D: Analysis of data coverage: 6/9 -> 66.6% of executed lines codes .
 			 */
 			{
-				"customer1", "holderName", "brandName", "", "01", "22", 123, ConstraintViolationException.class
+				"customer1", "holderName", "VISA", "", "01", "22", 123, ConstraintViolationException.class
 			},
 			/*
 			 * A:Req 10.4 Customer create creditCard
@@ -74,7 +74,7 @@ public class CreditCardServiceTest extends AbstractTest {
 			 * D: Analysis of data coverage: 6/9 -> 66.6% of executed lines codes .
 			 */
 			{
-				"customer1", "holderName", "brandName", "4929406212694094", "01", "22", 022, ConstraintViolationException.class
+				"customer1", "holderName", "VISA", "4929406212694094", "01", "22", 022, ConstraintViolationException.class
 			},
 
 		};

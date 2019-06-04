@@ -266,7 +266,7 @@ public class ApplicationServiceTest extends AbstractTest {
 		dataRejected = this.applicationService.findRatioRejectedApplications();
 
 		suma = dataRejected + dataPending + dataAccepted;
-		Assert.isTrue(suma == 1.00001);
+		Assert.isTrue(suma == 1.0);
 	}
 
 }
