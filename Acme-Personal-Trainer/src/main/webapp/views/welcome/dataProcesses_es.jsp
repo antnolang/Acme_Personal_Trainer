@@ -23,11 +23,11 @@
 	
 	
 	<p>
-		<strong>Prestación, resolución de problemas y mejora de los Servicios de Acme-Rookies</strong>
+		<strong>Prestación, resolución de problemas y mejora de los Servicios de Acme-Personal-Trainer</strong>
 	</p>
 
 	<p> Utilizamos tu información personal para aportar funcionalidad, analizar el rendimiento, 
-		resolver errores y mejorar la usabilidad y efectividad de los Servicios de Acme-Rookies.
+		resolver errores y mejorar la usabilidad y efectividad de los Servicios de Acme-Personal-Trainer.
 	</p>
 	
 	<p>
@@ -35,7 +35,7 @@
 	</p>
 	<p>Utilizamos tu información personal para recomendar funcionalidades y
  		servicios que puedan interesarte, identificar tus preferencias y personalizar tu
-  		experiencia con los Servicios de Acme-Rookies.
+  		experiencia con los Servicios de Acme-Personal-Trainer.
   	</p>
   
  	  
@@ -51,7 +51,7 @@
 		<strong>Comunicarnos contigo. </strong>
 	</p>
 	<p> Utilizamos tu información personal para comunicarnos contigo en relación con los 
-		Servicios de Acme-Rookies a través de diferentes canales (por ejemplo, por teléfono, 
+		Servicios de Acme-Personal-Trainer a través de diferentes canales (por ejemplo, por teléfono, 
 		correo electrónico, mensajería).
  	</p>
  	
