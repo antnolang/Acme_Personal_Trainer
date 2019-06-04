@@ -69,15 +69,18 @@ public class CustomerServiceTest extends AbstractTest {
 	@Test
 	public void testFindUsualCustomers() {
 		Collection<Customer> customers;
-		Customer c1;
-		int c1Id, numberCustomers;
+		Customer c1, c3;
+		int c1Id, c3Id, numberCustomers;
 
 		customers = this.customerService.findUsualCustomers();
 		c1Id = super.getEntityId("customer1");
 		c1 = this.customerRepository.findOne(c1Id);
-		numberCustomers = 1;
+		c3Id = super.getEntityId("customer3");
+		c3 = this.customerRepository.findOne(c3Id);
+		numberCustomers = 2;
 
 		Assert.isTrue(customers.contains(c1));
+		Assert.isTrue(customers.contains(c3));
 		Assert.isTrue(customers.size() == numberCustomers);
 	}
 

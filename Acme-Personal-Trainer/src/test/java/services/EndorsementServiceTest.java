@@ -48,9 +48,9 @@ public class EndorsementServiceTest extends AbstractTest {
 		data = this.endorsementService.findDataNumberEndorsementPerTrainer();
 
 		Assert.isTrue(data[0] == 0.0);
-		Assert.isTrue(data[1] == 3.0);
-		Assert.isTrue(data[2] == 0.42857);
-		Assert.isTrue(data[3] == 1.04978);
+		Assert.isTrue(data[1] == 2.0);
+		Assert.isTrue(data[2] == 0.28571);
+		Assert.isTrue(data[3] == 0.69985);
 	}
 
 	// Ancillary methods ------------------------------------------------------
