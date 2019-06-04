@@ -44,10 +44,10 @@ public class WorkingOutServiceTest extends AbstractTest {
 
 		data = this.workingOutService.findDataNumberApplicationPerWorkingOut();
 
-		Assert.isTrue(data[0] == 0.44444);
+		Assert.isTrue(data[0] == 0.66667);
 		Assert.isTrue(data[1] == 0.0);
-		Assert.isTrue(data[2] == 1.0);
-		Assert.isTrue(data[3] == 0.4969);
+		Assert.isTrue(data[2] == 3.0);
+		Assert.isTrue(data[3] == 0.94281);
 	}
 
 	/*
@@ -62,10 +62,10 @@ public class WorkingOutServiceTest extends AbstractTest {
 
 		data = this.workingOutService.findDataPricePerWorkingOut();
 
-		Assert.isTrue(data[0] == 32.656666666666666);
-		Assert.isTrue(data[1] == 15.99);
-		Assert.isTrue(data[2] == 75.99);
-		Assert.isTrue(data[3] == 20.94967514996089);
+		Assert.isTrue(data[0] == 232.65666666666664);
+		Assert.isTrue(data[1] == 215.99);
+		Assert.isTrue(data[2] == 275.99);
+		Assert.isTrue(data[3] == 20.949675149960893);
 	}
 
 	/*
