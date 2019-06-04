@@ -119,7 +119,10 @@ public class AuditAuditorController extends AbstractController {
 				saved = this.auditService.save(auditRec);
 				result = new ModelAndView("redirect:display.do?auditId=" + saved.getId());
 			} catch (final DataIntegrityViolationException oops) {
-				result = this.createEditModelAndView(auditRec, "audit.url.error");
+				if (oops.getMessage().contains("could not execute statement;"))
+					result = this.createEditModelAndView(auditRec, "audit.commit.error");
+				else
+					result = this.createEditModelAndView(auditRec, "audit.url.error");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(auditRec, "audit.commit.error");
 			}
