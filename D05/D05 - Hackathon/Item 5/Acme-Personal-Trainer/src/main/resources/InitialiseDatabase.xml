@@ -1,0 +1,976 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- * PopulateDatabase.xml * * Copyright (C) 2019 Universidad de Sevilla 
+	* * The use of this project is hereby constrained to the conditions of the 
+	* TDG Licence, a copy of which you may download from * http://www.tdg-seville.info/License.html -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+
+	<!-- User accounts -->
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin1" />
+		<property name="password" value="e00cf25ad42683b3df678c61f42c6bda" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="username" value="system" />
+		<property name="password" value="54b53072540eeeb8f8e9343e71f28176" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount3" class="security.UserAccount">
+		<property name="username" value="customer1" />
+		<property name="password" value="ffbc4675f864e0e9aab8bdf7a0437010" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="customer2" />
+		<property name="password" value="5ce4d191fd14ac85a1469fb8c29b7a7b" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount10" class="security.UserAccount">
+		<property name="username" value="nutritionist1" />
+		<property name="password" value="768261ab8b85bc8b04c1a5e840056108" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="NUTRITIONIST" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount11" class="security.UserAccount">
+		<property name="username" value="nutritionist2" />
+		<property name="password" value="ca0d82372ee05801973127ea6414b21d" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="NUTRITIONIST" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount15" class="security.UserAccount">
+		<property name="username" value="auditor1" />
+		<property name="password" value="175d2e7a63f386554a4dd66e865c3e14" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount16" class="security.UserAccount">
+		<property name="username" value="auditor2" />
+		<property name="password" value="04dd94ba3212ac52ad3a1f4cbfb52d4f" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount20" class="security.UserAccount">
+		<property name="username" value="trainer1" />
+		<property name="password" value="4d9a96c8e1650dc161f1adcf5c5082a0" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="TRAINER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount21" class="security.UserAccount">
+		<property name="username" value="trainer2" />
+		<property name="password" value="6662f54a6c5033357408e6839a5c0a05" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="TRAINER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Administrator -->
+	<bean id="administrator1" class="domain.Administrator">
+		<property name="name" value="Admin1" />
+		<property name="middleName" value="" />
+		<property name="surname" value="administrator" />
+		<property name="photo"
+			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="administrator1@gmail.com" />
+		<property name="phoneNumber" value="630187654" />
+		<property name="address" value="Calle Admin 1" />
+		<property name="isSuspicious" value="false" />
+		<property name="userAccount" ref="userAccount1" />
+	</bean>
+
+	<bean id="system" class="domain.Administrator">
+		<property name="name" value="Admin2" />
+		<property name="middleName" value="" />
+		<property name="surname" value="administrator" />
+		<property name="photo"
+			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="administrator2@gmail.com" />
+		<property name="phoneNumber" value="630417654" />
+		<property name="address" value="Calle Admin 2" />
+		<property name="isSuspicious" value="false" />
+		<property name="userAccount" ref="userAccount2" />
+	</bean>
+
+	<!-- Auditor -->
+	<bean id="auditor1" class="domain.Auditor">
+		<property name="name" value="Auditor1" />
+		<property name="middleName" value="" />
+		<property name="surname" value="auditor" />
+		<property name="photo"
+			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="auditor1@gmail.com" />
+		<property name="phoneNumber" value="630417654" />
+		<property name="address" value="Calle Auditor 1" />
+		<property name="isSuspicious" value="false" />
+		<property name="userAccount" ref="userAccount15" />
+	</bean>
+
+	<bean id="auditor2" class="domain.Auditor">
+		<property name="name" value="Auditor2" />
+		<property name="middleName" value="" />
+		<property name="surname" value="auditor" />
+		<property name="photo"
+			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="auditor2@gmail.com" />
+		<property name="phoneNumber" value="630417654" />
+		<property name="address" value="Calle Auditor 2" />
+		<property name="isSuspicious" value="false" />
+		<property name="userAccount" ref="userAccount16" />
+	</bean>
+
+	<!-- Box -->
+	<bean id="box10" class="domain.Box">
+		<property name="name" value="in box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="administrator1" />
+	</bean>
+
+	<bean id="box11" class="domain.Box">
+		<property name="name" value="out box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="administrator1" />
+	</bean>
+
+	<bean id="box12" class="domain.Box">
+		<property name="name" value="trash box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="administrator1" />
+	</bean>
+
+	<bean id="box13" class="domain.Box">
+		<property name="name" value="spam box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="administrator1" />
+	</bean>
+
+	<bean id="box14" class="domain.Box">
+		<property name="name" value="notification box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="administrator1" />
+	</bean>
+
+	<bean id="box20" class="domain.Box">
+		<property name="name" value="in box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="system" />
+	</bean>
+
+	<bean id="box21" class="domain.Box">
+		<property name="name" value="out box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="system" />
+	</bean>
+
+	<bean id="box22" class="domain.Box">
+		<property name="name" value="trash box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="system" />
+	</bean>
+
+	<bean id="box23" class="domain.Box">
+		<property name="name" value="spam box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="system" />
+	</bean>
+
+	<bean id="box24" class="domain.Box">
+		<property name="name" value="notification box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="system" />
+	</bean>
+
+	<bean id="box30" class="domain.Box">
+		<property name="name" value="in box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="auditor1" />
+	</bean>
+
+	<bean id="box31" class="domain.Box">
+		<property name="name" value="out box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="auditor1" />
+	</bean>
+
+	<bean id="box32" class="domain.Box">
+		<property name="name" value="trash box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="auditor1" />
+	</bean>
+
+	<bean id="box33" class="domain.Box">
+		<property name="name" value="spam box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="auditor1" />
+	</bean>
+
+	<bean id="box34" class="domain.Box">
+		<property name="name" value="notification box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="auditor1" />
+	</bean>
+
+	<bean id="box40" class="domain.Box">
+		<property name="name" value="in box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="auditor2" />
+	</bean>
+
+	<bean id="box41" class="domain.Box">
+		<property name="name" value="out box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="auditor2" />
+	</bean>
+
+	<bean id="box42" class="domain.Box">
+		<property name="name" value="trash box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="auditor2" />
+	</bean>
+
+	<bean id="box43" class="domain.Box">
+		<property name="name" value="spam box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="auditor2" />
+	</bean>
+
+	<bean id="box44" class="domain.Box">
+		<property name="name" value="notification box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="auditor2" />
+	</bean>
+
+
+	<bean id="box80" class="domain.Box">
+		<property name="name" value="in box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="customer1" />
+	</bean>
+
+	<bean id="box81" class="domain.Box">
+		<property name="name" value="out box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="customer1" />
+	</bean>
+
+	<bean id="box82" class="domain.Box">
+		<property name="name" value="trash box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="customer1" />
+	</bean>
+
+	<bean id="box83" class="domain.Box">
+		<property name="name" value="spam box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="customer1" />
+	</bean>
+
+	<bean id="box84" class="domain.Box">
+		<property name="name" value="notification box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="customer1" />
+	</bean>
+
+	
+
+	<bean id="box90" class="domain.Box">
+		<property name="name" value="in box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="customer2" />
+	</bean>
+
+	<bean id="box91" class="domain.Box">
+		<property name="name" value="out box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="customer2" />
+	</bean>
+
+	<bean id="box92" class="domain.Box">
+		<property name="name" value="trash box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="customer2" />
+	</bean>
+
+	<bean id="box93" class="domain.Box">
+		<property name="name" value="spam box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="customer2" />
+	</bean>
+
+
+	<bean id="box94" class="domain.Box">
+		<property name="name" value="notification box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="customer2" />
+	</bean>
+
+
+	<bean id="box150" class="domain.Box">
+		<property name="name" value="in box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="nutritionist1" />
+	</bean>
+
+	<bean id="box151" class="domain.Box">
+		<property name="name" value="out box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="nutritionist1" />
+	</bean>
+
+	<bean id="box152" class="domain.Box">
+		<property name="name" value="trash box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="nutritionist1" />
+	</bean>
+
+	<bean id="box153" class="domain.Box">
+		<property name="name" value="spam box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="nutritionist1" />
+	</bean>
+
+	<bean id="box154" class="domain.Box">
+		<property name="name" value="notification box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="nutritionist1" />
+	</bean>
+
+	
+
+	<bean id="box160" class="domain.Box">
+		<property name="name" value="in box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="nutritionist2" />
+	</bean>
+
+	<bean id="box161" class="domain.Box">
+		<property name="name" value="out box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="nutritionist2" />
+	</bean>
+
+	<bean id="box162" class="domain.Box">
+		<property name="name" value="trash box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="nutritionist2" />
+	</bean>
+
+	<bean id="box163" class="domain.Box">
+		<property name="name" value="spam box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="nutritionist2" />
+	</bean>
+
+	<bean id="box164" class="domain.Box">
+		<property name="name" value="notification box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="nutritionist2" />
+	</bean>
+
+
+	<bean id="box200" class="domain.Box">
+		<property name="name" value="in box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer1" />
+	</bean>
+
+	<bean id="box201" class="domain.Box">
+		<property name="name" value="out box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer1" />
+	</bean>
+
+	<bean id="box202" class="domain.Box">
+		<property name="name" value="trash box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer1" />
+	</bean>
+
+	<bean id="box203" class="domain.Box">
+		<property name="name" value="spam box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer1" />
+	</bean>
+
+	<bean id="box204" class="domain.Box">
+		<property name="name" value="notification box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer1" />
+	</bean>
+
+	<bean id="box210" class="domain.Box">
+		<property name="name" value="in box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer2" />
+	</bean>
+
+	<bean id="box211" class="domain.Box">
+		<property name="name" value="out box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer2" />
+	</bean>
+
+	<bean id="box212" class="domain.Box">
+		<property name="name" value="trash box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer2" />
+	</bean>
+
+	<bean id="box213" class="domain.Box">
+		<property name="name" value="spam box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer2" />
+	</bean>
+
+
+	<bean id="box214" class="domain.Box">
+		<property name="name" value="notification box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="actor" ref="trainer2" />
+	</bean>
+
+	<!-- Category -->
+	<bean id="category1" class="domain.Category">
+		<property name="name" value="Active Recovery, " />
+	</bean>
+
+	<bean id="category2" class="domain.Category">
+		<property name="name" value="Aerobic Exercise," />
+	</bean>
+
+	<bean id="category3" class="domain.Category">
+		<property name="name" value="Anaerobic Exercise, " />
+	</bean>
+
+	<bean id="category4" class="domain.Category">
+		<property name="name" value="Boot Camp, " />
+	</bean>
+
+	<bean id="category5" class="domain.Category">
+		<property name="name" value="Circuit," />
+	</bean>
+
+	<bean id="category6" class="domain.Category">
+		<property name="name" value="Compound Exercises, " />
+	</bean>
+
+	<bean id="category7" class="domain.Category">
+		<property name="name" value="Cool-Down, " />
+	</bean>
+
+	<bean id="category8" class="domain.Category">
+		<property name="name" value="Cross-Training,  " />
+	</bean>
+
+	<bean id="category9" class="domain.Category">
+		<property name="name" value="DOMS," />
+	</bean>
+
+	<bean id="category10" class="domain.Category">
+		<property name="name" value="Dynamic Warm-Up, " />
+	</bean>
+
+	<bean id="category11" class="domain.Category">
+		<property name="name" value="Foam Rolling,  " />
+	</bean>
+
+	<bean id="category12" class="domain.Category">
+		<property name="name" value="Functional Moves," />
+	</bean>
+
+	<bean id="category13" class="domain.Category">
+		<property name="name" value="Heart Rate Zones,  " />
+	</bean>
+
+	<bean id="category14" class="domain.Category">
+		<property name="name" value="HIIT, " />
+	</bean>
+
+	<bean id="category15" class="domain.Category">
+		<property name="name" value="Interval Training,  " />
+	</bean>
+
+	<bean id="category16" class="domain.Category">
+		<property name="name" value="Isometrics,   " />
+	</bean>
+
+	<bean id="category17" class="domain.Category">
+		<property name="name" value="Plyometrics, " />
+	</bean>
+
+	<bean id="category18" class="domain.Category">
+		<property name="name" value="Resistance,  " />
+	</bean>
+
+	<bean id="category19" class="domain.Category">
+		<property name="name" value="Strength Training,  " />
+	</bean>
+
+	<bean id="category20" class="domain.Category">
+		<property name="name" value="Tabata," />
+	</bean>
+
+	<!-- Customer -->
+	<bean id="customer1" class="domain.Customer">
+		<property name="name" value="Customer1" />
+		<property name="middleName" value="" />
+		<property name="surname" value="customer" />
+		<property name="photo"
+			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="customer1@gmail.com" />
+		<property name="phoneNumber" value="630417654" />
+		<property name="address" value="Calle Customer 1" />
+		<property name="isSuspicious" value="false" />
+		<property name="isPremium" value="false" />
+		<property name="userAccount" ref="userAccount3" />
+	</bean>
+
+	<bean id="customer2" class="domain.Customer">
+		<property name="name" value="Customer2" />
+		<property name="middleName" value="" />
+		<property name="surname" value="customer" />
+		<property name="photo"
+			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="customer2@gmail.com" />
+		<property name="phoneNumber" value="630417654" />
+		<property name="address" value="Calle Customer 2" />
+		<property name="isSuspicious" value="false" />
+		<property name="isPremium" value="false" />
+		<property name="userAccount" ref="userAccount4" />
+	</bean>
+
+	<!-- Customisation -->
+	<bean id="customisation1" class="domain.Customisation">
+		<property name="name" value="Acme Personal Trainer" />
+		<property name="banner" value="https://i.ibb.co/dLs9pVS/banner.png" />
+		<property name="welcomeMessageEn"
+			value="Welcome to Acme Personal Trainer! Price, quality, and trust in a single place" />
+		<property name="welcomeMessageEs"
+			value="¡Bienvenidos a Acme Personal Trainer! Precio, calidad y confianza en el mismo sitio" />
+		<property name="VAT" value="47" />
+		<property name="countryCode" value="+34" />
+		<property name="priorities" value="HIGH,NEUTRAL,LOW" />
+		<property name="creditCardMakes" value="VISA,MASTER,DINNERS,AMEX" />
+		<property name="timeResults" value="1" />
+		<property name="numberResults" value="10" />
+		<property name="threshold" value="-0.5" />
+		<property name="spamWords"
+			value="sex,viagra,cialis,one million,you've been selected,Nigeria,sexo,un millon,ha sido seleccionado" />
+		<property name="positiveWords"
+			value="good,fantastic,excellent,great,amazing,terrific,beautiful,bien,fantastico,excelente,genial,increible,terrorifico,hermosos" />
+		<property name="negativeWords"
+			value="not,bad,horrible,average,disaster,no,mal,mediocre,desastre" />
+		<property name="premiumAmount" value="200" />
+	</bean>
+	
+	<!-- Finder -->
+	<bean id="finder1" class="domain.Finder">
+		<property name="keyword" value="estoEsUnaPruebaParaQueNoMeDevuelvaNada" />
+		<property name="startPrice" value="25.24" />
+		<property name="endPrice" value="75.24" />
+		<property name="startDate" value="2019/11/05" />
+		<property name="endDate" value="2020/01/01 10:10" />
+		<property name="customer" ref="customer1" />
+		<property name="workingOuts">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="updatedMoment" value="2019/05/20 00:10" />
+	</bean>
+
+	<bean id="finder2" class="domain.Finder">
+		<property name="keyword" value="workingOut8" />
+		<property name="startPrice" value="2.00" />
+		<property name="endPrice" value="50.24" />
+		<property name="startDate" value="2020/12/15 17:00" />
+		<property name="endDate" value="2020/12/17 19:00" />
+		<property name="customer" ref="customer2" />
+		<property name="workingOuts">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="updatedMoment" value="2019/05/20 00:10" />
+	</bean>
+	
+	<!-- Nutritionist -->
+	<bean id="nutritionist1" class="domain.Nutritionist">
+		<property name="name" value="Nutritionist1" />
+		<property name="middleName" value="" />
+		<property name="surname" value="nutritionist" />
+		<property name="photo"
+			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="nutritionist1@gmail.com" />
+		<property name="phoneNumber" value="630417654" />
+		<property name="address" value="Calle Nutritionist 1" />
+		<property name="isSuspicious" value="false" />
+		<property name="userAccount" ref="userAccount10" />
+	</bean>
+
+	<bean id="nutritionist2" class="domain.Nutritionist">
+		<property name="name" value="Nutritionist2" />
+		<property name="middleName" value="" />
+		<property name="surname" value="nutritionist" />
+		<property name="photo"
+			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="nutritionist2@gmail.com" />
+		<property name="phoneNumber" value="630417654" />
+		<property name="address" value="Calle Nutritionist 2" />
+		<property name="isSuspicious" value="false" />
+		<property name="userAccount" ref="userAccount11" />
+	</bean>
+	
+	<!-- Trainer -->
+	<bean id="trainer1" class="domain.Trainer">
+		<property name="name" value="Trainer1" />
+		<property name="middleName" value="" />
+		<property name="surname" value="trainer" />
+		<property name="photo"
+			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="trainer1@gmail.com" />
+		<property name="phoneNumber" value="630417654" />
+		<property name="address" value="Calle Trainer 1" />
+		<property name="isSuspicious" value="false" />
+		<property name="mark" value="4.0" />
+		<property name="score" value="0.3" />
+		<property name="userAccount" ref="userAccount20" />
+	</bean>
+
+	<bean id="trainer2" class="domain.Trainer">
+		<property name="name" value="Trainer2" />
+		<property name="middleName" value="" />
+		<property name="surname" value="trainer" />
+		<property name="photo"
+			value="https://deca.upc.edu/ca/persones/pdi-template-shared/profile/@@images/bac720ab-ea23-4696-9bdd-15f87f706868.png" />
+		<property name="email" value="trainer2@gmail.com" />
+		<property name="phoneNumber" value="630417654" />
+		<property name="address" value="Calle Trainer 2" />
+		<property name="isSuspicious" value="false" />
+		<property name="mark" value="4.0" />
+		<property name="score" value="0.3" />
+		<property name="userAccount" ref="userAccount21" />
+	</bean>
+	
+	
+	
+
+
+
+</beans>
